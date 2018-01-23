@@ -67,8 +67,12 @@
             });
         }
 
-        function order(id) {
-              window.location.href="<%=basePath%>app/order?id=" + id;
+        function order(id, me) {
+            $(".order_top").each(function (index, element) {
+                $(element).css("background-color", "#09c");
+            });
+            $(me).css("background-color", "#36c");
+            window.location.href = "<%=basePath%>app/order?id=" + id;
         }
 
 
@@ -126,13 +130,58 @@
         <tr>
             <th>序号</th>
             <th>平台名称</th>
-            <th id="tianyan_rank" onclick="order(1)">天眼评级</th>
-            <th onclick="order(2)">融360评级</th>
-            <th onclick="order(3)">之家评级</th>
-            <th onclick="order(4)">跟投评级</th>
+            <c:choose>
+                <c:when test="${order_id==1}">
+                    <th class="order_top" onclick="order(1,this)" style="background-color:#36c; ">天眼评级</th>
+                </c:when>
+                <c:otherwise>
+                    <th class="order_top" onclick="order(1,this)">天眼评级</th>
+                </c:otherwise>
+            </c:choose>
+            <c:choose>
+                <c:when test="${order_id==2}">
+                    <th class="order_top" onclick="order(2,this)" style="background-color:#36c;">融360评级</th>
+                </c:when>
+                <c:otherwise>
+                    <th class="order_top" onclick="order(2,this)">融360评级</th>
+                </c:otherwise>
+            </c:choose>
+            <c:choose>
+                <c:when test="${order_id==3}">
+                    <th class="order_top" onclick="order(3,this)" style="background-color:#36c;">之家评级</th>
+                </c:when>
+                <c:otherwise>
+                    <th class="order_top" onclick="order(3,this)">之家评级</th>
+                </c:otherwise>
+            </c:choose>
+            <c:choose>
+                <c:when test="${order_id==4}">
+                    <th class="order_top" onclick="order(4,this)" style="background-color:#36c;">跟投评级</th>
+                </c:when>
+                <c:otherwise>
+                    <th class="order_top" onclick="order(4,this)">跟投评级</th>
+                </c:otherwise>
+            </c:choose>
+            <c:choose>
+                <c:when test="${order_id==5}">
+                    <th class="order_top" onclick="order(5,this)" width="15%" style="background-color:#36c;">3月和6月年化</th>
+
+                </c:when>
+                <c:otherwise>
+                    <th class="order_top" onclick="order(5,this)" width="15%">3月和6月年化</th>
+                </c:otherwise>
+            </c:choose>
+            <c:choose>
+                <c:when test="${order_id==6}">
+                    <th class="order_top" onclick="order(6,this)" style="background-color:#36c;"> 评分</th>
+                </c:when>
+                <c:otherwise>
+                    <th class="order_top" onclick="order(6,this)"> 评分</th>
+                </c:otherwise>
+            </c:choose>
+
             <th>参考详情</th>
-            <th onclick="order(5)" width="15%">3月和6月年化</th>
-            <th onclick="order(6)"> 评分</th>
+
             <th>删除</th>
         </tr>
         </thead>
@@ -196,11 +245,7 @@
                             <td></td>
                         </c:otherwise>
                     </c:choose>
-                    <td>
-                        <a href="javascript:dailuopan('${plat.id }','http://www.wdzj.com/dangan/${plat.zhijia_code }','${plat.tianyan_code }');"
-                           target="_Blank"
-                           style="  text-decoration: underline; ">参考</a>
-                    </td>
+
                     <td width="15%"><input id='reta3' type='number' name='score'
                                            onblur="updateReta3('${ plat.id}',this)"
                                            style='color: #555555; font-size: 14px;width: 30px'
@@ -213,6 +258,11 @@
                                onkeypress='return event.keyCode>=48&&event.keyCode<=57' ng-pattern='/[^a-zA-Z]/'
                                style='color: #555555; font-size: 14px;width: 30px'
                                value='${ plat.score}'/></td>
+                    <td>
+                        <a href="javascript:dailuopan('${plat.id }','http://www.wdzj.com/dangan/${plat.zhijia_code }','${plat.tianyan_code }');"
+                           target="_Blank"
+                           style="  text-decoration: underline; ">参考</a>
+                    </td>
                     <td>
                         <button style='color: #555555; font-size: 15px;width: 50px' onclick="del('${ plat.id}')">删除
                         </button>

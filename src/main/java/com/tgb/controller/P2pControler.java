@@ -51,6 +51,7 @@ public class P2pControler {
     public String getList(HttpServletRequest request, HttpServletResponse response) {
         List<P2pInfo> findAll = p2pService.findAll();
         request.setAttribute("platList", findAll);
+        request.setAttribute("order_id", 6);
         return "p2p/list_plat";
     }
 
@@ -152,6 +153,7 @@ public class P2pControler {
        else if (id == 6) str = "ORDER BY score desc";
         List<P2pInfo> findAll = p2pService.findAllByStr(str);
         request.setAttribute("platList", findAll);
+        request.setAttribute("order_id", id);
         return "p2p/list_plat";
 
     }
