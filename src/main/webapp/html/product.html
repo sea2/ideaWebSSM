@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0">
+	<link rel="stylesheet" href="css/default.css">
+</head>
+<body>
+	<a href="index.html" class="back">后退</a>
+	<div  id="product" class="scroll">
+		<div class="proMsg">
+		<div class="pro_img">
+			<a href="detail.html"><img src="img/main3.jpg" width="90" height="90"/></a>
+		</div>
+		<div class="pro_word">
+			<p class="pro_wordTitle">
+				房子大灯
+			</p>
+			<p class="pro_wordDes">
+				<p class="pro_wordDe">适合安装在客装在客厅适合安装在客厅合安装</p>
+				<a href="detail.html" class="pro_wordDetail">详情</a>
+			</p>
+			<p class="pro_wordPrice">
+				￥100.0
+			</p>
+			<p class="proBuyNum">
+				<span class="buyNumColor">100</span>人已购买
+			</p>
+			<button class="button" onclick=''>购买</button>
+			<span class="buyNum">+1</span>
+		</div>
+	</div>
+	<div class="proMsg">
+		<div class="pro_img">
+			<a href="detail.html"><img src="img/main2.jpg" width="90" height="90"/></a>
+		</div>
+		<div class="pro_word">
+			<p class="pro_wordTitle">
+				房子大灯
+			</p>
+			<p class="pro_wordDes">
+				<p class="pro_wordDe">适合安装在客装在客厅适合安装在客厅合安装</p>
+				<a href="detail.html" class="pro_wordDetail">详情</a>
+			</p>
+			<p class="pro_wordPrice">
+				￥100.0
+			</p>
+			<p class="proBuyNum">
+				<span class="buyNumColor">100</span>人已购买
+			</p>
+			<button class="button" onclick=''>购买</button>
+			<span class="buyNum">+1</span>
+		</div>
+	</div>
+	<div class="proMsg">
+		<div class="pro_img">
+			<a href="detail.html"><img src="img/main2.jpg" width="90" height="90"/></a>
+		</div>
+		<div class="pro_word">
+			<p class="pro_wordTitle">
+				房子大灯
+			</p>
+			<p class="pro_wordDes">
+				<p class="pro_wordDe">适合安装在客装在客厅适合安装在客厅合安装</p>
+				<a href="detail.html" class="pro_wordDetail">详情</a>
+			</p>
+			<p class="pro_wordPrice">
+				￥100.0
+			</p>
+			<p class="proBuyNum">
+				<span class="buyNumColor">100</span>人已购买
+			</p>
+			<button class="button" onclick=''>购买</button>
+			<span class="buyNum">+1</span>
+		</div>
+	</div>
+	<div class="proMsg">
+		<div class="pro_img">
+			<a href="detail.html"><img src="img/main2.jpg" width="90" height="90"/></a>
+		</div>
+		<div class="pro_word">
+			<p class="pro_wordTitle">
+				房子大灯
+			</p>
+			<p class="pro_wordDes">
+				<p class="pro_wordDe">适合安装在客装在客厅适合安装在客厅合安装</p>
+				<a href="detail.html" class="pro_wordDetail">详情</a>
+			</p>
+			<p class="pro_wordPrice">
+				￥100.0
+			</p>
+			<p class="proBuyNum">
+				<span class="buyNumColor">100</span>人已购买
+			</p>
+			<button class="button" onclick=''>购买</button>
+			<span class="buyNum">+1</span>
+		</div>
+	</div>
+	
+	<div class="proMsg">
+		<div class="pro_img">
+			<a href="detail.html"><img src="img/main2.jpg" width="90" height="90"/></a>
+		</div>
+		<div class="pro_word">
+			<p class="pro_wordTitle">
+				房子大灯
+			</p>
+			<p class="pro_wordDes">
+				<p class="pro_wordDe">适合安装在客装在客厅适合安装在客厅合安装</p>
+				<a href="detail.html" class="pro_wordDetail">详情</a>
+			</p>
+			<p class="pro_wordPrice">
+				￥100.0
+			</p>
+			<p class="proBuyNum">
+				<span class="buyNumColor">100</span>人已购买
+			</p>
+			<button class="button" onclick=''>购买</button>
+			<span class="buyNum">+1</span>
+		</div>
+	</div>
+	<div class="proMsg">
+		<div class="pro_img">
+			<a href="detail.html"><img src="img/main2.jpg" width="90" height="90"/></a>
+		</div>
+		<div class="pro_word">
+			<p class="pro_wordTitle">
+				房子大灯
+			</p>
+			<p class="pro_wordDes">
+				<p class="pro_wordDe">适合安装在客装在客厅适合安装在客厅合安装</p>
+				<a href="detail.html" class="pro_wordDetail">详情</a>
+			</p>
+			<p class="pro_wordPrice">
+				￥100.0
+			</p>
+			<p class="proBuyNum">
+				<span class="buyNumColor">100</span>人已购买
+			</p>
+			<button class="button" onclick=''>购买</button>
+			<span class="buyNum">+1</span>
+		</div>
+	</div>
+	
+	<button class="button payButton" onclick="javascript:window.location.href='pay.html'">去结算</button>
+	</div>
+</body>
+<script type="text/javascript" src="js/jquery-1.11.0.min.js" ></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$(".button").each(function(){
+			$(this).on("click",function(){
+				$(this).next().fadeIn("fast").fadeOut("fast");
+			})
+		});
+		$(window).scroll(function (){
+			if ($(window).scrollTop()==$(document).height()-$(window).height()){
+				 alert("1");
+			}
+
+			});
+	})
+
+</script>
+</html>

@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0">
+	<link rel="stylesheet" href="css/default.css">
+</head>
+<body>
+	<a href="product.html" class="back">后退</a>
+	<div id="pay" class="scroll">
+		<p class="cartTop">
+			您选择了：
+		</p>
+		<table class="payTable" cellspacing="0" cellpadding="0" border="0">
+			<col width="5%"></col>
+			<col width="20%"></col>
+			<col width="27%"></col>
+			<col width="17%"></col>
+			<col ></col>
+			<tr>
+				<td><input type="checkbox" /></td>
+				<td><img src="img/main1.jpg" alt="" width="50" height="50" class="payImg"></td>
+				<td>卧室壁灯卧室壁灯卧室壁灯</td>
+				<td class="payPrice">￥<span class="somePrice">100.0</span></td>
+				<td class="cart">
+					<span class="sign add">+</span>
+					<input type="text" value="1" class="cartNum" />
+					<span  class="sign minus">-</span>
+					<span  class="delete">x</span>
+				</td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" /></td>
+				<td><img src="img/main1.jpg" alt="" width="50" height="50" class="payImg"></td>
+				<td>卧室壁灯卧室壁灯卧室壁灯</td>
+				<td class="payPrice">￥<span class="somePrice">100.0</span></td>
+				<td class="cart">
+					<span class="sign add">+</span>
+					<input type="text" value="1" class="cartNum" />
+					<span  class="sign minus">-</span>
+					<span  class="delete">x</span>
+				</td>
+			</tr>
+		</table>
+		<p>
+			合计：<span class="total">$ <span class="totalPrice">1000.0</span> </span>
+		</p>
+		<p>
+			<button  class="button" onclick="javascript:window.location.href=' '">确认支付</button>
+		</p>
+	</div>
+</body>
+<script type="text/javascript" src="js/jquery-1.11.0.min.js" ></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$(".cart").each(function(){
+			$(this).find(".add").on("click",function(){
+				var add=$(this).next().val();
+				$(this).next().attr("value",++add);
+				var total=parseFloat($(".totalPrice").html())+parseFloat($(this).parent().prev().find(".somePrice").html());
+				$(".totalPrice").html(total);
+			});
+			$(this).find(".minus").on("click",function(){
+				var minus=$(this).prev().val();
+				if(minus==1){
+					$(this).parent().parent().remove();
+				}else{
+					$(this).prev().attr("value",--minus);
+					var total=parseFloat($(".totalPrice").html())-parseFloat($(this).parent().prev().find(".somePrice").html());
+				$(".totalPrice").html(total);
+				}
+			});
+			$(this).find(".delete").on("click",function(){			
+				var total=parseFloat($(".totalPrice").html())-parseFloat($(this).parent().prev().find(".somePrice").html())*parseInt($(this).parent().find(".cartNum").val())
+				$(".totalPrice").html(total);
+				$(this).parent().parent().remove();
+			})
+		})
+	})
+</script>
+</html>

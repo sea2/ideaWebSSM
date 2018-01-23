@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace：必须与对应的接口全类名一致 id:必须与对应接口的某个对应的方法名一致 -->
+<mapper namespace="com.tgb.mapper.DataMapper">
+
+	<insert id="save" parameterType="DataTest">
+		insert into t_data(
+		type,typeRemark,
+		string1,string2,
+		string3, string4,
+		string5, string6,
+		string7, string8,
+		string9, string10,
+		string11, string12,
+		string13, string14,
+		string15, string16,
+		string17, string18,
+		string19, string20)
+		values(
+		#{type},#{typeRemark},
+		#{string1},#{string2},
+		#{string3},#{string4},
+		#{string5},#{string6},
+		#{string7},#{string8},
+		#{string9},#{string10},
+		#{string11},#{string12},
+		#{string13},#{string14},
+		#{string15},#{string16},
+		#{string17},#{string18},
+		#{string19},#{string20}
+		)
+	</insert>
+
+	<update id="update" parameterType="DataTest">
+		update t_data set
+		type=#{typeRemark} ,
+		typeRemark=#{type} ,
+		string1=#{string1},
+		string2=#{string2},
+		string3=#{string3},
+		string4=#{string4},
+		string5=#{string5},
+		string6=#{string6},
+		string7=#{string7},
+		string8=#{string8},
+		string9=#{string9},
+		string10=#{string10},
+		string11=#{string11},
+		string12=#{string12},
+		string12=#{string12},
+		string13=#{string13},
+		string14=#{string14},
+		string15=#{string15},
+		string16=#{string16},
+		string17=#{string17},
+		string18=#{string18},
+		string19=#{string19},
+		string20=#{string20}
+		where
+		id=#{id}
+	</update>
+
+	<delete id="deleteType" parameterType="int">
+		delete from t_data where
+		type=#{type}
+	</delete>
+
+	<delete id="deleteId" parameterType="int">
+		delete from t_data where
+		id=#{id}
+	</delete>
+
+	<!-- mybsits_config中配置的alias类别名,也可直接配置resultType为类路劲 -->
+	<select id="findById" parameterType="int" resultType="DataTest">
+		select
+		id,type,typeRemark,
+		string1,string2,string3,string4,string5,
+		string6,string7,string8,string9,string10,
+		string11,string12,string13,string14,string15
+		string16,string17,string18,string19,string20
+		from
+		t_data where
+		id=#{id}
+	</select>
+
+	<select id="findByType" parameterType="int" resultType="DataTest">
+		select
+		id,type,typeRemark,
+		string1,string2,string3,string4,string5,
+		string6,string7,string8,string9,string10,
+		string11,string12,string13,string14,string15
+		string16,string17,string18,string19,string20
+		from
+		t_data where
+		type=#{type}
+	</select>
+
+	<select id="findByTypeRemark" parameterType="String" resultType="DataTest">
+		select
+		id,type,typeRemark,
+		string1,string2,string3,string4,string5,
+		string6,string7,string8,string9,string10,
+		string11,string12,string13,string14,string15
+		string16,string17,string18,string19,string20
+		from
+		t_data where
+		typeRemark=#{typeRemark}
+	</select>
+
+	<select id="findAll" resultType="DataTest">
+		select
+		id,type,typeRemark,
+		string1,string2,string3,string4,string5,
+		string6,string7,string8,string9,string10,
+		string11,string12,string13,string14,string15
+		string16,string17,string18,string19,string20
+		from
+		t_data
+	</select>
+
+
+</mapper>
