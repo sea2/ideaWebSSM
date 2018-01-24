@@ -25,7 +25,17 @@ public class P2pInfo {
 	private String rate3_return;
 	private String rate6_return;
 	private String is_love;
+	private String remark;
 	private int gentou_rank;
+
+
+	public String getRemark() {
+		return remark;
+	}
+
+	public void setRemark(String remark) {
+		this.remark = remark;
+	}
 
 	public String getIs_love() {
 		return is_love;

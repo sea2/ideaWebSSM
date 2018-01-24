@@ -36,4 +36,6 @@ public interface P2pService {
     void updateReta6(P2pInfo mP2pInfo);
 
     void updateLove(int id, String score);
+
+    void updateRemark(int id, String remark);
 }

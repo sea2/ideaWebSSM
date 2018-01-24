@@ -53,6 +53,11 @@ public class P2pServiceImpl implements P2pService {
     }
 
     @Override
+    public void updateRemark(int id, String remark) {
+        mapper.updateRemark(id,remark);
+    }
+
+    @Override
     public void delById(int id) {
         mapper.delById(id);
 

@@ -24,7 +24,7 @@
 		zhijia_url
 		zhijia_url,zhijia_code zhijia_code,tianyan_rank
 		tianyan_rank,tianyan_code tianyan_code,tianyan_level tianyan_level
-		,luopan_code luopan_code
+		,luopan_code luopan_code,remark remark
 		,tianyan_url tianyan_url,rank360 rank360,gentou_rank gentou_rank,rate3_return rate3_return,rate6_return rate6_return,is_love is_love
 		from t_plat ORDER BY score DESC
 	</select>
@@ -35,7 +35,7 @@
 		is_trouble,url url,icon_url icon_url,zhiji_rank zhiji_rank,
 		zhijia_url
 		zhijia_url,zhijia_code zhijia_code,tianyan_rank
-		tianyan_rank,tianyan_code tianyan_code,tianyan_level tianyan_level
+		tianyan_rank,tianyan_code tianyan_code,tianyan_level tianyan_level,remark remark
 		,luopan_code luopan_code
 		,tianyan_url tianyan_url,rank360 rank360,gentou_rank gentou_rank,rate3_return rate3_return,rate6_return rate6_return,is_love is_love
 		from t_plat   ${str}
@@ -47,7 +47,7 @@
 		is_trouble,url url,icon_url icon_url,zhiji_rank zhiji_rank,
 		zhijia_url
 		zhijia_url,zhijia_code zhijia_code,tianyan_rank
-		tianyan_rank,tianyan_code tianyan_code,tianyan_level tianyan_level
+		tianyan_rank,tianyan_code tianyan_code,tianyan_level tianyan_level,remark remark
 		,luopan_code luopan_code,rate3_return rate3_return,rate6_return rate6_return,is_love is_love
 		,tianyan_url tianyan_url,rank360 rank360,gentou_rank gentou_rank from t_plat where id=#{id}
 	</select>
@@ -87,6 +87,9 @@
 	</update>
     <update id="updateLove" >
 		update t_plat set is_love=#{score}where id=#{id}
+	</update>
+    <update id="updateRemark" >
+		update t_plat set remark=#{remark}where id=#{id}
 	</update>
 
 

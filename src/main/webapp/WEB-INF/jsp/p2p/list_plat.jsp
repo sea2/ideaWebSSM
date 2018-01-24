@@ -93,6 +93,7 @@
                 $.get("<%=basePath%>app/updateScore?id=" + id + '&score=' + $(me).val(), function (data) {
                 });
         }
+
         function updateLove(id, me) {
             if ($(me).val() <= 10)
                 $.get("<%=basePath%>app/updateLove?id=" + id + '&score=' + $(me).val(), function (data) {
@@ -109,7 +110,15 @@
             });
         }
 
-
+        function remark(id, remark) {
+            var remark_new = prompt(remark, remark);//将输入的内容赋给变量 name ，
+            //这里需要注意的是，prompt有两个参数，前面是提示的话，后面是当对话框出来后，在对话框里的默认值
+            if (remark_new)//如果返回的有内容
+            {
+                $.get("<%=basePath%>app/updateRemark?id=" + id + '&remark=' + remark_new, function (data) {
+                });
+            }
+        }
     </script>
 
 
@@ -130,7 +139,7 @@
             <th class='button_a'></th>
             <th class='button_a'></th>
             <th class='button_a'></th>
-            <th class='button_a'></th>
+            <th class='button_a' ></th>
             <th class='button_a' colspan="2"><input type='text' id='search_text'
                                                     style='color: #555555; font-size: 15px; width: 80px'/>
                 <input
@@ -280,13 +289,17 @@
                                style='color: #555555; font-size: 14px;width: 30px'
                                value='${ plat.score}'/></td>
                     <td class="love_core"><input type='number' name='love' onblur="updateLove('${ plat.id}',this)"
-                               onkeypress='return event.keyCode>=48&&event.keyCode<=57' ng-pattern='/[^a-zA-Z]/'
-                               style='color: #555555; font-size: 14px;width: 30px'
-                               value='${ plat.is_love}'/></td>
+                                                 onkeypress='return event.keyCode>=48&&event.keyCode<=57'
+                                                 ng-pattern='/[^a-zA-Z]/'
+                                                 style='color: #555555; font-size: 14px;width: 30px'
+                                                 value='${ plat.is_love}'/></td>
                     <td>
                         <a href="javascript:dailuopan('${plat.id }','http://www.wdzj.com/dangan/${plat.zhijia_code }','${plat.tianyan_code }');"
                            target="_Blank"
                            style="  text-decoration: underline; ">参考</a>
+                        <a href="javascript:remark('${plat.id }','${plat.remark }');"
+                           target="_Blank"
+                           style="  text-decoration: underline; ">&nbsp;&nbsp;自评</a>
                     </td>
                     <td>
                         <button style='color: #555555; font-size: 15px;width: 50px' onclick="del('${ plat.id}')">删除
