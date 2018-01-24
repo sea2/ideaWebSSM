@@ -24,8 +24,16 @@ public class P2pInfo {
 	private String url;
 	private String rate3_return;
 	private String rate6_return;
+	private String is_love;
 	private int gentou_rank;
 
+	public String getIs_love() {
+		return is_love;
+	}
+
+	public void setIs_love(String is_love) {
+		this.is_love = is_love;
+	}
 
 	public String getRate3_return() {
 		return rate3_return;

@@ -2,7 +2,7 @@ body {
     text-align: center;
     margin: 0 auto;
     padding: 0;
-    width: 1200px;
+    width: 1300px;
 }
 
 a {
@@ -36,7 +36,7 @@ th {
     background-color: #09c;
     font: bold 16px "微软雅黑";
     color: #fff;
-    width: 10%;
+    width: 8%;
 }
 
 .button_a {
@@ -50,7 +50,7 @@ td {
     align-content: center;
     text-align: center;
     vertical-align: middle;
-    width: 10%;
+    width: 8%;
 }
 
 tbody tr {
@@ -72,7 +72,7 @@ thead{
 }
 .fixedtd {
     position: fixed;
-    width: 1200px;
+    width: 1300px;
     text-align: center;
 }
 .table_content {

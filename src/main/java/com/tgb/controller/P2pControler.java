@@ -146,11 +146,13 @@ public class P2pControler {
     public String orderById(int id, HttpServletRequest request, HttpServletResponse response) {
         String str = "ORDER BY score desc";
         if (id == 1) str = "WHERE tianyan_rank !=0 ORDER BY  tianyan_rank";
-       else if (id == 2) str = "WHERE rank360  NOT IN ('-')  ORDER BY FIELD(rank360, 'A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-')";
-       else if (id == 3) str = "WHERE zhiji_rank !=0 order by zhiji_rank asc";
-       else if (id == 4) str = "WHERE gentou_rank !=0 order by gentou_rank asc";
-       else if (id == 5) str = "where rate3_return not in('') order by rate3_return";
-       else if (id == 6) str = "ORDER BY score desc";
+        else if (id == 2)
+            str = "WHERE rank360  NOT IN ('-')  ORDER BY FIELD(rank360, 'A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-')";
+        else if (id == 3) str = "WHERE zhiji_rank !=0 order by zhiji_rank asc";
+        else if (id == 4) str = "WHERE gentou_rank !=0 order by gentou_rank asc";
+        else if (id == 5) str = "where rate3_return not in('') order by rate3_return";
+        else if (id == 6) str = "ORDER BY score desc";
+        else if (id == 7) str = "WHERE is_love !='0' order by is_love asc";
         List<P2pInfo> findAll = p2pService.findAllByStr(str);
         request.setAttribute("platList", findAll);
         request.setAttribute("order_id", id);
@@ -234,6 +236,15 @@ public class P2pControler {
                 mP2pInfo.setRate6_return(score);
                 p2pService.updateReta6(mP2pInfo);
             }
+        }
+    }
+
+    @RequestMapping("app/updateLove")
+    public void updateLove(HttpServletRequest request, HttpServletResponse response) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        String score = request.getParameter("score");
+        if (StringUtils.isFloathString(score) == 0 || StringUtils.isNumberString(score) == 0) {
+            p2pService.updateLove(id, score);
         }
     }
 

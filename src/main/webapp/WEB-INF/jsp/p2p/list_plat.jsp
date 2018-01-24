@@ -93,6 +93,11 @@
                 $.get("<%=basePath%>app/updateScore?id=" + id + '&score=' + $(me).val(), function (data) {
                 });
         }
+        function updateLove(id, me) {
+            if ($(me).val() <= 10)
+                $.get("<%=basePath%>app/updateLove?id=" + id + '&score=' + $(me).val(), function (data) {
+                });
+        }
 
         function updateReta3(id, me) {
             $.get("<%=basePath%>app/updateReta?type=3&id=" + id + '&score=' + $(me).val(), function (data) {
@@ -118,11 +123,18 @@
         <tr>
             <!-- tr：table row：表格的行 -->
             <th class='button_a'><a href='p2p/addPlat'>添加平台</a></th>
+            <th class='button_a'></th>
+            <th class='button_a'></th>
+            <th class='button_a'></th>
+            <th class='button_a'></th>
+            <th class='button_a'></th>
+            <th class='button_a'></th>
+            <th class='button_a'></th>
+            <th class='button_a'></th>
             <th class='button_a' colspan="2"><input type='text' id='search_text'
                                                     style='color: #555555; font-size: 15px; width: 80px'/>
                 <input
                         type="button" value="搜索" id="search_button"/></th>
-            <th class='button_a'></th>
         </tr>
         <tr id='log'></tr>
         </thead>
@@ -164,7 +176,8 @@
             </c:choose>
             <c:choose>
                 <c:when test="${order_id==5}">
-                    <th class="order_top" onclick="order(5,this)" width="15%" style="background-color:#36c;">3月和6月年化</th>
+                    <th class="order_top" onclick="order(5,this)" width="15%" style="background-color:#36c;">3月和6月年化
+                    </th>
 
                 </c:when>
                 <c:otherwise>
@@ -177,6 +190,14 @@
                 </c:when>
                 <c:otherwise>
                     <th class="order_top" onclick="order(6,this)"> 评分</th>
+                </c:otherwise>
+            </c:choose>
+            <c:choose>
+                <c:when test="${order_id==7}">
+                    <th class="order_top" onclick="order(7,this)" style="background-color:#36c;"> 性价比</th>
+                </c:when>
+                <c:otherwise>
+                    <th class="order_top" onclick="order(7,this)"> 性价比</th>
                 </c:otherwise>
             </c:choose>
 
@@ -258,6 +279,10 @@
                                onkeypress='return event.keyCode>=48&&event.keyCode<=57' ng-pattern='/[^a-zA-Z]/'
                                style='color: #555555; font-size: 14px;width: 30px'
                                value='${ plat.score}'/></td>
+                    <td class="love_core"><input type='number' name='love' onblur="updateLove('${ plat.id}',this)"
+                               onkeypress='return event.keyCode>=48&&event.keyCode<=57' ng-pattern='/[^a-zA-Z]/'
+                               style='color: #555555; font-size: 14px;width: 30px'
+                               value='${ plat.is_love}'/></td>
                     <td>
                         <a href="javascript:dailuopan('${plat.id }','http://www.wdzj.com/dangan/${plat.zhijia_code }','${plat.tianyan_code }');"
                            target="_Blank"

@@ -36,4 +36,6 @@ public interface P2pmapper {
 
     void updateReta3(P2pInfo mP2pInfo);
     void updateReta6(P2pInfo mP2pInfo);
+
+    void updateLove(@Param("id")int id,@Param("score") String score);
 }

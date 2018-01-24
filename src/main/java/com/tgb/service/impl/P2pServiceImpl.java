@@ -48,6 +48,11 @@ public class P2pServiceImpl implements P2pService {
     }
 
     @Override
+    public void updateLove(int id, String score) {
+        mapper.updateLove(id,score);
+    }
+
+    @Override
     public void delById(int id) {
         mapper.delById(id);
 
