@@ -268,6 +268,7 @@ public class P2pControler {
         try {
             // 构建Workbook对象, 只读Workbook对象
 
+/*
 
             // 直接从本地文件创建Workbook
             InputStream instream = new FileInputStream("C:\\Users\\Administrator\\Desktop\\springmvc-mybatis-learning-master\\springmvc-mybatis-learning-master\\sourcecode\\webSpringMvc\\跟投.xls");
@@ -301,7 +302,9 @@ public class P2pControler {
             }
 
 
-            /*	------------------获取第2张Sheet表------------------------------------------------*/
+            */
+/*	------------------获取第2张Sheet表------------------------------------------------*//*
+
 
             Sheet readsheet2 = readwb.getSheet(1);
 
@@ -339,6 +342,7 @@ public class P2pControler {
             }
 
 
+
             //之家评级
             String jsonStr = HttpUtil.sendGet("https://m.wdzj.com/pingji/interfaceIndex?type=&isapp=app");
             Gson gson = new Gson();
@@ -372,7 +376,7 @@ public class P2pControler {
                     p2pService.updateTianYanRank(mP2pInfo);
                 }
             }
-
+*/
 
             //之家-简称
             String jsonStr1 = HttpUtil.sendGet("https://m.wdzj.com/apphongbao/interfaceIndexSearch");

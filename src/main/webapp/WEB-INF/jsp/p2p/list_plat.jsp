@@ -33,6 +33,7 @@
 
             $('#search_text').bind('keypress', function (event) {
                 if (event.keyCode == 13) {
+                    var is_has = false;
                     $("td").each(function (index, element) {
                         var text = $(element).text().toString();
                         var search_text = $("#search_text").val().toString();
@@ -42,8 +43,10 @@
                             $('html, body').animate({
                                 scrollTop: position
                             }, 500);
+                            is_has = true;
                         }
                     });
+                    if (is_has) $('#search_text').val("");
                 }
             });
 
@@ -139,11 +142,11 @@
             <th class='button_a'></th>
             <th class='button_a'></th>
             <th class='button_a'></th>
-            <th class='button_a' ></th>
-            <th class='button_a' colspan="2"><input type='text' id='search_text'
-                                                    style='color: #555555; font-size: 15px; width: 80px'/>
+            <th class='button_a' colspan="3"><input type='text' id='search_text'
+                                                    style='color: #555555; font-size: 20px; width: 120px'/>
                 <input
-                        type="button" value="搜索" id="search_button"/></th>
+                        type="button" value="搜索" id="search_button"
+                        style='color: #555555; font-size: 20px; width: 80px'/></th>
         </tr>
         <tr id='log'></tr>
         </thead>
@@ -185,12 +188,12 @@
             </c:choose>
             <c:choose>
                 <c:when test="${order_id==5}">
-                    <th class="order_top" onclick="order(5,this)" width="15%" style="background-color:#36c;">3月和6月年化
+                    <th class="order_top" onclick="order(5,this)" width="15%" style="background-color:#36c;">3和6月年化
                     </th>
 
                 </c:when>
                 <c:otherwise>
-                    <th class="order_top" onclick="order(5,this)" width="15%">3月和6月年化</th>
+                    <th class="order_top" onclick="order(5,this)" width="15%">3和6月年化</th>
                 </c:otherwise>
             </c:choose>
             <c:choose>
@@ -296,10 +299,10 @@
                     <td>
                         <a href="javascript:dailuopan('${plat.id }','http://www.wdzj.com/dangan/${plat.zhijia_code }','${plat.tianyan_code }');"
                            target="_Blank"
-                           style="  text-decoration: underline; ">参考</a>
+                           style="  text-decoration: underline; ">参考</a>&nbsp;&nbsp;
                         <a href="javascript:remark('${plat.id }','${plat.remark }');"
                            target="_Blank"
-                           style="  text-decoration: underline; ">&nbsp;&nbsp;自评</a>
+                           style="  text-decoration: underline; ">自评</a>
                     </td>
                     <td>
                         <button style='color: #555555; font-size: 15px;width: 50px' onclick="del('${ plat.id}')">删除
