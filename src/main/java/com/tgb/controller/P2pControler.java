@@ -150,7 +150,7 @@ public class P2pControler {
             str = "WHERE rank360  NOT IN ('-')  ORDER BY FIELD(rank360, 'A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-')";
         else if (id == 3) str = "WHERE zhiji_rank !=0 order by zhiji_rank asc";
         else if (id == 4) str = "WHERE gentou_rank !=0 order by gentou_rank asc";
-        else if (id == 5) str = "where rate3_return not in('') order by rate3_return";
+        else if (id == 5) str = "where rate3_return not in('') order by rate3_return desc";
         else if (id == 6) str = "ORDER BY score desc";
         else if (id == 7) str = "WHERE is_love!='0'  ORDER BY FIELD(is_love, '10', '9', '8', '7', '6', '5', '4', '3')";
         List<P2pInfo> findAll = p2pService.findAllByStr(str);
@@ -228,12 +228,12 @@ public class P2pControler {
             if (type == 3) {
                 P2pInfo mP2pInfo = new P2pInfo();
                 mP2pInfo.setId(id);
-                mP2pInfo.setRate3_return(score);
+                mP2pInfo.setRate3_return(Float.parseFloat(score));
                 p2pService.updateReta3(mP2pInfo);
             } else if (type == 6) {
                 P2pInfo mP2pInfo = new P2pInfo();
                 mP2pInfo.setId(id);
-                mP2pInfo.setRate6_return(score);
+                mP2pInfo.setRate6_return(Float.parseFloat(score));
                 p2pService.updateReta6(mP2pInfo);
             }
         }

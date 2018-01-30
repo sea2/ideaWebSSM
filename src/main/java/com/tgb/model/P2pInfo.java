@@ -22,8 +22,8 @@ public class P2pInfo {
 	private String tianyan_url;
 	private String rank360;
 	private String url;
-	private String rate3_return;
-	private String rate6_return;
+	private float rate3_return;
+	private float rate6_return;
 	private String is_love;
 	private String remark;
 	private int gentou_rank;
@@ -45,19 +45,19 @@ public class P2pInfo {
 		this.is_love = is_love;
 	}
 
-	public String getRate3_return() {
+	public float getRate3_return() {
 		return rate3_return;
 	}
 
-	public void setRate3_return(String rate3_return) {
+	public void setRate3_return(float rate3_return) {
 		this.rate3_return = rate3_return;
 	}
 
-	public String getRate6_return() {
+	public float getRate6_return() {
 		return rate6_return;
 	}
 
-	public void setRate6_return(String rate6_return) {
+	public void setRate6_return(float rate6_return) {
 		this.rate6_return = rate6_return;
 	}
 

@@ -134,7 +134,7 @@
         <thead>
         <tr>
             <!-- tr：table row：表格的行 -->
-            <th class='button_a'><a href='p2p/addPlat'>添加平台</a></th>
+            <th class='button_a'><a href='p2p/addPlat' style="color: #ffffff;">添加平台</a></th>
             <th class='button_a'></th>
             <th class='button_a'></th>
             <th class='button_a'></th>
@@ -143,7 +143,7 @@
             <th class='button_a'></th>
             <th class='button_a'></th>
             <th class='button_a' colspan="3"><input type='text' id='search_text'
-                                                    style='color: #555555; font-size: 20px; width: 120px'/>
+                                                    style='color: #555555; font-size: 20px; width: 130px'/>
                 <input
                         type="button" value="搜索" id="search_button"
                         style='color: #555555; font-size: 20px; width: 80px'/></th>
@@ -152,8 +152,8 @@
         </thead>
         <thead>
         <tr>
-            <th>序号</th>
-            <th>平台名称</th>
+            <th class="first_td">序号</th>
+            <th class="order_top">平台名称</th>
             <c:choose>
                 <c:when test="${order_id==1}">
                     <th class="order_top" onclick="order(1,this)" style="background-color:#36c; ">天眼评级</th>
@@ -188,12 +188,12 @@
             </c:choose>
             <c:choose>
                 <c:when test="${order_id==5}">
-                    <th class="order_top" onclick="order(5,this)" width="15%" style="background-color:#36c;">3和6月年化
+                    <th class="order_top" onclick="order(5,this)"  style="background-color:#36c;width: 130px">3和6月年化
                     </th>
 
                 </c:when>
                 <c:otherwise>
-                    <th class="order_top" onclick="order(5,this)" width="15%">3和6月年化</th>
+                    <th class="order_top" onclick="order(5,this)" style="width: 130px">3和6月年化</th>
                 </c:otherwise>
             </c:choose>
             <c:choose>
@@ -213,7 +213,7 @@
                 </c:otherwise>
             </c:choose>
 
-            <th>参考详情</th>
+            <th style="width: 100px">参考详情</th>
 
             <th>删除</th>
         </tr>
@@ -227,76 +227,96 @@
         <c:if test="${!empty platList }">
             <c:forEach items="${platList}" var="plat" varStatus="status">
                 <tr>
-                    <td>${ status.index + 1} </td>
+                    <td class="first_td">${ status.index + 1} </td>
                     <c:if test="${plat.score>=9}">
-                        <td id="${ plat.name}"><a href="${ plat.url}" target="_Blank"><span
+                        <td class="td_common" id="${ plat.name}"><a href="${ plat.url}" target="_Blank"><span
                                 style="color: #FFA838;font-weight:bold; ">${ plat.name}</span></a></td>
                     </c:if>
                     <c:if test="${plat.score<9&&plat.score>=7}">
-                        <td id="${ plat.name}"><a href="${ plat.url}" target="_Blank"><span
+                        <td class="td_common" id="${ plat.name}"><a href="${ plat.url}" target="_Blank"><span
                                 style="color: #AB38FC; font-weight:bold;">${ plat.name}</span></a></td>
                     </c:if>
                     <c:if test="${plat.score<7&&plat.score>=5}">
-                        <td id="${ plat.name}"><a href="${ plat.url}" target="_Blank"><span
+                        <td class="td_common" id="${ plat.name}"><a href="${ plat.url}" target="_Blank"><span
                                 style="color: #39A8FE;font-weight:bold; ">${ plat.name}</span></a></td>
                     </c:if>
                     <c:if test="${plat.score<5&&plat.score>=3}">
-                        <td id="${ plat.name}"><a href="${ plat.url}" target="_Blank"><span
+                        <td class="td_common" id="${ plat.name}"><a href="${ plat.url}" target="_Blank"><span
                                 style="color: #228B22;font-weight:bold; ">${ plat.name}</span></a></td>
                     </c:if>
                     <c:if test="${plat.score<3&&plat.score>=1}">
-                        <td id="${ plat.name}"><a href="${ plat.url}" target="_Blank"><span
+                        <td class="td_common" id="${ plat.name}"><a href="${ plat.url}" target="_Blank"><span
                                 style="color: #C0C0C0;font-weight:bold; ">${ plat.name}</span></a></td>
                     </c:if>
                     <c:if test="${plat.score<=0}">
-                        <td id="${ plat.name}"><a href="${ plat.url}" target="_Blank"><span
+                        <td class="td_common" id="${ plat.name}"><a href="${ plat.url}" target="_Blank"><span
                                 style="text-decoration:line-through;">${ plat.name}</span></a></td>
                     </c:if>
 
-                    <td>${plat.tianyan_level }</td>
-                    <td>${plat.rank360 } </td>
+                    <td class="td_common">${plat.tianyan_level }</td>
+                    <td class="td_common">${plat.rank360 } </td>
                     <c:choose>
                         <c:when test="${plat.zhiji_rank!=0}">
-                            <td>${plat.zhiji_rank } </td>
+                            <td class="td_common">${plat.zhiji_rank } </td>
                         </c:when>
                         <c:otherwise>
-                            <td>-</td>
+                            <td class="td_common">-</td>
                         </c:otherwise>
                     </c:choose>
 
                     <c:choose>
                         <c:when test="${plat.gentou_rank==1}">
-                            <td><span style="color: #FFA838;font-weight:bold; ">重仓</span></td>
+                            <td class="td_common" ><span style="color: #FFA838;font-weight:bold; ">重仓</span></td>
                         </c:when>
                         <c:when test="${plat.gentou_rank==2}">
-                            <td><span style="color: #AB38FC;font-weight:bold; ">中仓</span></td>
+                            <td class="td_common"><span style="color: #AB38FC;font-weight:bold; ">中仓</span></td>
                         </c:when>
                         <c:when test="${plat.gentou_rank==3}">
-                            <td><span style="color: #228B22;font-weight:bold; ">轻仓</span></td>
+                            <td class="td_common"><span style="color: #228B22;font-weight:bold; ">轻仓</span></td>
                         </c:when>
                         <c:otherwise>
-                            <td></td>
+                            <td class="td_common"></td>
                         </c:otherwise>
                     </c:choose>
 
-                    <td width="15%"><input id='reta3' type='number' name='score'
-                                           onblur="updateReta3('${ plat.id}',this)"
-                                           style='color: #555555; font-size: 14px;width: 30px'
-                                           value='${ plat.rate3_return}'/>%&nbsp;&nbsp;
-                        <input type='number' id='reta6' name='score' onblur="updateReta6('${ plat.id}',this)"
-                               style='color: #555555; font-size: 14px;width: 30px'
-                               value='${ plat.rate6_return}'/>%
+                    <td style="width: 130px">
+                        <c:choose>
+                            <c:when test="${plat.rate3_return!=0}">
+                                <input id='reta3' type='number' name='score'
+                                       onblur="updateReta3('${ plat.id}',this)"
+                                       style='color: #555555; font-size: 16px;width: 40px'
+                                       value='${ plat.rate3_return}'/>&nbsp;&nbsp;
+                            </c:when>
+                            <c:otherwise>
+                                <input id='reta3' type='number' name='score'
+                                       onblur="updateReta3('${ plat.id}',this)"
+                                       style='color: #555555; font-size: 16px;width: 40px'
+                                />&nbsp;&nbsp;
+                            </c:otherwise>
+                        </c:choose>
+                        <c:choose>
+                            <c:when test="${plat.rate6_return!=0}">
+                                <input type='number' id='reta6' name='score' onblur="updateReta6('${ plat.id}',this)"
+                                       style='color: #555555; font-size: 16px;width: 40px'
+                                       value='${ plat.rate6_return}'/>
+                            </c:when>
+                            <c:otherwise>
+                                <input type='number' id='reta6' name='score' onblur="updateReta6('${ plat.id}',this)"
+                                       style='color: #555555; font-size: 16px;width: 40px'
+                                />
+                            </c:otherwise>
+                        </c:choose>
                     </td>
-                    <td><input type='number' name='score' onblur="updateScore('${ plat.id}',this)"
+                    <td class="td_common"><input type='number' name='score' onblur="updateScore('${ plat.id}',this)"
                                onkeypress='return event.keyCode>=48&&event.keyCode<=57' ng-pattern='/[^a-zA-Z]/'
-                               style='color: #555555; font-size: 14px;width: 30px'
+                               style='color: #555555; font-size: 16px;width: 30px'
                                value='${ plat.score}'/></td>
                     <td class="love_core"><input type='number' name='love' onblur="updateLove('${ plat.id}',this)"
                                                  onkeypress='return event.keyCode>=48&&event.keyCode<=57'
                                                  ng-pattern='/[^a-zA-Z]/'
-                                                 style='color: #555555; font-size: 14px;width: 30px'
+                                                 style='color: #555555; font-size: 16px;width: 30px'
                                                  value='${ plat.is_love}'/></td>
-                    <td>
+                    <td style="width: 100px">
                         <a href="javascript:dailuopan('${plat.id }','http://www.wdzj.com/dangan/${plat.zhijia_code }','${plat.tianyan_code }');"
                            target="_Blank"
                            style="  text-decoration: underline; ">参考</a>&nbsp;&nbsp;
