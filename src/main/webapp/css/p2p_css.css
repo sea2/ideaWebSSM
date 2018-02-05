@@ -75,6 +75,7 @@ thead{
 }
 .table_content {
     margin-top: 90px;
+    overflow: auto;
 }
 .first_td {
    width: 70px;
