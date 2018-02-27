@@ -91,6 +91,9 @@
     <update id="updateRemark" >
 		update t_plat set remark=#{remark}where id=#{id}
 	</update>
+    <update id="updateRankNull" >
+		update t_plat set  ${str}
+	</update>
 
 
 </mapper>

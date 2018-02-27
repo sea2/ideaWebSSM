@@ -247,11 +247,12 @@ public class P2pControler {
             p2pService.updateLove(id, score);
         }
     }
+
     @RequestMapping("app/updateRemark")
     public void updateRemark(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
         String remark = request.getParameter("remark");
-            p2pService.updateRemark(id, remark);
+        p2pService.updateRemark(id, remark);
     }
 
 
@@ -303,8 +304,9 @@ public class P2pControler {
 
 
             */
-/*	------------------获取第2张Sheet表------------------------------------------------*//*
+            /*	------------------获取第2张Sheet表------------------------------------------------*/
 
+/*
 
             Sheet readsheet2 = readwb.getSheet(1);
 
@@ -340,9 +342,10 @@ public class P2pControler {
                     p2pService.updateRank360(mP2pInfo);
                 }
             }
+*/
 
 
-
+       /*     p2pService.updateRankNull("zhiji_rank=0");
             //之家评级
             String jsonStr = HttpUtil.sendGet("https://m.wdzj.com/pingji/interfaceIndex?type=&isapp=app");
             Gson gson = new Gson();
@@ -357,10 +360,13 @@ public class P2pControler {
                     mP2pInfo.setZhijia_url(mListBean.getPlat_icon());
                     p2pService.updateZhiJi(mP2pInfo);
                 }
-            }
+            }*/
+
+
 
 
             //天眼评级
+         p2pService.updateRankNull("tianyan_level='',tianyan_rank=0");
             String jsonStr0 = HttpUtil.sendGet("http://api.p2peye.com/platform/pingji?app_name=wdty&terminal_type=102&app_version=3.6.1");
             Gson gson0 = new Gson();
             TianYanInfo mTianYanInfo = gson0.fromJson(jsonStr0, new TypeToken<TianYanInfo>() {
@@ -376,9 +382,8 @@ public class P2pControler {
                     p2pService.updateTianYanRank(mP2pInfo);
                 }
             }
-*/
 
-            //之家-简称
+         /*   //之家-简称
             String jsonStr1 = HttpUtil.sendGet("https://m.wdzj.com/apphongbao/interfaceIndexSearch");
             Gson gson1 = new Gson();
             List<ZhiJiaIdInfo> mZhiJiaIdInfoList = gson1.fromJson(jsonStr1, new TypeToken<List<ZhiJiaIdInfo>>() {
@@ -407,7 +412,7 @@ public class P2pControler {
                     mP2pInfo.setUrl(mDataBean.getUrl());
                     p2pService.updateTianYanCode(mP2pInfo);
                 }
-            }
+            }*/
 
 
         } catch (Exception e) {

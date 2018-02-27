@@ -58,6 +58,11 @@ public class P2pServiceImpl implements P2pService {
     }
 
     @Override
+    public void updateRankNull(String s) {
+
+    }
+
+    @Override
     public void delById(int id) {
         mapper.delById(id);
 

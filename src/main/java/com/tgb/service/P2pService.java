@@ -38,4 +38,6 @@ public interface P2pService {
     void updateLove(int id, String score);
 
     void updateRemark(int id, String remark);
+
+    void updateRankNull(String s);
 }
