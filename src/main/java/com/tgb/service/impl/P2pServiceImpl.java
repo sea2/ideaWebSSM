@@ -58,8 +58,8 @@ public class P2pServiceImpl implements P2pService {
     }
 
     @Override
-    public void updateRankNull(String s) {
-
+    public void updateRankNull(String str) {
+        mapper.updateRankNull(str);
     }
 
     @Override

@@ -60,6 +60,11 @@ public class P2pControler {
         return "p2p/add_plat";
     }
 
+    @RequestMapping("p2p/update_data")
+    public String updateData(HttpServletRequest request) {
+        return "p2p/update_data";
+    }
+
 
     @RequestMapping("app/getOne")
     public void getOne(HttpServletRequest request, HttpServletResponse response) {
@@ -147,7 +152,8 @@ public class P2pControler {
         String str = "ORDER BY score desc";
         if (id == 1) str = "WHERE tianyan_rank !=0 ORDER BY  tianyan_rank";
         else if (id == 2)
-            str = "WHERE rank360  NOT IN ('-')  ORDER BY FIELD(rank360, 'A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-')";
+            str = "WHERE   rank360_int !=0 ORDER BY  rank360_int";
+           // str = "WHERE rank360  NOT IN ('-')  ORDER BY FIELD(rank360, 'A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-')";
         else if (id == 3) str = "WHERE zhiji_rank !=0 order by zhiji_rank asc";
         else if (id == 4) str = "WHERE gentou_rank !=0 order by gentou_rank asc";
         else if (id == 5) str = "where rate3_return not in('') order by rate3_return desc";
@@ -156,6 +162,8 @@ public class P2pControler {
         List<P2pInfo> findAll = p2pService.findAllByStr(str);
         request.setAttribute("platList", findAll);
         request.setAttribute("order_id", id);
+        if (findAll != null)
+            request.setAttribute("list_size", findAll.size());
         return "p2p/list_plat";
 
     }
@@ -265,160 +273,180 @@ public class P2pControler {
     @RequestMapping(value = "app/p2p/init", method = RequestMethod.GET)
     @ResponseBody
     public void getInitData(HttpServletRequest request, HttpServletResponse response) {
+        int id = Integer.parseInt(request.getParameter("id"));
+
+
         Workbook readwb = null;
+
         try {
             // 构建Workbook对象, 只读Workbook对象
-
-/*
-
             // 直接从本地文件创建Workbook
-            InputStream instream = new FileInputStream("C:\\Users\\Administrator\\Desktop\\springmvc-mybatis-learning-master\\springmvc-mybatis-learning-master\\sourcecode\\webSpringMvc\\跟投.xls");
+            InputStream instream = new FileInputStream("C:\\Users\\Administrator\\Desktop\\ssm-demo\\ideaWebSSM\\跟投.xls");
             readwb = Workbook.getWorkbook(instream);
 
-            // Sheet的下标是从0开始
-            // 获取第一张Sheet表
+            if (id == 0 || id == 1) {
+                p2pService.updateRankNull("gentou_rank='0'");
+                // Sheet的下标是从0开始
+                // 获取第一张Sheet表
 
-            Sheet readsheet = readwb.getSheet(0);
+                Sheet readsheet = readwb.getSheet(0);
 
-            // 获取Sheet表中所包含的总列数
-            int rsColumns = readsheet.getColumns();
+                // 获取Sheet表中所包含的总列数
+                int rsColumns = readsheet.getColumns();
 
-            // 获取Sheet表中所包含的总行数
-            int rsRows = readsheet.getRows();
+                // 获取Sheet表中所包含的总行数
+                int rsRows = readsheet.getRows();
 
-            // 遍历行数
-            for (int i = 0; i < rsRows; i++) {
+                // 遍历行数
+                for (int i = 0; i < rsRows; i++) {
 
-                //第一列
-                Cell cell = readsheet.getCell(0, i);
-                //第二列
-                Cell cell2 = readsheet.getCell(1, i);
-                if (cell != null && cell.getContents() != null && cell.getContents().length() > 0) {
-                    System.out.println(cell.getContents());
-                    P2pInfo mP2pInfo = new P2pInfo();
-                    mP2pInfo.setName(cell.getContents().trim());
-                    mP2pInfo.setGentou_rank(StringUtils.toInt(cell2.getContents().trim(), 0));
-                    p2pService.updateRankGenTou(mP2pInfo);
+                    //第一列
+                    Cell cell = readsheet.getCell(0, i);
+                    //第二列
+                    Cell cell2 = readsheet.getCell(1, i);
+                    if (cell != null && cell.getContents() != null && cell.getContents().length() > 0) {
+                        System.out.println(cell.getContents());
+                        P2pInfo mP2pInfo = new P2pInfo();
+                        mP2pInfo.setName(cell.getContents().trim());
+                        mP2pInfo.setGentou_rank(StringUtils.toInt(cell2.getContents().trim(), 0));
+                        p2pService.updateRankGenTou(mP2pInfo);
+                    }
                 }
+
             }
 
-
-            */
             /*	------------------获取第2张Sheet表------------------------------------------------*/
 
-/*
 
-            Sheet readsheet2 = readwb.getSheet(1);
+            if (id == 0 || id == 2) {
+                Sheet readsheet2 = readwb.getSheet(2);
 
-            // 获取Sheet表中所包含的总列数
+                // 获取Sheet表中所包含的总列数
+                p2pService.updateRankNull("rank360='-',rank360_int=0");
+                int rsColumnsNew = readsheet2.getColumns();
 
-            int rsColumnsNew = readsheet2.getColumns();
+                // 获取Sheet表中所包含的总行数
 
-            // 获取Sheet表中所包含的总行数
+                int rsRowsNew = readsheet2.getRows();
 
-            int rsRowsNew = readsheet2.getRows();
-
-            //遍历总行数
-            for (int i = 0; i < rsRowsNew; i++) {   //第一列
-                Cell cellNew = readsheet2.getCell(0, i);
-                //第二列
-                Cell cell2New = readsheet2.getCell(1, i);
-                System.out.println(cellNew.getContents().trim() + "-" + cell2New.getContents().trim());
-                if (cell2New.getContents() != null && cell2New.getContents().length() > 1) {
-                    P2pInfo mP2pInfo = new P2pInfo();
-                    if (StringUtils.isContains(cellNew.getContents().trim(), "玖富")) {
-                        mP2pInfo.setName("玖富");
-                    } else if (StringUtils.isContains(cellNew.getContents().trim(), "凤凰")) {
-                        mP2pInfo.setName("凤凰金融");
-                    } else if (StringUtils.isContains(cellNew.getContents().trim(), "网信普惠")) {
-                        mP2pInfo.setName("网信普惠");
-                    } else
-                        mP2pInfo.setName(cellNew.getContents().trim());
-                    if (cell2New.getContents() != null && cell2New.getContents().length() > 3)
-                        mP2pInfo.setRank360(cell2New.getContents().trim().substring(3));
-                    else mP2pInfo.setRank360(cell2New.getContents().trim());
-                    if (mP2pInfo.getRank360().contains("�"))
-                        mP2pInfo.setRank360(mP2pInfo.getRank360().replace("�", ""));
-                    p2pService.updateRank360(mP2pInfo);
-                }
-            }
-*/
-
-
-       /*     p2pService.updateRankNull("zhiji_rank=0");
-            //之家评级
-            String jsonStr = HttpUtil.sendGet("https://m.wdzj.com/pingji/interfaceIndex?type=&isapp=app");
-            Gson gson = new Gson();
-            ZhiJaLevelInfo mZhiJaLevelInfo = gson.fromJson(jsonStr, new TypeToken<ZhiJaLevelInfo>() {
-            }.getType());
-            if (mZhiJaLevelInfo != null) {
-                for (ZhiJaLevelInfo.ListBean mListBean : mZhiJaLevelInfo.getList()) {
-                    P2pInfo mP2pInfo = new P2pInfo();
-                    mP2pInfo.setName(mListBean.getPlat_name());
-                    mP2pInfo.setZhiji_rank(StringUtils.toInt(mListBean.getRank(), 0));
-                    mP2pInfo.setZhijia_code(mListBean.getName_pin());
-                    mP2pInfo.setZhijia_url(mListBean.getPlat_icon());
-                    p2pService.updateZhiJi(mP2pInfo);
-                }
-            }*/
-
-
-
-
-            //天眼评级
-         p2pService.updateRankNull("tianyan_level='',tianyan_rank=0");
-            String jsonStr0 = HttpUtil.sendGet("http://api.p2peye.com/platform/pingji?app_name=wdty&terminal_type=102&app_version=3.6.1");
-            Gson gson0 = new Gson();
-            TianYanInfo mTianYanInfo = gson0.fromJson(jsonStr0, new TypeToken<TianYanInfo>() {
-            }.getType());
-            if (mTianYanInfo != null) {
-                List<TianYanInfo.DataBean.MationBean> list = mTianYanInfo.getData().getMation();
-                for (int i = 0; i < list.size(); i++) {
-                    TianYanInfo.DataBean.MationBean mMationBean = list.get(i);
-                    P2pInfo mP2pInfo = new P2pInfo();
-                    mP2pInfo.setName(mMationBean.getPlat_name());
-                    mP2pInfo.setTianyan_level(mMationBean.getLevel());
-                    mP2pInfo.setTianyan_rank(i + 1);
-                    p2pService.updateTianYanRank(mP2pInfo);
+                //遍历总行数
+                for (int i = 0; i < rsRowsNew; i++) {   //第一列
+                    Cell cellNew = readsheet2.getCell(0, i);
+                    //第二列
+                    Cell cell2New = readsheet2.getCell(1, i);
+                    System.out.println(cellNew.getContents().trim() + "-" + cell2New.getContents().trim());
+                    if (cell2New.getContents() != null && cell2New.getContents().length() > 1) {
+                        P2pInfo mP2pInfo = new P2pInfo();
+                        if (StringUtils.isContains(cellNew.getContents().trim(), "玖富")) {
+                            mP2pInfo.setName("玖富");
+                        } else if (StringUtils.isContains(cellNew.getContents().trim(), "凤凰")) {
+                            mP2pInfo.setName("凤凰金融");
+                        } else if (StringUtils.isContains(cellNew.getContents().trim(), "网信普惠")) {
+                            mP2pInfo.setName("网信普惠");
+                        } else
+                            mP2pInfo.setName(cellNew.getContents().trim());
+                        if (cell2New.getContents() != null && cell2New.getContents().length() > 3)
+                            mP2pInfo.setRank360(cell2New.getContents().trim().substring(3));
+                        else mP2pInfo.setRank360(cell2New.getContents().trim());
+                        if (mP2pInfo.getRank360().contains("�"))
+                            mP2pInfo.setRank360(mP2pInfo.getRank360().replace("�", ""));
+                        mP2pInfo.setRank360_int(i+1);
+                        p2pService.updateRank360(mP2pInfo);
+                    }
                 }
             }
 
-         /*   //之家-简称
-            String jsonStr1 = HttpUtil.sendGet("https://m.wdzj.com/apphongbao/interfaceIndexSearch");
-            Gson gson1 = new Gson();
-            List<ZhiJiaIdInfo> mZhiJiaIdInfoList = gson1.fromJson(jsonStr1, new TypeToken<List<ZhiJiaIdInfo>>() {
-            }.getType());
-            if (mZhiJiaIdInfoList != null) {
-                for (ZhiJiaIdInfo mZhiJiaIdInfo : mZhiJiaIdInfoList) {
-                    P2pInfo mP2pInfo = new P2pInfo();
-                    mP2pInfo.setName(mZhiJiaIdInfo.getPlatName());
-                    mP2pInfo.setZhijia_code(mZhiJiaIdInfo.getPlatPin());
-                    mP2pInfo.setZhijia_url(mZhiJiaIdInfo.getPlatIconUrl());
-                    p2pService.updateZhiJiCode(mP2pInfo);
+            if (id == 0 || id == 3) {
+                p2pService.updateRankNull(" zhiji_rank=0");
+                //之家评级
+                String jsonStr = HttpUtil.sendGet("https://m.wdzj.com/pingji/interfaceIndex?type=&isapp=app");
+                Gson gson = new Gson();
+                ZhiJaLevelInfo mZhiJaLevelInfo = gson.fromJson(jsonStr, new TypeToken<ZhiJaLevelInfo>() {
+                }.getType());
+                if (mZhiJaLevelInfo != null) {
+                    for (ZhiJaLevelInfo.ListBean mListBean : mZhiJaLevelInfo.getList()) {
+                        P2pInfo mP2pInfo = new P2pInfo();
+                        mP2pInfo.setName(mListBean.getPlat_name());
+                        mP2pInfo.setZhiji_rank(StringUtils.toInt(mListBean.getRank(), 0));
+                        mP2pInfo.setZhijia_code(mListBean.getName_pin());
+                        mP2pInfo.setZhijia_url(mListBean.getPlat_icon());
+                        p2pService.updateZhiJi(mP2pInfo);
+                    }
                 }
             }
 
-
-            //天眼-简称
-            String jsonStr2 = HttpUtil.sendGet("http://api.p2peye.com/Platform/getPlatformInfoData");
-            Gson gson2 = new Gson();
-            TianYanAllInfo mTianYanAllInfo = gson2.fromJson(jsonStr2, new TypeToken<TianYanAllInfo>() {
-            }.getType());
-            if (mTianYanAllInfo != null) {
-                for (TianYanAllInfo.DataBean mDataBean : mTianYanAllInfo.getData()) {
-                    P2pInfo mP2pInfo = new P2pInfo();
-                    mP2pInfo.setName(mDataBean.getName());
-                    mP2pInfo.setTianyan_code(mDataBean.getDetailurl());
-                    mP2pInfo.setUrl(mDataBean.getUrl());
-                    p2pService.updateTianYanCode(mP2pInfo);
+            if (id == 0 || id == 4) {
+                //天眼评级
+                p2pService.updateRankNull("tianyan_level='',tianyan_rank=0");
+                String jsonStr0 = HttpUtil.sendGet("http://api.p2peye.com/platform/pingji?app_name=wdty&terminal_type=102&app_version=3.6.1");
+                Gson gson0 = new Gson();
+                TianYanInfo mTianYanInfo = gson0.fromJson(jsonStr0, new TypeToken<TianYanInfo>() {
+                }.getType());
+                if (mTianYanInfo != null) {
+                    List<TianYanInfo.DataBean.MationBean> list = mTianYanInfo.getData().getMation();
+                    for (int i = 0; i < list.size(); i++) {
+                        TianYanInfo.DataBean.MationBean mMationBean = list.get(i);
+                        P2pInfo mP2pInfo = new P2pInfo();
+                        mP2pInfo.setName(mMationBean.getPlat_name());
+                        mP2pInfo.setTianyan_level(mMationBean.getLevel());
+                        mP2pInfo.setTianyan_rank(i + 1);
+                        p2pService.updateTianYanRank(mP2pInfo);
+                    }
                 }
-            }*/
+            }
+            if (id == 5) {
+                //之家-简称
+                String jsonStr1 = HttpUtil.sendGet("https://m.wdzj.com/apphongbao/interfaceIndexSearch");
+                Gson gson1 = new Gson();
+                List<ZhiJiaIdInfo> mZhiJiaIdInfoList = gson1.fromJson(jsonStr1, new TypeToken<List<ZhiJiaIdInfo>>() {
+                }.getType());
+                if (mZhiJiaIdInfoList != null) {
+                    for (ZhiJiaIdInfo mZhiJiaIdInfo : mZhiJiaIdInfoList) {
+                        P2pInfo mP2pInfo = new P2pInfo();
+                        mP2pInfo.setName(mZhiJiaIdInfo.getPlatName());
+                        mP2pInfo.setZhijia_code(mZhiJiaIdInfo.getPlatPin());
+                        mP2pInfo.setZhijia_url(mZhiJiaIdInfo.getPlatIconUrl());
+                        p2pService.updateZhiJiCode(mP2pInfo);
+                    }
+                }
 
+
+                //天眼-简称
+                String jsonStr2 = HttpUtil.sendGet("http://api.p2peye.com/Platform/getPlatformInfoData");
+                Gson gson2 = new Gson();
+                TianYanAllInfo mTianYanAllInfo = gson2.fromJson(jsonStr2, new TypeToken<TianYanAllInfo>() {
+                }.getType());
+                if (mTianYanAllInfo != null) {
+                    for (TianYanAllInfo.DataBean mDataBean : mTianYanAllInfo.getData()) {
+                        P2pInfo mP2pInfo = new P2pInfo();
+                        mP2pInfo.setName(mDataBean.getName());
+                        mP2pInfo.setTianyan_code(mDataBean.getDetailurl());
+                        mP2pInfo.setUrl(mDataBean.getUrl());
+                        p2pService.updateTianYanCode(mP2pInfo);
+                    }
+                }
+            }
 
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             readwb.close();
+        }
+
+
+        try {
+            // 正常接口返回
+            JSONObject mJSONObject = new JSONObject();
+            mJSONObject.put("code", 200);
+
+            // jsonp格式返回
+            String renderStr = "jsonpCallback" + "(" + mJSONObject.toString() + ")";
+            response.setContentType("text/plain;charset=UTF-8");
+            response.getWriter().write(renderStr);
+            response.getWriter().flush();
+            response.getWriter().close();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

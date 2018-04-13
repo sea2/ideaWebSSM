@@ -16,6 +16,7 @@ table {
     border-collapse: collapse;
     border-spacing: 0;
     border: 1px solid #c0c0c0;
+    position: absolute;
 }
 
 th, td {
@@ -60,38 +61,38 @@ tbody tr:hover {
     background-color: #fafafa;
 }
 
-tr{
+tr {
     width: 100%;
 }
 
-thead{
+thead {
     margin-top: 20px;
     width: 100%;
 }
+
 .fixedtd {
     position: fixed;
     width: 1300px;
     text-align: center;
 }
+
 .table_content {
     margin-top: 90px;
     overflow: auto;
 }
+
 .first_td {
-   width: 70px;
+    width: 70px;
 }
+
 .order_top {
-   width: 90px;
+    width: 90px;
 }
+
 .td_common {
-   width: 90px;
+    width: 90px;
 }
+
 .love_core {
-   width: 90px;
+    width: 90px;
 }
-
-
-
-
-
-

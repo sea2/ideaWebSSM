@@ -21,6 +21,7 @@ public class P2pInfo {
 	private String luopan_code;
 	private String tianyan_url;
 	private String rank360;
+	private int rank360_int;
 	private String url;
 	private float rate3_return;
 	private float rate6_return;
@@ -28,6 +29,13 @@ public class P2pInfo {
 	private String remark;
 	private int gentou_rank;
 
+	public int getRank360_int() {
+		return rank360_int;
+	}
+
+	public void setRank360_int(int rank360_int) {
+		this.rank360_int = rank360_int;
+	}
 
 	public String getRemark() {
 		return remark;

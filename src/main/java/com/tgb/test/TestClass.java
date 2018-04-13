@@ -48,6 +48,15 @@ public class TestClass {
         System.out.println(s);
 
 
+        StringBuilder mStringBuilder=new StringBuilder("1223");
+        mStringBuilder.append(1.236);
+        mStringBuilder.append(6);
+        mStringBuilder.append(true);
+        mStringBuilder.append("呵呵呵");
+        mStringBuilder.delete(14,17);
+        System.out.println(mStringBuilder);
+        System.out.println(mStringBuilder.length());
+
     }
 
     public enum TYPE {

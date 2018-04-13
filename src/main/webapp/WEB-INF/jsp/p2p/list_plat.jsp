@@ -103,6 +103,16 @@
                 });
         }
 
+        function dialogShow(me, remark) {
+            $("#div_remark").fadeIn();
+            $("#div_remark").text(remark);
+        }
+
+        function dialogHide(me, remark) {
+            $("#div_remark").fadeOut();
+
+        }
+
         function updateReta3(id, me) {
             $.get("<%=basePath%>app/updateReta?type=3&id=" + id + '&score=' + $(me).val(), function (data) {
             });
@@ -128,14 +138,14 @@
 </head>
 
 <body>
-<div style="text-align: center;">
+<div class="div_main">
     <!-- 整个表格：ｔａｂｌｅ -->
     <table class="fixedtd" cellspacing="20">
         <thead>
         <tr>
             <!-- tr：table row：表格的行 -->
             <th class='button_a'><a href='p2p/addPlat' style="color: #ffffff;">添加平台</a></th>
-            <th class='button_a'></th>
+            <th class='button_a'><a href='p2p/update_data' style="color: #ffffff;">更新数据</a></th>
             <th class='button_a'></th>
             <th class='button_a'></th>
             <th class='button_a'></th>
@@ -188,7 +198,7 @@
             </c:choose>
             <c:choose>
                 <c:when test="${order_id==5}">
-                    <th class="order_top" onclick="order(5,this)"  style="background-color:#36c;width: 130px">3和6月年化
+                    <th class="order_top" onclick="order(5,this)" style="background-color:#36c;width: 130px">3和6月年化
                     </th>
 
                 </c:when>
@@ -229,7 +239,9 @@
                 <tr>
                     <td class="first_td">${ status.index + 1} </td>
                     <c:if test="${plat.score>=9}">
-                        <td class="td_common" id="${ plat.name}"><a href="${ plat.url}" target="_Blank"><span
+                        <td class="td_common" id="${ plat.name}"><a href="${ plat.url}" target="_Blank"
+                                                                    onMouseOver="dialogShow(this,'${plat.remark }');"
+                                                                    onMouseOut="dialogHide(this,'${plat.remark }')"><span
                                 style="color: #FFA838;font-weight:bold; ">${ plat.name}</span></a></td>
                     </c:if>
                     <c:if test="${plat.score<9&&plat.score>=7}">
@@ -266,7 +278,7 @@
 
                     <c:choose>
                         <c:when test="${plat.gentou_rank==1}">
-                            <td class="td_common" ><span style="color: #FFA838;font-weight:bold; ">重仓</span></td>
+                            <td class="td_common"><span style="color: #FFA838;font-weight:bold; ">重仓</span></td>
                         </c:when>
                         <c:when test="${plat.gentou_rank==2}">
                             <td class="td_common"><span style="color: #AB38FC;font-weight:bold; ">中仓</span></td>
@@ -308,9 +320,10 @@
                         </c:choose>
                     </td>
                     <td class="td_common"><input type='number' name='score' onblur="updateScore('${ plat.id}',this)"
-                               onkeypress='return event.keyCode>=48&&event.keyCode<=57' ng-pattern='/[^a-zA-Z]/'
-                               style='color: #555555; font-size: 16px;width: 30px'
-                               value='${ plat.score}'/></td>
+                                                 onkeypress='return event.keyCode>=48&&event.keyCode<=57'
+                                                 ng-pattern='/[^a-zA-Z]/'
+                                                 style='color: #555555; font-size: 16px;width: 30px'
+                                                 value='${ plat.score}'/></td>
                     <td class="love_core"><input type='number' name='love' onblur="updateLove('${ plat.id}',this)"
                                                  onkeypress='return event.keyCode>=48&&event.keyCode<=57'
                                                  ng-pattern='/[^a-zA-Z]/'
@@ -331,10 +344,15 @@
                 </tr>
             </c:forEach>
         </c:if>
+
+
         </tbody>
     </table>
-
+    <c:if test="${!empty list_size }">
+        <div style="margin: 20px 20px 20px 20px">总数量：<span style="color: #F82D2B; ">${list_size}</span></div>
+    </c:if>
 </div>
+
 
 </body>
 </html>
