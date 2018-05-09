@@ -1,38 +1,26 @@
 package com.tgb.controller;
 
-import java.io.*;
-import java.net.URLEncoder;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.tgb.model.*;
+import com.tgb.service.P2pService;
 import com.tgb.util.HttpUtil;
-import net.sf.json.JSONArray;
+import com.tgb.util.StringUtils;
+import jxl.Cell;
+import jxl.Sheet;
+import jxl.Workbook;
 import net.sf.json.JSONObject;
-import net.sf.json.util.JSONUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.tgb.service.P2pService;
-import com.tgb.util.StringUtils;
-
-import jxl.Cell;
-import jxl.Sheet;
-import jxl.Workbook;
-import net.sf.json.JSON;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.*;
+import java.net.URLEncoder;
+import java.util.List;
 
 @Controller
 public class P2pControler {
@@ -153,7 +141,7 @@ public class P2pControler {
         if (id == 1) str = "WHERE tianyan_rank !=0 ORDER BY  tianyan_rank";
         else if (id == 2)
             str = "WHERE   rank360_int !=0 ORDER BY  rank360_int";
-           // str = "WHERE rank360  NOT IN ('-')  ORDER BY FIELD(rank360, 'A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-')";
+            // str = "WHERE rank360  NOT IN ('-')  ORDER BY FIELD(rank360, 'A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-')";
         else if (id == 3) str = "WHERE zhiji_rank !=0 order by zhiji_rank asc";
         else if (id == 4) str = "WHERE gentou_rank !=0 order by gentou_rank asc";
         else if (id == 5) str = "where rate3_return not in('') order by rate3_return desc";
@@ -350,7 +338,7 @@ public class P2pControler {
                         else mP2pInfo.setRank360(cell2New.getContents().trim());
                         if (mP2pInfo.getRank360().contains("�"))
                             mP2pInfo.setRank360(mP2pInfo.getRank360().replace("�", ""));
-                        mP2pInfo.setRank360_int(i+1);
+                        mP2pInfo.setRank360_int(i + 1);
                         p2pService.updateRank360(mP2pInfo);
                     }
                 }
@@ -448,6 +436,37 @@ public class P2pControler {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+
+    /**
+     * 保存数据
+     *
+     * @param request
+     * @param response
+     */
+    @RequestMapping(value = "app/p2p/save", method = RequestMethod.GET)
+    @ResponseBody
+    public void saveData(HttpServletRequest request, HttpServletResponse response) {
+
+        //天眼-简称
+        String jsonStr2 = HttpUtil.sendGet("http://api.p2peye.com/Platform/getPlatformInfoData");
+        Gson gson2 = new Gson();
+        TianYanAllInfo mTianYanAllInfo = gson2.fromJson(jsonStr2, new TypeToken<TianYanAllInfo>() {
+        }.getType());
+        if (mTianYanAllInfo != null) {
+            for (TianYanAllInfo.DataBean mDataBean : mTianYanAllInfo.getData()) {
+                String sqlStr = null;
+                try {
+                    sqlStr = " t_plat_eye_data (eye_name,eye_plat_url,eye_plat_icon,eye_id,eye_code,eye_plat_detail_url) " +
+                            "values("+mDataBean.getName()+","+ URLEncoder.encode(mDataBean.getUrl(),"UTF-8")+","+mDataBean.getIcon()+","+mDataBean.getId()+","+mDataBean.getPname_jp()+","+mDataBean.getDetailurl()+")";
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+                p2pService.save_data(sqlStr);
+            }
+        }
+
     }
 
 

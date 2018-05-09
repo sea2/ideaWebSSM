@@ -25,7 +25,7 @@
     <mvc:interceptors>    
         <mvc:interceptor>    
             <!-- 匹配的是url路径， 如果不配置或/**,将拦截所有的Controller -->  
-            <mvc:mapping path="/app/**" />  
+            <mvc:mapping path="/app/**" />
             <bean class="com.tgb.util.AllInterceptor"></bean>    <!-- 自定义拦截器路径 -->
         </mvc:interceptor>  
         <!-- 当设置多个拦截器时，先按顺序调用preHandle方法，然后逆序调用每个拦截器的postHandle和afterCompletion方法 -->  

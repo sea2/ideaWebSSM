@@ -1,9 +1,9 @@
 package com.tgb.mapper;
 
-import java.util.List;
-
 import com.tgb.model.P2pInfo;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface P2pmapper {
 
@@ -42,4 +42,6 @@ public interface P2pmapper {
     void updateLove(@Param("id") int id, @Param("score") String score);
 
     void updateRemark(@Param("id") int id, @Param("remark") String remark);
+
+    void save_data(@Param("str") String sqlStr);
 }

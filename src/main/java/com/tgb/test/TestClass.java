@@ -5,6 +5,7 @@ import com.tgb.util.PinyinUtils;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
@@ -25,7 +26,7 @@ public class TestClass {
 
         Info<Number> mui = new Info<Number>();
         mui.setData(1);
-        Integer intNum = (Integer) mui.getData();
+        Number intNum = mui.getData();
         System.out.println(intNum);
 
 
@@ -42,18 +43,32 @@ public class TestClass {
         String[] strArray = "".split(",");
         System.out.println(strArray.length);
 
+       /* str.getBytes("unicode").length; //12
+        str.getBytes("gbk").length; //6
+        str.getBytes("utf-8").length; //7*/
+        String str = "学";
+        int n = 0;
+        try {
+            n = str.getBytes("utf-8").length;
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+
+        System.out.println("------" + n);
+        System.out.println("---getDataInt---" + getDataInt());
 
         //发送 GET 请求
-        String s = HttpUtil.doHttpGet("http://www.dailuopan.com/MPAPI/GetSearch?keywords="+"宜人贷");
+        String s = HttpUtil.doHttpGet("http://www.dailuopan.com/MPAPI/GetSearch?keywords=" + "宜人贷");
         System.out.println(s);
 
 
-        StringBuilder mStringBuilder=new StringBuilder("1223");
+        StringBuilder mStringBuilder = new StringBuilder("1223");
         mStringBuilder.append(1.236);
         mStringBuilder.append(6);
         mStringBuilder.append(true);
         mStringBuilder.append("呵呵呵");
-        mStringBuilder.delete(14,17);
+        mStringBuilder.delete(14, 17);
         System.out.println(mStringBuilder);
         System.out.println(mStringBuilder.length());
 
@@ -67,14 +82,28 @@ public class TestClass {
 
     }
 
+    public static int getDataInt() {
+        int ret = 0;
+        try {
+            return ret;
+        } catch (Exception e) {
+            ret = 1;
+            return ret;
+        } finally {
+            ret = 2;
+            return ret;
+        }
+    }
+
 
     /**
      * 向指定URL发送GET方法的请求
      *
-     * @param url   发送请求的URL
+     * @param url 发送请求的URL
      * @return URL 所代表远程资源的响应结果
      */
-    public static String sendGet(String url) {   String result = "";
+    public static String sendGet(String url) {
+        String result = "";
         BufferedReader in = null;
         try {
             URL realUrl = new URL(url);

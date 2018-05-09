@@ -1,14 +1,16 @@
 package com.tgb.util;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import org.json.JSONException;
-import org.json.JSONObject;
+import java.util.Set;
 
 public class HttpUtil {
 
@@ -142,6 +144,59 @@ public class HttpUtil {
             } catch (Exception ex) {
             }
         }
+    }
+
+
+    /**
+     * 发送Http post请求
+     * @param actionURL 请求url
+     * @param parameters 请求表单参数
+     * @return 返回信息
+     */
+    public static String doHttpPost(String actionURL, HashMap<String, String> parameters){
+        String response = "";
+        try{
+            URL url = new URL(actionURL);
+            HttpURLConnection connection = (HttpURLConnection)url.openConnection();
+            //发送post请求需要下面两行
+            connection.setDoInput(true);
+            connection.setDoOutput(true);
+            connection.setUseCaches(false);
+            connection.setRequestMethod("POST");
+            connection.setRequestProperty("Connection", "Keep-Alive");
+            connection.setRequestProperty("Charset", "UTF-8");;
+            connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+            //设置请求数据内容
+            String requestContent = "";
+            Set<String> keys = parameters.keySet();
+            for(String key : keys){
+                requestContent = requestContent + key + "=" + parameters.get(key) + "&";
+            }
+            requestContent = requestContent.substring(0, requestContent.lastIndexOf("&"));
+            DataOutputStream ds = new DataOutputStream(connection.getOutputStream());
+            //使用write(requestContent.getBytes())是为了防止中文出现乱码
+            ds.write(requestContent.getBytes());
+            ds.flush();
+            try{
+                //获取URL的响应
+                BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream(), "utf-8"));
+                String s = "";
+                String temp = "";
+                while((temp = reader.readLine()) != null){
+                    s += temp;
+                }
+                response = s;
+                reader.close();
+            }catch(IOException e){
+                e.printStackTrace();
+                System.out.println("No response get!!!");
+            }
+            ds.close();
+        }catch(IOException e){
+            e.printStackTrace();
+            System.out.println("Request failed!");
+        }
+        return response;
     }
 
     /**

@@ -1,8 +1,8 @@
 package com.tgb.service;
 
-import java.util.List;
-
 import com.tgb.model.P2pInfo;
+
+import java.util.List;
 
 public interface P2pService {
 
@@ -40,4 +40,6 @@ public interface P2pService {
     void updateRemark(int id, String remark);
 
     void updateRankNull(String s);
+
+    void save_data(String sqlStr);
 }

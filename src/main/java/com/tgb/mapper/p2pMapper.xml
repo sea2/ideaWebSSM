@@ -29,7 +29,7 @@
 		from t_plat ORDER BY score DESC
 	</select>
 
-    <select id="findAllByStr" parameterType="String"  resultType="P2pInfo">
+    <select id="findAllByStr" parameterType="String" resultType="P2pInfo">
 		select id id,name
 		name,other_name other_name,score score,is_delete is_delete,is_trouble
 		is_trouble,url url,icon_url icon_url,zhiji_rank zhiji_rank,
@@ -85,15 +85,18 @@
     <update id="updateTianYanCode" parameterType="P2pInfo">
 		update t_plat set tianyan_code=#{tianyan_code},url=#{url} where name=#{name} or other_name=#{name}
 	</update>
-    <update id="updateLove" >
+    <update id="updateLove">
 		update t_plat set is_love=#{score}where id=#{id}
 	</update>
-    <update id="updateRemark" >
+    <update id="updateRemark">
 		update t_plat set remark=#{remark}where id=#{id}
 	</update>
-    <update id="updateRankNull" >
+    <update id="updateRankNull">
 		update t_plat set  ${str}
 	</update>
 
+    <insert id="save_data">
+			insert into ${str}
+	</insert>
 
 </mapper>
