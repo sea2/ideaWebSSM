@@ -11,10 +11,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class HttpUtil {
 
@@ -356,7 +353,7 @@ public class HttpUtil {
         }
 
         String method = request.getMethod();
-        String param = null;
+        String param = "";
         if (method.equalsIgnoreCase("GET")) {
             /**
              获取?后面的字符串
@@ -366,24 +363,27 @@ public class HttpUtil {
              -->{"username":"zhangsan"}是json字符串
              有了json串就可以映射成对象了
              */
-            param = request.getQueryString();
-            if (Base64.isBase64(Byte.parseByte(param))) {
-                param = new String(Base64.decodeBase64(param), StandardCharsets.UTF_8);
+          /*  param = request.getQueryString();
+            System.out.println("param:" + param);*/
+
+            Enumeration em = request.getParameterNames();
+            if(em!=null)
+            while (em.hasMoreElements()) {
+                String name = (String) em.nextElement();
+                String value = request.getParameter(name);
+                param=param+"  "+name+"="+value;
             }
-            System.out.println("param:" + param);
+
         } else {
             param = getBodyData(request);
-            if (Base64.isBase64(Byte.parseByte(param))) {
-                param = new String(Base64.decodeBase64(param), StandardCharsets.UTF_8);
-            }
             System.out.println("param:" + param);
         }
         return param;
     }
 
     //获取请求体中的字符串(POST)
-    public static String getBodyData(HttpServletRequest request) {
-        StringBuffer data = new StringBuffer();
+    private static String getBodyData(HttpServletRequest request) {
+        StringBuilder data = new StringBuilder();
         String line = null;
         BufferedReader reader = null;
         try {
@@ -391,7 +391,7 @@ public class HttpUtil {
             while (null != (line = reader.readLine()))
                 data.append(line);
         } catch (IOException e) {
-        } finally {
+            e.printStackTrace();
         }
         return data.toString();
     }

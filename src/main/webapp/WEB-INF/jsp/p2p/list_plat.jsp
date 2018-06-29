@@ -133,7 +133,7 @@
 
         function remarkUpdate() {
             var remark_new = $("#textarea_text").val();
-            var id = $("#record_id").val(id);
+            var id = $("#record_id").val();
             if (remark_new)//如果返回的有内容
             {
                 $.get("<%=basePath%>app/updateRemark?id=" + id + '&remark=' + remark_new, function (data) {
@@ -367,48 +367,44 @@
 
 </div>
 
-<button id="open_btn" class="btn">弹窗</button>
+
 
 <!-- 弹窗内容开始 -->
 <div id="background" class="back">
     <div id="div1" class="content">
         <div id="close">
             <span id="close-button">×</span>
-            <h2>弹窗头部</h2>
+            <h2>自评</h2>
         </div>
         <div id="div2">
-            <h3>弹窗标题</h3>
             <label>
-<textarea rows="3" cols="20" id="textarea_text">
-在w3school，你可以找到你所需要的所有的网站建设教程。
+<textarea rows="15" cols="70" id="textarea_text">
 </textarea>
             </label>
-        <h3 id="foot">底部内容</h3>
-        <input type="hidden" id="record_id"/>
+            <input type="hidden" id="record_id"/>
 
-        <button style='color: #555555; font-size: 15px;width: 50px' onclick="remarkUpdate()">保存
-        </button>
-    </div>
-</div>
+            <button style='color: #555555; font-size: 15px;margin-top:100px;width: 400px;height: 50px' onclick="remarkUpdate()">保存
+            </button>
+        </div>
+    </div></div>
 
+    <script type="text/javascript">
 
-<script type="text/javascript">
+        $("#open_btn").click(function () {
+            $("#background").css('display', 'block');
+        });
 
-    $("#open_btn").click(function () {
-        $("#background").css('display', 'block');
-    });
-
-    $("#close-button").click(function () {
-        $("#background").css('display', 'none');
-    });
-
-    //监听点击事件
-    window.onclick = function close(e) {
-        if (e.target.id === $("#background").attr("id")) {
+        $("#close-button").click(function () {
             $("#background").css('display', 'none');
-        }
-    };
+        });
 
-</script>
+        //监听点击事件
+        window.onclick = function close(e) {
+            if (e.target.id === $("#background").attr("id")) {
+                $("#background").css('display', 'none');
+            }
+        };
+
+    </script>
 </body>
 </html>
