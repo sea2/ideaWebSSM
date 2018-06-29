@@ -1,0 +1,99 @@
+@charset "UTF-8";
+body {
+    width: 720px;
+    text-align: center;
+    margin: 0 auto;
+    padding: 0;
+}
+
+body > div {
+    text-align: center;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+div, form, ul, ol, li, span, p {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+img, a img {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    font-weight: normal;
+}
+
+ul, ol, li {
+    list-style: none;
+}
+
+table, td, input {
+    font-size: 15px;
+}
+
+a {
+    outline-style: none;
+    color: #333;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #333;
+    text-decoration: none;
+}
+
+body {
+    width: 720px;
+    /*  background:#D0C999;
+    color:#fff; */
+    background: #fff;
+    color: #333;
+
+    overflow-x: hidden;
+}
+
+body, ul, li {
+    background-color: white;
+
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+.welcome_search_box {
+    margin-top: 0.2rem;
+    height: 2rem;
+    width: 100%;
+    text-align: center;
+    overflow: hidden;
+
+}
+
+input {
+    height: 2rem;
+    width: 10rem;
+    border: 1px solid #4b4b4b;
+}
+
+#welcome_search_button {
+    width: 20%;
+    height: 2rem;
+    margin: 2rem auto 5rem;
+    background-color: #EC6A17;
+    text-align: center;
+    border-radius: .3rem;
+    color: #fff;
+    cursor: pointer;
+}
+
+#add_a {
+    color: #fff;
+    line-height: 2rem;
+}

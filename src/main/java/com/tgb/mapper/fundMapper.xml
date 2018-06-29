@@ -6,14 +6,23 @@
 	id:必须与对应接口的某个对应的方法名一致
 
  -->
-<mapper namespace="com.tgb.mapper.Fundmapper">
+<mapper namespace="com.tgb.mapper.FundMapper">
 
 
-    <select id="findAll" parameterType="FundInfo">
-      SELECT *FROM t_fund
+    <select id="findAll" resultType="MyHasFundInfo">
+      SELECT fund_code fund_has_code,fund_name fund_name,fund_buy_price fund_buy_price,fund_has_money fund_has_money FROM t_fund
     </select>
-    <insert id="saveFund" parameterType="TianTianMyDatasBean">
-            insert into t_fund(fund_code,fund_name,fund_new_price,fund_new_rate)  values(#{FCODE},#{SHORTNAME},#{SHORTNAME},#{SHORTNAME},#{SHORTNAME},#{SHORTNAME})
+    <select id="findByCode" resultType="MyHasFundInfo" parameterType="String">
+      SELECT fund_code fund_has_code,fund_name fund_name,fund_buy_price fund_buy_price,fund_has_money fund_has_money FROM t_fund where fund_code=#{fund_has_code}
+    </select>
+
+    <update id="updateMyFund" parameterType="MyHasFundInfo" >
+        update t_fund set fund_buy_price=#{fund_buy_price},fund_has_money=#{fund_has_money} where fund_code=#{fund_has_code}
+    </update>
+
+
+    <insert id="saveMyFund" parameterType="MyHasFundInfo">
+            insert into t_fund(fund_code,fund_name,fund_buy_price,fund_has_money)  values(#{fund_has_code},#{fund_name},#{fund_buy_price},#{fund_has_money})
     </insert>
 
 </mapper>

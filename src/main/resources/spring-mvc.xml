@@ -17,6 +17,7 @@
 	<!-- 配置静态资源，直接映射到对应的文件夹，不被DispatcherServlet处理，3.04新增功能，需要重新设置spring-mvc-3.0.xsd -->
 	<mvc:resources mapping="/img/**" location="/img/" />
 	<mvc:resources mapping="/images/**" location="/images/" />
+	<mvc:resources mapping="/static/**" location="/static/" />
 	<mvc:resources mapping="/js/**" location="/js/" />
 	<mvc:resources mapping="/css/**" location="/css/" />
 	<mvc:resources mapping="/html/**" location="/html/" />
@@ -26,7 +27,7 @@
         <mvc:interceptor>    
             <!-- 匹配的是url路径， 如果不配置或/**,将拦截所有的Controller -->  
             <mvc:mapping path="/app/**" />
-            <bean class="com.tgb.util.AllInterceptor"></bean>    <!-- 自定义拦截器路径 -->
+            <bean class="com.tgb.util.AllInterceptor" />    <!-- 自定义拦截器路径 -->
         </mvc:interceptor>  
         <!-- 当设置多个拦截器时，先按顺序调用preHandle方法，然后逆序调用每个拦截器的postHandle和afterCompletion方法 -->  
     </mvc:interceptors>  

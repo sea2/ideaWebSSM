@@ -337,7 +337,7 @@
                            target="_Blank"
                            style="  text-decoration: underline; ">自评</a>
                     </td>
-                    <td>
+                    <td style="width: 100px">
                         <button style='color: #555555; font-size: 15px;width: 50px' onclick="del('${ plat.id}')">删除
                         </button>
                     </td>

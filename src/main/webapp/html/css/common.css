@@ -1,0 +1,160 @@
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td, img, area, param {
+    margin: 0;
+    padding: 0
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: arial, \5FAE\8F6F\96C5\9ED1, sans-serif;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%
+}
+
+html {
+    font-size: 62.5%
+}
+
+.fs_16 {
+    font-size: 1.6rem
+}
+
+.fc_blue {
+    color: #fd5903
+}
+
+.tc {
+    text-align: center
+}
+
+.bold {
+    font-weight: bold
+}
+
+.wap_main {
+    width: 100%;
+    font-size: 1.6rem
+}
+
+.top {
+    position: relative;
+    height: 4.4rem;
+    width: 100%;
+    background-color: #fd5903;
+    text-align: center;
+    color: #fff;
+    line-height: 4.4rem;
+    font-size: 2rem
+}
+
+.top_ico {
+    width: 2.1rem;
+    height: 4.4rem;
+    position: absolute;
+    cursor: pointer;
+    z-index: 10;
+    top: 0
+}
+
+.top .txt {
+    margin: 0 auto;
+    text-align: center;
+    width: 60%;
+    height: 3.7rem;
+    padding-top: .7rem
+}
+
+.top .txt p {
+    font-size: 1.8rem;
+    height: 3rem;
+    overflow: hidden;
+    border-radius: 5px;
+    background-color: #fff;
+    line-height: 3rem;
+    color: #fd5903;
+    border: 1px solid #fff;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box
+}
+
+.top .txt p span {
+    color: #fff;
+    background: #fd5903;
+    display: inline-block;
+    width: 50%;
+    text-align: center;
+    float: left
+}
+
+.top .txt p span.on {
+    background-color: #fff;
+    color: #fd5903
+}
+
+.top .l_off {
+    left: 1.5rem;
+    color: #fff;
+    position: absolute;
+    height: 4.4rem;
+    top: 0;
+    line-height: 4.4rem;
+    font-size: 1.6rem
+}
+
+.top .r_off {
+    right: 1.5rem;
+    color: #fff;
+    position: absolute;
+    height: 4.4rem;
+    top: 0;
+    line-height: 4.4rem;
+    font-size: 1.6rem
+}
+
+.top .l_off:active, .top .r_off:active {
+    color: #fff
+}
+
+.pop_s {
+    position: fixed;
+    width: 80%;
+    display: none;
+    top: 36%;
+    left: 50%;
+    margin-left: -40%;
+    text-align: center;
+    z-index: 999
+}
+
+.pop_s span {
+    display: inline-block;
+    padding: .5rem 1.5rem;
+    line-height: 2.2rem;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: .5rem;
+    color: #fff
+}
+
+.bg404 {
+    width: 100%;
+    height: 32rem;
+    background: url(../images/404.png) center top no-repeat;
+    padding-top: 2rem;
+    background-size: 100% 32rem
+}
+
+.bg404 .line1 {
+    height: 6rem;
+    line-height: 6rem;
+    text-align: center;
+    font-size: 4rem
+}
+
+.bg404 .line3 {
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+    padding-left: 11%;
+    padding-right: 10%;
+    line-height: 2.6rem
+}

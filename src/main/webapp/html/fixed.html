@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="author" content="http://www.softwhy.com/" />
+    <title>固定在窗口顶部</title>
+    <style type="text/css">
+        *{
+            padding:0px;
+            margin:0px;
+        }
+        body, ul, li{
+            background-color:white;
+            font-size:12px;
+            font-family:Arial, Helvetica, sans-serif;
+            text-align:center;
+        }
+        #main{
+            width:20px;
+            height:1000px;
+            margin:0px auto;
+            background-color:#CCC;
+        }
+        #nav{
+            width:500px;
+            margin:0px auto;
+            position:fixed;/*固定作用*/
+            top:0px;
+            left:490px;
+            /*ie6下样式，加下划线表示只针对ie6 的hack */
+            _position:absolute;/* 把导航栏位置定义为绝对位置  关键*/
+            _top:expression(documentElement.scrollTop + "px"); /* 把导航栏位置放在浏览器垂直滚动条的顶端  关键 */
+            z-index:9999; /* 让导航栏浮在网页的高层位置，遇到flash和图片时候也能始终保持最外层 */
+            text-align:left;
+        }
+        a{
+            color:#000000;
+            text-decoration:none;
+        }
+        .menu{
+            width:120px;
+            height:18px;
+            margin:0px 4px 0px 0px;
+            background-color:#F5F5F5;
+            color:#999999;
+            border:1px solid #EEE8DD;
+            padding:6px 0px 0px 0px;
+            overflow-y:hidden;
+            cursor:hand;
+            display:inline;
+            list-style:none;
+            font-weight:bold;
+            float:left;
+        }
+    </style>
+</head>
+<body>
+<div id="nav">
+    <ul>
+        <li class="menu"><a href="#">前台专区</a></li>
+        <li class="menu"><a href="#">后台专区</a></li>
+        <li class="menu"><a href="#">交流专区</a></li>
+    </ul>
+</div>
+<div id="main">大家拖动滚动条下吧 我很长 这样就能看到导航栏固定的效果了 </div>
+</body>
+</html>

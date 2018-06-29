@@ -2,12 +2,18 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Document</title>
-	<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0">
+	<title>付款</title>
 	<link rel="stylesheet" href="css/default.css">
+	<script src="js/hotcss.js"></script>
 </head>
 <body>
-	<a href="product.html" class="back">后退</a>
+<div id="title">
+	<ul>
+		<li class="menu_back"><a href="index.html" id="a_titlt_back"><img src="img/icon_back.png" alt="" id="img_back"></a></li>
+		<li class="menu_title"><a href="#" class="a_titlt_top">付款</a></li>
+		<li class="menu_right"><a href="#" class="a_titlt_top">分享</a></li>
+	</ul>
+</div>
 	<div id="pay" class="scroll">
 		<p class="cartTop">
 			您选择了：
@@ -20,7 +26,7 @@
 			<col ></col>
 			<tr>
 				<td><input type="checkbox" /></td>
-				<td><img src="img/main1.jpg" alt="" width="50" height="50" class="payImg"></td>
+				<td><img src="img/main1.jpg" alt=""  class="payImg"></td>
 				<td>卧室壁灯卧室壁灯卧室壁灯</td>
 				<td class="payPrice">￥<span class="somePrice">100.0</span></td>
 				<td class="cart">
@@ -50,6 +56,9 @@
 			<button  class="button" onclick="javascript:window.location.href=' '">确认支付</button>
 		</p>
 	</div>
+
+	<p id="list">
+	</p>
 </body>
 <script type="text/javascript" src="js/jquery-1.11.0.min.js" ></script>
 <script type="text/javascript">
@@ -76,7 +85,47 @@
 				$(".totalPrice").html(total);
 				$(this).parent().parent().remove();
 			})
-		})
-	})
+		});
+
+
+
+	});
+
+    $(function () {
+
+              $.ajax({
+
+            type : "get", //jquey是不支持post方式跨域的
+
+            async:false,
+
+            url : "http://192.168.2.75:8080/v1.0/app", //跨域请求的URL
+
+            dataType : "jsonp",
+
+            //传递给请求处理程序，用以获得jsonp回调函数名的参数名(默认为:callback)
+
+                  jsonp: "callback",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
+                  jsonpCallback:"jsonpCallback",
+
+            //成功获取跨域服务器上的json数据后,会动态执行这个callback函数
+
+            success : function(json){
+
+              //  alert(json.code);
+                var str="";
+         for(var i=0;i<json.list.length;i++){
+             str=str+json.list[i].id;
+           }
+                alert(str);
+            },
+                  error: function(a, b, c) {
+                      alert(a + b + c);
+                  }
+        });
+
+
+    });
+
 </script>
 </html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <!--1.   强制让文档的宽度与设备的宽度保持1:1，并且文档最大的宽度比例是1.0，且不允许用户点击屏幕放大浏览。-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/>
+
+    <!--2.   WebApp全屏模式   隐藏地址栏。-->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+
+    <!--3.   禁止百度转码显示。-->
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+
+    <!--4.   制定iphone中safari顶端的状态条的样式（default:白色，black:黑色，black-translucent：半透明）-->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <!--5.    添加到IOS主屏后的标题。-->
+    <meta name="apple-mobile-web-app-title" content="标题名称">
+
+    <!--它的意思就是，自动探测屏幕宽度，然后加载相应的CSS文件。-->
+    <link rel="stylesheet" type="text/css"          media="screen and (max-device-width: 400px)"          href="tinyScreen.css" />
+
+    <!--上面的代码意思是，如果屏幕宽度小于400像素（max-device-width: 400px），就加载tinyScreen.css文件。-->
+    <link rel="stylesheet" type="text/css"          media="screen and (min-width: 400px) and (max-device-width: 600px)"          href="smallScreen.css" />
+
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>

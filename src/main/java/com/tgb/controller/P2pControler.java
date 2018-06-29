@@ -20,7 +20,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.net.URLEncoder;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class P2pControler {
@@ -72,6 +74,44 @@ public class P2pControler {
             e.printStackTrace();
         }
     }
+
+
+    @RequestMapping("app/order_test")
+    public @ResponseBody Map<String, Object> orderByIdTest( HttpServletRequest request, HttpServletResponse response) {
+        String str = "ORDER BY score desc";
+        int id=1;
+        if (id == 1) str = "WHERE tianyan_rank !=0 ORDER BY  tianyan_rank";
+        else if (id == 2)
+            str = "WHERE   rank360_int !=0 ORDER BY  rank360_int";
+            // str = "WHERE rank360  NOT IN ('-')  ORDER BY FIELD(rank360, 'A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-')";
+        else if (id == 3) str = "WHERE zhiji_rank !=0 order by zhiji_rank asc";
+        else if (id == 4) str = "WHERE gentou_rank !=0 order by gentou_rank asc";
+        else if (id == 5) str = "where rate3_return not in('') order by rate3_return desc";
+        else if (id == 6) str = "ORDER BY score desc";
+        else if (id == 7) str = "WHERE is_love!='0'  ORDER BY FIELD(is_love, '10', '9', '8', '7', '6', '5', '4', '3')";
+        List<P2pInfo> findAll = p2pService.findAllByStr(str);
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("total", findAll.size());
+        map.put("data", findAll);
+        return map;
+      /*  try {
+            // 正常接口返回
+            JSONObject mJSONObject = new JSONObject();
+            mJSONObject.put("code", 200);
+           Gson gson=new Gson();
+            // jsonp格式返回
+            String renderStr = "jsonpCallback" + "(" + gson.toJson(findAll)+ ")";
+            response.setContentType("text/plain;charset=UTF-8");
+            response.getWriter().write(renderStr);
+            response.getWriter().flush();
+            response.getWriter().close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }*/
+
+
+    }
+
 
     /**
      * 添加平台
@@ -459,7 +499,7 @@ public class P2pControler {
                 String sqlStr = null;
                 try {
                     sqlStr = " t_plat_eye_data (eye_name,eye_plat_url,eye_plat_icon,eye_id,eye_code,eye_plat_detail_url) " +
-                            "values("+mDataBean.getName()+","+ URLEncoder.encode(mDataBean.getUrl(),"UTF-8")+","+mDataBean.getIcon()+","+mDataBean.getId()+","+mDataBean.getPname_jp()+","+mDataBean.getDetailurl()+")";
+                            "values(" + mDataBean.getName() + "," + URLEncoder.encode(mDataBean.getUrl(), "UTF-8") + "," + mDataBean.getIcon() + "," + mDataBean.getId() + "," + mDataBean.getPname_jp() + "," + mDataBean.getDetailurl() + ")";
                 } catch (UnsupportedEncodingException e) {
                     e.printStackTrace();
                 }

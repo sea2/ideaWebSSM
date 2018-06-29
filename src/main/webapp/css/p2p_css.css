@@ -3,6 +3,7 @@ body {
     margin: 0 auto;
     padding: 0;
     width: 1300px;
+    font-size: 15px;
 }
 
 a {
@@ -12,11 +13,11 @@ a {
 }
 
 table {
-    width: 100%;
+    width: 1300px;
     border-collapse: collapse;
     border-spacing: 0;
     border: 1px solid #c0c0c0;
-    position: absolute;
+
 }
 
 th, td {
@@ -74,11 +75,14 @@ thead {
     position: fixed;
     width: 1300px;
     text-align: center;
+    z-index: 9999;
 }
 
 .table_content {
     margin-top: 90px;
     overflow: auto;
+    width: 1300px;
+    position: relative;
 }
 
 .first_td {

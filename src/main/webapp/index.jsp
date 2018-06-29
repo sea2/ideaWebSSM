@@ -22,11 +22,11 @@
 <body>
 <div align="center">
     <br/> <br/> <a href="<%=basePath%>user/getAllUser"
-                   style="color: #555555; font-size: 50px;">进入用户管理页</a><br/> <br/>
-    <a href="p2p/getList" style="color: #55555; font-size: 50px;">进入网贷平台总览</a>
-    <a href="fund/getList" style="color: #55555; font-size: 50px;">进入基金频道</a>
+                   style="color: #555555; font-size: 40px;">进入用户管理页</a><br/> <br/>
+    <a href="p2p/getList" style="color: #555555; font-size: 40px;">进入网贷平台总览</a><br/><br/>
+    <a href="fund/getList" style="color: #555555; font-size: 40px;">进入基金频道</a><br/><br/>
+    <a href="html/index.html" style="color: #555555; font-size: 40px;">H5</a>
 </div>
-
 
 </body>
 </html>

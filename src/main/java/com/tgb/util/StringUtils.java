@@ -1,5 +1,7 @@
 package com.tgb.util;
 
+import java.text.DecimalFormat;
+
 public class StringUtils {
     public static int toInt(String str, int defValue) {
         try {
@@ -79,6 +81,13 @@ public class StringUtils {
             } else
                 return -1;
         }
+
+    }
+
+
+    public static  String keepTwo(double d) {
+        DecimalFormat df = new DecimalFormat("######0.00");
+        return df.format(d);
 
     }
 

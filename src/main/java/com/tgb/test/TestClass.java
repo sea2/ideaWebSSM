@@ -72,6 +72,10 @@ public class TestClass {
         System.out.println(mStringBuilder);
         System.out.println(mStringBuilder.length());
 
+        String str1 = "";
+        String str2 = "熊2";
+        System.out.println("---:" + str1.compareTo(str2));
+
     }
 
     public enum TYPE {

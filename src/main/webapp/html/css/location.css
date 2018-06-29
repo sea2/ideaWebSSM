@@ -1,0 +1,132 @@
+@charset "UTF-8";
+body {
+    width: 16rem;
+    text-align: center;
+    margin: 0 auto;
+    padding: 0; }
+
+body > div {
+    text-align: center;
+    margin-right: auto;
+    margin-left: auto; }
+
+div, form, ul, ol, li, span, p {
+    margin: 0;
+    padding: 0;
+    border: 0; }
+
+img, a img {
+    border: 0;
+    margin: 0;
+    padding: 0; }
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    padding: 0;
+    font-size: 0.5555555556rem;
+    font-weight: normal; }
+
+ul, ol, li {
+    list-style: none; }
+
+table, td, input {
+    font-size: 0.2666666667rem; }
+
+a {
+    outline-style: none;
+    color: #333;
+    text-decoration: none; }
+
+a:hover {
+    color: #333;
+    text-decoration: none; }
+
+body {
+    width: 16rem;
+    /*  background:#D0C999;
+    color:#fff; */
+    background: #fff;
+    color: #333;
+    font-size: 0.5555555556rem;
+    overflow-x: hidden; }
+
+
+body, ul, li{
+    background-color:white;
+    font-size:0.5rem;
+    font-family:Arial, Helvetica, sans-serif;
+    text-align:center;
+}
+
+#title{
+    width:16rem;
+
+    position:fixed;/*固定作用*/
+    top:0px;
+
+    background-color:#F5F5F5;
+    color:#999999;
+    border:1px solid #EEE8DD;
+
+    z-index:9999; /* 让导航栏浮在网页的高层位置，遇到flash和图片时候也能始终保持最外层 */
+    text-align:left;
+}
+
+#title ul{
+    line-height: 1rem;
+}
+#title a{
+    display: block;
+    height: 100%;
+    width: 100%;
+
+}
+#title .menu_back{
+    width:1.5rem;
+    height:1rem;
+
+    text-align: center;
+    overflow-y:hidden;
+    cursor:hand;
+    display:inline;
+    list-style:none;
+    font-weight:normal;
+    float:left;
+}
+
+
+#title .menu_title{
+    width:13rem;
+    height:1rem;
+
+
+    overflow-y:hidden;
+    cursor:hand;
+    display:inline;
+    list-style:none;
+    font-weight:normal;
+    float:left;
+}
+#title .menu_right{
+    width:1.5rem;
+    height:1rem;
+    overflow-y:hidden;
+    cursor:hand;
+    display:inline;
+    list-style:none;
+    font-weight:normal;
+    float:left;
+}
+
+#title #img_back{
+    width: 0.6rem;
+    height: 0.6rem;
+    margin-top: 0.2rem;
+}
+
+
+#main_map{
+    margin-top: 1rem;
+    width: 16rem;
+    height: 28.5rem;
+}
