@@ -8,10 +8,12 @@
 <html>
 <head>
     <base href="<%=basePath%>">
+    <link rel="shortcut icon" href="img/p2p_icon.ico" type="image/x-icon"/>
     <script type="text/javascript" src="js/jquery-1.7.1.js"></script>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="viewport"
           content="width=device-width,minimum-scale=1.0,maximum-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/弹窗.css">
     <link rel="stylesheet" href="css/p2p_css.css">
     <title>网贷平台总览</title>
     <script type="text/javascript">
@@ -124,8 +126,14 @@
         }
 
         function remark(id, remark) {
-            var remark_new = prompt(remark, remark);//将输入的内容赋给变量 name ，
-            //这里需要注意的是，prompt有两个参数，前面是提示的话，后面是当对话框出来后，在对话框里的默认值
+            $("#textarea_text").text(remark);
+            $("#record_id").val(id);
+            $("#background").css('display', 'block');
+        }
+
+        function remarkUpdate() {
+            var remark_new = $("#textarea_text").val();
+            var id = $("#record_id").val(id);
             if (remark_new)//如果返回的有内容
             {
                 $.get("<%=basePath%>app/updateRemark?id=" + id + '&remark=' + remark_new, function (data) {
@@ -140,13 +148,12 @@
 <body>
 <div class="div_main">
     <!-- 整个表格：ｔａｂｌｅ -->
-    <table class="fixedtd" cellspacing="20">
-        <thead>
+    <table class="fixedtd">
         <tr>
             <!-- tr：table row：表格的行 -->
-            <th class='button_a'><a href='p2p/addPlat' style="color: #ffffff;">添加平台</a></th>
-            <th class='button_a'><a href='p2p/update_data' style="color: #ffffff;">更新数据</a></th>
-            <th class='button_a'></th>
+            <th class='button_a'><a href='p2p/getList' class="a_top_button">总览</a></th>
+            <th class='button_a first_td'><a class="a_top_button" href='p2p/addPlat'>添加平台</a></th>
+            <th class='button_a'><a href='p2p/update_data' class="a_top_button">更新数据</a></th>
             <th class='button_a'></th>
             <th class='button_a'></th>
             <th class='button_a'></th>
@@ -159,8 +166,6 @@
                         style='color: #555555; font-size: 20px; width: 80px'/></th>
         </tr>
         <tr id='log'></tr>
-        </thead>
-        <thead>
         <tr>
             <th class="first_td">序号</th>
             <th class="order_top">平台名称</th>
@@ -225,14 +230,12 @@
 
             <th style="width: 100px">参考详情</th>
 
-            <th>删除</th>
+            <th class="order_top">删除</th>
         </tr>
-        </thead>
     </table>
-    <br>
-    <table class="table_content">
 
-        <tbody>
+
+    <table class="table_content">
 
         <c:if test="${!empty platList }">
             <c:forEach items="${platList}" var="plat" varStatus="status">
@@ -265,7 +268,16 @@
                                 style="text-decoration:line-through;">${ plat.name}</span></a></td>
                     </c:if>
 
-                    <td class="td_common">${plat.tianyan_level }</td>
+                        <%--//天眼--%>
+                    <c:choose>
+                        <c:when test="${empty plat.tianyan_level}">
+                            <td class="td_common">-</td>
+                        </c:when>
+                        <c:otherwise>
+                            <td class="td_common">${plat.tianyan_level }</td>
+                        </c:otherwise>
+                    </c:choose>
+                        <%--//360--%>
                     <td class="td_common">${plat.rank360 } </td>
                     <c:choose>
                         <c:when test="${plat.zhiji_rank!=0}">
@@ -287,7 +299,7 @@
                             <td class="td_common"><span style="color: #228B22;font-weight:bold; ">轻仓</span></td>
                         </c:when>
                         <c:otherwise>
-                            <td class="td_common"></td>
+                            <td class="td_common">-</td>
                         </c:otherwise>
                     </c:choose>
 
@@ -296,25 +308,25 @@
                             <c:when test="${plat.rate3_return!=0}">
                                 <input id='reta3' type='number' name='score'
                                        onblur="updateReta3('${ plat.id}',this)"
-                                       style='color: #555555; font-size: 16px;width: 40px'
+                                       style='color: #555555; font-size: 16px;width: 50px'
                                        value='${ plat.rate3_return}'/>&nbsp;&nbsp;
                             </c:when>
                             <c:otherwise>
                                 <input id='reta3' type='number' name='score'
                                        onblur="updateReta3('${ plat.id}',this)"
-                                       style='color: #555555; font-size: 16px;width: 40px'
+                                       style='color: #555555; font-size: 16px;width: 50px'
                                 />&nbsp;&nbsp;
                             </c:otherwise>
                         </c:choose>
                         <c:choose>
                             <c:when test="${plat.rate6_return!=0}">
                                 <input type='number' id='reta6' name='score' onblur="updateReta6('${ plat.id}',this)"
-                                       style='color: #555555; font-size: 16px;width: 40px'
+                                       style='color: #555555; font-size: 16px;width: 50px'
                                        value='${ plat.rate6_return}'/>
                             </c:when>
                             <c:otherwise>
                                 <input type='number' id='reta6' name='score' onblur="updateReta6('${ plat.id}',this)"
-                                       style='color: #555555; font-size: 16px;width: 40px'
+                                       style='color: #555555; font-size: 16px;width: 50px'
                                 />
                             </c:otherwise>
                         </c:choose>
@@ -322,12 +334,12 @@
                     <td class="td_common"><input type='number' name='score' onblur="updateScore('${ plat.id}',this)"
                                                  onkeypress='return event.keyCode>=48&&event.keyCode<=57'
                                                  ng-pattern='/[^a-zA-Z]/'
-                                                 style='color: #555555; font-size: 16px;width: 30px'
+                                                 style='color: #555555; font-size: 16px;width: 50px'
                                                  value='${ plat.score}'/></td>
                     <td class="love_core"><input type='number' name='love' onblur="updateLove('${ plat.id}',this)"
                                                  onkeypress='return event.keyCode>=48&&event.keyCode<=57'
                                                  ng-pattern='/[^a-zA-Z]/'
-                                                 style='color: #555555; font-size: 16px;width: 30px'
+                                                 style='color: #555555; font-size: 16px;width: 50px'
                                                  value='${ plat.is_love}'/></td>
                     <td style="width: 100px">
                         <a href="javascript:dailuopan('${plat.id }','http://www.wdzj.com/dangan/${plat.zhijia_code }','${plat.tianyan_code }');"
@@ -337,7 +349,7 @@
                            target="_Blank"
                            style="  text-decoration: underline; ">自评</a>
                     </td>
-                    <td style="width: 100px">
+                    <td style="width: 90px">
                         <button style='color: #555555; font-size: 15px;width: 50px' onclick="del('${ plat.id}')">删除
                         </button>
                     </td>
@@ -346,13 +358,57 @@
         </c:if>
 
 
-        </tbody>
+        <tr>
+            <td colspan="3"><c:if test="${!empty list_size }">
+                <div style="margin: 20px 20px 20px 20px">总数量：<span style="color: #F82D2B; ">${list_size}</span></div>
+            </c:if></td>
+        </tr>
     </table>
-    <c:if test="${!empty list_size }">
-        <div style="margin: 20px 20px 20px 20px">总数量：<span style="color: #F82D2B; ">${list_size}</span></div>
-    </c:if>
+
+</div>
+
+<button id="open_btn" class="btn">弹窗</button>
+
+<!-- 弹窗内容开始 -->
+<div id="background" class="back">
+    <div id="div1" class="content">
+        <div id="close">
+            <span id="close-button">×</span>
+            <h2>弹窗头部</h2>
+        </div>
+        <div id="div2">
+            <h3>弹窗标题</h3>
+            <label>
+<textarea rows="3" cols="20" id="textarea_text">
+在w3school，你可以找到你所需要的所有的网站建设教程。
+</textarea>
+            </label>
+        <h3 id="foot">底部内容</h3>
+        <input type="hidden" id="record_id"/>
+
+        <button style='color: #555555; font-size: 15px;width: 50px' onclick="remarkUpdate()">保存
+        </button>
+    </div>
 </div>
 
 
+<script type="text/javascript">
+
+    $("#open_btn").click(function () {
+        $("#background").css('display', 'block');
+    });
+
+    $("#close-button").click(function () {
+        $("#background").css('display', 'none');
+    });
+
+    //监听点击事件
+    window.onclick = function close(e) {
+        if (e.target.id === $("#background").attr("id")) {
+            $("#background").css('display', 'none');
+        }
+    };
+
+</script>
 </body>
 </html>

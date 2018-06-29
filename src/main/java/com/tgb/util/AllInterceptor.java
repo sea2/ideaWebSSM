@@ -20,6 +20,7 @@ public class AllInterceptor extends HandlerInterceptorAdapter {
         String url = requestUri.substring(contextPath.length()); // 请求页面
         System.out.print("\n" + TimeUtil.getNowTime() + "发生拦截..." + request.getMethod() + "..." + url);
         System.out.println("请求：" + request.getRequestURL());
+        System.out.println("请求参数：" + HttpUtil.getRequestParameter(request, response));
 
 		/*if (new CustomUri().getListStr().contains(requestUri)) {
 			return true;

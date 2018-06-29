@@ -1,18 +1,23 @@
 package com.tgb.util;
 
+import org.apache.commons.net.util.Base64;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 public class HttpUtil {
+
 
     public static String interceptorHttp(String urltype, String url, String dataJson, String httpModth, String httpGetQueryString) {
         String strt = "";
@@ -149,27 +154,29 @@ public class HttpUtil {
 
     /**
      * 发送Http post请求
-     * @param actionURL 请求url
+     *
+     * @param actionURL  请求url
      * @param parameters 请求表单参数
      * @return 返回信息
      */
-    public static String doHttpPost(String actionURL, HashMap<String, String> parameters){
+    public static String doHttpPost(String actionURL, HashMap<String, String> parameters) {
         String response = "";
-        try{
+        try {
             URL url = new URL(actionURL);
-            HttpURLConnection connection = (HttpURLConnection)url.openConnection();
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             //发送post请求需要下面两行
             connection.setDoInput(true);
             connection.setDoOutput(true);
             connection.setUseCaches(false);
             connection.setRequestMethod("POST");
             connection.setRequestProperty("Connection", "Keep-Alive");
-            connection.setRequestProperty("Charset", "UTF-8");;
+            connection.setRequestProperty("Charset", "UTF-8");
+            ;
             connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
             //设置请求数据内容
             String requestContent = "";
             Set<String> keys = parameters.keySet();
-            for(String key : keys){
+            for (String key : keys) {
                 requestContent = requestContent + key + "=" + parameters.get(key) + "&";
             }
             requestContent = requestContent.substring(0, requestContent.lastIndexOf("&"));
@@ -177,22 +184,22 @@ public class HttpUtil {
             //使用write(requestContent.getBytes())是为了防止中文出现乱码
             ds.write(requestContent.getBytes());
             ds.flush();
-            try{
+            try {
                 //获取URL的响应
                 BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream(), "utf-8"));
                 String s = "";
                 String temp = "";
-                while((temp = reader.readLine()) != null){
+                while ((temp = reader.readLine()) != null) {
                     s += temp;
                 }
                 response = s;
                 reader.close();
-            }catch(IOException e){
+            } catch (IOException e) {
                 e.printStackTrace();
                 System.out.println("No response get!!!");
             }
             ds.close();
-        }catch(IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
             System.out.println("Request failed!");
         }
@@ -290,6 +297,7 @@ public class HttpUtil {
         }
         return result;
     }
+
     /**
      * 向指定URL发送GET方法的请求
      *
@@ -341,7 +349,52 @@ public class HttpUtil {
     }
 
 
+    public static String getRequestParameter(HttpServletRequest request, HttpServletResponse response) {
 
+        if (null == request) {
+            return null;
+        }
+
+        String method = request.getMethod();
+        String param = null;
+        if (method.equalsIgnoreCase("GET")) {
+            /**
+             获取?后面的字符串
+             http://127.0.0.1:8080/test?username=zhangsan&age=100
+             -->username=zhangsan&age=100
+             http://127.0.0.1:8080/test?{"username":"zhangsan"}
+             -->{"username":"zhangsan"}是json字符串
+             有了json串就可以映射成对象了
+             */
+            param = request.getQueryString();
+            if (Base64.isBase64(Byte.parseByte(param))) {
+                param = new String(Base64.decodeBase64(param), StandardCharsets.UTF_8);
+            }
+            System.out.println("param:" + param);
+        } else {
+            param = getBodyData(request);
+            if (Base64.isBase64(Byte.parseByte(param))) {
+                param = new String(Base64.decodeBase64(param), StandardCharsets.UTF_8);
+            }
+            System.out.println("param:" + param);
+        }
+        return param;
+    }
+
+    //获取请求体中的字符串(POST)
+    public static String getBodyData(HttpServletRequest request) {
+        StringBuffer data = new StringBuffer();
+        String line = null;
+        BufferedReader reader = null;
+        try {
+            reader = request.getReader();
+            while (null != (line = reader.readLine()))
+                data.append(line);
+        } catch (IOException e) {
+        } finally {
+        }
+        return data.toString();
+    }
 
 
 }

@@ -19,6 +19,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.*;
 
+/**
+ * 基金
+ *
+ * */
 
 @Controller
 public class FundController {
@@ -31,7 +35,6 @@ public class FundController {
     public String jspFundList(HttpServletRequest request, HttpServletResponse response) {
         return "fund/list_fund";
     }
-
     /**
      * 获取所有列表
      *

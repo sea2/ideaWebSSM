@@ -24,21 +24,24 @@
                 text-decoration: none;
                 font: bold 20px "微软雅黑";
                 color: #fff;
+                display: block;
+                height: 100%;
                 width: 100%;
             }
 
             th {
                 border: 1px solid #d0d0d0;
-                padding: 10px;
                 align: center;
-
+                height: 80px;
             }
 
             td {
+                line-height: 80px;
                 border-radius: 2px;
-                padding: 10px;
+                text-align: center;
                 align: center;
                 background-color: #09c;
+                line-height: 80px;
                 width: 10%;
             }
 
@@ -52,6 +55,7 @@
                 top: 100px;
                 overflow: hidden;
             }
+
 
             .dialog-main {
                 width: 100%;
@@ -119,7 +123,7 @@
                     //传递给请求处理程序，用以获得jsonp回调函数名的参数名(默认为:callback)
                     jsonp: "callback",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
                     jsonpCallback: "jsonpCallback",
-                    timeout: 10000,
+                    timeout: 100000,
                     cache: false,
                     beforeSend: LoadFunction, //加载执行方法
                     error: erryFunction, //错误执行方法
@@ -173,22 +177,22 @@
     <table border="0" style="text-align: center">
         <tr>
             <td>
-                <a href="javascript:updatePlat(0)">全部</a>
+                <a class="a_update_btn" href="javascript:updatePlat(0)">全部</a>
             </td>
             <td>
-                <a href="javascript:updatePlat(1)">跟投p2p</a>
+                <a class="a_update_btn" href="javascript:updatePlat(1)">跟投p2p</a>
             </td>
             <td>
-                <a href="javascript:updatePlat(2)">融360</a>
+                <a class="a_update_btn" href="javascript:updatePlat(2)">融360</a>
             </td>
             <td>
-                <a href="javascript:updatePlat(3)">网贷之家</a>
+                <a class="a_update_btn" href="javascript:updatePlat(3)">网贷之家</a>
             </td>
             <td>
-                <a href="javascript:updatePlat(4)">网贷天眼</a>
+                <a class="a_update_btn" href="javascript:updatePlat(4)">网贷天眼</a>
             </td>
             <td>
-                <a href="javascript:updatePlat(5)">之家天眼简称</a>
+                <a class="a_update_btn" href="javascript:updatePlat(5)">之家天眼简称</a>
             </td>
         </tr>
 

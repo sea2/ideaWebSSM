@@ -2,8 +2,8 @@ body {
     text-align: center;
     margin: 0 auto;
     padding: 0;
-    width: 1300px;
-    font-size: 15px;
+    width: 1200px;
+    font-size: 12px;
 }
 
 a {
@@ -13,7 +13,7 @@ a {
 }
 
 table {
-    width: 1300px;
+    width: 1200px;
     border-collapse: collapse;
     border-spacing: 0;
     border: 1px solid #c0c0c0;
@@ -22,27 +22,16 @@ table {
 
 th, td {
     border: 1px solid #d0d0d0;
-    color: #404060;
-    padding: 5px;
-}
-
-th, td {
-    border: 1px solid #d0d0d0;
-    color: #404060;
-    padding: 10px;
+    font: bold 16px "宋体";
+    padding-top: 8px;
+    padding-bottom: 8px;
     align: center;
 
 }
 
 th {
     background-color: #09c;
-    font: bold 16px "微软雅黑";
-    color: #fff;
-}
-
-.button_a {
-    background-color: #36c;
-    font: bold 16px "微软雅黑";
+    font: bold 16px "宋体";
     color: #fff;
 }
 
@@ -66,23 +55,29 @@ tr {
     width: 100%;
 }
 
-thead {
-    margin-top: 20px;
-    width: 100%;
+.button_a {
+    background-color: #36c;
+    color: #fff;
 }
 
 .fixedtd {
     position: fixed;
-    width: 1300px;
-    text-align: center;
-    z-index: 9999;
+    margin: 0 auto;
+    z-index: 99;
+    width: 1200px;
+    top: 0;
 }
 
 .table_content {
-    margin-top: 90px;
+    margin-top: 85px;
     overflow: auto;
-    width: 1300px;
     position: relative;
+    width: 1200px;
+
+}
+
+.a_top_button {
+    color: #fff;
 }
 
 .first_td {

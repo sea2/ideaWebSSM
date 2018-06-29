@@ -41,6 +41,7 @@ public class P2pControler {
     public String getList(HttpServletRequest request, HttpServletResponse response) {
         List<P2pInfo> findAll = p2pService.findAll();
         request.setAttribute("platList", findAll);
+        request.setAttribute("total", findAll.size());
         request.setAttribute("order_id", 6);
         return "p2p/list_plat";
     }
@@ -217,7 +218,8 @@ public class P2pControler {
             }
 
         if (dailuopanId == null) {
-            String jsonStr2 = HttpUtil.sendGet("http://www.dailuopan.com/MPAPI/GetSearch?keywords=" + mP2pInfo.getOther_name());
+            String name2 = URLEncoder.encode(mP2pInfo.getOther_name(), "UTF-8");
+            String jsonStr2 = HttpUtil.sendGet("http://www.dailuopan.com/MPAPI/GetSearch?keywords=" + name2);
             Gson gson12 = new Gson();
             List<DaiLuoPanInfo> mDaiLuoPanInfoList2 = gson12.fromJson(jsonStr2, new TypeToken<List<DaiLuoPanInfo>>() {
             }.getType());
@@ -302,7 +304,7 @@ public class P2pControler {
     @ResponseBody
     public void getInitData(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
-
+        //id 是0表示全部更新，1是跟投，2是360,3是之家，4是天眼，5是之家简介
 
         Workbook readwb = null;
 
@@ -333,7 +335,7 @@ public class P2pControler {
                     //第二列
                     Cell cell2 = readsheet.getCell(1, i);
                     if (cell != null && cell.getContents() != null && cell.getContents().length() > 0) {
-                        System.out.println(cell.getContents());
+                        System.out.println(cell.getContents()+":"+cell2.getContents());
                         P2pInfo mP2pInfo = new P2pInfo();
                         mP2pInfo.setName(cell.getContents().trim());
                         mP2pInfo.setGentou_rank(StringUtils.toInt(cell2.getContents().trim(), 0));
@@ -399,6 +401,7 @@ public class P2pControler {
                         mP2pInfo.setZhijia_code(mListBean.getName_pin());
                         mP2pInfo.setZhijia_url(mListBean.getPlat_icon());
                         p2pService.updateZhiJi(mP2pInfo);
+                        System.out.println(mListBean.getPlat_name() + "-" + StringUtils.toInt(mListBean.getRank(), 0));
                     }
                 }
             }
@@ -419,6 +422,7 @@ public class P2pControler {
                         mP2pInfo.setTianyan_level(mMationBean.getLevel());
                         mP2pInfo.setTianyan_rank(i + 1);
                         p2pService.updateTianYanRank(mP2pInfo);
+                        System.out.println(mMationBean.getPlat_name() + "-" + mMationBean.getLevel());
                     }
                 }
             }
@@ -435,6 +439,7 @@ public class P2pControler {
                         mP2pInfo.setZhijia_code(mZhiJiaIdInfo.getPlatPin());
                         mP2pInfo.setZhijia_url(mZhiJiaIdInfo.getPlatIconUrl());
                         p2pService.updateZhiJiCode(mP2pInfo);
+                        System.out.println(mZhiJiaIdInfo.getPlatName() + "-" + mZhiJiaIdInfo.getPlatPin());
                     }
                 }
 
@@ -451,6 +456,8 @@ public class P2pControler {
                         mP2pInfo.setTianyan_code(mDataBean.getDetailurl());
                         mP2pInfo.setUrl(mDataBean.getUrl());
                         p2pService.updateTianYanCode(mP2pInfo);
+                        System.out.println(mDataBean.getName() + "-" + mDataBean.getDetailurl());
+
                     }
                 }
             }
