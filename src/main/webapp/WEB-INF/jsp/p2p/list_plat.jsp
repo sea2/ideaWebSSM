@@ -435,7 +435,7 @@
         </div>
         <div id="div2_dialog">
             <label>
-<textarea rows="15" cols="70" style="margin-top: 10px" id="textarea_text">
+<textarea  style="width:90%;height:200px;margin: 10px" id="textarea_text">
 </textarea>
             </label>
             <input type="hidden" id="record_id"/>
