@@ -13,8 +13,10 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="viewport"
           content="width=device-width,minimum-scale=1.0,maximum-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="css/弹窗.css">
-    <link rel="stylesheet" href="css/p2p_css.css">
+    <link rel="stylesheet" type="text/css" href="css/弹窗.css"/>
+    <link rel="stylesheet" href="css/p2p_css.css"/>
+    <link href="css/form_demo.css" rel="stylesheet"/>
+
     <title>网贷平台总览</title>
     <script type="text/javascript">
 
@@ -125,8 +127,14 @@
             });
         }
 
-        function remark(id, remark) {
+
+        function addPlat() {//添加平台
+            $("#add_dialog_background").css('display', 'block');
+        }
+
+        function remark(id, remark, name) {
             $("#textarea_text").text(remark);
+            $("#title_dialog").text("自评（" + name + ")");
             $("#record_id").val(id);
             $("#background").css('display', 'block');
         }
@@ -134,12 +142,62 @@
         function remarkUpdate() {
             var remark_new = $("#textarea_text").val();
             var id = $("#record_id").val();
-            if (remark_new)//如果返回的有内容
+
+            if (remark_new !== "" && remark_new!== null &&  remark_new!== undefined)//如果返回的有内容
             {
                 $.get("<%=basePath%>app/updateRemark?id=" + id + '&remark=' + remark_new, function (data) {
                 });
             }
+            $("#background").css('display', 'none');
+
         }
+
+        function reloadRefre() {//刷新
+            window.location.reload();
+
+        }
+        function addPlatInfo() {
+            var name = $("input[name='plat_name']").val();
+            var score = $("input[name='score']").val();
+            if (name.length == 0) {
+                alert('请输入平台名称');
+            } else if (score.length != 0 && score > 10) {
+                alert('最大为10');
+            } else {
+                $.ajax({
+                    url : '<%=basePath%>/app/addPlat?name=' + name
+                    + '&score=' + score,
+                    type : 'GET',
+                    dataType : "jsonp",
+                    //传递给请求处理程序，用以获得jsonp回调函数名的参数名(默认为:callback)
+                    jsonp : "callback",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
+                    jsonpCallback : "jsonpCallback",
+                    timeout : 1000,
+                    cache : false,
+                    beforeSend : LoadFunction, //加载执行方法
+                    error : erryFunction, //错误执行方法
+                    success : succFunction
+                    //成功执行方法
+                })
+                function LoadFunction() {
+                }
+                function erryFunction() {
+                    alert("error");
+                }
+                function succFunction(tt) {
+                    var code = tt.code;
+                    if (code == 200) {
+                        $("#add_dialog_background").css('display', 'none');
+                        window.location.reload();
+
+                    } else
+                        alert("error");
+                }
+            }
+
+        };
+
+
     </script>
 
 
@@ -151,8 +209,8 @@
     <table class="fixedtd">
         <tr>
             <!-- tr：table row：表格的行 -->
-            <th class='button_a'><a href='p2p/getList' class="a_top_button">总览</a></th>
-            <th class='button_a first_td'><a class="a_top_button" href='p2p/addPlat'>添加平台</a></th>
+            <th class='button_a' onclick="reloadRefre()">总览</th>
+            <th class='button_a first_td' onclick="addPlat()">添加平台</th>
             <th class='button_a'><a href='p2p/update_data' class="a_top_button">更新数据</a></th>
             <th class='button_a'></th>
             <th class='button_a'></th>
@@ -162,7 +220,7 @@
             <th class='button_a' colspan="3"><input type='text' id='search_text'
                                                     style='color: #555555; font-size: 20px; width: 130px'/>
                 <input
-                        type="button" value="搜索" id="search_button"
+                        type="button" value="搜索" id="search_button" autofocus
                         style='color: #555555; font-size: 20px; width: 80px'/></th>
         </tr>
         <tr id='log'></tr>
@@ -345,7 +403,7 @@
                         <a href="javascript:dailuopan('${plat.id }','http://www.wdzj.com/dangan/${plat.zhijia_code }','${plat.tianyan_code }');"
                            target="_Blank"
                            style="  text-decoration: underline; ">参考</a>&nbsp;&nbsp;
-                        <a href="javascript:remark('${plat.id }','${plat.remark }');"
+                        <a href="javascript:remark('${plat.id }','${plat.remark }','${plat.name }');"
                            target="_Blank"
                            style="  text-decoration: underline; ">自评</a>
                     </td>
@@ -368,43 +426,86 @@
 </div>
 
 
-
-<!-- 弹窗内容开始 -->
+<!-- 弹窗自评， -->
 <div id="background" class="back">
-    <div id="div1" class="content">
-        <div id="close">
-            <span id="close-button">×</span>
-            <h2>自评</h2>
+    <div id="div1_dialog" class="content">
+        <div id="close_top">
+            <button id="close-button" >×</button>
+            <h2 id="title_dialog">自评</h2>
         </div>
-        <div id="div2">
+        <div id="div2_dialog">
             <label>
-<textarea rows="15" cols="70" id="textarea_text">
+<textarea rows="15" cols="70" style="margin-top: 10px" id="textarea_text">
 </textarea>
             </label>
             <input type="hidden" id="record_id"/>
 
-            <button style='color: #555555; font-size: 15px;margin-top:100px;width: 400px;height: 50px' onclick="remarkUpdate()">保存
+            <button id="dialog_button_save"
+                    onclick="remarkUpdate()">确定
             </button>
         </div>
-    </div></div>
+    </div>
+</div>
 
-    <script type="text/javascript">
 
-        $("#open_btn").click(function () {
-            $("#background").css('display', 'block');
-        });
+<!-- 弹窗添加， -->
+<div id="add_dialog_background">
+    <div id="add_dialog_main" class="content">
+        <div id="add_dialog_top">
+            <button id="add_dialog_closen" >×</button>
+            <h1>  &nbsp; &nbsp;添加
+            </h1>
+        </div>
+        <form action="" method="get" class="basic-grey" >
 
-        $("#close-button").click(function () {
+            <label>
+                <span>平台名称：</span>
+                <input id="name" type="text" name="plat_name" placeholder=""/>
+            </label>
+            <label>
+                <span>平台得分（10分制）：</span>
+                <input type="number" name="score" onkeypress="return event.keyCode>=48&&event.keyCode<=57" ng-pattern="/[^a-zA-Z]/"/>
+            </label>
+
+            <label>
+                <span>自评 ：</span>
+                <textarea id="message" name="message" placeholder=""></textarea>
+            </label>
+            <label>
+                <span>参考仓位 ：</span><select name="selection">
+                <option value="1">重仓</option>
+                <option value="2">中仓</option>
+                <option value="3">轻仓</option>
+            </select>
+            </label>
+            <label>
+                <input type="button" class="button" value="Send" onclick="addPlatInfo()"/>
+            </label>
+        </form>
+    </div>
+</div>
+<script type="text/javascript">
+
+    $("#open_btn").click(function () {
+        $("#background").css('display', 'block');
+    });
+
+    $("#add_dialog_closen").click(function () {
+        $("#add_dialog_background").css('display', 'none');
+    });
+    $("#close-button").click(function () {
+        $("#background").css('display', 'none');
+    });
+
+    //监听点击事件,
+    window.onclick = function close(e) {
+        if (e.target.id === $("#background").attr("id")) {//点击弹窗蒙版区关闭dialog
             $("#background").css('display', 'none');
-        });
+        } else if (e.target.id === $("#add_dialog_background").attr("id")) {//点击弹窗蒙版区关闭dialog
+            $("#add_dialog_background").css('display', 'none');
+        }
+    };
 
-        //监听点击事件
-        window.onclick = function close(e) {
-            if (e.target.id === $("#background").attr("id")) {
-                $("#background").css('display', 'none');
-            }
-        };
-
-    </script>
+</script>
 </body>
 </html>

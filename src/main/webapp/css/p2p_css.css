@@ -78,6 +78,9 @@ tr {
 
 .a_top_button {
     color: #fff;
+    width: 100%;
+    height: 100%;
+    display: inline-table;
 }
 
 .first_td {

@@ -63,7 +63,7 @@
                 margin: 0 auto;
                 background-size: 100% 100%;
                 background: #50000000;
-                position: absolute;
+                position: fixed;
                 overflow: hidden;
                 *zoom: 1;
                 z-index: 10;
