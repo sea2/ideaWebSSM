@@ -18,8 +18,9 @@ public class AllInterceptor extends HandlerInterceptorAdapter {
         String requestUri = request.getRequestURI(); // 请求完整路径，可用于登陆后跳转
         String contextPath = request.getContextPath(); // 项目下完整路径
         String url = requestUri.substring(contextPath.length()); // 请求页面
-        System.out.print("\n" + TimeUtil.getNowTime() + "发生拦截..." + request.getMethod() + "..." + url);
+        System.out.print("\n" + TimeUtil.getNowTime() + "发生拦截..." + request.getMethod() + "...");
         System.out.println("请求：" + request.getRequestURL());
+        if(!StringUtils.isEmpty( HttpUtil.getRequestParameter(request, response)))
         System.out.println("请求参数：" + HttpUtil.getRequestParameter(request, response));
 
 		/*if (new CustomUri().getListStr().contains(requestUri)) {
