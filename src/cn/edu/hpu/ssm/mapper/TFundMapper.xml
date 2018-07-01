@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.edu.hpu.ssm.mapper.TFundMapper" >
+  <resultMap id="BaseResultMap" type="cn.edu.hpu.ssm.po.TFund" >
+    <id column="fund_id" property="fundId" jdbcType="INTEGER" />
+    <result column="fund_code" property="fundCode" jdbcType="VARCHAR" />
+    <result column="fund_name" property="fundName" jdbcType="VARCHAR" />
+    <result column="fund_manager" property="fundManager" jdbcType="VARCHAR" />
+    <result column="fund_new_price" property="fundNewPrice" jdbcType="VARCHAR" />
+    <result column="fund_new_rate" property="fundNewRate" jdbcType="VARCHAR" />
+    <result column="fund_has_money" property="fundHasMoney" jdbcType="DOUBLE" />
+    <result column="fund_buy_price" property="fundBuyPrice" jdbcType="DOUBLE" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    fund_id, fund_code, fund_name, fund_manager, fund_new_price, fund_new_rate, fund_has_money, 
+    fund_buy_price
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.edu.hpu.ssm.po.TFundExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_fund
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_fund
+    where fund_id = #{fundId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_fund
+    where fund_id = #{fundId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="cn.edu.hpu.ssm.po.TFundExample" >
+    delete from t_fund
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="cn.edu.hpu.ssm.po.TFund" >
+    insert into t_fund (fund_id, fund_code, fund_name, 
+      fund_manager, fund_new_price, fund_new_rate, 
+      fund_has_money, fund_buy_price)
+    values (#{fundId,jdbcType=INTEGER}, #{fundCode,jdbcType=VARCHAR}, #{fundName,jdbcType=VARCHAR}, 
+      #{fundManager,jdbcType=VARCHAR}, #{fundNewPrice,jdbcType=VARCHAR}, #{fundNewRate,jdbcType=VARCHAR}, 
+      #{fundHasMoney,jdbcType=DOUBLE}, #{fundBuyPrice,jdbcType=DOUBLE})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.edu.hpu.ssm.po.TFund" >
+    insert into t_fund
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="fundId != null" >
+        fund_id,
+      </if>
+      <if test="fundCode != null" >
+        fund_code,
+      </if>
+      <if test="fundName != null" >
+        fund_name,
+      </if>
+      <if test="fundManager != null" >
+        fund_manager,
+      </if>
+      <if test="fundNewPrice != null" >
+        fund_new_price,
+      </if>
+      <if test="fundNewRate != null" >
+        fund_new_rate,
+      </if>
+      <if test="fundHasMoney != null" >
+        fund_has_money,
+      </if>
+      <if test="fundBuyPrice != null" >
+        fund_buy_price,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="fundId != null" >
+        #{fundId,jdbcType=INTEGER},
+      </if>
+      <if test="fundCode != null" >
+        #{fundCode,jdbcType=VARCHAR},
+      </if>
+      <if test="fundName != null" >
+        #{fundName,jdbcType=VARCHAR},
+      </if>
+      <if test="fundManager != null" >
+        #{fundManager,jdbcType=VARCHAR},
+      </if>
+      <if test="fundNewPrice != null" >
+        #{fundNewPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="fundNewRate != null" >
+        #{fundNewRate,jdbcType=VARCHAR},
+      </if>
+      <if test="fundHasMoney != null" >
+        #{fundHasMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="fundBuyPrice != null" >
+        #{fundBuyPrice,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="cn.edu.hpu.ssm.po.TFundExample" resultType="java.lang.Integer" >
+    select count(*) from t_fund
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_fund
+    <set >
+      <if test="record.fundId != null" >
+        fund_id = #{record.fundId,jdbcType=INTEGER},
+      </if>
+      <if test="record.fundCode != null" >
+        fund_code = #{record.fundCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fundName != null" >
+        fund_name = #{record.fundName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fundManager != null" >
+        fund_manager = #{record.fundManager,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fundNewPrice != null" >
+        fund_new_price = #{record.fundNewPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fundNewRate != null" >
+        fund_new_rate = #{record.fundNewRate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fundHasMoney != null" >
+        fund_has_money = #{record.fundHasMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="record.fundBuyPrice != null" >
+        fund_buy_price = #{record.fundBuyPrice,jdbcType=DOUBLE},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_fund
+    set fund_id = #{record.fundId,jdbcType=INTEGER},
+      fund_code = #{record.fundCode,jdbcType=VARCHAR},
+      fund_name = #{record.fundName,jdbcType=VARCHAR},
+      fund_manager = #{record.fundManager,jdbcType=VARCHAR},
+      fund_new_price = #{record.fundNewPrice,jdbcType=VARCHAR},
+      fund_new_rate = #{record.fundNewRate,jdbcType=VARCHAR},
+      fund_has_money = #{record.fundHasMoney,jdbcType=DOUBLE},
+      fund_buy_price = #{record.fundBuyPrice,jdbcType=DOUBLE}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.edu.hpu.ssm.po.TFund" >
+    update t_fund
+    <set >
+      <if test="fundCode != null" >
+        fund_code = #{fundCode,jdbcType=VARCHAR},
+      </if>
+      <if test="fundName != null" >
+        fund_name = #{fundName,jdbcType=VARCHAR},
+      </if>
+      <if test="fundManager != null" >
+        fund_manager = #{fundManager,jdbcType=VARCHAR},
+      </if>
+      <if test="fundNewPrice != null" >
+        fund_new_price = #{fundNewPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="fundNewRate != null" >
+        fund_new_rate = #{fundNewRate,jdbcType=VARCHAR},
+      </if>
+      <if test="fundHasMoney != null" >
+        fund_has_money = #{fundHasMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="fundBuyPrice != null" >
+        fund_buy_price = #{fundBuyPrice,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where fund_id = #{fundId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.edu.hpu.ssm.po.TFund" >
+    update t_fund
+    set fund_code = #{fundCode,jdbcType=VARCHAR},
+      fund_name = #{fundName,jdbcType=VARCHAR},
+      fund_manager = #{fundManager,jdbcType=VARCHAR},
+      fund_new_price = #{fundNewPrice,jdbcType=VARCHAR},
+      fund_new_rate = #{fundNewRate,jdbcType=VARCHAR},
+      fund_has_money = #{fundHasMoney,jdbcType=DOUBLE},
+      fund_buy_price = #{fundBuyPrice,jdbcType=DOUBLE}
+    where fund_id = #{fundId,jdbcType=INTEGER}
+  </update>
+</mapper>
