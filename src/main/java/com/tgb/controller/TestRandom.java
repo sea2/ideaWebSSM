@@ -1,6 +1,13 @@
-package com.tgb.test;
+package com.tgb.controller;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import com.tgb.util.MD5Util;
 
 public class TestRandom {
 
@@ -11,7 +18,7 @@ public class TestRandom {
 		Class<?> class3 = null;
 		// 一般采用这种形式
 		try {
-			class1 = Class.forName("com.tgb.test.TestRandom");
+			class1 = Class.forName("com.tgb.controller.TestRandom");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
