@@ -146,9 +146,8 @@ public class DataController {
 		return mAllProject;
 	}
 
-	@ResponseBody
 	@RequestMapping(value = "app/account/databytype", method = RequestMethod.POST)
-	public AllProject getByType(@RequestBody JSONObject jsonObj, HttpServletRequest request,
+	public @ResponseBody AllProject getByType(@RequestBody JSONObject jsonObj, HttpServletRequest request,
 			HttpServletResponse response) {
 		AllProject mAllProject = new AllProject();
 		if (jsonObj != null && jsonObj.has("type")) {

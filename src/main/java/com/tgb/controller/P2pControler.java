@@ -311,7 +311,7 @@ public class P2pControler {
         try {
             // 构建Workbook对象, 只读Workbook对象
             // 直接从本地文件创建Workbook
-            InputStream instream = new FileInputStream("C:\\Users\\Administrator\\Desktop\\ssm-demo\\ideaWebSSM\\跟投.xls");
+            InputStream instream = new FileInputStream("D:\\workplace\\ssm-demo\\ideaWebSSM\\跟投.xls");
             readwb = Workbook.getWorkbook(instream);
 
             if (id == 0 || id == 1) {
@@ -349,7 +349,7 @@ public class P2pControler {
 
 
             if (id == 0 || id == 2) {
-                Sheet readsheet2 = readwb.getSheet(2);
+                Sheet readsheet2 = readwb.getSheet(3);
 
                 // 获取Sheet表中所包含的总列数
                 p2pService.updateRankNull("rank360='-',rank360_int=0");
