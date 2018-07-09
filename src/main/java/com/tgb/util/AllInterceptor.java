@@ -22,9 +22,10 @@ public class AllInterceptor extends HandlerInterceptorAdapter {
         String contextPath = request.getContextPath(); // 项目下完整路径
         String url = requestUri.substring(contextPath.length()); // 请求页面
         String requestURL = request.getRequestURL().toString();
-        if (StringUtils.isContains(requestURL, "."))//默认具有.的请求是资源文件请求，没有改变的资源不会请求，使用缓存
-            System.out.print("\n" + TimeUtil.getNowTime() + "发生拦截...[资源]..." + requestURL);
-        else {
+        //默认具有.的请求是资源文件请求，没有改变的资源不会请求，使用缓存,查看网页调用资源可以使用浏览器f12查看
+        if (requestURL.endsWith(".js") || requestURL.endsWith(".css") || requestURL.endsWith(".jsp") || requestURL.endsWith(".html") || requestURL.endsWith(".png") || requestURL.endsWith(".jpg") || requestURL.endsWith(".ico")) {
+          //  System.out.print("\n" + TimeUtil.getNowTime() + "发生拦截...[资源]..." + requestURL);
+        } else {
             System.out.print("\n" + TimeUtil.getNowTime() + "发生拦截...[" + request.getMethod() + "]...");
             System.out.println("请求：" + request.getRequestURL());
             String requestParams = HttpUtil.getRequestParameter(request, response);
