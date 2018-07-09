@@ -14,10 +14,7 @@ import jxl.write.biff.RowsExceededException;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -45,7 +42,13 @@ public class UserController {
         List<User> findAll = userService.findAll();
 
         request.setAttribute("userList", findAll);
-        return "/allUser";
+        return "user/allUser";
+    }
+
+
+    @RequestMapping("user/loginPage")
+    public String loginPage(HttpServletRequest request) {
+        return "user/login";
     }
 
     @RequestMapping(value = "app/account/property", method = RequestMethod.POST)
@@ -85,6 +88,10 @@ public class UserController {
     @RequestMapping(value = "app/usertestlist", method = RequestMethod.GET)
     @ResponseBody
     public Map<String, Object> getUserTestList(HttpServletRequest request, HttpServletResponse response) {
+        String order = request.getParameter("order");
+        String limit = request.getParameter("limit");
+        String offset = request.getParameter("offset");
+        System.out.println(order + "--" + limit + "--" + offset);
         Map<String, Object> data = new HashMap<>();
         List<User> findAll = userService.findAll();
         data.put("rows", findAll);
@@ -93,9 +100,15 @@ public class UserController {
         return data;
     }
 
-    @RequestMapping("user/login.html")
+
+    @RequestMapping(value = "user/login")
     public String getlogin(HttpServletRequest request, HttpServletResponse response) {
-        return "/p2p/login.jsp";
+        Map<String, Object> data = new HashMap<>();
+        String username = request.getParameter("username");
+        System.out.println(username + "--");
+
+
+        return "user/user_list";
     }
 
     @RequestMapping("html/activity")
@@ -110,95 +123,6 @@ public class UserController {
         }
     }
 
-    @RequestMapping("user/index.html")
-    public String gethome(HttpServletRequest request, HttpServletResponse response) {
-        request.setAttribute("title", "精选");
-        return "/home";
-    }
-
-    @RequestMapping("user/list.html")
-    public String getlist(HttpServletRequest request, HttpServletResponse response) {
-        request.setAttribute("title", "理财列表");
-        return "/home";
-    }
-
-    @RequestMapping("user/member.html")
-    public String getmember(HttpServletRequest request, HttpServletResponse response) {
-        request.setAttribute("title", "账户中心");
-        return "/home";
-    }
-
-    @RequestMapping("user/detail.html")
-    public String getdetail(HttpServletRequest request, HttpServletResponse response) {
-        request.setAttribute("title", "产品详情");
-        return "/home";
-    }
-
-    @RequestMapping("user/member/capitalflow.html")
-    public String getcapitalflow(HttpServletRequest request, HttpServletResponse response) {
-        request.setAttribute("title", "资金记录");
-        return "/home";
-    }
-
-    @RequestMapping("user/confirm_order.html")
-    public String getconfirm_order(HttpServletRequest request, HttpServletResponse response) {
-        request.setAttribute("title", "确认购买");
-        return "/home";
-    }
-
-    @RequestMapping("user/join.html")
-    public String getjoin(HttpServletRequest request, HttpServletResponse response) {
-        request.setAttribute("title", "投标结果");
-        return "/home";
-    }
-
-    @RequestMapping("user/member/trade.html")
-    public String getmtrade(HttpServletRequest request, HttpServletResponse response) {
-        request.setAttribute("title", "持有资产列表");
-        return "/home";
-    }
-
-    @RequestMapping("user/member/trade/item.html")
-    public String getmtradeitem(HttpServletRequest request, HttpServletResponse response) {
-        request.setAttribute("title", "持有资产详情");
-        return "/home";
-    }
-
-    @RequestMapping("user/member/income.html")
-    public String getincome(HttpServletRequest request, HttpServletResponse response) {
-        request.setAttribute("title", "累计收益");
-        return "/home";
-    }
-
-    @RequestMapping("user/member/income/yesterday.html")
-    public String getyincome(HttpServletRequest request, HttpServletResponse response) {
-        request.setAttribute("title", "昨日收益");
-        return "/home";
-    }
-
-    @RequestMapping("user/member/income/total.html")
-    public String gettotal(HttpServletRequest request, HttpServletResponse response) {
-        request.setAttribute("title", "总资产");
-        return "/home";
-    }
-
-    @RequestMapping("user/member/calendar.html")
-    public String getcalendar(HttpServletRequest request, HttpServletResponse response) {
-        request.setAttribute("title", "回款日历");
-        return "/home";
-    }
-
-    @RequestMapping("user/member/calendar/day.html")
-    public String getcalendarday(HttpServletRequest request, HttpServletResponse response) {
-        request.setAttribute("title", "回款计划");
-        return "/home";
-    }
-
-    @RequestMapping("user/member/coupons.html")
-    public String getcoupons(HttpServletRequest request, HttpServletResponse response) {
-        request.setAttribute("title", "优惠券");
-        return "/home";
-    }
 
     /**
      * 跳转到添加用户界面
@@ -209,7 +133,7 @@ public class UserController {
     @RequestMapping("user/toAddUser")
     public String toAddUser(HttpServletRequest request) {
 
-        return "/addUser";
+        return "user/addUser";
     }
 
     @RequestMapping("user/toTestJsp")
@@ -263,7 +187,7 @@ public class UserController {
     public String getUser(int id, HttpServletRequest request) {
 
         request.setAttribute("user", userService.findById(id));
-        return "/editUser";
+        return "user/editUser";
     }
 
     @RequestMapping("user/tohtml")

@@ -13,14 +13,20 @@ public class User {
 	private String userName;
 	private String phone;
 	private String password = "";
+	private String user_address = "";
 
 	User() {
 	}
 
-	
-	
-	
-	
+
+	public String getUser_address() {
+		return user_address;
+	}
+
+	public void setUser_address(String user_address) {
+		this.user_address = user_address;
+	}
+
 	public String getPassword() {
 		return password;
 	}

@@ -1,6 +1,5 @@
 package com.tgb.util;
 
-import org.apache.commons.net.util.Base64;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -10,7 +9,6 @@ import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
-import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 public class HttpUtil {
@@ -355,45 +353,45 @@ public class HttpUtil {
         String method = request.getMethod();
         String param = "";
         if (method.equalsIgnoreCase("GET")) {
-            /**
-             获取?后面的字符串
-             http://127.0.0.1:8080/test?username=zhangsan&age=100
-             -->username=zhangsan&age=100
-             http://127.0.0.1:8080/test?{"username":"zhangsan"}
-             -->{"username":"zhangsan"}是json字符串
-             有了json串就可以映射成对象了
-             */
-          /*  param = request.getQueryString();
-            System.out.println("param:" + param);*/
-
-            Enumeration em = request.getParameterNames();
-            if(em!=null)
-            while (em.hasMoreElements()) {
-                String name = (String) em.nextElement();
-                String value = request.getParameter(name);
-                param=param+"  "+name+"="+value;
-            }
-
+            param = getParamString(request.getParameterMap());
         } else {
             param = getBodyData(request);
-            System.out.println("param:" + param);
         }
         return param;
     }
 
     //获取请求体中的字符串(POST)
+    //比如 multipart/form-data或application/json时，无法通过request.getParameter()获取到请求内容，
+    // 此时只能通过request.getInputStream()和request.getReader()方法获取请求内容，
+    // 此时调用request.getParameter()也不会影响第一次调用request.getInputStream()或request.getReader()获取到请求内容。
     private static String getBodyData(HttpServletRequest request) {
-        StringBuilder data = new StringBuilder();
+
+     /*   StringBuilder data = new StringBuilder();
         String line = null;
         BufferedReader reader = null;
-        try {
+        try {//getReader()使用一次后就不能再拿到参数所以不能拦截请求参数流
             reader = request.getReader();
             while (null != (line = reader.readLine()))
                 data.append(line);
         } catch (IOException e) {
             e.printStackTrace();
+        }*/
+        return getParamString(request.getParameterMap());
+    }
+
+
+    private static String getParamString(Map<String, String[]> map) {
+        StringBuilder sb = new StringBuilder();
+        for (Map.Entry<String, String[]> e : map.entrySet()) {
+            sb.append(e.getKey()).append("=");
+            String[] value = e.getValue();
+            if (value != null && value.length == 1) {
+                sb.append(value[0]).append("\t");
+            } else {
+                sb.append(Arrays.toString(value)).append("\t");
+            }
         }
-        return data.toString();
+        return sb.toString();
     }
 
 

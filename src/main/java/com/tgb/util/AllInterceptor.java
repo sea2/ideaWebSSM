@@ -6,6 +6,9 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * 拦截器
+ */
 public class AllInterceptor extends HandlerInterceptorAdapter {
     /**
      * 在业务处理器处理请求之前被调用 如果返回false 从当前的拦截器往回执行所有拦截器的afterCompletion(),再退出拦截器链
@@ -18,10 +21,17 @@ public class AllInterceptor extends HandlerInterceptorAdapter {
         String requestUri = request.getRequestURI(); // 请求完整路径，可用于登陆后跳转
         String contextPath = request.getContextPath(); // 项目下完整路径
         String url = requestUri.substring(contextPath.length()); // 请求页面
-        System.out.print("\n" + TimeUtil.getNowTime() + "发生拦截..." + request.getMethod() + "...");
-        System.out.println("请求：" + request.getRequestURL());
-        if(!StringUtils.isEmpty( HttpUtil.getRequestParameter(request, response)))
-        System.out.println("请求参数：" + HttpUtil.getRequestParameter(request, response));
+        String requestURL = request.getRequestURL().toString();
+        if (StringUtils.isContains(requestURL, "."))//默认具有.的请求是资源文件请求，没有改变的资源不会请求，使用缓存
+            System.out.print("\n" + TimeUtil.getNowTime() + "发生拦截...[资源]..." + requestURL);
+        else {
+            System.out.print("\n" + TimeUtil.getNowTime() + "发生拦截...[" + request.getMethod() + "]...");
+            System.out.println("请求：" + request.getRequestURL());
+            String requestParams = HttpUtil.getRequestParameter(request, response);
+            if (!StringUtils.isEmpty(requestParams))
+                System.out.println("请求参数：" + requestParams);
+        }
+
 
 		/*if (new CustomUri().getListStr().contains(requestUri)) {
 			return true;

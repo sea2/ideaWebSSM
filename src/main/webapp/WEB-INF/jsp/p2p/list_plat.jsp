@@ -158,7 +158,7 @@
         }
         function addPlatInfo() {
             var name = $("input[name='plat_name']").val();
-            var score = $("input[name='score']").val();
+            var score = $("input[name='score_add']").val();
             if (name.length == 0) {
                 alert('请输入平台名称');
             } else if (score.length != 0 && score > 10) {
@@ -464,7 +464,7 @@
             </label>
             <label>
                 <span>平台得分（10分制）：</span>
-                <input type="number" name="score" onkeypress="return event.keyCode>=48&&event.keyCode<=57" ng-pattern="/[^a-zA-Z]/"/>
+                <input type="number" name="score_add" onkeypress="return event.keyCode>=48&&event.keyCode<=57" ng-pattern="/[^a-zA-Z]/"/>
             </label>
 
             <label>

@@ -1,22 +1,37 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: lhy
+  Date: 2018/7/2
+  Time: 11:28
+  To change this template use File | Settings | File Templates.
+--%>
+
+<%@ page language="java" import="java.util.*" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
+<%
+    String path = request.getContextPath();
+    String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
+%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="zh-cn">
 <head>
+    <base href="<%=basePath%>">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>登陆系统</title>
-    <link rel="icon" href="img/favicon.ico"/>
-    <link href="static/bootstrap/bootstrap.min.css" rel="stylesheet">
-    <link href="static/validationEngine/validationEngine.jquery.min.css" rel="stylesheet">
-    <link href="css/login_css.css" rel="stylesheet">
-    <link href="css/font-awesome.css" rel="stylesheet">
-    <link href="css/form-elements.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-    <script src="static/jquery.min.js"></script>
-    <script src="static/purl.min.js"></script>
-    <script src="static/jquery.backstretch.min.js"></script>
-    <script src="static/validationEngine/jquery.validationEngine-zh_CN.min.js"></script>
-    <script src="static/validationEngine/jquery.validationEngine.min.js"></script>
-    <script type="text/javascript">
+    <link rel="icon" href="<%=basePath%>img/favicon.ico"/>
+    <link href="<%=basePath%>static/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="<%=basePath%>static/validationEngine/validationEngine.jquery.min.css" rel="stylesheet">
+    <link href="<%=basePath%>css/login_css.css" rel="stylesheet">
+    <link href="<%=basePath%>css/font-awesome.css" rel="stylesheet">
+    <link href="<%=basePath%>css/form-elements.css" rel="stylesheet">
+    <link href="<%=basePath%>css/login_style.css" rel="stylesheet">
+    <script src="<%=basePath%>static/jquery.min.js"></script>
+    <script src="<%=basePath%>static/purl.min.js"></script>
+    <script src="<%=basePath%>static/jquery.backstretch.min.js"></script>
+    <script src="<%=basePath%>static/validationEngine/jquery.validationEngine-zh_CN.min.js"></script>
+    <script src="<%=basePath%>static/validationEngine/jquery.validationEngine.min.js"></script>
+    <script type="<%=basePath%>text/javascript">
         $(function () {
             if ($("#form-username").val() == "") {
                 $("#form-username").focus();
@@ -41,7 +56,7 @@
                 },
                 promptPosition: "top",
                 scroll: false,
-                onValidationComplete: function(form, status) {
+                onValidationComplete: function (form, status) {
                     //可以通过这里阻止表单提交
                     console.log("The form status is: " + status + ", it will never submit");
                     return status;
@@ -60,13 +75,7 @@
                         <h1>
                             <strong>欢迎使用</strong>
                         </h1>
-                        <div class="description">
-                            <p>
-                                This is a free responsive login form made with Bootstrap.
-                                Download it on <a href="http://azmind.com/"><strong>AZMIND</strong></a>,
-                                customize and use it as you like!
-                            </p>
-                        </div>
+
                     </div>
                 </div>
                 <div class="row">
@@ -74,24 +83,24 @@
                         <div class="form-top">
                             <div class="form-top-left">
                                 <h3>登陆</h3>
-                                <p>Enter your username and password to log on:</p>
+                                <p>输入您的用户名和密码:</p>
                             </div>
                             <div class="form-top-right"></div>
                         </div>
                         <div class="form-bottom">
-                            <form id="login_form" role="form" action="login" method="post"
+                            <form id="login_form" role="form" action="user/login" method="get"
                                   class="login-form">
                                 <div class="form-group">
-                                    <label class="sr-only" for="form-username">用户名</label> <input
-                                        name="username" placeholder="Username..."
-                                        class="validate[required] form-username form-control input-error"
-                                        id="form-username" type="text">
+                                    <label class="sr-only" for="form-username">用户名</label>
+                                    <input name="username" placeholder="用户名"
+                                           class="validate[required] form-username form-control input-error"
+                                           id="form-username" type="text" value="admin">
                                 </div>
                                 <div class="form-group">
-                                    <label class="sr-only" for="form-password">密码</label> <input
-                                        name="password" placeholder="Password..."
-                                        class="validate[required] form-password form-control input-error"
-                                        id="form-password" type="password">
+                                    <label class="sr-only" for="form-password">密码</label>
+                                    <input name="password" placeholder="密码"
+                                           class="validate[required] form-password form-control input-error"
+                                           id="form-password" type="password" value="111111">
                                 </div>
                                 <button type="submit" class="btn">登陆</button>
                             </form>
@@ -102,9 +111,9 @@
                     <div class="col-sm-6 col-sm-offset-3 social-login">
                         <h3>...or login with:</h3>
                         <div class="social-login-buttons">
-                            <a class="btn btn-link-2" href="#"> Facebook </a> <a
-                                class="btn btn-link-2" href="#"> Twitter </a> <a
-                                class="btn btn-link-2" href="#"> Google Plus </a>
+                            <a class="btn btn-link-2" href="javascript:void(0);"> Facebook </a> <a
+                                class="btn btn-link-2" href="javascript:void(0);"> Twitter </a> <a
+                                class="btn btn-link-2" href="javascript:void(0);"> Google Plus </a>
                         </div>
                     </div>
                 </div>
@@ -115,7 +124,7 @@
 <div
         style="left: 0px; top: 0px; overflow: hidden; margin: 0px; padding: 0px; height: 730px; width: 1519px; z-index: -999999; position: fixed;"
         class="backstretch">
-    <img src="image/backimg.jpg"
+    <img src="images/backimg.jpg"
          style="position: absolute; margin: 0px; padding: 0px; border: medium none; width: 1519px; height: 1012.67px; max-height: none; max-width: none; z-index: -999999; left: 0px; top: -141.333px;">
 </div>
 </body>

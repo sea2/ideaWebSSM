@@ -9,9 +9,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
 
 <base href="<%=basePath%>">
-<script src="js/jquery-1.11.1.min.js"></script>
+<script src="../../../js/jquery-1.11.1.min.js"></script>
 <!-- //js -->
-<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+<link href="../../../css/style.css" rel="stylesheet" type="text/css" media="all" />
     
     <title>添加用户</title>
     

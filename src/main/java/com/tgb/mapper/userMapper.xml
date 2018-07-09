@@ -29,7 +29,7 @@
 	</select>
 	
 	<select id="findAll" resultType="User">
-		select user_id id,user_name userName,user_age age,user_phone phone from t_user
+		select user_id id,user_name userName,user_age age,user_phone phone,user_address user_address from t_user
 	</select>
 	
 	<select id="findClassAll" resultType="UserClass">

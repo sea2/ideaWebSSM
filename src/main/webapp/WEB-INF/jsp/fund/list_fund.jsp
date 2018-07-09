@@ -13,7 +13,7 @@
           content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
     <title>基金总览</title>
 
-    <link  href="<%=basePath%>img/favicon.ico" type="image/x-icon" rel="shortcut icon"/>
+    <link href="<%=basePath%>img/icon_fund_log.ico" type="image/x-icon" rel="shortcut icon"/>
     <link href="<%=basePath%>static/bootstrap/bootstrap.min.css" rel="stylesheet">
     <link href="<%=basePath%>static/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
     <link href="<%=basePath%>static/bootstrap-datetimepicker.min.css" rel="stylesheet">
@@ -59,7 +59,32 @@
             </button>
         </div>
 
-        <table id="table">        </table>
+        <table id="table"></table>
+
+
+        <div class="modal fade" id="edit_user_modal" tabindex="-1" role="dialog"
+             aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"
+                                aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">编辑当前用户的资料</h4>
+                    </div>
+                    <div class="modal-body">
+                        <input id="user_phone" name="phone" type="text" class="form-control" value="" pattern="" required="required" />
+                        <input id="user_id" name="id" type="hidden" />
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                        <button type="button" class="btn btn-primary"
+                                onclick="save_user();">保存</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
 
@@ -93,8 +118,14 @@
         $("button[name='refresh']").height(20);
     });
 
-    function edit(id) {
-        alert(id);
+    function edit(code) {
+        $("#user_phone").val(code);
+        $("#user_id").val(code);
+        $("#edit_user_modal").modal("show");
+    }
+
+    function del(code) {
+        $(".panel-title").text(code);
     }
 
     var queryUrl = "<%=basePath%>/fund/getListInfo";
@@ -129,22 +160,22 @@
                         limit: params.limit,   //找多少条
                         sortOrder: params.order,//排序
                         sortName: params.sort,//排序字段
-                        search:params.search//搜索
+                        search: params.search//搜索
                     };
                 },
                 rowStyle: function (row, index) { //每行的颜色值
                     //这里有5个取值代表5中颜色['active', 'success', 'info', 'warning', 'danger'];
                     var strclass = "";
-                    if (row.income >0) {
+                    if (row.income > 0) {
                         strclass = 'warning';//还有一个active
                     }
-                    else  {
+                    else {
                         strclass = 'active';
                     }
-                    return { classes: strclass }
+                    return {classes: strclass}
                 },
                 onSort: function (name, order) {//排序事件触发
-                  console.log(name+"--"+order);
+                    console.log(name + "--" + order);
                 },
                 responseHandler: function (res) {
                     //在ajax获取到数据，渲染表格之前，修改数据源
@@ -157,12 +188,13 @@
                         align: 'center' // 居中显示
                     },
                     {
-                        visible:false,
+                        visible: false,
                         formatter: function (value, row, index) {
                             return '<span  color="#4d4d4d">' + (index + 1) + '</span>';
                         }
                     },
                     {
+                        visible: false,
                         field: 'fcode', // 返回json数据中的name
                         title: '编号', // 表格表头显示文字
                         align: 'center' // 左右居中
@@ -232,10 +264,15 @@
                     }, {
                         title: "操作",
                         align: 'center',
-                        // valign: 'middle',
+                        valign: 'middle',
                         width: 160, // 定义列的宽度，单位为像素px
                         formatter: function (value, row, index) {
-                            return '<button class="btn btn-primary btn-sm" onclick="del(\'' + row.stdId + '\')">删除</button>';
+                            var code = row.fcode + "";
+                            return  "<a class=\"edit ml10\" style=\"color:black;\" href=\"javascript:edit('"+code+"')\" title=\"编辑\">"+
+                                "<span class=\"glyphicon glyphicon-edit\"></span>"+
+                                    "</a>&emsp;"+
+                                    "<a class=\"remove ml10\" style=\"color:black;\" href=\"javascript:del('"+code+"')\" title=\"删除\">"+
+                                    "<i class=\"glyphicon glyphicon-remove\"></i></a>"                                ;
                         }
                     },
                     {
