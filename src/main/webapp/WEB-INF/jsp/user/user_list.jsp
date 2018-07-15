@@ -76,6 +76,7 @@
            data-pagination="true" data-page-list="[5, 10, 20, 50, 100, 200]"
            data-query-params="makeparmter">
         <thead>
+
         <tr>
             <th data-field="id" data-formatter="hideIdFormatter" class="hide"></th>
             <th data-field="userName" data-align="left">姓名</th>

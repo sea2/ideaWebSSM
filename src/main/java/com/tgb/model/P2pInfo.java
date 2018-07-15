@@ -28,6 +28,15 @@ public class P2pInfo {
 	private String is_love;
 	private String remark;
 	private int gentou_rank;
+	private int luopan_rank;
+
+	public int getLuopan_rank() {
+		return luopan_rank;
+	}
+
+	public void setLuopan_rank(int luopan_rank) {
+		this.luopan_rank = luopan_rank;
+	}
 
 	public int getRank360_int() {
 		return rank360_int;

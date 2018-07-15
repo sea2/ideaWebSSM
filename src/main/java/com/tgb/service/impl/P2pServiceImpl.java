@@ -2,6 +2,8 @@ package com.tgb.service.impl;
 
 import com.tgb.mapper.P2pmapper;
 import com.tgb.model.P2pInfo;
+import com.tgb.model.TPlatRankThirdparty;
+import com.tgb.model.TPlatRankThirdpartyExample;
 import com.tgb.service.P2pService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,6 +16,8 @@ import java.util.List;
 public class P2pServiceImpl implements P2pService {
     @Resource
     private P2pmapper mapper;
+
+
 
     @Override
     public void save_init(P2pInfo mP2pInfo) {
@@ -47,12 +51,12 @@ public class P2pServiceImpl implements P2pService {
 
     @Override
     public void updateLove(int id, String score) {
-        mapper.updateLove(id,score);
+        mapper.updateLove(id, score);
     }
 
     @Override
     public void updateRemark(int id, String remark) {
-        mapper.updateRemark(id,remark);
+        mapper.updateRemark(id, remark);
     }
 
     @Override
@@ -109,4 +113,17 @@ public class P2pServiceImpl implements P2pService {
     }
 
 
+    @Override
+    public List<TPlatRankThirdparty> getThirdList(TPlatRankThirdpartyExample example) {
+        return mapper.selectByExample(example);
+    }
+    @Override
+    public int updateByPrimaryKey(TPlatRankThirdparty record){
+       return mapper.updateByPrimaryKey(record);
+    }
+
+    @Override
+    public TPlatRankThirdparty selectByPrimaryKey(Integer id){
+        return mapper.selectByPrimaryKey(id);
+    }
 }

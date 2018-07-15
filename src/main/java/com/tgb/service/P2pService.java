@@ -1,6 +1,8 @@
 package com.tgb.service;
 
 import com.tgb.model.P2pInfo;
+import com.tgb.model.TPlatRankThirdparty;
+import com.tgb.model.TPlatRankThirdpartyExample;
 
 import java.util.List;
 
@@ -42,4 +44,10 @@ public interface P2pService {
     void updateRankNull(String s);
 
     void save_data(String sqlStr);
+
+     List<TPlatRankThirdparty> getThirdList(TPlatRankThirdpartyExample example);
+
+    int updateByPrimaryKey(TPlatRankThirdparty record);
+    TPlatRankThirdparty selectByPrimaryKey(Integer id);
+
 }

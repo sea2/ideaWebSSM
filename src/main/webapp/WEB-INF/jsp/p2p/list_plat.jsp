@@ -95,8 +95,8 @@
 
 
         //修改分数
-        function updateScore(id, me) {
-            if ($(me).val() <= 10)
+        function updateScore(id,oldscore, me) {
+            if ($(me).val() !== oldscore)
                 $.get("<%=basePath%>app/updateScore?id=" + id + '&score=' + $(me).val(), function (data) {
                 });
         }
@@ -130,6 +130,9 @@
 
         function addPlat() {//添加平台
             $("#add_dialog_background").css('display', 'block');
+        }
+        function thirdPage() {//第三方
+            window.location.href = "<%=basePath%>p2p/part_list_page" ;
         }
 
         function remark(id, remark, name) {
@@ -212,7 +215,7 @@
             <th class='button_a' onclick="reloadRefre()">总览</th>
             <th class='button_a first_td' onclick="addPlat()">添加平台</th>
             <th class='button_a'><a href='p2p/update_data' class="a_top_button">更新数据</a></th>
-            <th class='button_a'></th>
+            <th class='button_a' colspan="2" onclick="thirdPage()">第三方评级</th>
             <th class='button_a'></th>
             <th class='button_a'></th>
             <th class='button_a'></th>
@@ -389,7 +392,7 @@
                             </c:otherwise>
                         </c:choose>
                     </td>
-                    <td class="td_common"><input type='number' name='score' onblur="updateScore('${ plat.id}',this)"
+                    <td class="td_common"><input type='number' name='score' onblur="updateScore('${ plat.id}','${ plat.score}',this)"
                                                  onkeypress='return event.keyCode>=48&&event.keyCode<=57'
                                                  ng-pattern='/[^a-zA-Z]/'
                                                  style='color: #555555; font-size: 16px;width: 50px'

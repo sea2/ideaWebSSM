@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.tgb.model.*;
 import com.tgb.service.P2pService;
+import com.tgb.util.DateUtils;
 import com.tgb.util.HttpUtil;
 import com.tgb.util.StringUtils;
 import jxl.Cell;
@@ -46,6 +47,47 @@ public class P2pControler {
         return "p2p/list_plat";
     }
 
+    /**
+     * 获取所有列表
+     *
+     * @param request
+     * @return
+     */
+    @RequestMapping("p2p/part_list_page")
+    public String getPartListPage(HttpServletRequest request, HttpServletResponse response) {
+        TPlatRankThirdpartyExample whereStatus = new TPlatRankThirdpartyExample();
+        whereStatus.createCriteria().andIdIsNotNull();
+        List<TPlatRankThirdparty> tPlatRankThirdpartyList = p2pService.getThirdList(whereStatus);
+        request.setAttribute("list_size", tPlatRankThirdpartyList.size());
+        return "p2p/third_part";
+    }
+
+    @RequestMapping("p2p/part_list")
+    @ResponseBody
+    public Map<String, Object> getPartList(HttpServletRequest request, HttpServletResponse response) {
+        TPlatRankThirdpartyExample whereStatus = new TPlatRankThirdpartyExample();
+        whereStatus.createCriteria().andIdIsNotNull();
+        List<TPlatRankThirdparty> tPlatRankThirdpartyList = p2pService.getThirdList(whereStatus);
+        Map<String, Object> mapReturn = new HashMap<String, Object>();
+        mapReturn.put("data", tPlatRankThirdpartyList);
+        return mapReturn;
+    }
+
+    @RequestMapping("p2p/third_update")
+    @ResponseBody
+    public Map<String, Object> updateThird(HttpServletRequest request, HttpServletResponse response) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        String url = request.getParameter("url");
+        String question = request.getParameter("question");
+        TPlatRankThirdparty recode = p2pService.selectByPrimaryKey(id);
+        recode.setQuestion(question);
+        recode.setUrl(url);
+        int code = p2pService.updateByPrimaryKey(recode);
+        Map<String, Object> mapReturn = new HashMap<String, Object>();
+        mapReturn.put("code", code);
+        return mapReturn;
+    }
+
     @RequestMapping("p2p/addPlat")
     public String getAddPlat(HttpServletRequest request) {
         return "p2p/add_plat";
@@ -78,9 +120,10 @@ public class P2pControler {
 
 
     @RequestMapping("app/order_test")
-    public @ResponseBody Map<String, Object> orderByIdTest( HttpServletRequest request, HttpServletResponse response) {
+    public @ResponseBody
+    Map<String, Object> orderByIdTest(HttpServletRequest request, HttpServletResponse response) {
         String str = "ORDER BY score desc";
-        int id=1;
+        int id = 1;
         if (id == 1) str = "WHERE tianyan_rank !=0 ORDER BY  tianyan_rank";
         else if (id == 2)
             str = "WHERE   rank360_int !=0 ORDER BY  rank360_int";
@@ -253,8 +296,85 @@ public class P2pControler {
         P2pInfo mP2pInfo = new P2pInfo();
         mP2pInfo.setId(id);
         mP2pInfo.setScore(score);
-        if (score <= 10)
+        if (score <= 10) {
             p2pService.updateScore(mP2pInfo);
+
+
+            if (score < 0) {
+                P2pInfo doP2pInfo = p2pService.findById(id);
+                String questionNew = DateUtils.getCurrentDay() + " " + doP2pInfo.getName() + "出问题";
+
+                if (doP2pInfo != null) {
+                    if (doP2pInfo.getZhiji_rank() > 0) {//之家出问题的
+                        TPlatRankThirdparty recode = p2pService.selectByPrimaryKey(1);
+                        if (recode != null) {
+                            String oldQuestion = recode.getQuestion();
+                            if (!StringUtils.isContains(oldQuestion, doP2pInfo.getName())) {
+                                if (recode.getQuestion().length() > 2) {
+                                    recode.setQuestion(oldQuestion + "**" + questionNew);
+                                } else recode.setQuestion("" + questionNew);
+                                p2pService.updateByPrimaryKey(recode);
+                            }
+                        }
+                    }
+
+                    if (doP2pInfo.getRank360_int() > 0) {//融360出问题的
+                        TPlatRankThirdparty recode360 = p2pService.selectByPrimaryKey(3);
+                        if (recode360 != null) {
+                            String oldQuestion3 = recode360.getQuestion();
+                            if (!StringUtils.isContains(oldQuestion3, doP2pInfo.getName())) {
+                                if (recode360.getQuestion().length() > 2) {
+                                    recode360.setQuestion(oldQuestion3 + "**" + questionNew);
+                                } else recode360.setQuestion("" + questionNew);
+                                p2pService.updateByPrimaryKey(recode360);
+                            }
+                        }
+                    }
+
+                    if (doP2pInfo.getTianyan_rank() > 0) {//融360出问题的
+                        TPlatRankThirdparty recodeTY = p2pService.selectByPrimaryKey(2);
+                        if (recodeTY != null) {
+                            String oldQuestion3 = recodeTY.getQuestion();
+                            if (!StringUtils.isContains(oldQuestion3, doP2pInfo.getName())) {
+                                if (recodeTY.getQuestion().length() > 2) {
+                                    recodeTY.setQuestion(oldQuestion3 + "**" + questionNew);
+                                } else recodeTY.setQuestion("" + questionNew);
+                                p2pService.updateByPrimaryKey(recodeTY);
+                            }
+                        }
+                    }
+
+                    if (doP2pInfo.getGentou_rank() > 0) {//融360出问题的
+                        TPlatRankThirdparty recodeGT = p2pService.selectByPrimaryKey(4);
+                        if (recodeGT != null) {
+                            String oldQuestion3 = recodeGT.getQuestion();
+                            if (!StringUtils.isContains(oldQuestion3, doP2pInfo.getName())) {
+                                if (recodeGT.getQuestion().length() > 2) {
+                                    String oldQuestion = recodeGT.getQuestion();
+                                    recodeGT.setQuestion(oldQuestion + "**" + questionNew);
+                                } else recodeGT.setQuestion("" + questionNew);
+                                p2pService.updateByPrimaryKey(recodeGT);
+                            }
+                        }
+                    }
+
+                    if (doP2pInfo.getLuopan_rank() > 0) {//融360出问题的
+                        TPlatRankThirdparty recodeLP = p2pService.selectByPrimaryKey(5);
+                        if (recodeLP != null) {
+                            String oldQuestion3 = recodeLP.getQuestion();
+                            if (!StringUtils.isContains(oldQuestion3, doP2pInfo.getName())) {
+                                if (recodeLP.getQuestion().length() > 2) {
+                                    String oldQuestion = recodeLP.getQuestion();
+                                    recodeLP.setQuestion(oldQuestion + "**" + questionNew);
+                                } else recodeLP.setQuestion("" + questionNew);
+                                p2pService.updateByPrimaryKey(recodeLP);
+                            }
+                        }
+                    }
+
+                }
+            }
+        }
     }
 
     @RequestMapping("app/updateReta")
@@ -304,7 +424,7 @@ public class P2pControler {
     @ResponseBody
     public void getInitData(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
-        //id 是0表示全部更新，1是跟投，2是360,3是之家，4是天眼，5是之家简介
+        //id 是0表示全部更新，1是跟投，2是360,3是之家，4是天眼，5是之家简介  6贷罗盘
 
         Workbook readwb = null;
 
@@ -335,7 +455,7 @@ public class P2pControler {
                     //第二列
                     Cell cell2 = readsheet.getCell(1, i);
                     if (cell != null && cell.getContents() != null && cell.getContents().length() > 0) {
-                        System.out.println(cell.getContents()+":"+cell2.getContents());
+                        System.out.println(cell.getContents() + ":" + cell2.getContents());
                         P2pInfo mP2pInfo = new P2pInfo();
                         mP2pInfo.setName(cell.getContents().trim());
                         mP2pInfo.setGentou_rank(StringUtils.toInt(cell2.getContents().trim(), 0));
@@ -426,7 +546,30 @@ public class P2pControler {
                     }
                 }
             }
-            if (id == 5) {
+
+
+            if (id == 0 || id == 6) {
+                //贷罗盘
+                p2pService.updateRankNull(" luopan_rank=0");
+                String jsonStr0 = HttpUtil.sendGet("http://www.dailuopan.com/MPAPI/GetGradeList?type=dlp&page=1&pagesize=500");
+                Gson gson0 = new Gson();
+                DaiLuoPanHttpInfo mDaiLuoPanHttpInfo = gson0.fromJson(jsonStr0, new TypeToken<DaiLuoPanHttpInfo>() {
+                }.getType());
+                if (mDaiLuoPanHttpInfo != null) {
+                    List<DaiLuoPanHttpInfo.DlpInfo> list = mDaiLuoPanHttpInfo.getGradeList();
+                    for (int i = 0; i < list.size(); i++) {
+                        DaiLuoPanHttpInfo.DlpInfo mMationBean = list.get(i);
+                        int rankNum = i + 1;
+                        String url = mMationBean.getSiteurl() + mMationBean.getDlpurl();
+                        if (mMationBean != null) {
+                            p2pService.updateRankNull(" luopan_rank=" + rankNum + ",luopan_code='" + url + "' where name='" + mMationBean.getPlat_name() + "' or other_name='" + mMationBean.getPlat_name() + "'");
+                            System.out.println(mMationBean.getPlat_name() + "-" + i);
+                        }
+                    }
+                }
+            }
+
+            if (id == 0 || id == 5) {
                 //之家-简称
                 String jsonStr1 = HttpUtil.sendGet("https://m.wdzj.com/apphongbao/interfaceIndexSearch");
                 Gson gson1 = new Gson();

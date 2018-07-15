@@ -14,7 +14,7 @@ public class GeneratorSqlMap {
         List<String> warnings = new ArrayList<String>();
         boolean overwrite = true;
         //加载配置文件
-        File configFile = new File("C:\\Users\\Administrator\\Desktop\\ssm-demo\\ideaWebSSM\\src\\main\\resources\\generatorConfig.xml");
+        File configFile = new File("D:\\workplace\\ssm-demo\\ideaWebSSM\\src\\main\\resources\\generatorConfig.xml");
         ConfigurationParser cp = new ConfigurationParser(warnings);
         Configuration config = cp.parseConfiguration(configFile);
         DefaultShellCallback callback = new DefaultShellCallback(overwrite);

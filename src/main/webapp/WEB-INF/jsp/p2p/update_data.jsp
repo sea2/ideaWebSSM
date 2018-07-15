@@ -192,6 +192,9 @@
                 <a class="a_update_btn" href="javascript:updatePlat(4)">网贷天眼</a>
             </td>
             <td>
+                <a class="a_update_btn" href="javascript:updatePlat(6)">贷罗盘</a>
+            </td>
+            <td>
                 <a class="a_update_btn" href="javascript:updatePlat(5)">之家天眼简称</a>
             </td>
         </tr>

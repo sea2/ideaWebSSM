@@ -1,6 +1,8 @@
 package com.tgb.mapper;
 
 import com.tgb.model.P2pInfo;
+import com.tgb.model.TPlatRankThirdparty;
+import com.tgb.model.TPlatRankThirdpartyExample;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -44,4 +46,29 @@ public interface P2pmapper {
     void updateRemark(@Param("id") int id, @Param("remark") String remark);
 
     void save_data(@Param("str") String sqlStr);
+
+
+
+
+    int countByExample(TPlatRankThirdpartyExample example);
+
+    int deleteByExample(TPlatRankThirdpartyExample example);
+
+    int deleteByPrimaryKey(Integer id);
+
+    int insert(TPlatRankThirdparty record);
+
+    int insertSelective(TPlatRankThirdparty record);
+
+    List<TPlatRankThirdparty> selectByExample(TPlatRankThirdpartyExample example);
+
+    TPlatRankThirdparty selectByPrimaryKey(Integer id);
+
+    int updateByExampleSelective(@Param("record") TPlatRankThirdparty record, @Param("example") TPlatRankThirdpartyExample example);
+
+    int updateByExample(@Param("record") TPlatRankThirdparty record, @Param("example") TPlatRankThirdpartyExample example);
+
+    int updateByPrimaryKeySelective(TPlatRankThirdparty record);
+
+    int updateByPrimaryKey(TPlatRankThirdparty record);
 }
