@@ -136,7 +136,8 @@
         }
 
         function remark(id, remark, name) {
-            $("#textarea_text").text(remark);
+            $("#textarea_text").val("");
+            $("#textarea_text").val(remark);
             $("#title_dialog").text("自评（" + name + ")");
             $("#record_id").val(id);
             $("#background").css('display', 'block');

@@ -11,7 +11,6 @@ import java.util.Date;
 public class DateUtils {
 
 
-
     // 日期格式 年.
     public static final String YEAR_FORMAT = "yyyy";
 
@@ -68,7 +67,7 @@ public class DateUtils {
     /**
      * 将传入的时间转换为指定时间格式字符串.
      *
-     * @param time 传入时间
+     * @param time       传入时间
      * @param dateFormat 时间格式
      * @return 时间字符串
      */
@@ -154,7 +153,7 @@ public class DateUtils {
     /**
      * 将传入日期转换为指定格式字符串.
      *
-     * @param date 传入日期
+     * @param date       传入日期
      * @param dateFormat 时间格式
      * @return 日期字符串
      */
@@ -184,7 +183,6 @@ public class DateUtils {
     }
 
     /**
-     *
      * 功能描述: <br>
      * 计算距今天指定天数的日期
      *
@@ -203,7 +201,7 @@ public class DateUtils {
      * 在指定的日期的前几天或后几天
      *
      * @param source 源日期(yyyy-MM-dd)
-     * @param days 指定的天数,正负皆可
+     * @param days   指定的天数,正负皆可
      * @return
      * @throws ParseException
      */
@@ -221,7 +219,6 @@ public class DateUtils {
     }
 
     /**
-     *
      * 功能描述: <br>
      * 〈功能详细描述〉校验正确的日期格式
      *
@@ -246,7 +243,6 @@ public class DateUtils {
     }
 
     /**
-     *
      * 功能描述: <br>
      * 〈功能详细描述〉计算时间相隔的天数
      *
@@ -266,8 +262,50 @@ public class DateUtils {
             endDate = format.parse(endDateStr);
             day = (endDate.getTime() - beginDate.getTime()) / (24 * 60 * 60 * 1000);
         } catch (ParseException e) {
-            throw new RuntimeException("传入日期参数有误!",e);
+            throw new RuntimeException("传入日期参数有误!", e);
         }
         return day;
     }
+
+
+    /**
+     * 天
+     */
+    public static long getBetweenDay(Date beginDate, Date endDate) {
+        long day = 0;
+        try {
+            day = (endDate.getTime() - beginDate.getTime()) / (24 * 60 * 60 * 1000);
+        } catch (Exception e) {
+            throw new RuntimeException("传入日期参数有误!", e);
+        }
+        return day;
+    }
+
+    /**
+     * 小时
+     */
+    public static long getBetweenHour(Date beginDate, Date endDate) {
+        long day = 0;
+        try {
+            day = (endDate.getTime() - beginDate.getTime()) / (60 * 60 * 1000);
+        } catch (Exception e) {
+            throw new RuntimeException("传入日期参数有误!", e);
+        }
+        return day;
+    }
+
+    /**
+     * 秒
+     */
+    public static long getBetweenSecond(Date beginDate, Date endDate) {
+        long day = 0;
+        try {
+            day = (endDate.getTime() - beginDate.getTime()) / 1000;
+        } catch (Exception e) {
+            throw new RuntimeException("传入日期参数有误!", e);
+        }
+        return day;
+    }
+
+
 }

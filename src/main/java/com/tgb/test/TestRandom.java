@@ -1,6 +1,7 @@
 package com.tgb.test;
 
 import java.util.Comparator;
+import java.util.Random;
 
 public class TestRandom {
 
@@ -24,7 +25,10 @@ public class TestRandom {
 		                       
 		System.out.println("-------------------------- " + Math.acos(0.8));
 		System.out.println("-------------------------- " + Math.pow(0.8,2));
-
+		for(int i=0;i<100;i++){
+			int intChose = new Random().nextInt(10);
+			System.out.println(intChose);
+		}
 	}
 
 	public static String string2HexString(String strPart) {
