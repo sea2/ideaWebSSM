@@ -2,6 +2,7 @@ package com.tgb.service.impl;
 
 import com.tgb.mapper.FundMapper;
 import com.tgb.model.MyHasFundInfo;
+import com.tgb.model.TFundStockRelation;
 import com.tgb.service.FundService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -34,6 +35,21 @@ public class FundServiceImpl implements FundService {
     @Override
     public void updateMyFund(MyHasFundInfo myHasFundInfo){
         mapper.updateMyFund(myHasFundInfo);
+    }
+
+    @Override
+    public void deleteSql(String deleteSql) {
+        mapper.deleteSql(deleteSql);
+    }
+
+    @Override
+    public void insertSql(String insertSql) {
+        mapper.insertSql(insertSql);
+    }
+
+    @Override
+    public List<TFundStockRelation> findStockByCode(String code) {
+        return mapper.findStockByCode(code);
     }
 }
 

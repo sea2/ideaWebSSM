@@ -1,6 +1,7 @@
 package com.tgb.service;
 
 import com.tgb.model.MyHasFundInfo;
+import com.tgb.model.TFundStockRelation;
 
 import java.util.List;
 
@@ -16,4 +17,10 @@ public interface FundService {
     MyHasFundInfo findByCode(String fund_has_code);
 
     void updateMyFund(MyHasFundInfo myHasFundInfo);
+
+    void deleteSql(String deleteSql);
+
+    void insertSql(String insertSql);
+
+    List<TFundStockRelation>  findStockByCode(String code);
 }

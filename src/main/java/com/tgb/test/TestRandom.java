@@ -29,6 +29,9 @@ public class TestRandom {
 			int intChose = new Random().nextInt(10);
 			System.out.println(intChose);
 		}
+
+
+
 	}
 
 	public static String string2HexString(String strPart) {

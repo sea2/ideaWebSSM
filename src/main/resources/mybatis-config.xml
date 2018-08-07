@@ -11,6 +11,7 @@
 		<typeAlias alias="P2pInfo" type="com.tgb.model.P2pInfo" />
 		<typeAlias alias="FundInfo" type="com.tgb.model.FundInfo" />
 		<typeAlias alias="MyHasFundInfo" type="com.tgb.model.MyHasFundInfo" />
+		<typeAlias alias="TFundStockRelation" type="com.tgb.model.TFundStockRelation" />
 		<typeAlias alias="TianTianMyDatasBean" type="com.tgb.model.TianTianMyDatasBean" />
 
 	</typeAliases>

@@ -12,9 +12,30 @@
     text-align: center;
 }
 
+.background {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.3);
+    text-align: center;
+}
+
 
 
 #div1_dialog {
+    background:#eeeeee;
+    width: 50%;
+    z-index: 1;
+    margin: 12% auto;
+    overflow: auto;
+    text-align: center;
+}
+
+
+.dialog_content {
     background:#eeeeee;
     width: 50%;
     z-index: 1;
@@ -48,6 +69,20 @@
     text-align: center;
     vertical-align:middle;
 }
+#div3_dialog {
+    background:#eeeeee;
+    margin: auto;
+    height: 400px;
+    text-align: center;
+    vertical-align:middle;
+}
+.div3_dialog {
+    background:#eeeeee;
+    margin: auto;
+    height: 400px;
+    text-align: center;
+    vertical-align:middle;
+}
 
 
 #close_top {
@@ -57,7 +92,26 @@
 
 }
 
+.close_top_class {
+    padding: 5px;
+    background: #09c;
+    color: white;
+
+}
+
 #close-button {
+    float: right;
+    font-size: 40px;
+    color: white;
+    margin: 10px;
+    background-color: transparent;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+}
+.close-button {
     float: right;
     font-size: 40px;
     color: white;

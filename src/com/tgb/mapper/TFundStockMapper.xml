@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tgb.mapper.TFundStockMapper" >
+  <resultMap id="BaseResultMap" type="com.tgb.model.TFundStock" >
+    <id column="stock_id" property="stockId" jdbcType="INTEGER" />
+    <result column="stock_code" property="stockCode" jdbcType="VARCHAR" />
+    <result column="stock_name" property="stockName" jdbcType="VARCHAR" />
+    <result column="stock_new_price" property="stockNewPrice" jdbcType="VARCHAR" />
+    <result column="stock_new_rate" property="stockNewRate" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    stock_id, stock_code, stock_name, stock_new_price, stock_new_rate
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.tgb.model.TFundStockExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_fund_stock
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_fund_stock
+    where stock_id = #{stockId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_fund_stock
+    where stock_id = #{stockId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.tgb.model.TFundStockExample" >
+    delete from t_fund_stock
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.tgb.model.TFundStock" >
+    insert into t_fund_stock (stock_id, stock_code, stock_name, 
+      stock_new_price, stock_new_rate)
+    values (#{stockId,jdbcType=INTEGER}, #{stockCode,jdbcType=VARCHAR}, #{stockName,jdbcType=VARCHAR}, 
+      #{stockNewPrice,jdbcType=VARCHAR}, #{stockNewRate,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tgb.model.TFundStock" >
+    insert into t_fund_stock
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="stockId != null" >
+        stock_id,
+      </if>
+      <if test="stockCode != null" >
+        stock_code,
+      </if>
+      <if test="stockName != null" >
+        stock_name,
+      </if>
+      <if test="stockNewPrice != null" >
+        stock_new_price,
+      </if>
+      <if test="stockNewRate != null" >
+        stock_new_rate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="stockId != null" >
+        #{stockId,jdbcType=INTEGER},
+      </if>
+      <if test="stockCode != null" >
+        #{stockCode,jdbcType=VARCHAR},
+      </if>
+      <if test="stockName != null" >
+        #{stockName,jdbcType=VARCHAR},
+      </if>
+      <if test="stockNewPrice != null" >
+        #{stockNewPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="stockNewRate != null" >
+        #{stockNewRate,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.tgb.model.TFundStockExample" resultType="java.lang.Integer" >
+    select count(*) from t_fund_stock
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_fund_stock
+    <set >
+      <if test="record.stockId != null" >
+        stock_id = #{record.stockId,jdbcType=INTEGER},
+      </if>
+      <if test="record.stockCode != null" >
+        stock_code = #{record.stockCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stockName != null" >
+        stock_name = #{record.stockName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stockNewPrice != null" >
+        stock_new_price = #{record.stockNewPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stockNewRate != null" >
+        stock_new_rate = #{record.stockNewRate,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_fund_stock
+    set stock_id = #{record.stockId,jdbcType=INTEGER},
+      stock_code = #{record.stockCode,jdbcType=VARCHAR},
+      stock_name = #{record.stockName,jdbcType=VARCHAR},
+      stock_new_price = #{record.stockNewPrice,jdbcType=VARCHAR},
+      stock_new_rate = #{record.stockNewRate,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tgb.model.TFundStock" >
+    update t_fund_stock
+    <set >
+      <if test="stockCode != null" >
+        stock_code = #{stockCode,jdbcType=VARCHAR},
+      </if>
+      <if test="stockName != null" >
+        stock_name = #{stockName,jdbcType=VARCHAR},
+      </if>
+      <if test="stockNewPrice != null" >
+        stock_new_price = #{stockNewPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="stockNewRate != null" >
+        stock_new_rate = #{stockNewRate,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where stock_id = #{stockId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tgb.model.TFundStock" >
+    update t_fund_stock
+    set stock_code = #{stockCode,jdbcType=VARCHAR},
+      stock_name = #{stockName,jdbcType=VARCHAR},
+      stock_new_price = #{stockNewPrice,jdbcType=VARCHAR},
+      stock_new_rate = #{stockNewRate,jdbcType=VARCHAR}
+    where stock_id = #{stockId,jdbcType=INTEGER}
+  </update>
+</mapper>

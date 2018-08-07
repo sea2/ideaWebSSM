@@ -431,7 +431,11 @@ public class P2pControler {
         try {
             // 构建Workbook对象, 只读Workbook对象
             // 直接从本地文件创建Workbook
-            InputStream instream = new FileInputStream("D:\\workplace\\ssm-demo\\ideaWebSSM\\跟投.xls");
+            //公司
+            String path="C:\\Users\\Administrator\\Desktop\\ssm-demo\\ideaWebSSM";
+            //居住地
+           // String path="C:\\Users\\Administrator\\Desktop\\ssm-demo\\ideaWebSSM";
+            InputStream instream = new FileInputStream(path);
             readwb = Workbook.getWorkbook(instream);
 
             if (id == 0 || id == 1) {

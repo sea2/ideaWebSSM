@@ -17,12 +17,30 @@
     </select>
 
     <update id="updateMyFund" parameterType="MyHasFundInfo" >
-        update t_fund set fund_buy_price=#{fund_buy_price},fund_has_money=#{fund_has_money} where fund_code=#{fund_has_code}
+        update t_fund set fund_buy_price=#{fund_buy_price},fund_has_money=#{fund_has_money},fund_has_amount=#{fund_has_amount} where fund_code=#{fund_has_code}
     </update>
 
 
     <insert id="saveMyFund" parameterType="MyHasFundInfo">
-            insert into t_fund(fund_code,fund_name,fund_buy_price,fund_has_money)  values(#{fund_has_code},#{fund_name},#{fund_buy_price},#{fund_has_money})
+            insert into t_fund(fund_code,fund_name,fund_buy_price,fund_has_money,fund_has_amount)  values(#{fund_has_code},#{fund_name},#{fund_buy_price},#{fund_has_money},#{fund_has_amount})
     </insert>
+
+
+
+    <update id="updateSql" parameterType="String" >
+        update ${sqlStr}
+    </update>
+
+
+    <insert id="insertSql" parameterType="String">
+        insert into ${sqlStr}
+    </insert>
+    <delete id="deleteSql" parameterType="String">
+       delete from ${sqlStr}
+    </delete>
+
+    <select id="findStockByCode" resultType="TFundStockRelation" parameterType="String">
+        SELECT   t_fund_stock.stock_code stockCode, stock_name stockName   FROM t_fund_stock LEFT JOIN t_fund_stock_relation on t_fund_stock.stock_code=t_fund_stock_relation.stock_code where t_fund_stock_relation.fund_code=#{fund_code}
+    </select>
 
 </mapper>

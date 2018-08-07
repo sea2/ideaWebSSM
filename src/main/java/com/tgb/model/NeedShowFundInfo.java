@@ -8,8 +8,35 @@ public class NeedShowFundInfo {
     private String navChgrt;
     private String gsz;
     private String gszzl;
-    private double money;
+    private String money;
+    private String money_old;
     private String income;
+    private String rate;
+    private String fund_buy_price;
+
+    public String getRate() {
+        return rate;
+    }
+
+    public void setRate(String rate) {
+        this.rate = rate;
+    }
+
+    public String getFund_buy_price() {
+        return fund_buy_price;
+    }
+
+    public void setFund_buy_price(String fund_buy_price) {
+        this.fund_buy_price = fund_buy_price;
+    }
+
+    public String getMoney_old() {
+        return money_old;
+    }
+
+    public void setMoney_old(String money_old) {
+        this.money_old = money_old;
+    }
 
     public String getIncome() {
         return income;
@@ -19,11 +46,11 @@ public class NeedShowFundInfo {
         this.income = income;
     }
 
-    public double getMoney() {
+    public String getMoney() {
         return money;
     }
 
-    public void setMoney(double money) {
+    public void setMoney(String money) {
         this.money = money;
     }
 

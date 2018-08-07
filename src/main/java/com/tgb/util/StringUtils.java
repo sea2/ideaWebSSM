@@ -84,11 +84,20 @@ public class StringUtils {
 
     }
 
-
+  /**
+   *保留两位小数
+   * */
     public static  String keepTwo(double d) {
         DecimalFormat df = new DecimalFormat("######0.00");
         return df.format(d);
+    }
 
+    /**
+     *保留四位小数
+     * */
+    public static  String keepFour(double d) {
+        DecimalFormat df = new DecimalFormat("######0.0000");
+        return df.format(d);
     }
 
 }

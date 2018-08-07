@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.tgb.mapper.TPlatRankThirdpartyMapper" >
-  <resultMap id="BaseResultMap" type="com.tgb.model.TPlatRankThirdparty" >
+<mapper namespace="com.tgb.mapper.TFundStockRelationMapper" >
+  <resultMap id="BaseResultMap" type="com.tgb.model.TFundStockRelation" >
     <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="name" property="name" jdbcType="VARCHAR" />
-    <result column="question" property="question" jdbcType="VARCHAR" />
-    <result column="author" property="author" jdbcType="VARCHAR" />
-    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="stock_code" property="stockCode" jdbcType="VARCHAR" />
+    <result column="fund_code" property="fundCode" jdbcType="VARCHAR" />
+    <result column="hold_scale" property="holdScale" jdbcType="DOUBLE" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -67,15 +66,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, name, question, author, url
+    id, stock_code, fund_code, hold_scale
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.tgb.model.TPlatRankThirdpartyExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.tgb.model.TFundStockRelationExample" >
     select
     <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from t_plat_rank_thirdparty
+    from t_fund_stock_relation
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -86,85 +85,76 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from t_plat_rank_thirdparty
+    from t_fund_stock_relation
     where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from t_plat_rank_thirdparty
+    delete from t_fund_stock_relation
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.tgb.model.TPlatRankThirdpartyExample" >
-    delete from t_plat_rank_thirdparty
+  <delete id="deleteByExample" parameterType="com.tgb.model.TFundStockRelationExample" >
+    delete from t_fund_stock_relation
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.tgb.model.TPlatRankThirdparty" >
-    insert into t_plat_rank_thirdparty (id, name, question, 
-      author, url)
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{question,jdbcType=VARCHAR}, 
-      #{author,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR})
+  <insert id="insert" parameterType="com.tgb.model.TFundStockRelation" >
+    insert into t_fund_stock_relation (id, stock_code, fund_code, 
+      hold_scale)
+    values (#{id,jdbcType=INTEGER}, #{stockCode,jdbcType=VARCHAR}, #{fundCode,jdbcType=VARCHAR}, 
+      #{holdScale,jdbcType=DOUBLE})
   </insert>
-  <insert id="insertSelective" parameterType="com.tgb.model.TPlatRankThirdparty" >
-    insert into t_plat_rank_thirdparty
+  <insert id="insertSelective" parameterType="com.tgb.model.TFundStockRelation" >
+    insert into t_fund_stock_relation
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
       </if>
-      <if test="name != null" >
-        name,
+      <if test="stockCode != null" >
+        stock_code,
       </if>
-      <if test="question != null" >
-        question,
+      <if test="fundCode != null" >
+        fund_code,
       </if>
-      <if test="author != null" >
-        author,
-      </if>
-      <if test="url != null" >
-        url,
+      <if test="holdScale != null" >
+        hold_scale,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="name != null" >
-        #{name,jdbcType=VARCHAR},
+      <if test="stockCode != null" >
+        #{stockCode,jdbcType=VARCHAR},
       </if>
-      <if test="question != null" >
-        #{question,jdbcType=VARCHAR},
+      <if test="fundCode != null" >
+        #{fundCode,jdbcType=VARCHAR},
       </if>
-      <if test="author != null" >
-        #{author,jdbcType=VARCHAR},
-      </if>
-      <if test="url != null" >
-        #{url,jdbcType=VARCHAR},
+      <if test="holdScale != null" >
+        #{holdScale,jdbcType=DOUBLE},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.tgb.model.TPlatRankThirdpartyExample" resultType="java.lang.Integer" >
-    select count(*) from t_plat_rank_thirdparty
+  <select id="countByExample" parameterType="com.tgb.model.TFundStockRelationExample" resultType="java.lang.Integer" >
+    select count(*) from t_fund_stock_relation
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update t_plat_rank_thirdparty
+    update t_fund_stock_relation
     <set >
       <if test="record.id != null" >
         id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.name != null" >
-        name = #{record.name,jdbcType=VARCHAR},
+      <if test="record.stockCode != null" >
+        stock_code = #{record.stockCode,jdbcType=VARCHAR},
       </if>
-      <if test="record.question != null" >
-        question = #{record.question,jdbcType=VARCHAR},
+      <if test="record.fundCode != null" >
+        fund_code = #{record.fundCode,jdbcType=VARCHAR},
       </if>
-      <if test="record.author != null" >
-        author = #{record.author,jdbcType=VARCHAR},
-      </if>
-      <if test="record.url != null" >
-        url = #{record.url,jdbcType=VARCHAR},
+      <if test="record.holdScale != null" >
+        hold_scale = #{record.holdScale,jdbcType=DOUBLE},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -172,40 +162,35 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update t_plat_rank_thirdparty
+    update t_fund_stock_relation
     set id = #{record.id,jdbcType=INTEGER},
-      name = #{record.name,jdbcType=VARCHAR},
-      question = #{record.question,jdbcType=VARCHAR},
-      author = #{record.author,jdbcType=VARCHAR},
-      url = #{record.url,jdbcType=VARCHAR}
+      stock_code = #{record.stockCode,jdbcType=VARCHAR},
+      fund_code = #{record.fundCode,jdbcType=VARCHAR},
+      hold_scale = #{record.holdScale,jdbcType=DOUBLE}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.tgb.model.TPlatRankThirdparty" >
-    update t_plat_rank_thirdparty
+  <update id="updateByPrimaryKeySelective" parameterType="com.tgb.model.TFundStockRelation" >
+    update t_fund_stock_relation
     <set >
-      <if test="name != null" >
-        name = #{name,jdbcType=VARCHAR},
+      <if test="stockCode != null" >
+        stock_code = #{stockCode,jdbcType=VARCHAR},
       </if>
-      <if test="question != null" >
-        question = #{question,jdbcType=VARCHAR},
+      <if test="fundCode != null" >
+        fund_code = #{fundCode,jdbcType=VARCHAR},
       </if>
-      <if test="author != null" >
-        author = #{author,jdbcType=VARCHAR},
-      </if>
-      <if test="url != null" >
-        url = #{url,jdbcType=VARCHAR},
+      <if test="holdScale != null" >
+        hold_scale = #{holdScale,jdbcType=DOUBLE},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.tgb.model.TPlatRankThirdparty" >
-    update t_plat_rank_thirdparty
-    set name = #{name,jdbcType=VARCHAR},
-      question = #{question,jdbcType=VARCHAR},
-      author = #{author,jdbcType=VARCHAR},
-      url = #{url,jdbcType=VARCHAR}
+  <update id="updateByPrimaryKey" parameterType="com.tgb.model.TFundStockRelation" >
+    update t_fund_stock_relation
+    set stock_code = #{stockCode,jdbcType=VARCHAR},
+      fund_code = #{fundCode,jdbcType=VARCHAR},
+      hold_scale = #{holdScale,jdbcType=DOUBLE}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

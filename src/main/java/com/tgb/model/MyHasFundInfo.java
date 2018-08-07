@@ -5,8 +5,26 @@ public class MyHasFundInfo {
 
     private double fund_has_money;
     private double fund_buy_price;
+    private double fund_has_amount;
     private String fund_has_code;
     private String fund_name;
+    private int is_hold;
+
+    public int getIs_hold() {
+        return is_hold;
+    }
+
+    public void setIs_hold(int is_hold) {
+        this.is_hold = is_hold;
+    }
+
+    public double getFund_has_amount() {
+        return fund_has_amount;
+    }
+
+    public void setFund_has_amount(double fund_has_amount) {
+        this.fund_has_amount = fund_has_amount;
+    }
 
     public String getFund_name() {
         return fund_name;

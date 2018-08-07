@@ -2,14 +2,14 @@ package com.tgb.controller;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.tgb.model.MyFundInfo;
-import com.tgb.model.MyHasFundInfo;
-import com.tgb.model.NeedShowFundInfo;
-import com.tgb.model.TianTianMyDatasBean;
+import com.tgb.model.*;
 import com.tgb.service.FundService;
+import com.tgb.util.BigDecimalUtils;
 import com.tgb.util.HttpUtil;
+import com.tgb.util.NumberUtils;
 import com.tgb.util.StringUtils;
-import net.sf.json.JSONObject;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,12 +17,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
  * 基金
- *
- * */
+ */
 
 @Controller
 public class FundController {
@@ -35,6 +37,7 @@ public class FundController {
     public String jspFundList(HttpServletRequest request, HttpServletResponse response) {
         return "fund/list_fund";
     }
+
     /**
      * 获取所有列表
      *
@@ -46,7 +49,6 @@ public class FundController {
     Map<String, Object> getList(HttpServletRequest request, HttpServletResponse response) {
         List<MyHasFundInfo> findAll = fundService.findAll();
         Map<String, Object> mapReturn = new HashMap<String, Object>();
-
 
 
         final String sortOrder = request.getParameter("sortOrder");
@@ -107,18 +109,24 @@ public class FundController {
             for (TianTianMyDatasBean mTianTianMyDatasBean : mTianTianMyDatasBeanList) {
                 NeedShowFundInfo mNeedShowFundInfo = new NeedShowFundInfo();
                 mNeedShowFundInfo.setFcode(mTianTianMyDatasBean.getFCODE());
-                mNeedShowFundInfo.setGsz(mTianTianMyDatasBean.getGSZ() + "**" + mTianTianMyDatasBean.getGSZZL());
+                mNeedShowFundInfo.setGsz(mTianTianMyDatasBean.getGSZ());
                 mNeedShowFundInfo.setGszzl(mTianTianMyDatasBean.getGSZZL());
-                mNeedShowFundInfo.setNav(mTianTianMyDatasBean.getNAV() + "**" + mTianTianMyDatasBean.getNAVCHGRT());
+                mNeedShowFundInfo.setNav(mTianTianMyDatasBean.getNAV());
                 mNeedShowFundInfo.setNavChgrt(mTianTianMyDatasBean.getNAVCHGRT());
                 mNeedShowFundInfo.setShortname(mTianTianMyDatasBean.getSHORTNAME() + "**" + mTianTianMyDatasBean.getFCODE());
                 for (MyHasFundInfo mMyHasFundInfo : findAll) {
                     if (mMyHasFundInfo.getFund_has_code().equals(mTianTianMyDatasBean.getFCODE())) {
-                        mNeedShowFundInfo.setMoney(mMyHasFundInfo.getFund_has_money());
                         double getNew = Double.parseDouble(mTianTianMyDatasBean.getNAV());
-                        double rate = getNew / mMyHasFundInfo.getFund_buy_price() - 1d;
+                        double rate = BigDecimalUtils.sub(BigDecimalUtils.div(getNew, mMyHasFundInfo.getFund_buy_price()), 1d);
+                        mNeedShowFundInfo.setRate(NumberUtils.getTwoScale(BigDecimalUtils.mul(rate, 100)) + "");
                         double income = rate * mMyHasFundInfo.getFund_has_money();
-                        mNeedShowFundInfo.setIncome(StringUtils.keepTwo(income));
+                        mNeedShowFundInfo.setIncome(NumberUtils.getTwoScale(income) + "");
+                        //持有本金
+                        mNeedShowFundInfo.setMoney(NumberUtils.getTwoScale(BigDecimalUtils.add(mMyHasFundInfo.getFund_has_money(), income)) + "");
+                        //买入金额
+                        mNeedShowFundInfo.setMoney_old(NumberUtils.getZeroScale(mMyHasFundInfo.getFund_has_money()) + "");
+                        //买入净值
+                        mNeedShowFundInfo.setFund_buy_price(StringUtils.keepFour(mMyHasFundInfo.getFund_buy_price()));
                         break;
                     }
                 }
@@ -132,8 +140,9 @@ public class FundController {
                     @Override
                     public int compare(NeedShowFundInfo o1, NeedShowFundInfo o2) {
                         if (sortOrder.equals("asc") || sortOrder.equals("ASC"))
-                            return Double.compare(o1.getMoney(), o2.getMoney());
-                        else return Double.compare(o2.getMoney(), o1.getMoney());
+                            return Double.compare(Double.parseDouble(o1.getMoney()), Double.parseDouble(o2.getMoney()));
+                        else
+                            return Double.compare(Double.parseDouble(o2.getMoney()), Double.parseDouble(o1.getMoney()));
                     }
                 });
             else if (sortName != null && sortName.equals("income"))
@@ -158,16 +167,100 @@ public class FundController {
         return "fund/add_fund";
     }
 
+
+    @RequestMapping("fund/del")
+    public int delPlat(HttpServletRequest request) {
+        String code = request.getParameter("code");
+        String deleteSql = " t_fund where fund_code='" + code + "'";
+        fundService.deleteSql(deleteSql);
+        return 1;
+    }
+
+
+    @RequestMapping("fund/fund_goto_line")
+    @ResponseBody
+    public Map<String, Object> getGoToLine(HttpServletRequest request) {
+        String param = request.getParameter("param");
+        String code = request.getParameter("code");
+        String jsonStr1 = HttpUtil.doHttpGet("https://fundmobapi.eastmoney.com/FundMApi/FundYieldDiagramNew.ashx?FCODE=" + code + "&appType=ttjj&MobileKey=a3217fd8e628d1c3e9380d2318dfa49e||" +
+                "607258620742768&version=5.4.1&plat=Android&deviceid=a3217fd8e628d1c3e9380d2318dfa49e||" +
+                "607258620742768&RANGE=" + param + "&product=EFund");
+        JSONObject object = new JSONObject(jsonStr1);
+        JSONArray mJSONArray = object.getJSONArray("Datas");
+        List<List<Object>> list = new ArrayList<>();
+        List<Object> dates = new ArrayList<>();
+        for (int i = 0; i < mJSONArray.length(); i++) {
+            JSONObject obj = mJSONArray.getJSONObject(i);
+            String pdate = obj.getString("PDATE");
+            double yield = obj.getDouble("YIELD");
+            List<Object> ja2 = new ArrayList<>();
+            DateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+            Date date = null;
+            // String转Date
+            try {
+                date = format1.parse(pdate);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            ja2.add(date.getTime());
+            ja2.add(NumberUtils.getTwoScale(yield));
+            list.add(ja2);
+            int endInt = mJSONArray.length() - 1;
+            if (i == 0 || i == endInt) {
+                dates.add(date.getTime());
+            }
+        }
+        Map<String, Object> map = new HashMap<>();
+        map.put("list", list);
+        map.put("dates", dates);
+
+        return map;
+    }
+
+    @RequestMapping("fund/fund_same")
+    @ResponseBody
+    public List<List<Object>> getGoToSame(HttpServletRequest request) {
+        String code = request.getParameter("code");
+        List<TFundStockRelation> originalList = fundService.findStockByCode(code);
+        List<MyHasFundInfo> findAll = fundService.findAll();
+        List<List<Object>> returnList = new ArrayList<>();
+
+        for (MyHasFundInfo mMyHasFundInfo : findAll) {
+            List<TFundStockRelation> getList = new ArrayList<>();
+            List<TFundStockRelation> newList = fundService.findStockByCode(mMyHasFundInfo.getFund_has_code());
+            for (TFundStockRelation originalInfo : originalList) {
+                for (TFundStockRelation newInfo : newList) {
+                    if (newInfo.getStockCode().equals(originalInfo.getStockCode()) && !code.equals(mMyHasFundInfo.getFund_has_code())) {
+                        getList.add(newInfo);
+                    }
+                }
+            }
+            if (getList.size() > 1) {
+                int count = getList.size();
+                List<Object> ob = new ArrayList<>();
+                StringBuilder sb = new StringBuilder();
+                for (TFundStockRelation lTFundStockRelation : getList) {
+                    sb.append(lTFundStockRelation.getStockName()).append("  ");
+                }
+                ob.add(mMyHasFundInfo.getFund_name() + "(" + mMyHasFundInfo.getFund_has_code() + ")");
+                ob.add(count);
+                ob.add(sb.toString());
+                returnList.add(ob);
+            }
+        }
+
+        return returnList;
+    }
+
     @RequestMapping("fund/saveMyFund")
+    @ResponseBody
     public void saveMyFundInfo(HttpServletRequest request, HttpServletResponse response) {
         MyHasFundInfo myHasFundInfo = new MyHasFundInfo();
 
         String fund_has_code = request.getParameter("code");
-        //昨天总持有收益率
+        //总持有收益率
         String fund_buy_rate = request.getParameter("score");
-        String fund_has_money = request.getParameter("money");
-        myHasFundInfo.setFund_has_money(Double.parseDouble(fund_has_money));
-
+        double fund_has_money = Double.parseDouble(request.getParameter("money"));
 
         HashMap<String, String> map = new HashMap<>();
         map.put("pageIndex", "1");
@@ -191,20 +284,44 @@ public class FundController {
             myHasFundInfo.setFund_name(mTianTianMyDatasBean.getSHORTNAME());
             //昨日净值
             double nav = Double.parseDouble(mTianTianMyDatasBean.getNAV());
-
-            double fund_buy_rateDouble = Double.parseDouble(fund_buy_rate) / 100d;
-
-            double fund_buy_price = nav / (1 + fund_buy_rateDouble);
+            //总持有收益率
+            double fund_buy_rateDouble = Double.parseDouble(fund_buy_rate);
+            double fund_buy_price = BigDecimalUtils.div(nav, BigDecimalUtils.add(1, BigDecimalUtils.div(fund_buy_rateDouble, 100)));
+            //买入金额
+            double fund_buy_money_old = BigDecimalUtils.div(fund_has_money, BigDecimalUtils.add(1, BigDecimalUtils.div(fund_buy_rateDouble, 100)));
+            myHasFundInfo.setFund_has_money(NumberUtils.getTwoScale(fund_buy_money_old));
+            //买入成本
             myHasFundInfo.setFund_buy_price(fund_buy_price);
+            //持有份额
+            myHasFundInfo.setFund_has_amount(BigDecimalUtils.div(fund_has_money, nav));
             myHasFundInfo.setFund_has_code(mTianTianMyDatasBean.getFCODE());
         }
-
-
+        //基金持有信息
         MyHasFundInfo hasFundInfo = fundService.findByCode(fund_has_code);
         if (hasFundInfo != null && !StringUtils.isEmpty(hasFundInfo.getFund_has_code())) {
             fundService.updateMyFund(myHasFundInfo);
         } else
             fundService.saveMyFund(myHasFundInfo);
+
+
+        //持仓股票
+        String urlScale = "https://fundmobapi.eastmoney.com/FundMApi/FundPositionList.ashx?FCODE=" + fund_has_code + "&appType=ttjj&plat=Android&MobileKey=a3217fd8e628d1c3e9380d2318dfa49e||607258620742768&product=EFund&version=5.4.1&deviceid=a3217fd8e628d1c3e9380d2318dfa49e||607258620742768";
+        String jsonScale = HttpUtil.doHttpGet(urlScale);
+        HoldStocks mHoldStocks = gson1.fromJson(jsonScale, new TypeToken<HoldStocks>() {
+        }.getType());
+        if (mHoldStocks != null && mHoldStocks.getDatas() != null && mHoldStocks.getDatas().size() > 0) {
+            List<HoldStocks.DatasBean> mHoldStocksDatas = mHoldStocks.getDatas();
+            for (HoldStocks.DatasBean mDatasBean : mHoldStocksDatas) {
+                String deleteSql = " t_fund_stock where stock_code='" + mDatasBean.getShareCode() + "'";
+                String insertSql = "  t_fund_stock(stock_code,stock_name,stock_new_price,stock_new_rate) VALUES('" + mDatasBean.getShareCode() + "','" + mDatasBean.getShareName() + "','" + mDatasBean.getSharePrice() + "','" + mDatasBean.getShareGain() + "')";
+                fundService.deleteSql(deleteSql);
+                fundService.insertSql(insertSql);
+                String deleteSql2 = "  t_fund_stock_relation where fund_code='" + fund_has_code + "' and stock_code='" + mDatasBean.getShareCode() + "'";
+                String insertSql2 = "  t_fund_stock_relation(fund_code,stock_code,hold_scale) VALUES('" + fund_has_code + "','" + mDatasBean.getShareCode() + "','" + mDatasBean.getShareProportion() + "')";
+                fundService.deleteSql(deleteSql2);
+                fundService.insertSql(insertSql2);
+            }
+        }
 
         try {
             // 正常接口返回
