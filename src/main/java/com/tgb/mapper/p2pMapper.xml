@@ -27,7 +27,7 @@
 		,luopan_code luopan_code,luopan_rank luopan_rank,
 		remark remark
 		,tianyan_url tianyan_url,rank360 rank360,rank360_int rank360_int,gentou_rank gentou_rank,rate3_return rate3_return,rate6_return rate6_return,is_love is_love
-		from t_plat ORDER BY score DESC
+		from t_plat ORDER BY score DESC,is_love DESC
 	</select>
 
     <select id="findAllByStr" parameterType="String" resultType="P2pInfo">

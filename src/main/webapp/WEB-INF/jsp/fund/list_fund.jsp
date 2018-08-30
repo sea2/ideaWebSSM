@@ -191,7 +191,7 @@
                     alert('请输入基金code');
                 } else {
                     $.ajax({
-                        url: '<%=basePath%>/fund/saveMyFund?code=' + name
+                        url: '<%=basePath%>fund/saveMyFund?code=' + name
                         + '&score=' + score + '&money=' + money,
                         type: 'GET',
                         dataType: "jsonp",

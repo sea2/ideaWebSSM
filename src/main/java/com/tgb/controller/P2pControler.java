@@ -25,6 +25,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/***
+ *
+ * session一般用于整个工程的会话,关闭浏览器即失效,像是用户的登录信息一般是保存在session中
+ * request只是用于发送的请求,提交后即释放,若是使用了请求转发,则可以一直传递,
+ * 但若是使用了重定向,那么request中保存的数据就得不到了
+ * */
 @Controller
 public class P2pControler {
 
@@ -221,7 +227,7 @@ public class P2pControler {
 
     @RequestMapping("app/order")
     public String orderById(int id, HttpServletRequest request, HttpServletResponse response) {
-        String str = "ORDER BY score desc";
+        String str = "ORDER BY score desc,is_love desc";
         if (id == 1) str = "WHERE tianyan_rank !=0 ORDER BY  tianyan_rank";
         else if (id == 2)
             str = "WHERE   rank360_int !=0 ORDER BY  rank360_int";
@@ -431,10 +437,11 @@ public class P2pControler {
         try {
             // 构建Workbook对象, 只读Workbook对象
             // 直接从本地文件创建Workbook
+
             //公司
-            String path="C:\\Users\\Administrator\\Desktop\\ssm-demo\\ideaWebSSM";
+            String path = "C:\\Users\\Administrator\\Desktop\\ssm-demo\\ideaWebSSM\\跟投.xls";
             //居住地
-           // String path="C:\\Users\\Administrator\\Desktop\\ssm-demo\\ideaWebSSM";
+            // String path="C:\\Users\\Administrator\\Desktop\\ssm-demo\\ideaWebSSM\\跟投.xls";
             InputStream instream = new FileInputStream(path);
             readwb = Workbook.getWorkbook(instream);
 
@@ -473,7 +480,7 @@ public class P2pControler {
 
 
             if (id == 0 || id == 2) {
-                Sheet readsheet2 = readwb.getSheet(3);
+                Sheet readsheet2 = readwb.getSheet(4);
 
                 // 获取Sheet表中所包含的总列数
                 p2pService.updateRankNull("rank360='-',rank360_int=0");

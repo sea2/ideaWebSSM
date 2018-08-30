@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>财迷后院</title>
+    <link rel="stylesheet" href="css/sign_in.css">
+    <script src="js/hotcss.js"></script>
+    <script src="js/jquery-1.11.0.min.js"></script>
+
+</head>
+<body>
+<div id="nav">
+    <ul>
+        <li class="menu_back"><a href="index.html" id="a_titlt_back"><img src="img/icon_back.png" alt="" id="img_back"></a>
+        </li>
+        <li class="menu_title"><a href="#" class="a_titlt_top">财迷后院</a></li>
+        <li class="menu_right"><a href="#" class="a_titlt_top">分享</a></li>
+    </ul>
+</div>
+
+<div id="activity" class="scroll">
+</div>
+
+<DIV class="position">
+    <div id="yun1" class="block">
+    </div>
+    <div id="yun2" class="block">
+    </div>
+    <div id="yun3" class="block">
+    </div>
+    <div id="yun4" class="block">
+    </div>
+</DIV>
+
+
+<div id="yun_main"></div>
+<div id="img_hand_move"></div>
+<div id="tree">
+    <img id="tree_img" src="img/img_tree8.png"/>
+</div>
+<div id="tree2">
+    <img id="tree_img2" />
+</div>
+<div id="img_light_div">
+    <img id="img_light" src="img/trans.png"/>
+</div>
+
+<div id="rain1"></div>
+<div id="rain2"></div>
+<div id="rain3"></div>
+<div id="rain4"></div>
+<div id="rain5"></div>
+<div id="rain6"></div>
+<div id="rain7"></div>
+
+
+<div id="bottom_bg_above"></div>
+<div id="bottom_bg">
+</div>
+
+
+<script type="text/javascript">
+    function getRootPath() {
+        var pathName = window.location.pathname.substring(1);
+        var webName = pathName == '' ? '' : pathName.substring(0, pathName.indexOf('/'));
+        return window.location.protocol + '//' + window.location.host + '/' + webName + '/';
+    }
+
+    //树苗
+    var flag = false;
+    $("#tree_img").click(function () {
+        if (flag) return;
+        flag = true;
+        var tree_img = $("#tree_img");
+        var width = $("#tree_img").width();
+        var height = $("#tree_img").height();
+        var widthBig = width + 20;
+        var heigthBig = height + 20;
+        tree_img.animate({widthBig: widthBig + 'px', height: heigthBig + 'px', opacity: '1'}, "fast");
+        tree_img.animate({widthBig: width + 'px', height: height + 'px', opacity: '1'}, "fast");
+        tree_img.animate({widthBig: widthBig + 'px', height: heigthBig + 'px', opacity: '1'}, "fast");
+        tree_img.animate({widthBig: width + 'px', height: height + 'px', opacity: '1'}, "fast", function () {
+            flag = false;//回到最初始状态，也是也表示这一轮动画执行完毕。
+        });
+    });
+    $("#tree_img2").click(function () {
+        if (flag) return;
+        flag = true;
+        var tree_img = $("#tree_img2");
+        var width = $("#tree_img2").width();
+        var height = $("#tree_img2").height();
+        var widthBig = width + 20;
+        var heigthBig = height + 20;
+        tree_img.animate({widthBig: widthBig + 'px', height: heigthBig + 'px', opacity: '1'}, "fast");
+        tree_img.animate({widthBig: width + 'px', height: height + 'px', opacity: '1'}, "fast");
+        tree_img.animate({widthBig: widthBig + 'px', height: heigthBig + 'px', opacity: '1'}, "fast");
+        tree_img.animate({widthBig: width + 'px', height: height + 'px', opacity: '1'}, "fast", function () {
+            flag = false;//回到最初始状态，也是也表示这一轮动画执行完毕。
+        });
+    });
+
+    var click_cloud_main = 0;
+
+    //云
+    var flag_cloud = false;
+    $("#yun_main").click(function () {
+        if (flag_cloud) return;
+        flag_cloud = true;
+        var yun_main = $("#yun_main");
+        var width = yun_main.width();
+        var height = yun_main.height();
+        var widthBig = width + 10;
+        var heigthBig = height + 10;
+        yun_main.animate({height: heigthBig + 'px', opacity: '1'}, "fast");
+        yun_main.animate({height: height + 'px', opacity: '1'}, "fast");
+        yun_main.animate({height: heigthBig + 'px', opacity: '1'}, "fast");
+        yun_main.animate({height: height + 'px', opacity: '1'}, "fast", function () {
+            flag_cloud = false;//回到最初始状态，也是也表示这一轮动画执行完毕。
+        });
+
+        //签到一次
+        if (click_cloud_main < 1) {
+            $("#rain1").animate({bottom: '11rem', opacity: '1'}, 1000);
+            $("#rain1").animate({bottom: '11rem', opacity: '0'}, "slow");
+            $("#rain2").animate({bottom: '12rem', opacity: '1'}, 1000);
+            $("#rain2").animate({bottom: '12rem', opacity: '0'}, "slow");
+            $("#rain3").animate({bottom: '11rem', opacity: '1'}, 1000);
+            $("#rain3").animate({bottom: '11rem', opacity: '0'}, "slow");
+            $("#rain4").animate({bottom: '13rem', opacity: '1'}, 1000);
+            $("#rain4").animate({bottom: '13rem', opacity: '0'}, "slow", function () {
+                var tree_img = $("#tree_img");
+                var width = tree_img.width();
+                var height = tree_img.height();
+                var heigthBig = height + 40;
+                tree_img.animate({ height: heigthBig + 'px', opacity: '1'}, "fast");
+                tree_img.animate({ height: height + 'px', opacity: '1'}, "fast");
+                tree_img.animate({ height: heigthBig + 'px', opacity: '1'}, "fast");
+                tree_img.animate({ height: height + 'px', opacity: '1'}, "fast");
+                tree_img.animate({ height: heigthBig + 'px', opacity: '1'}, "fast");
+              //  $("#img_light_div").css('display', 'block');
+                var tree_img2 = $("#tree_img2");
+                tree_img2.animate({ opacity: '0'}, 0);
+                tree_img2.attr('src', getRootPath() + 'img/img_tree9.png');
+                $("#tree2").css('display', 'block');
+                $('#img_light').animate({ width:'14rem',height:'14rem'},2000);
+                tree_img.animate({ height: height + 'px', opacity: '1'}, 500, function () {
+                    tree_img.animate({ height:   '-=0.5rem', opacity: '1'}, 500);
+                    tree_img.animate({  opacity: '0'}, 500);
+                    tree_img2.animate({ height:'+=1rem',width:'+=1rem', opacity: '1'}, 500);
+
+                });
+            });
+        }
+        click_cloud_main++;
+
+    });
+
+
+</script>
+
+
+</body>
+</html>

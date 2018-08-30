@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>财迷后院</title>
+    <link rel="stylesheet" href="css/sign_in.css">
+    <script src="js/hotcss.js"></script>
+    <script src="js/jquery-1.11.0.min.js"></script>
+    <script src="js/velocity.min.js"></script>
+
+</head>
+<body>
+<div id="nav">
+    <ul>
+        <li class="menu_back"><a href="index.html" id="a_titlt_back"><img src="img/icon_back.png" alt="" id="img_back"></a>
+        </li>
+        <li class="menu_title"><a href="#" class="a_titlt_top">财迷后院</a></li>
+        <li class="menu_right"><a href="#" class="a_titlt_top">分享</a></li>
+    </ul>
+</div>
+
+<div id="activity" class="scroll">
+</div>
+
+<DIV class="position">
+    <div id="yun1" class="block">
+    </div>
+    <div id="yun2" class="block">
+    </div>
+    <div id="yun3" class="block">
+    </div>
+    <div id="yun4" class="block">
+    </div>
+</DIV>
+
+
+<div id="yun_main"></div>
+<div id="img_hand_move"></div>
+<div id="tree">
+    <img id="tree_img" src="img/img_tree8.png"/>
+</div>
+<div id="tree2">
+    <img id="tree_img2"/>
+</div>
+<div id="img_light_div">
+    <img id="img_light" src="img/trans.png"/>
+</div>
+
+<div id="img_money1"></div>
+<div id="img_money2"></div>
+<div id="img_money3"></div>
+<div id="img_money4"></div>
+
+<div id="img_money_all"></div>
+
+<div id="bg_progress">
+    <div id="img_progress_zhen"></div>
+    <div id="img_progress_move"></div>
+</div>
+
+
+<div id="rain1"></div>
+<div id="rain2"></div>
+<div id="rain3"></div>
+<div id="rain4"></div>
+<div id="rain5"></div>
+<div id="rain6"></div>
+<div id="rain7"></div>
+
+
+<div id="bottom_bg_above"></div>
+<div id="bottom_bg">
+</div>
+
+
+<script type="text/javascript">
+    function getRootPath() {
+        var pathName = window.location.pathname.substring(1);
+        var webName = pathName == '' ? '' : pathName.substring(0, pathName.indexOf('/'));
+        return window.location.protocol + '//' + window.location.host + '/' + webName + '/';
+    }
+
+    /* 停止：Velocity(elem, 'stop')；
+
+ 暂停：Velocity(elem, 'pause')；
+
+ 反向：Velocity(elem, 'reverse')；
+
+ 恢复：Velocity(elem, 'resume')；*/
+    var yunMain = $('#yun_main');
+    yunMain.velocity({
+        translateX: '1rem'
+    }, {
+        /* Velocity 动画配置项的默认值 */
+        duration: 2000,         // 动画执行时间
+        easing: "linear",       // 缓动效果
+        queue: "",             // 队列
+        begin: undefined,      // 动画开始时的回调函数
+        progress: undefined,   // 动画执行中的回调函数（该函数会随着动画执行被不断触发）
+        complete: undefined,   // 动画结束时的回调函数
+        display: undefined,    // 动画结束时设置元素的 css display 属性
+        visibility: undefined, // 动画结束时设置元素的 css visibility 属性
+        loop: true,           // 循环
+        delay: false,          // 延迟
+        mobileHA: true         // 移动端硬件加速（默认开启）
+    });
+
+    var img_hand_move = $('#img_hand_move');
+    img_hand_move.velocity({
+        translateX: '0.5rem',
+        translateY: '0.5rem'
+    }, {
+        /* Velocity 动画配置项的默认值 */
+        duration: 1000,         // 动画执行时间
+        easing: "linear",       // 缓动效果
+        queue: "",             // 队列
+        begin: undefined,      // 动画开始时的回调函数
+        progress: undefined,   // 动画执行中的回调函数（该函数会随着动画执行被不断触发）
+        complete: undefined,   // 动画结束时的回调函数
+        display: undefined,    // 动画结束时设置元素的 css display 属性
+        visibility: undefined, // 动画结束时设置元素的 css visibility 属性
+        loop: true,           // 循环
+        delay: false,          // 延迟
+        mobileHA: true         // 移动端硬件加速（默认开启）
+    });
+
+
+    //设置进度  progress:进度  0-1
+    function progress(progress) {
+        var progressWidth = 5.4 * progress;
+        var img_progress_zhen = $('#img_progress_zhen');
+        var img_progress_move = $('#img_progress_move');
+        img_progress_move.velocity({
+            width: progressWidth + 'rem'
+        }, {
+            /* Velocity 动画配置项的默认值 */
+            duration: 1000,         // 动画执行时间
+            easing: "linear",       // 缓动效果
+        });
+        img_progress_zhen.velocity({
+            rotateZ: "90deg"
+        }, {
+            /* Velocity 动画配置项的默认值 */
+            duration: 1000,         // 动画执行时间
+            easing: "linear",       // 缓动效果
+        });
+    }
+
+
+    $(function () {
+        //要滚动的节点
+        var yun1 = $('#yun1');
+        var yun2 = $('#yun2');
+        //滚动动画
+        /**
+         * element 滚动阶段
+         * delay 延迟
+         * height 所有奖项总高度，不含最后一个复制的奖项
+         * time 滚动一圈的时间
+         * loop 滚动多少圈
+         */
+        var animation = function (element, delay, height, time, loop) {
+            element.velocity({
+                    /* translateX 初始值永远为0 动画结束值为-20rem */
+                    translateX: ['-20rem', 0]
+                }, {
+                    //前面的圈数都是直线滚动，无缓动效果
+                    easing: 'linear',
+                    duration: time,
+                    delay: delay,          // 延迟
+                    //一圈动画结束时执行
+                    complete: function () {
+                        //loop--;  //循环次数
+                        //if(loop>0)
+                        //递归调用重复滚动
+                        animation(element, 100, 500, time, loop);
+                    }
+                }
+            );
+        };
+        var animation_money = function (element, delay, height, time, loop) {
+            element.velocity({
+                    /* translateX 初始值永远为0 动画结束值为-20rem */
+                    translateY: ['5rem', 0]
+                }, {
+                    //前面的圈数都是直线滚动，无缓动效果
+                    easing: 'linear',
+                    duration: time,
+                    delay: delay,          // 延迟
+                    //一圈动画结束时执行
+                    complete: function () {
+                        //loop--;  //循环次数
+                        //if(loop>0)
+                        //递归调用重复滚动
+                        animation_money(element, 100, 500, time, loop);
+                    }
+                }
+            );
+        };
+        //测试调用
+        animation(yun1, 100, 500, 50000, 5);
+        animation(yun2, 2000, 1000, 80000, 5);
+    });
+
+
+    //树苗
+    var flag = false;
+    $("#tree_img").click(function () {
+        if (flag) return;
+        flag = true;
+        var tree_img = $("#tree_img");
+        var width = $("#tree_img").width();
+        var height = $("#tree_img").height();
+        var widthBig = width + 20;
+        var heigthBig = height + 20;
+        tree_img.animate({widthBig: widthBig + 'px', height: heigthBig + 'px', opacity: '1'}, "fast");
+        tree_img.animate({widthBig: width + 'px', height: height + 'px', opacity: '1'}, "fast");
+        tree_img.animate({widthBig: widthBig + 'px', height: heigthBig + 'px', opacity: '1'}, "fast");
+        tree_img.animate({widthBig: width + 'px', height: height + 'px', opacity: '1'}, "fast", function () {
+            flag = false;//回到最初始状态，也是也表示这一轮动画执行完毕。
+        });
+    });
+    $("#tree_img2").click(function () {
+        if (flag) return;
+        flag = true;
+        var tree_img = $("#tree_img2");
+        var width = $("#tree_img2").width();
+        var height = $("#tree_img2").height();
+        var widthBig = width + 20;
+        var heigthBig = height + 20;
+        tree_img.animate({widthBig: widthBig + 'px', height: heigthBig + 'px', opacity: '1'}, "fast");
+        tree_img.animate({widthBig: width + 'px', height: height + 'px', opacity: '1'}, "fast");
+        tree_img.animate({widthBig: widthBig + 'px', height: heigthBig + 'px', opacity: '1'}, "fast");
+        tree_img.animate({widthBig: width + 'px', height: height + 'px', opacity: '1'}, "fast", function () {
+            flag = false;//回到最初始状态，也是也表示这一轮动画执行完毕。
+        });
+    });
+
+    var click_cloud_main = 0;
+
+    //云
+    var flag_cloud = false;
+    $("#yun_main").click(function () {
+        if (flag_cloud) return;
+        flag_cloud = true;
+        var yun_main = $("#yun_main");
+        var width = yun_main.width();
+        var height = yun_main.height();
+        var widthBig = width + 10;
+        var heigthBig = height + 10;
+        yun_main.animate({height: heigthBig + 'px', opacity: '1'}, "fast");
+        yun_main.animate({height: height + 'px', opacity: '1'}, "fast");
+        yun_main.animate({height: heigthBig + 'px', opacity: '1'}, "fast");
+        yun_main.animate({height: height + 'px', opacity: '1'}, "fast", function () {
+            flag_cloud = false;//回到最初始状态，也是也表示这一轮动画执行完毕。
+        });
+
+        //签到一次
+        if (click_cloud_main < 1) {
+            $("#rain1").animate({bottom: '8rem', opacity: '0'}, 1520);
+            $("#rain2").animate({bottom: '9rem', opacity: '0'}, 1860);
+            $("#rain3").animate({bottom: '6.5rem', opacity: '0'}, 2106);
+            $("#rain4").animate({bottom: '8.5rem', opacity: '0'}, 1431);
+            $("#rain5").animate({bottom: '7rem', opacity: '0'}, 1756);
+            $("#rain6").animate({bottom: '9.2rem', opacity: '0'}, 2312);
+            $("#rain7").animate({bottom: '10rem', opacity: '0'}, 2000, function () {
+                var tree_img = $("#tree_img");
+                var width = tree_img.width();
+                var height = tree_img.height();
+                var heigthBig = height + 40;
+                tree_img.animate({height: heigthBig + 'px', opacity: '1'}, "fast");
+                tree_img.animate({height: height + 'px', opacity: '1'}, "fast");
+                tree_img.animate({height: heigthBig + 'px', opacity: '1'}, "fast");
+                tree_img.animate({height: height + 'px', opacity: '1'}, "fast");
+                tree_img.animate({height: heigthBig + 'px', opacity: '1'}, "fast");
+                //  $("#img_light_div").css('display', 'block');
+                var tree_img2 = $("#tree_img2");
+                tree_img2.animate({opacity: '0'}, 0);
+                tree_img2.attr('src', getRootPath() + 'img/img_tree9.png');
+                $("#tree2").css('display', 'block');
+                $('#img_light').animate({width: '14rem', height: '14rem'}, 2000);
+                tree_img.animate({height: height + 'px', opacity: '1'}, 500, function () {
+                    tree_img.animate({height: '+=0.5rem', opacity: '1'}, 300);
+                    tree_img.animate({opacity: '0'}, 300);
+                    tree_img2.animate({height: '+=1rem', width: '+=1rem', opacity: '1'}, 500);
+                    tree_img2.animate({height: '-=0.5rem', width: '-=0.5rem', opacity: '1'}, 500);
+                    tree_img2.animate({height: '+=0.5rem', width: '+=0.5rem', opacity: '1'}, 500, function () {
+                        $("#img_money1").css('display', 'block');
+                        $("#img_money2").css('display', 'block');
+                        $("#img_money3").css('display', 'block');
+                        $("#img_money4").css('display', 'block');
+
+                        $("#img_money1").animate({bottom: '7rem', opacity: '0'}, 1500, function () {
+                            $("#img_money_all").animate({opacity: '0'}, 0);
+                            $("#img_money_all").css('display', 'block');
+                            $("#img_money_all").animate({opacity: '1'}, 1000, function () {
+                                var t1 = window.setInterval(money_down, 2000);
+                                progress(0.5);
+                            });
+                        });
+                        $("#img_money2").animate({bottom: '7rem', opacity: '0'}, 2000);
+                        $("#img_money3").animate({bottom: '7rem', opacity: '0'}, 2500);
+                        $("#img_money4").animate({bottom: '7rem', opacity: '0'}, 3000);
+                    });
+
+
+                });
+            });
+        }
+        click_cloud_main++;
+
+    });
+
+    function money_down() {
+        $("#img_money1").animate({bottom: '10.5rem', opacity: '1'}, 0);
+        $("#img_money2").animate({bottom: '11rem', opacity: '1'}, 0);
+        $("#img_money3").animate({bottom: '11.5rem', opacity: '1'}, 0);
+        $("#img_money4").animate({bottom: '12rem', opacity: '1'}, 0);
+        $("#img_money1").animate({bottom: '7rem', opacity: '0'}, 1500);
+        $("#img_money2").animate({bottom: '7rem', opacity: '0'}, 2000);
+        $("#img_money3").animate({bottom: '7rem', opacity: '0'}, 2500);
+        $("#img_money4").animate({bottom: '7rem', opacity: '0'}, 3000);
+    }
+
+</script>
+
+
+</body>
+</html>
