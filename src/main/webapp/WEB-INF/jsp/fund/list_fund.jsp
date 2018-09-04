@@ -53,8 +53,8 @@
             <button id="btn_add" type="button" class="btn btn-default">
                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
             </button>
-            <button id="btn_edit" type="button" class="btn btn-default">
-                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
+            <button id="btn_compare" type="button" class="btn btn-default">
+                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>对比
             </button>
             <button id="btn_delete" type="button" class="btn btn-default">
                 <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
@@ -111,28 +111,68 @@
             <h3 id="title_dialog">自评</h3>
         </div>
         <div id="div3_dialog">
+            <div style="float:left;width: 450px;text-align:center;margin-top: 20px">
+                <span style="font-size: 2rem">近三个月</span></div>
+            <div style="float:left;width: 400px;text-align:center;;margin-top: 20px">
+                <span style="font-size: 2rem">近一年</span></div>
+            <div style="clear: both"></div>
             <div id="placeholder"
-                 style="width:300px;    height:150px;  text-align:center;line-height:40px;margin:0 auto ;"></div>
-            <span style="width: 500px">近三个月</span>
+                 style="width:350px;    height:150px; float: left; text-align:center;line-height:40px;margin-left: 60px">
+            </div>
             <div id="placeholder2"
-                 style="width:300px;    height:150px; text-align:center;line-height:40px;margin:0 auto ;"></div>
-            <span style="width: 500px">近一年</span>
+                 style="width:350px;  float: left;  height:150px; text-align:center;line-height:40px;margin-left: 100px"></div>
+
             <input type="hidden" id="record_id"/>
 
         </div>
     </div>
 </div>
-<!-- 弹窗自评， -->
+
+<!-- 相同持仓， -->
 <div id="background2" class="background">
     <div class="dialog_content">
         <div class="close_top_class">
             <button id="close-button2" class="close-button">×</button>
-            <h3 id="title_dialog2">自评</h3>
+            <h3 id="title_dialog2">持仓</h3>
         </div>
         <div id="div3_dialog2" class="div3_dialog">
 
         </div>
+
     </div>
+</div>
+
+<!-- 对比 -->
+<div id="background3" class="background">
+    <div class="dialog_content">
+        <div class="close_top_class">
+            <button id="close-button3" class="close-button">×</button>
+            <h3 id="title_dialog3">对比</h3>
+        </div>
+        <div id="div3_dialog3" class="div3_dialog_compare">
+            <div style="float:left;width: 450px;text-align:center;margin-top: 20px">
+                <div id="compare_info_1"></div>
+                <br/>
+                <span style="font-size: 1.5rem;margin-top: 40px">近三个月</span>
+                <div id="placeholder_compare1"
+                     style="width:350px;    height:150px;  text-align:center;line-height:40px;margin-left: 60px">
+                </div>
+                <span style="font-size: 1.5rem">近一年</span>
+                <div id="placeholder2_compare1"
+                     style="width:350px;  height:150px; text-align:center;line-height:40px;margin-left: 60px"></div>
+            </div>
+            <div style="float:left;width: 450px;text-align:center;;margin-top: 20px">
+                <div id="compare_info_2"></div>  <br/>
+                <span style="font-size: 1.5rem;margin-top: 40px">近三个月</span>
+                <div id="placeholder_compare2"
+                     style="width:350px;    height:150px;  text-align:center;line-height:40px;margin-left: 60px">
+                </div>
+                <span style="font-size: 1.5rem">近一年</span>
+                <div id="placeholder2_compare2"
+                     style="width:350px;  height:150px; text-align:center;line-height:40px;margin-left: 60px"></div>
+        </div>
+    </div>
+</div>
 </div>
 
 
@@ -145,6 +185,15 @@
             alert(status);
             alert(data.userList[0].name);
         });
+    });
+    $("#close-button").click(function () {
+        $("#background").css('display', 'none');
+    });
+    $("#close-button2").click(function () {
+        $("#background2").css('display', 'none');
+    });
+    $("#close-button3").click(function () {
+        $("#background3").css('display', 'none');
     });
 
     //新增
@@ -159,9 +208,97 @@
         layer.open({
             type: 1,
             skin: 'layui-layer-demo', //样式类名
-
             content: '测试'
         });
+    });
+
+    //对比
+    $("#btn_compare").click(function () {
+        var array = $("#table").bootstrapTable('getSelections');
+        if (array != null && array.length > 1) {
+            $("#title_dialog3").html("对比");
+            $("#background3").css('display', 'block');
+            $.get("<%=basePath%>fund/fund_compare?code=" + array[0].fcode + "," + array[1].fcode, function (data, status) {
+                    var info = data[0];
+                    $("#compare_info_1").html("<span class='main_font'>"+info.name + info.code + "</span>  <br/><br/>" + info.hold_stocks);
+                    $.plot($("#placeholder_compare1"), [{
+                        lineWidth: 0.5,
+                        shadowSize: 0,
+                        data: info.list,
+                        highlightColor: "#808080",
+                        lines: {show: true}
+                    }], {
+                        grid: {
+                            lineWidth: 0.5,
+                            borderWidth: 0.5//边框宽度
+                        },
+                        xaxis: {
+                            ticks: !1                            // dates
+                        },
+                        colors: ["#0c64d8"],
+                        lineWidth: 0.5
+
+                    });
+                    $.plot($("#placeholder2_compare1"), [{
+                        lineWidth: 0.5,
+                        shadowSize: 0,
+                        data: info.list2,
+                        highlightColor: "#808080",
+                        lines: {show: true}
+                    }], {
+                        grid: {
+                            lineWidth: 0.5,
+                            borderWidth: 0.5//边框宽度
+                        },
+                        xaxis: {
+                            ticks: !1                            // dates
+                        },
+                        colors: ["#0c64d8"],
+                        lineWidth: 0.5
+
+                    });
+                    var info2 = data[1];
+                    $("#compare_info_2").html("<span class='main_font'>"+info2.name + info2.code + "</span>  <br/><br/>" + info2.hold_stocks);
+                    $.plot($("#placeholder_compare2"), [{
+                        lineWidth: 0.5,
+                        shadowSize: 0,
+                        data: info2.list,
+                        highlightColor: "#808080",
+                        lines: {show: true}
+                    }], {
+                        grid: {
+                            lineWidth: 0.5,
+                            borderWidth: 0.5//边框宽度
+                        },
+                        xaxis: {
+                            ticks: !1                            // dates
+                        },
+                        colors: ["#0c64d8"],
+                        lineWidth: 0.5
+
+                    });
+                    $.plot($("#placeholder2_compare2"), [{
+                        lineWidth: 0.5,
+                        shadowSize: 0,
+                        data: info2.list2,
+                        highlightColor: "#808080",
+                        lines: {show: true}
+                    }], {
+                        grid: {
+                            lineWidth: 0.5,
+                            borderWidth: 0.5//边框宽度
+                        },
+                        xaxis: {
+                            ticks: !1                            // dates
+                        },
+                        colors: ["#0c64d8"],
+                        lineWidth: 0.5
+
+                    });
+
+            });
+
+        }
     });
 
     $(document).ready(function () {
@@ -288,12 +425,6 @@
         });
     }
 
-    $("#close-button").click(function () {
-        $("#background").css('display', 'none');
-    });
-    $("#close-button2").click(function () {
-        $("#background2").css('display', 'none');
-    });
 
     // 走势图
     function showGotoLine(code, param, shortname) {
@@ -353,8 +484,8 @@
     }
 
     // 类似
-    function showSame(code) {
-        $("#title_dialog2").text("有持仓相同");
+    function showSame(code, shortname) {
+        $("#title_dialog2").text(shortname + "-持仓相同");
         $("#background2").css('display', 'block');
         $.get("<%=basePath%>fund/fund_same?code=" + code, function (data, status) {
             var html = "";
@@ -365,8 +496,6 @@
             }
             $("#div3_dialog2").html(html);
         });
-
-
     }
 
 
@@ -534,7 +663,7 @@
                                 "<a class=\"edit ml10\" style=\"color:black;\" href=\"javascript:showGotoLine('" + code + "','3y','" + shortname + "')\" title=\"走势图\">" +
                                 "<span class=\"glyphicon glyphicon-cloud\"></span>" +
                                 "</a>&emsp;" +
-                                "<a class=\"edit ml10\" style=\"color:black;\" href=\"javascript:showSame('" + code + "')\" title=\"类似基金\">" +
+                                "<a class=\"edit ml10\" style=\"color:black;\" href=\"javascript:showSame('" + code + "','" + shortname + "')\" title=\"类似基金\">" +
                                 "<span class=\"glyphicon glyphicon-magnet\"></span>" +
                                 "</a>&emsp;" +
                                 "<a class=\"remove ml10\" style=\"color:black;\" href=\"javascript:del('" + code + "')\" title=\"删除\">" +
@@ -544,5 +673,5 @@
 
             });
 </script>
-
+</body>
 </html>

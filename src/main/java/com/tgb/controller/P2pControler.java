@@ -235,8 +235,8 @@ public class P2pControler {
         else if (id == 3) str = "WHERE zhiji_rank !=0 order by zhiji_rank asc";
         else if (id == 4) str = "WHERE gentou_rank !=0 order by gentou_rank asc";
         else if (id == 5) str = "where rate3_return not in('') order by rate3_return desc";
-        else if (id == 6) str = "ORDER BY score desc";
-        else if (id == 7) str = "WHERE is_love!='0'  ORDER BY FIELD(is_love, '10', '9', '8', '7', '6', '5', '4', '3')";
+        else if (id == 6) str = "ORDER BY score desc,is_love desc";
+        else if (id == 7) str = "WHERE is_love!='0'  ORDER BY FIELD(is_love, '10', '9', '8', '7', '6', '5', '4', '3'),is_love desc";
         List<P2pInfo> findAll = p2pService.findAllByStr(str);
         request.setAttribute("platList", findAll);
         request.setAttribute("order_id", id);

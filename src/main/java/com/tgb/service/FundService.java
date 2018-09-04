@@ -23,4 +23,6 @@ public interface FundService {
     void insertSql(String insertSql);
 
     List<TFundStockRelation>  findStockByCode(String code);
+
+    List<List<Object>> getFundLineLists(String code,String param);
 }

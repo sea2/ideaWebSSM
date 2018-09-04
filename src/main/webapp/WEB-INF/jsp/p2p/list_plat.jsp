@@ -95,7 +95,7 @@
 
 
         //修改分数
-        function updateScore(id,oldscore, me) {
+        function updateScore(id, oldscore, me) {
             if ($(me).val() !== oldscore)
                 $.get("<%=basePath%>app/updateScore?id=" + id + '&score=' + $(me).val(), function (data) {
                 });
@@ -131,8 +131,12 @@
         function addPlat() {//添加平台
             $("#add_dialog_background").css('display', 'block');
         }
-        function thirdPage() {//第三方
-            window.location.href = "<%=basePath%>p2p/part_list_page" ;
+
+        function thirdPage(page) {//页面跳转
+            if (page === 1)
+                window.location.href = "<%=basePath%>p2p/part_list_page";
+            else if (page === 2)
+                window.location.href = "<%=basePath%>html/饼图_平台占比.html";
         }
 
         function remark(id, remark, name) {
@@ -147,7 +151,7 @@
             var remark_new = $("#textarea_text").val();
             var id = $("#record_id").val();
 
-            if (remark_new !== "" && remark_new!== null &&  remark_new!== undefined)//如果返回的有内容
+            if (remark_new !== "" && remark_new !== null && remark_new !== undefined)//如果返回的有内容
             {
                 $.get("<%=basePath%>app/updateRemark?id=" + id + '&remark=' + remark_new, function (data) {
                 });
@@ -160,6 +164,7 @@
             window.location.reload();
 
         }
+
         function addPlatInfo() {
             var name = $("input[name='plat_name']").val();
             var score = $("input[name='score_add']").val();
@@ -169,25 +174,28 @@
                 alert('最大为10');
             } else {
                 $.ajax({
-                    url : '<%=basePath%>/app/addPlat?name=' + name
+                    url: '<%=basePath%>/app/addPlat?name=' + name
                     + '&score=' + score,
-                    type : 'GET',
-                    dataType : "jsonp",
+                    type: 'GET',
+                    dataType: "jsonp",
                     //传递给请求处理程序，用以获得jsonp回调函数名的参数名(默认为:callback)
-                    jsonp : "callback",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
-                    jsonpCallback : "jsonpCallback",
-                    timeout : 1000,
-                    cache : false,
-                    beforeSend : LoadFunction, //加载执行方法
-                    error : erryFunction, //错误执行方法
-                    success : succFunction
+                    jsonp: "callback",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
+                    jsonpCallback: "jsonpCallback",
+                    timeout: 1000,
+                    cache: false,
+                    beforeSend: LoadFunction, //加载执行方法
+                    error: erryFunction, //错误执行方法
+                    success: succFunction
                     //成功执行方法
                 })
+
                 function LoadFunction() {
                 }
+
                 function erryFunction() {
                     alert("error");
                 }
+
                 function succFunction(tt) {
                     var code = tt.code;
                     if (code == 200) {
@@ -216,9 +224,8 @@
             <th class='button_a' onclick="reloadRefre()">总览</th>
             <th class='button_a first_td' onclick="addPlat()">添加平台</th>
             <th class='button_a'><a href='p2p/update_data' class="a_top_button">更新数据</a></th>
-            <th class='button_a' colspan="2" onclick="thirdPage()">第三方评级</th>
-            <th class='button_a'></th>
-            <th class='button_a'></th>
+            <th class='button_a' colspan="2" onclick="thirdPage(1)">第三方评级</th>
+            <th class='button_a' colspan="2" onclick="thirdPage(2)">我的理想持仓</th>
             <th class='button_a'></th>
             <th class='button_a'></th>
             <th class='button_a' colspan="3"><input type='text' id='search_text'
@@ -393,7 +400,8 @@
                             </c:otherwise>
                         </c:choose>
                     </td>
-                    <td class="td_common"><input type='number' name='score' onblur="updateScore('${ plat.id}','${ plat.score}',this)"
+                    <td class="td_common"><input type='number' name='score'
+                                                 onblur="updateScore('${ plat.id}','${ plat.score}',this)"
                                                  onkeypress='return event.keyCode>=48&&event.keyCode<=57'
                                                  ng-pattern='/[^a-zA-Z]/'
                                                  style='color: #555555; font-size: 16px;width: 50px'
@@ -434,12 +442,12 @@
 <div id="background" class="back">
     <div id="div1_dialog" class="content">
         <div id="close_top">
-            <button id="close-button" >×</button>
+            <button id="close-button">×</button>
             <h2 id="title_dialog">自评</h2>
         </div>
         <div id="div2_dialog">
             <label>
-<textarea  style="width:90%;height:200px;margin: 10px" id="textarea_text">
+<textarea style="width:90%;height:200px;margin: 10px" id="textarea_text">
 </textarea>
             </label>
             <input type="hidden" id="record_id"/>
@@ -456,11 +464,11 @@
 <div id="add_dialog_background">
     <div id="add_dialog_main" class="content">
         <div id="add_dialog_top">
-            <button id="add_dialog_closen" >×</button>
-            <h1>  &nbsp; &nbsp;添加
+            <button id="add_dialog_closen">×</button>
+            <h1> &nbsp; &nbsp;添加
             </h1>
         </div>
-        <form action="" method="get" class="basic-grey" >
+        <form action="" method="get" class="basic-grey">
 
             <label>
                 <span>平台名称：</span>
@@ -468,7 +476,8 @@
             </label>
             <label>
                 <span>平台得分（10分制）：</span>
-                <input type="number" name="score_add" onkeypress="return event.keyCode>=48&&event.keyCode<=57" ng-pattern="/[^a-zA-Z]/"/>
+                <input type="number" name="score_add" onkeypress="return event.keyCode>=48&&event.keyCode<=57"
+                       ng-pattern="/[^a-zA-Z]/"/>
             </label>
 
             <label>

@@ -235,7 +235,7 @@ public class FundController {
                     }
                 }
             }
-            if (getList.size() > 1) {
+            if (getList.size() >= 3) {
                 int count = getList.size();
                 List<Object> ob = new ArrayList<>();
                 StringBuilder sb = new StringBuilder();
@@ -250,6 +250,75 @@ public class FundController {
         }
 
         return returnList;
+    }
+
+    @RequestMapping("fund/fund_compare")
+    @ResponseBody
+    public List<FundCompareInfo> getCompareInfo(HttpServletRequest request) {
+        List<FundCompareInfo> listFundCompareInfo = new ArrayList<>();
+        String code = request.getParameter("code");
+        String[] array = code.split(",");
+        if (array != null && array.length > 1) {
+            List<TFundStockRelation> originalList = fundService.findStockByCode(array[0]);
+            List<TFundStockRelation> newList = fundService.findStockByCode(array[1]);
+
+            List<TFundStockRelation> getList = new ArrayList<>();
+            for (TFundStockRelation originalInfo : originalList) {
+                for (TFundStockRelation newInfo : newList) {
+                    if (newInfo.getStockCode().equals(originalInfo.getStockCode())) {
+                        originalInfo.setStockName("<span style=\"color: #ff4343;\">" + originalInfo.getStockName() + "</span>");
+                        newInfo.setStockName("<span style=\"color: #ff4343;\">" + newInfo.getStockName() + "</span>");
+                        getList.add(newInfo);
+                    }
+                }
+            }
+
+
+            MyHasFundInfo hasFundInfo = fundService.findByCode(array[0]);
+            FundCompareInfo mFundCompareInfo1 = new FundCompareInfo();
+            mFundCompareInfo1.setCode(hasFundInfo.getFund_has_code());
+            mFundCompareInfo1.setName(hasFundInfo.getFund_name());
+            StringBuilder originalInfoStringBuilder = new StringBuilder();
+            for (int i = 0; i < originalList.size(); i++) {
+                originalInfoStringBuilder.append(originalList.get(i).getStockName());
+                if (i == 4) originalInfoStringBuilder.append("<br/>");
+                originalInfoStringBuilder.append("&emsp;&emsp;");
+            }
+            mFundCompareInfo1.setHold_stocks(originalInfoStringBuilder.toString());
+            for (int i = 0; i < 2; i++) {
+                String param;
+                if (i == 0) param = "3y";
+                else param = "n";
+                List<List<Object>> list = fundService.getFundLineLists(hasFundInfo.getFund_has_code(), param);
+                if (i == 0) mFundCompareInfo1.setList(list);
+                else mFundCompareInfo1.setList2(list);
+            }
+            listFundCompareInfo.add(mFundCompareInfo1);
+
+
+            MyHasFundInfo hasFundInfo2 = fundService.findByCode(array[1]);
+            FundCompareInfo mFundCompareInfo2 = new FundCompareInfo();
+            mFundCompareInfo2.setCode(hasFundInfo2.getFund_has_code());
+            mFundCompareInfo2.setName(hasFundInfo2.getFund_name());
+            StringBuilder originalInfoStringBuilder2 = new StringBuilder();
+            for (int i = 0; i < newList.size(); i++) {
+                originalInfoStringBuilder2.append(newList.get(i).getStockName());
+                if (i == 4) originalInfoStringBuilder2.append("<br/>");
+                originalInfoStringBuilder2.append("&emsp;&emsp;");
+            }
+            mFundCompareInfo2.setHold_stocks(originalInfoStringBuilder2.toString());
+            for (int i = 0; i < 2; i++) {
+                String param;
+                if (i == 0) param = "3y";
+                else param = "n";
+                List<List<Object>> list = fundService.getFundLineLists(hasFundInfo2.getFund_has_code(), param);
+                if (i == 0) mFundCompareInfo2.setList(list);
+                else mFundCompareInfo2.setList2(list);
+            }
+            listFundCompareInfo.add(mFundCompareInfo2);
+
+        }
+        return listFundCompareInfo;
     }
 
     @RequestMapping("fund/saveMyFund")

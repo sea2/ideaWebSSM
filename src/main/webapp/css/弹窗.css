@@ -1,6 +1,4 @@
 
-
-
 #background {
     display: none;
     position: fixed;
@@ -8,7 +6,7 @@
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0,0,0,0.3);
+    background-color: rgba(0, 0, 0, 0.3);
     text-align: center;
 }
 
@@ -19,32 +17,27 @@
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0,0,0,0.3);
+    background-color: rgba(0, 0, 0, 0.3);
     text-align: center;
 }
-
-
 
 #div1_dialog {
-    background:#eeeeee;
+    background: #eeeeee;
     width: 50%;
     z-index: 1;
     margin: 12% auto;
     overflow: auto;
     text-align: center;
 }
-
 
 .dialog_content {
-    background:#eeeeee;
+    background: #eeeeee;
     width: 50%;
     z-index: 1;
-    margin: 12% auto;
+    margin: 2% auto;
     overflow: auto;
     text-align: center;
 }
-
-
 
 #dialog_button_save {
     margin-top: 10px;
@@ -63,28 +56,36 @@
 }
 
 #div2_dialog {
-    background:#eeeeee;
+    background: #eeeeee;
     margin: auto;
     height: 300px;
     text-align: center;
-    vertical-align:middle;
+    vertical-align: middle;
 }
+
 #div3_dialog {
-    background:#eeeeee;
+    background: #eeeeee;
     margin: auto;
     height: 400px;
     text-align: center;
-    vertical-align:middle;
+    vertical-align: middle;
 }
+
 .div3_dialog {
-    background:#eeeeee;
+    background: #eeeeee;
     margin: auto;
     height: 400px;
     text-align: center;
-    vertical-align:middle;
+    vertical-align: middle;
 }
 
-
+.div3_dialog_compare {
+    background: #eeeeee;
+    margin: auto;
+    height: 600px;
+    text-align: center;
+    vertical-align: middle;
+}
 #close_top {
     padding: 5px;
     background: #09c;
@@ -103,7 +104,7 @@
     float: right;
     font-size: 40px;
     color: white;
-    margin: 10px;
+    margin-right: 20px;
     background-color: transparent;
     border: none;
     text-align: center;
@@ -111,11 +112,12 @@
     display: inline-block;
     cursor: pointer;
 }
+
 .close-button {
     float: right;
     font-size: 40px;
     color: white;
-    margin: 10px;
+    margin-right: 20px;
     background-color: transparent;
     border: none;
     text-align: center;
@@ -131,16 +133,13 @@
     color: white;
 }
 
-
-
-
-
 /*添加弹出框*/
 
-#add_dialog_close{
+#add_dialog_close {
     float: right;
     font-size: 40px;
 }
+
 #add_dialog_background {
     display: none;
     position: fixed;
@@ -148,30 +147,28 @@
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0,0,0,0.3);
+    background-color: rgba(0, 0, 0, 0.3);
 }
 
-#add_dialog_main{
-    background:#eeeeee;
+#add_dialog_main {
+    background: #eeeeee;
     width: 50%;
     z-index: 1;
     margin: 8% auto;
     overflow: no-display;
 }
 
-
-#add_dialog_top{
+#add_dialog_top {
     color: white;
     background: #09c;
-     padding: 10px;
+    padding: 10px;
 }
 
-
-#add_dialog_closen{
+#add_dialog_closen {
     float: right;
     font-size: 40px;
     color: white;
-  margin-right: 10px;
+    margin-right: 10px;
     margin-top: 10px;
     background-color: transparent;
     border: none;

@@ -23,7 +23,7 @@ public class TestClass {
         System.out.println(count = +5);
 
         System.out.println(count += 5);
-
+        //泛型
         Info<Number> mui = new Info<Number>();
         mui.setData(1);
         Number intNum = mui.getData();

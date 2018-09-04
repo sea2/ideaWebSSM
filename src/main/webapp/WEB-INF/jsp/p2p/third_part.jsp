@@ -233,7 +233,9 @@
                                 var array = value.split("**");
                                 if (array != null && array.length > 0) {
                                     for (var i = 0; i < array.length; i++) {
+                                        if(i%3===0)
                                         strHtml = strHtml + "<p>" + array[i] + "</p>";
+                                        else   strHtml = strHtml + "<span>" + array[i] + "</span>";
                                     }
                                 }
                                 return strHtml;
