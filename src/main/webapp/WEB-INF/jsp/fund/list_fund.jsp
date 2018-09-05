@@ -162,7 +162,8 @@
                      style="width:350px;  height:150px; text-align:center;line-height:40px;margin-left: 60px"></div>
             </div>
             <div style="float:left;width: 450px;text-align:center;;margin-top: 20px">
-                <div id="compare_info_2"></div>  <br/>
+                <div id="compare_info_2"></div>
+                <br/>
                 <span style="font-size: 1.5rem;margin-top: 40px">近三个月</span>
                 <div id="placeholder_compare2"
                      style="width:350px;    height:150px;  text-align:center;line-height:40px;margin-left: 60px">
@@ -170,9 +171,9 @@
                 <span style="font-size: 1.5rem">近一年</span>
                 <div id="placeholder2_compare2"
                      style="width:350px;  height:150px; text-align:center;line-height:40px;margin-left: 60px"></div>
+            </div>
         </div>
     </div>
-</div>
 </div>
 
 
@@ -219,82 +220,82 @@
             $("#title_dialog3").html("对比");
             $("#background3").css('display', 'block');
             $.get("<%=basePath%>fund/fund_compare?code=" + array[0].fcode + "," + array[1].fcode, function (data, status) {
-                    var info = data[0];
-                    $("#compare_info_1").html("<span class='main_font'>"+info.name + info.code + "</span>  <br/><br/>" + info.hold_stocks);
-                    $.plot($("#placeholder_compare1"), [{
+                var info = data[0];
+                $("#compare_info_1").html("<span class='main_font'>" + info.name + info.code + "</span>  <br/><br/>" + info.hold_stocks);
+                $.plot($("#placeholder_compare1"), [{
+                    lineWidth: 0.5,
+                    shadowSize: 0,
+                    data: info.list,
+                    highlightColor: "#808080",
+                    lines: {show: true}
+                }], {
+                    grid: {
                         lineWidth: 0.5,
-                        shadowSize: 0,
-                        data: info.list,
-                        highlightColor: "#808080",
-                        lines: {show: true}
-                    }], {
-                        grid: {
-                            lineWidth: 0.5,
-                            borderWidth: 0.5//边框宽度
-                        },
-                        xaxis: {
-                            ticks: !1                            // dates
-                        },
-                        colors: ["#0c64d8"],
-                        lineWidth: 0.5
+                        borderWidth: 0.5//边框宽度
+                    },
+                    xaxis: {
+                        ticks: !1                            // dates
+                    },
+                    colors: ["#0c64d8"],
+                    lineWidth: 0.5
 
-                    });
-                    $.plot($("#placeholder2_compare1"), [{
+                });
+                $.plot($("#placeholder2_compare1"), [{
+                    lineWidth: 0.5,
+                    shadowSize: 0,
+                    data: info.list2,
+                    highlightColor: "#808080",
+                    lines: {show: true}
+                }], {
+                    grid: {
                         lineWidth: 0.5,
-                        shadowSize: 0,
-                        data: info.list2,
-                        highlightColor: "#808080",
-                        lines: {show: true}
-                    }], {
-                        grid: {
-                            lineWidth: 0.5,
-                            borderWidth: 0.5//边框宽度
-                        },
-                        xaxis: {
-                            ticks: !1                            // dates
-                        },
-                        colors: ["#0c64d8"],
-                        lineWidth: 0.5
+                        borderWidth: 0.5//边框宽度
+                    },
+                    xaxis: {
+                        ticks: !1                            // dates
+                    },
+                    colors: ["#0c64d8"],
+                    lineWidth: 0.5
 
-                    });
-                    var info2 = data[1];
-                    $("#compare_info_2").html("<span class='main_font'>"+info2.name + info2.code + "</span>  <br/><br/>" + info2.hold_stocks);
-                    $.plot($("#placeholder_compare2"), [{
+                });
+                var info2 = data[1];
+                $("#compare_info_2").html("<span class='main_font'>" + info2.name + info2.code + "</span>  <br/><br/>" + info2.hold_stocks);
+                $.plot($("#placeholder_compare2"), [{
+                    lineWidth: 0.5,
+                    shadowSize: 0,
+                    data: info2.list,
+                    highlightColor: "#808080",
+                    lines: {show: true}
+                }], {
+                    grid: {
                         lineWidth: 0.5,
-                        shadowSize: 0,
-                        data: info2.list,
-                        highlightColor: "#808080",
-                        lines: {show: true}
-                    }], {
-                        grid: {
-                            lineWidth: 0.5,
-                            borderWidth: 0.5//边框宽度
-                        },
-                        xaxis: {
-                            ticks: !1                            // dates
-                        },
-                        colors: ["#0c64d8"],
-                        lineWidth: 0.5
+                        borderWidth: 0.5//边框宽度
+                    },
+                    xaxis: {
+                        ticks: !1                            // dates
+                    },
+                    colors: ["#0c64d8"],
+                    lineWidth: 0.5
 
-                    });
-                    $.plot($("#placeholder2_compare2"), [{
+                });
+                $.plot($("#placeholder2_compare2"), [{
+                    lineWidth: 0.5,
+                    shadowSize: 0,
+                    data: info2.list2,
+                    highlightColor: "#808080",
+                    lines: {show: true}
+                }], {
+                    grid: {
                         lineWidth: 0.5,
-                        shadowSize: 0,
-                        data: info2.list2,
-                        highlightColor: "#808080",
-                        lines: {show: true}
-                    }], {
-                        grid: {
-                            lineWidth: 0.5,
-                            borderWidth: 0.5//边框宽度
-                        },
-                        xaxis: {
-                            ticks: !1                            // dates
-                        },
-                        colors: ["#0c64d8"],
-                        lineWidth: 0.5
+                        borderWidth: 0.5//边框宽度
+                    },
+                    xaxis: {
+                        ticks: !1                            // dates
+                    },
+                    colors: ["#0c64d8"],
+                    lineWidth: 0.5
 
-                    });
+                });
 
             });
 
@@ -524,7 +525,6 @@
                 sortable: true,                     //是否启用排序
                 sortOrder: "asc",                   //排序方式
                 sidePagination: "client",           //分页方式：client客户端分页，server服务端分页（*）
-                height: 2000,
                 //  contentType : "application/x-www-form-urlencoded",
                 showColumns: true,                  //是否显示所有的列（选择显示的列）
                 showRefresh: true,                  //是否显示刷新按钮
@@ -583,7 +583,9 @@
                         align: 'center' // 左右居中
                         // valign: 'middle', // 上下居中
 
-                    }, {
+                    },
+
+                    {
                         field: 'shortname',
                         title: '名称',
                         formatter: function (value, row, index) { // 单元格格式化函数
@@ -594,7 +596,15 @@
                         },
                         align: 'center',
                         valign: 'middle'
-                    }, {
+                    },
+                    {   sortable: true,
+                        field: 'fund_type',
+                        title: '类型',
+                        align: 'center',
+                        valign: 'middle'
+                    },
+
+                    {
                         field: 'gszzl',
                         title: '最新估值',
                         align: 'center',

@@ -10,10 +10,10 @@
 
 
     <select id="findAll" resultType="MyHasFundInfo">
-      SELECT fund_code fund_has_code,fund_name fund_name,fund_buy_price fund_buy_price,fund_has_money fund_has_money FROM t_fund
+      SELECT fund_code fund_has_code,fund_name fund_name,fund_buy_price fund_buy_price,fund_has_money fund_has_money,fund_type fund_type FROM t_fund
     </select>
     <select id="findByCode" resultType="MyHasFundInfo" parameterType="String">
-      SELECT fund_code fund_has_code,fund_name fund_name,fund_buy_price fund_buy_price,fund_has_money fund_has_money FROM t_fund where fund_code=#{fund_has_code}
+      SELECT fund_code fund_has_code,fund_name fund_name,fund_buy_price fund_buy_price,fund_has_money fund_has_money,fund_type fund_type FROM t_fund where fund_code=#{fund_has_code}
     </select>
 
     <update id="updateMyFund" parameterType="MyHasFundInfo" >

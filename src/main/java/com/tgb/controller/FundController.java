@@ -40,7 +40,6 @@ public class FundController {
 
     /**
      * 获取所有列表
-     *
      * @param request 166009,166002,163402,340007,340008,519068,519066,470028,420005,001632,001631,001986,070032,001616,070023,160222,160225,020026,161725,110022,519700,000251,100032,530018,002851,217016,001878,000988,110023
      * @return
      */
@@ -71,13 +70,13 @@ public class FundController {
             map.put("pageIndex", "1");
             map.put("ReqNo", "1524621947948");
             map.put("CompanyId", "10000");
-            map.put("pageSize", "");
+            map.put("pageSize", findAll.size()+"");
             map.put("plat", "Android");
             map.put("appType", "ttjj");
             map.put("BUY", "true");
             map.put("deviceid", "db5639755e30b8af059c1d78a921c348%7C%7C666038230091568");
             map.put("product", "EFund");
-            map.put("Version", "5.2.5");
+            map.put("Version", "5.5.0");
             map.put("Fcodes", stringBuilder.toString());
             String jsonStr1 = HttpUtil.doHttpPost("https://fundmobapi.eastmoney.com/FundMNewApi/FundMNFInfo", map);
             Gson gson1 = new Gson();
@@ -105,7 +104,7 @@ public class FundController {
                 });
 
 
-            List<NeedShowFundInfo> listData = new ArrayList<NeedShowFundInfo>();
+            List<NeedShowFundInfo> listData = new ArrayList<>();
             for (TianTianMyDatasBean mTianTianMyDatasBean : mTianTianMyDatasBeanList) {
                 NeedShowFundInfo mNeedShowFundInfo = new NeedShowFundInfo();
                 mNeedShowFundInfo.setFcode(mTianTianMyDatasBean.getFCODE());
@@ -114,6 +113,7 @@ public class FundController {
                 mNeedShowFundInfo.setNav(mTianTianMyDatasBean.getNAV());
                 mNeedShowFundInfo.setNavChgrt(mTianTianMyDatasBean.getNAVCHGRT());
                 mNeedShowFundInfo.setShortname(mTianTianMyDatasBean.getSHORTNAME() + "**" + mTianTianMyDatasBean.getFCODE());
+
                 for (MyHasFundInfo mMyHasFundInfo : findAll) {
                     if (mMyHasFundInfo.getFund_has_code().equals(mTianTianMyDatasBean.getFCODE())) {
                         double getNew = Double.parseDouble(mTianTianMyDatasBean.getNAV());
@@ -127,11 +127,12 @@ public class FundController {
                         mNeedShowFundInfo.setMoney_old(NumberUtils.getZeroScale(mMyHasFundInfo.getFund_has_money()) + "");
                         //买入净值
                         mNeedShowFundInfo.setFund_buy_price(StringUtils.keepFour(mMyHasFundInfo.getFund_buy_price()));
+                        //基金类型
+                        mNeedShowFundInfo.setFund_type(mMyHasFundInfo.getFund_type());
                         break;
                     }
                 }
                 listData.add(mNeedShowFundInfo);
-
             }
 
             //金额排序
@@ -169,6 +170,7 @@ public class FundController {
 
 
     @RequestMapping("fund/del")
+    @ResponseBody
     public int delPlat(HttpServletRequest request) {
         String code = request.getParameter("code");
         String deleteSql = " t_fund where fund_code='" + code + "'";
@@ -316,7 +318,6 @@ public class FundController {
                 else mFundCompareInfo2.setList2(list);
             }
             listFundCompareInfo.add(mFundCompareInfo2);
-
         }
         return listFundCompareInfo;
     }

@@ -7,8 +7,17 @@ public class MyHasFundInfo {
     private double fund_buy_price;
     private double fund_has_amount;
     private String fund_has_code;
+    private String fund_type;
     private String fund_name;
     private int is_hold;
+
+    public String getFund_type() {
+        return fund_type;
+    }
+
+    public void setFund_type(String fund_type) {
+        this.fund_type = fund_type;
+    }
 
     public int getIs_hold() {
         return is_hold;

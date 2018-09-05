@@ -13,6 +13,15 @@ public class NeedShowFundInfo {
     private String income;
     private String rate;
     private String fund_buy_price;
+    private String fund_type;
+
+    public String getFund_type() {
+        return fund_type;
+    }
+
+    public void setFund_type(String fund_type) {
+        this.fund_type = fund_type;
+    }
 
     public String getRate() {
         return rate;
