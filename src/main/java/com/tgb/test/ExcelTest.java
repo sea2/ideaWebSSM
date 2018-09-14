@@ -1,24 +1,6 @@
 package com.tgb.test;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-
-import org.springframework.beans.factory.annotation.Autowired;
-
-import com.tgb.model.User;
 import com.tgb.service.UserService;
-import com.tgb.util.StringUtils;
-
 import jxl.Cell;
 import jxl.CellType;
 import jxl.Sheet;
@@ -28,8 +10,16 @@ import jxl.write.WritableSheet;
 import jxl.write.WritableWorkbook;
 import jxl.write.WriteException;
 import jxl.write.biff.RowsExceededException;
+import org.springframework.beans.factory.annotation.Autowired;
 
-public class excel {
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.*;
+import java.util.Map.Entry;
+
+public class ExcelTest {
 	@Autowired
 	private static UserService userService;
 

@@ -1,38 +1,5 @@
 package com.tgb.controller;
 
-import java.io.BufferedReader;
-import java.io.ByteArrayOutputStream;
-import java.io.DataOutputStream;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.apache.ibatis.annotations.Param;
-import org.codehaus.jackson.JsonParseException;
-import org.codehaus.jackson.map.JsonMappingException;
-import org.codehaus.jackson.map.ObjectMapper;
-import org.json.JSONException;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.springframework.web.multipart.commons.CommonsMultipartResolver;
-
 import com.tgb.entity.BaseRequestBody;
 import com.tgb.model.AddProject;
 import com.tgb.model.AllProject;
@@ -42,8 +9,22 @@ import com.tgb.model.ProjectResult.ProjectInfo;
 import com.tgb.service.DataService;
 import com.tgb.util.MD5Util;
 import com.tgb.util.StringUtils;
-
 import net.sf.json.JSONObject;
+import org.codehaus.jackson.JsonParseException;
+import org.codehaus.jackson.map.JsonMappingException;
+import org.codehaus.jackson.map.ObjectMapper;
+import org.json.JSONException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class DataController {
@@ -69,11 +50,11 @@ public class DataController {
 				dataTest.setString4(mAddprojectInfo.getProjecttype());
 				boolean bl = dataService.save(dataTest);
 				if (bl) {
-					mAddProject.setCode("200");
+					mAddProject.setCode(200);
 					mAddProject.setResult(mAddprojectInfo);
 				} else {
-					mAddProject.setCode("100");
-					mAddProject.setMessage("添加失败");
+					mAddProject.setCode(100);
+					mAddProject.setMsg("添加失败");
 				}
 			} catch (JsonParseException e) {
 				e.printStackTrace();
@@ -83,8 +64,8 @@ public class DataController {
 				e.printStackTrace();
 			}
 		} else {
-			mAddProject.setCode("100");
-			mAddProject.setMessage("未收到产品信息");
+			mAddProject.setCode(100);
+			mAddProject.setMsg("未收到产品信息");
 		}
 		return mAddProject;
 	}
@@ -107,12 +88,8 @@ public class DataController {
 	@ResponseBody
 	@RequestMapping(value = "app/account/adddatatestget", method = RequestMethod.GET)
 	public void addDataTest2(HttpServletRequest request, HttpServletResponse response) {
-		String jsonStr = "{\"code\":\"200\",\"result\":\"{}\"}";
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e1) {
-			e1.printStackTrace();
-		}
+		String jsonStr = "{\"code\":200,\"msg\":null,\"result\":{\"listproject\":[{\"projectname\":\"呵呵1\",\"projectmoney\":\"50\",\"projectid\":\"1\",\"projecttype\":\"1\"},{\"projectname\":\"hehe\",\"projectmoney\":\"100\",\"projectid\":\"2\",\"projecttype\":\"1\"},{\"projectname\":\"lhy\",\"projectmoney\":\"200\",\"projectid\":\"3\",\"projecttype\":\"1\"}]}}";
+
 		try {
 			response.setContentType("application/json;charset=UTF-8");
 			response.setCharacterEncoding("UTF-8");
@@ -141,7 +118,7 @@ public class DataController {
 			listproject.add(mProjectInfo);
 		}
 		mAddprojectResult.setListproject(listproject);
-		mAllProject.setCode("200");
+		mAllProject.setCode(200);
 		mAllProject.setResult(mAddprojectResult);
 		return mAllProject;
 	}
@@ -149,7 +126,13 @@ public class DataController {
 	@RequestMapping(value = "app/account/databytype", method = RequestMethod.POST)
 	public @ResponseBody AllProject getByType(@RequestBody JSONObject jsonObj, HttpServletRequest request,
 			HttpServletResponse response) {
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 		AllProject mAllProject = new AllProject();
+		System.out.println(jsonObj.toString());
 		if (jsonObj != null && jsonObj.has("type")) {
 			List<DataTest> list = dataService.findByType(StringUtils.toInt(jsonObj.getString("type"), 0));
 			ProjectResult mAddprojectResult = new ProjectResult();
@@ -164,12 +147,12 @@ public class DataController {
 				listproject.add(mProjectInfo);
 			}
 			mAddprojectResult.setListproject(listproject);
-			mAllProject.setCode("200");
+			mAllProject.setCode(200);
 			mAllProject.setResult(mAddprojectResult);
 
 		} else {
-			mAllProject.setCode("100");
-			mAllProject.setMessage("未收到产品type");
+			mAllProject.setCode(100);
+			mAllProject.setMsg("未收到产品type");
 		}
 		return mAllProject;
 	}
@@ -190,11 +173,11 @@ public class DataController {
 			mProjectInfo.setProjecttype(datatest.getString4());
 			listproject.add(mProjectInfo);
 			result.setListproject(listproject);
-			mAllProject.setCode("200");
+			mAllProject.setCode(200);
 			mAllProject.setResult(result);
 		} else {
-			mAllProject.setCode("100");
-			mAllProject.setMessage("未收到产品type");
+			mAllProject.setCode(100);
+			mAllProject.setMsg("未收到产品type");
 		}
 		return mAllProject;
 	}

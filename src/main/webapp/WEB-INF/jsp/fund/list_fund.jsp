@@ -151,7 +151,7 @@
         </div>
         <div id="div3_dialog3" class="div3_dialog_compare">
             <div style="float:left;width: 450px;text-align:center;margin-top: 20px">
-                <div id="compare_info_1"></div>
+                <div id="compare_info_1" style="text-align: left"></div>
                 <br/>
                 <span style="font-size: 1.5rem;margin-top: 40px">近三个月</span>
                 <div id="placeholder_compare1"
@@ -162,7 +162,7 @@
                      style="width:350px;  height:150px; text-align:center;line-height:40px;margin-left: 60px"></div>
             </div>
             <div style="float:left;width: 450px;text-align:center;;margin-top: 20px">
-                <div id="compare_info_2"></div>
+                <div id="compare_info_2" style="text-align: left"></div>
                 <br/>
                 <span style="font-size: 1.5rem;margin-top: 40px">近三个月</span>
                 <div id="placeholder_compare2"
@@ -221,7 +221,7 @@
             $("#background3").css('display', 'block');
             $.get("<%=basePath%>fund/fund_compare?code=" + array[0].fcode + "," + array[1].fcode, function (data, status) {
                 var info = data[0];
-                $("#compare_info_1").html("<span class='main_font'>" + info.name + info.code + "</span>  <br/><br/>" + info.hold_stocks);
+                $("#compare_info_1").html("&emsp;&emsp;<span class='main_font'>" + info.name + info.code + "</span>  <br/><br/>" + info.hold_stocks);
                 $.plot($("#placeholder_compare1"), [{
                     lineWidth: 0.5,
                     shadowSize: 0,
@@ -259,7 +259,7 @@
 
                 });
                 var info2 = data[1];
-                $("#compare_info_2").html("<span class='main_font'>" + info2.name + info2.code + "</span>  <br/><br/>" + info2.hold_stocks);
+                $("#compare_info_2").html("&emsp;&emsp;<span class='main_font'>" + info2.name + info2.code + "</span>  <br/><br/>" + info2.hold_stocks);
                 $.plot($("#placeholder_compare2"), [{
                     lineWidth: 0.5,
                     shadowSize: 0,

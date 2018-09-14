@@ -282,9 +282,9 @@ public class FundController {
             mFundCompareInfo1.setName(hasFundInfo.getFund_name());
             StringBuilder originalInfoStringBuilder = new StringBuilder();
             for (int i = 0; i < originalList.size(); i++) {
+                originalInfoStringBuilder.append("&emsp;");
                 originalInfoStringBuilder.append(originalList.get(i).getStockName());
-                if (i == 4) originalInfoStringBuilder.append("<br/>");
-                originalInfoStringBuilder.append("&emsp;&emsp;");
+                if (i!=0&&i%4== 0) originalInfoStringBuilder.append("<br/>");
             }
             mFundCompareInfo1.setHold_stocks(originalInfoStringBuilder.toString());
             for (int i = 0; i < 2; i++) {
@@ -304,9 +304,9 @@ public class FundController {
             mFundCompareInfo2.setName(hasFundInfo2.getFund_name());
             StringBuilder originalInfoStringBuilder2 = new StringBuilder();
             for (int i = 0; i < newList.size(); i++) {
+                originalInfoStringBuilder2.append("&emsp;");
                 originalInfoStringBuilder2.append(newList.get(i).getStockName());
-                if (i == 4) originalInfoStringBuilder2.append("<br/>");
-                originalInfoStringBuilder2.append("&emsp;&emsp;");
+                if (i!=0&&i%4== 0) originalInfoStringBuilder2.append("<br/>");
             }
             mFundCompareInfo2.setHold_stocks(originalInfoStringBuilder2.toString());
             for (int i = 0; i < 2; i++) {
