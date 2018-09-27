@@ -1,6 +1,7 @@
 package com.tgb.test;
 
 import com.tgb.util.DateUtils;
+import com.tgb.util.MD5Util;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -31,7 +32,11 @@ public class DateTest {
         System.out.println("毫秒[1483159625851]对应日期时间字符串：" + format.format(millisecond));
 
 
-        System.out.println(toDteFromStringByFormat(format.format(millisecond), "yyyyMMdd")+"--" + isSameDay(toDteFromStringByFormat(format.format(millisecond), "yyyyMMdd"), 0));
+        System.out.println(toDteFromStringByFormat(format.format(millisecond), "yyyyMMdd") + "--" + isSameDay(toDteFromStringByFormat(format.format(millisecond), "yyyyMMdd"), 0));
+
+        String str = "123456abcdef";
+        System.out.println(MD5Util.MD5(str));
+        System.out.println(Double.parseDouble(Double.MAX_VALUE+""));
 
 
     }

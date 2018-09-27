@@ -586,6 +586,7 @@
                     },
 
                     {
+                        sortable: true,
                         field: 'shortname',
                         title: '名称',
                         formatter: function (value, row, index) { // 单元格格式化函数

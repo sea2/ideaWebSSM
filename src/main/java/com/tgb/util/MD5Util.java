@@ -60,10 +60,9 @@ public class MD5Util {
 			int j = md.length;
 			char str[] = new char[j * 2];
 			int k = 0;
-			for (int i = 0; i < j; i++) {
-				byte byte0 = md[i];
-				str[k++] = hexDigits[byte0 >>> 4 & 0xf];
-				str[k++] = hexDigits[byte0 & 0xf];
+			for (byte byteOne : md) {
+				str[k++] = hexDigits[byteOne >>> 4 & 0xf];
+				str[k++] = hexDigits[byteOne & 0xf];
 			}
 			return new String(str).toLowerCase();
 		} catch (Exception e) {
