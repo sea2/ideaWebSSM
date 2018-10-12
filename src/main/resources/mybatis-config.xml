@@ -22,6 +22,7 @@
 		<mapper resource="com/tgb/mapper/dataMapper.xml" />
 		<mapper resource="com/tgb/mapper/p2pMapper.xml" />
 		<mapper resource="com/tgb/mapper/fundMapper.xml" />
+		<mapper resource="com/tgb/mapper/TMarkMapper.xml" />
 	</mappers>
 
 </configuration>  

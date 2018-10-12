@@ -40,10 +40,10 @@
 
 <body>
 
-
+<input type="text" value="${type}" id="main_type">
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title text-center">基金总览</h3>
+        <h3 class="panel-title text-center">待办事务</h3>
     </div>
     <DIV id="stock_all_info"></DIV>
 
@@ -55,9 +55,6 @@
             </button>
             <button id="btn_compare" type="button" class="btn btn-default">
                 <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>对比
-            </button>
-            <button id="btn_mark" type="button" class="btn btn-default">
-                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>待办事务
             </button>
             <button id="btn_delete" type="button" class="btn btn-default">
                 <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
@@ -79,14 +76,14 @@
                         <h4 class="modal-title" id="myModalLabel">编辑当前资料</h4>
                     </div>
                     <div class="modal-body">
-                        <input id="user_code" name="code" type="text" class="form-control" value="" placeholder="基金code"
+                        <input id="user_code" name="code" type="text" class="form-control" value="" placeholder="事务记录"
                                pattern="" required="required"/>
                         <br/>
-                        <input id="user_money" name="money" type="text" class="form-control" value="" placeholder="持有金额"
+                        <input id="user_money" name="money" type="text" class="form-control" value="1" placeholder="类型"
                                pattern="" required="required"/>
                         <br/>
-                        <input id="user_price" name="price" type="text" class="form-control" value=""
-                               placeholder="持有收益率：例如-17.51"
+                        <input id="user_price" name="price" type="text" class="form-control" value="4"
+                               placeholder="紧急程度"
                                pattern="" required="required"/>
                         <br/>
 
@@ -216,97 +213,6 @@
         });
     });
 
-    $("#btn_mark").click(function () {
-        window.location.href = "<%=basePath%>mark/getList?type=" + 1;
-    });
-    //对比
-    $("#btn_compare").click(function () {
-        var array = $("#table").bootstrapTable('getSelections');
-        if (array != null && array.length > 1) {
-            $("#title_dialog3").html("对比");
-            $("#background3").css('display', 'block');
-            $.get("<%=basePath%>fund/fund_compare?code=" + array[0].fcode + "," + array[1].fcode, function (data, status) {
-                var info = data[0];
-                $("#compare_info_1").html("&emsp;&emsp;<span class='main_font'>" + info.name + info.code + "</span>  <br/><br/>" + info.hold_stocks);
-                $.plot($("#placeholder_compare1"), [{
-                    lineWidth: 0.5,
-                    shadowSize: 0,
-                    data: info.list,
-                    highlightColor: "#808080",
-                    lines: {show: true}
-                }], {
-                    grid: {
-                        lineWidth: 0.5,
-                        borderWidth: 0.5//边框宽度
-                    },
-                    xaxis: {
-                        ticks: !1                            // dates
-                    },
-                    colors: ["#0c64d8"],
-                    lineWidth: 0.5
-
-                });
-                $.plot($("#placeholder2_compare1"), [{
-                    lineWidth: 0.5,
-                    shadowSize: 0,
-                    data: info.list2,
-                    highlightColor: "#808080",
-                    lines: {show: true}
-                }], {
-                    grid: {
-                        lineWidth: 0.5,
-                        borderWidth: 0.5//边框宽度
-                    },
-                    xaxis: {
-                        ticks: !1                            // dates
-                    },
-                    colors: ["#0c64d8"],
-                    lineWidth: 0.5
-
-                });
-                var info2 = data[1];
-                $("#compare_info_2").html("&emsp;&emsp;<span class='main_font'>" + info2.name + info2.code + "</span>  <br/><br/>" + info2.hold_stocks);
-                $.plot($("#placeholder_compare2"), [{
-                    lineWidth: 0.5,
-                    shadowSize: 0,
-                    data: info2.list,
-                    highlightColor: "#808080",
-                    lines: {show: true}
-                }], {
-                    grid: {
-                        lineWidth: 0.5,
-                        borderWidth: 0.5//边框宽度
-                    },
-                    xaxis: {
-                        ticks: !1                            // dates
-                    },
-                    colors: ["#0c64d8"],
-                    lineWidth: 0.5
-
-                });
-                $.plot($("#placeholder2_compare2"), [{
-                    lineWidth: 0.5,
-                    shadowSize: 0,
-                    data: info2.list2,
-                    highlightColor: "#808080",
-                    lines: {show: true}
-                }], {
-                    grid: {
-                        lineWidth: 0.5,
-                        borderWidth: 0.5//边框宽度
-                    },
-                    xaxis: {
-                        ticks: !1                            // dates
-                    },
-                    colors: ["#0c64d8"],
-                    lineWidth: 0.5
-
-                });
-
-            });
-
-        }
-    });
 
     $(document).ready(function () {
         $("button[name='toggle']").height(20);
@@ -335,8 +241,8 @@
                     alert('请输入基金code');
                 } else {
                     $.ajax({
-                        url: '<%=basePath%>fund/saveMyFund?code=' + name
-                        + '&score=' + score + '&money=' + money,
+                        url: '<%=basePath%>mark/insert?remark=' + name
+                        + '&level=' + score + '&type=' + money,
                         type: 'GET',
                         dataType: "jsonp",
                         //传递给请求处理程序，用以获得jsonp回调函数名的参数名(默认为:callback)
@@ -363,59 +269,13 @@
                         $("#user_price").val("");
                         $("#user_money").val("");
                         var code = tt.code;
-                        refreshTable("<%=basePath%>fund/getListInfo");
+                        refreshTable("<%=basePath%>mark/getListInfo");
                     }
                 }
             }
         });
     });
 
-    //定时刷新市场行情
-    function refreshInfo() {
-        $.ajax({
-            url: 'http://nufm2.dfcfw.com/EM_Finance2014NumericApplication/JS.aspx?type=CT&cmd=0000011,3990012,3990062,HSI5&sty=E1FDTA&st=z&sr=&p=&ps=&cb=callback&js=&token=afb2abbc6e10eb3682146dfec6a6d74c',
-            type: 'GET',
-            dataType: "jsonp",
-            //传递给请求处理程序，用以获得jsonp回调函数名的参数名(默认为:callback)
-            jsonp: "callback",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)
-            jsonpCallback: "callback",
-            timeout: 1000,
-            cache: false,
-            beforeSend: LoadFunction, //加载执行方法
-            error: erryFunction, //错误执行方法
-            success: succFunction
-            //成功执行方法
-        });
-
-        function LoadFunction() {
-        }
-
-        function erryFunction() {
-        }
-
-        function succFunction(tt) {
-            var all_show_info = "<br/>";
-            for (var i = 0; i < tt.length - 1; i++) {
-                var str = tt[i];
-                var array = str.split(",");
-                var nameInfo = "";
-                if (i === 0) nameInfo = "上证指数";
-                else if (i === 1) nameInfo = "深证指数";
-                else if (i === 2) nameInfo = "创业板指";
-                var htmlOne;
-                if (array[4] > 0)
-                    htmlOne = "&emsp;&emsp;<span class='main_font'>" + nameInfo + "</span>&nbsp;&nbsp;<span class='red_font'>" + array[3] + "&nbsp;&nbsp;" + array[4] + "&nbsp;&nbsp;" + array[5] + "</span>";
-                else htmlOne = "&emsp;&emsp;<span class='main_font'>" + nameInfo + "</span>&nbsp;&nbsp;<span class='green_font'>" + array[3] + "&nbsp;&nbsp;" + array[4] + "&nbsp;&nbsp;" + array[5] + "</span>";
-                all_show_info = all_show_info + "" + htmlOne;
-            }
-            $("#stock_all_info").html(all_show_info);
-        }
-    }
-
-    //重复执行某个方法
-    var t1 = window.setInterval(refreshInfo, 5000);
-
-    //去掉定时器的方法     window.clearInterval(t1);
 
     function edit(code, shortname) {
         $("#user_code").hide();
@@ -429,79 +289,6 @@
     function del(code) {
         $.get("<%=basePath%>fund/del?code=" + code, function (data, status) {
             refreshTable("<%=basePath%>fund/getListInfo");
-        });
-    }
-
-
-    // 走势图
-    function showGotoLine(code, param, shortname) {
-        $("#title_dialog").text(shortname);
-        $("#background").css('display', 'block');
-        $.get("<%=basePath%>fund/fund_goto_line?code=" + code + "&param=" + param, function (data, status) {
-            var datass = data.list;
-            var dates = data.dates;
-            $.plot($("#placeholder"), [{
-                lineWidth: 0.5,
-                shadowSize: 0,
-                data: datass,
-                highlightColor: "#808080",
-                lines: {show: true}
-            }], {
-                grid: {
-                    lineWidth: 0.5,
-                    borderWidth: 0.5//边框宽度
-                },
-                xaxis:
-                    {
-                        ticks: !1
-                        // dates
-                    },
-
-                colors: ["#0c64d8"],
-                lineWidth: 0.5
-
-            });
-        });
-        $.get("<%=basePath%>fund/fund_goto_line?code=" + code + "&param=n", function (data, status) {
-            var datass = data.list;
-            var dates = data.dates;
-            $.plot($("#placeholder2"), [{
-                lineWidth: 0.5,
-                shadowSize: 0,
-                data: datass,
-                highlightColor: "#808080",
-                lines: {show: true}
-            }], {
-                grid: {
-                    lineWidth: 0.5,
-                    borderWidth: 0.5//边框宽度
-                },
-                xaxis:
-                    {
-                        ticks: !1
-                        // dates
-                    },
-
-                colors: ["#0c64d8"],
-                lineWidth: 0.5
-
-            });
-        });
-
-    }
-
-    // 类似
-    function showSame(code, shortname) {
-        $("#title_dialog2").text(shortname + "-持仓相同");
-        $("#background2").css('display', 'block');
-        $.get("<%=basePath%>fund/fund_same?code=" + code, function (data, status) {
-            var html = "";
-
-            for (var i = 0; i < data.length; i++) {
-                var info = data[i];
-                html = html + "<br/>" + info[0] + " &emsp;数量：" + info[1] + "&emsp;" + info[2] + "<br/>";
-            }
-            $("#div3_dialog2").html(html);
         });
     }
 
@@ -522,7 +309,7 @@
     $("#table")
         .bootstrapTable(
             {
-                url: "<%=basePath%>fund/getListInfo",    //数据请求路径
+                url: "<%=basePath%>mark/getListInfo",    //数据请求路径
                 clickToSelect: true,  //点击表格项即可选择
                 dataType: "json",   //后端数据传递类型
                 pageSize: 100,
@@ -548,6 +335,7 @@
                         limit: params.limit,   //找多少条
                         sortOrder: params.order,//排序
                         sortName: params.sort,//排序字段
+                        type: 1,
                         search: params.search//搜索
                     };
                 },
@@ -582,90 +370,29 @@
                             return '<span  color="#4d4d4d">' + (index + 1) + '</span>';
                         }
                     },
-                    {
-                        visible: false,
-                        field: 'fcode', // 返回json数据中的name
-                        title: '编号', // 表格表头显示文字
+                    { sortable: true,
+                        width:800,
+                        field: 'remark', // 返回json数据中的name
+                        title: '事务记录', // 表格表头显示文字
                         align: 'center' // 左右居中
                         // valign: 'middle', // 上下居中
 
                     },
+                    {
+                        sortable: true,
+                        field: 'level', // 返回json数据中的name
+                        title: '紧急程度', // 表格表头显示文字
+                        align: 'center' // 左右居中
+                        // valign: 'middle', // 上下居中
 
-                    {
-                        sortable: true,
-                        field: 'shortname',
-                        title: '名称',
-                        formatter: function (value, row, index) { // 单元格格式化函数
-                            var array = value.split("**");
-                            if (array != null && array.length === 2)
-                                return "<span class='main_font'>" + array[0] + "</span><br/><span class='two_font'>" + array[1] + "</span>";
-                            else return "";
-                        },
-                        align: 'center',
-                        valign: 'middle'
                     },
                     {
                         sortable: true,
-                        field: 'fund_type',
-                        title: '类型',
-                        align: 'center',
-                        valign: 'middle'
-                    },
+                        field: 'timeStr', // 返回json数据中的name
+                        title: '记录时间', // 表格表头显示文字
+                        align: 'center' // 左右居中
+                        // valign: 'middle', // 上下居中
 
-                    {
-                        field: 'gszzl',
-                        title: '最新估值',
-                        align: 'center',
-                        valign: 'middle',
-                        sortable: true,
-                        formatter: function (value, row, index) { // 单元格格式化函数
-                            if (value > 0)
-                                return "<span class='main_font'>" + row.gsz + "</span><br/><span class='red_font'>+" + value + "%</span>";
-                            else return "<span class='main_font'>" + row.gsz + "</span><br/><span class='green_font'>" + value + "%</span>";
-                        }
-                    }, {
-                        field: 'navChgrt',
-                        title: '昨日净值',
-                        align: 'center',
-                        valign: 'middle',
-                        sortable: true,
-                        formatter: function (value, row, index) { // 单元格格式化函数
-                            if (value > 0)
-                                return "<span class='main_font'>" + row.nav + "</span><br/><span class='red_font'>+" + value + "%</span>";
-                            else return "<span class='main_font'>" + row.nav + "</span><br/><span class='green_font'>" + value + "%</span>";
-                        }
-                    }, {
-                        field: 'money_old',
-                        title: '买入状况',
-                        align: 'center',
-                        valign: 'middle',
-                        sortable: true,
-                        formatter: function (value, row, index) { // 单元格格式化函数
-                            if (value > 0)
-                                return "<span class='main_font'>买入成本：" + row.fund_buy_price + "</span><br/><span class='main_font'>买入金额：" + row.money_old + "元</span>";
-                            else return "<span class='main_font'>买入成本：" + row.fund_buy_price + "</span><br/><span class='main_font'>买入金额：" + row.money_old + "元</span>";
-                        }
-                    }, {
-                        field: 'money',
-                        title: '持有本金',
-                        align: 'center',
-                        valign: 'middle',
-                        sortable: true,
-                        formatter: function (value, row, index) { // 单元格格式化函数
-                            return "<span class='main_font'>" + value + "元</span>";
-                        }
-                    },
-                    {
-                        field: 'rate',
-                        title: '持有收益',
-                        align: 'center',
-                        valign: 'middle',
-                        sortable: true,
-                        formatter: function (value, row, index) { // 单元格格式化函数
-                            if (value > 0)
-                                return "<span class='red_font'>" + value + "%</span><br/><span class='red_font'>" + row.income + "元</span>";
-                            else return "<span class='green_font'>" + value + "%</span><br/><span class='green_font'>" + row.income + "元</span>";
-                        }
                     },
                     {
                         title: "操作",
