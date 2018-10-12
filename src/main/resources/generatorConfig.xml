@@ -45,9 +45,7 @@
             <property name="enableSubPackages" value="false" />
         </javaClientGenerator>
         <!-- 指定数据库表 -->
-        <table tableName="t_fund"/>
-        <table tableName="t_fund_stock"/>
-        <table tableName="t_fund_stock_relation"/>
+        <table tableName="t_mark"/>
 
         <!-- <table schema="" tableName="sys_user"></table>
         <table schema="" tableName="sys_role"></table>

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50624
 File Encoding         : 65001
 
-Date: 2018-09-27 17:39:39
+Date: 2018-10-12 18:27:23
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -109,12 +109,12 @@ CREATE TABLE `t_fund` (
   `is_hold` int(11) DEFAULT '0' COMMENT '0:持有   1：模拟',
   `fund_type` varchar(30) DEFAULT '-' COMMENT '基金类型',
   PRIMARY KEY (`fund_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=105 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=106 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of t_fund
 -- ----------------------------
-INSERT INTO `t_fund` VALUES ('36', '161725', '招商中证白酒指数分级', null, null, null, '121.08', '1.1073875', '109.33574419', '0', '白酒');
+INSERT INTO `t_fund` VALUES ('36', '161725', '招商中证白酒指数分级', null, null, null, '121.08', '1.1073875', '109.33574419', '0', '酒');
 INSERT INTO `t_fund` VALUES ('37', '217016', '招商深证100指数A', null, null, null, '140', '1.26660742', '110.53323978', '0', '深证');
 INSERT INTO `t_fund` VALUES ('38', '166009', '中欧新动力混合(LOF)A', null, null, null, '579.24', '1.47806796', '391.88838859', '0', '混合');
 INSERT INTO `t_fund` VALUES ('39', '166002', '中欧新蓝筹混合A', null, null, null, '152.21', '1.18712829', '128.21613884', '0', '蓝筹');
@@ -137,7 +137,7 @@ INSERT INTO `t_fund` VALUES ('55', '530018', '建信深证100增强', null, null
 INSERT INTO `t_fund` VALUES ('56', '160225', '国泰国证新能源汽车指数', null, null, null, '190', '0.8454448', '224.73377282', '0', null);
 INSERT INTO `t_fund` VALUES ('57', '160213', '国泰纳斯达克100指数', null, null, null, '70.01', '3.43987527', '20.35127479', '0', '纳斯达克');
 INSERT INTO `t_fund` VALUES ('58', '020026', '国泰成长优选混合', null, null, null, '520.01', '2.76647287', '187.96847636', '0', '混合');
-INSERT INTO `t_fund` VALUES ('59', '160222', '国泰国证食品饮料行业指数分级', null, null, null, '50', '1.21590445', '41.12165225', '0', '饮品');
+INSERT INTO `t_fund` VALUES ('59', '160222', '国泰国证食品饮料行业指数分级', null, null, null, '50', '1.21590445', '41.12165225', '0', '酒-混合饮品');
 INSERT INTO `t_fund` VALUES ('60', '002851', '南方品质混合', null, null, null, '100', '1.43291359', '69.78787879', '0', '混合');
 INSERT INTO `t_fund` VALUES ('61', '270042', '广发纳斯达克100指数', null, null, null, '10', '2.3584626', '4.23963134', '0', '纳斯达克');
 INSERT INTO `t_fund` VALUES ('62', '270041', '广发消费品精选混合', null, null, null, '120', '2.6098841', '45.97821533', '0', '消费行业');
@@ -150,8 +150,8 @@ INSERT INTO `t_fund` VALUES ('68', '110030', '易方达沪深300量化增强', n
 INSERT INTO `t_fund` VALUES ('69', '110015', '易方达行业领先混合', null, null, null, '60', '2.22807018', '26.92913386', '0', '混合');
 INSERT INTO `t_fund` VALUES ('70', '100032', '富国中证红利指数增强', null, null, null, '267.62', '1.10724764', '241.69774289', '0', '中证红利');
 INSERT INTO `t_fund` VALUES ('71', '540012', '汇丰晋信恒生龙头指数A', null, null, null, '100', '1.43432716', '69.71910112', '0', '恒生');
-INSERT INTO `t_fund` VALUES ('72', '001986', '前海开源人工智能主题混合', null, null, null, '20370.75', '1.29706601', '15705.24976437', '0', '创业板');
-INSERT INTO `t_fund` VALUES ('73', '420005', '天弘周期策略混合', null, null, null, '359.98', '1.38301199', '260.28636021', '0', null);
+INSERT INTO `t_fund` VALUES ('72', '001986', '前海开源人工智能主题混合', null, null, null, '1701.21', '1.2667', '1731.48', '0', '创业板');
+INSERT INTO `t_fund` VALUES ('73', '420005', '天弘周期策略混合', null, null, null, '400', '1.36888466', '292.20869565', '0', '混合，部分酒');
 INSERT INTO `t_fund` VALUES ('74', '000251', '工银金融地产混合', null, null, null, '540.01', '2.27458597', '237.41123596', '0', null);
 INSERT INTO `t_fund` VALUES ('75', '100026', '富国天合稳健优选混合', null, null, null, '1000', '1.1886', '841.32592967', '0', '-模拟');
 INSERT INTO `t_fund` VALUES ('76', '001044', '嘉实新消费股票', null, null, null, '1000', '1.311', '762.77650648', '0', '消费-模拟');
@@ -163,26 +163,22 @@ INSERT INTO `t_fund` VALUES ('81', '000527', '南方新优享', null, null, null
 INSERT INTO `t_fund` VALUES ('82', '000480', '东方红新动力混合', null, null, null, '1000', '2.229', '448.6316734', '0', '-模拟');
 INSERT INTO `t_fund` VALUES ('83', '166006', '中欧行业成长混合(LOF)A', null, null, null, '1000', '1.0121', '988.04465962', '0', '-模拟');
 INSERT INTO `t_fund` VALUES ('84', '001938', '中欧时代先锋股票A', null, null, null, '1000', '1.1551', '865.72591118', '0', '-模拟');
-INSERT INTO `t_fund` VALUES ('85', '160716', '嘉实基本面50指数(LOF)A', null, null, null, '1000', '1.4409', '694.01068776', '0', '-模拟');
-INSERT INTO `t_fund` VALUES ('86', '163808', '中银中证100', null, null, null, '1000', '1.232', '811.68831169', '0', '中证-模拟');
-INSERT INTO `t_fund` VALUES ('87', '001631', '天弘中证食品饮料指数A', null, null, null, '1000', '1.2773', '782.90143271', '0', '中证食品饮料-模拟');
+INSERT INTO `t_fund` VALUES ('85', '160716', '嘉实基本面50指数(LOF)A', null, null, null, '1000', '1.4409', '694.01068776', '0', '银行');
 INSERT INTO `t_fund` VALUES ('88', '163412', '兴全轻资产混合(LOF)', null, null, null, '1000', '2.966', '337.15441672', '0', '-模拟');
 INSERT INTO `t_fund` VALUES ('89', '100038', '富国量化沪深300', null, null, null, '1000', '1.671', '598.44404548', '0', '沪深-模拟');
 INSERT INTO `t_fund` VALUES ('90', '519690', '交银稳健配置混合A', null, null, null, '1000', '1.2938', '772.91698872', '0', '-模拟');
 INSERT INTO `t_fund` VALUES ('91', '002121', '广发沪港深新起点股票', null, null, null, '1000', '1.269', '788.02206462', '0', '沪港深-模拟');
 INSERT INTO `t_fund` VALUES ('92', '002939', '广发创新升级混合', null, null, null, '1000', '0.9673', '1033.80543782', '0', '-模拟');
-INSERT INTO `t_fund` VALUES ('93', '420003', '天弘永定价值成长混合', null, null, null, '1000', '1.6671', '599.84404055', '0', '-模拟');
+INSERT INTO `t_fund` VALUES ('93', '420003', '天弘永定价值成长混合', null, null, null, '110', '1.58845005', '69.250592', '0', '混合小板环保');
 INSERT INTO `t_fund` VALUES ('94', '163407', '兴全沪深300指数(LOF)', null, null, null, '1000', '1.6579', '603.17268834', '0', '沪深-模拟');
 INSERT INTO `t_fund` VALUES ('95', '217027', '招商央视财经50指数A', null, null, null, '1000', '1.8251', '547.91518273', '0', '-模拟');
-INSERT INTO `t_fund` VALUES ('96', '160632', '鹏华酒分级', null, null, null, '1000', '0.817', '1223.99020808', '0', '酒-模拟');
 INSERT INTO `t_fund` VALUES ('97', '000248', '汇添富中证主要消费ETF联接', null, null, null, '1000', '1.3605', '735.02388828', '0', '中证主要消费-模拟');
 INSERT INTO `t_fund` VALUES ('98', '001475', '易方达国防军工混合', null, null, null, '1000', '0.741', '1349.52766532', '0', '军工');
-INSERT INTO `t_fund` VALUES ('99', '160643', '鹏华中证空天一体(LOF)', null, null, null, '1000', '0.798', '1253.13283208', '0', '军工');
-INSERT INTO `t_fund` VALUES ('100', '001838', '国投瑞银国家安全混合', null, null, null, '1000', '0.705', '1418.43971631', '0', '军工');
 INSERT INTO `t_fund` VALUES ('101', '100055', '富国全球科技互联网(QDII)', null, null, null, '1000', '1.4806', '675.40186411', '0', '科技全球');
 INSERT INTO `t_fund` VALUES ('102', '486001', '工银全球配置', null, null, null, '1000', '1.33', '751.87969925', '0', '科技全球');
 INSERT INTO `t_fund` VALUES ('103', '160221', '国泰国证有色金属行业指数分级', null, null, null, '1000', '0.7826', '1277.79197547', '0', '金属');
 INSERT INTO `t_fund` VALUES ('104', '161121', '易方达银行分级', null, null, null, '1000', '0.8742', '1143.90299703', '0', '银行');
+INSERT INTO `t_fund` VALUES ('105', '001629', '天弘中证计算机指数A', null, null, null, '20', '0.5151', '38.82741215', '0', '计算机');
 
 -- ----------------------------
 -- Table structure for `t_fund_company`
@@ -231,7 +227,7 @@ CREATE TABLE `t_fund_stock` (
   `stock_new_price` varchar(10) DEFAULT NULL,
   `stock_new_rate` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`stock_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1304 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1334 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of t_fund_stock
@@ -480,12 +476,6 @@ INSERT INTO `t_fund_stock` VALUES ('959', '002273', '水晶光电', '11.47', '-2
 INSERT INTO `t_fund_stock` VALUES ('962', '300054', '鼎龙股份', '7.48', '-2.60');
 INSERT INTO `t_fund_stock` VALUES ('963', '002236', '大华股份', '16.64', '0.79');
 INSERT INTO `t_fund_stock` VALUES ('964', '002008', '大族激光', '41.95', '-2.89');
-INSERT INTO `t_fund_stock` VALUES ('967', '300523', '辰安科技', '70.50', '-1.00');
-INSERT INTO `t_fund_stock` VALUES ('968', '600419', '天润乳业', '14.23', '-1.93');
-INSERT INTO `t_fund_stock` VALUES ('969', '600559', '老白干酒', '16.82', '-3.00');
-INSERT INTO `t_fund_stock` VALUES ('970', '002410', '广联达', '30.90', '-2.06');
-INSERT INTO `t_fund_stock` VALUES ('972', '300595', '欧普康视', '36.65', '-0.08');
-INSERT INTO `t_fund_stock` VALUES ('974', '600702', '舍得酒业', '26.43', '-2.26');
 INSERT INTO `t_fund_stock` VALUES ('977', '002142', '宁波银行', '16.36', '-3.08');
 INSERT INTO `t_fund_stock` VALUES ('980', '601009', '南京银行', '7.26', '-1.76');
 INSERT INTO `t_fund_stock` VALUES ('983', '601155', '新城控股', '25.50', '-3.23');
@@ -514,7 +504,6 @@ INSERT INTO `t_fund_stock` VALUES ('1030', '600309', '万华化学', '46.39', '-
 INSERT INTO `t_fund_stock` VALUES ('1031', '002035', '华帝股份', '10.15', '-3.33');
 INSERT INTO `t_fund_stock` VALUES ('1033', '000786', '北新建材', '17.41', '-3.01');
 INSERT INTO `t_fund_stock` VALUES ('1035', '002507', '涪陵榨菜', '23.83', '-2.34');
-INSERT INTO `t_fund_stock` VALUES ('1036', '000596', '古井贡酒', '76.01', '-3.33');
 INSERT INTO `t_fund_stock` VALUES ('1040', '600486', '扬农化工', '51.14', '-0.29');
 INSERT INTO `t_fund_stock` VALUES ('1045', '002470', '金正大', '6.18', '-2.83');
 INSERT INTO `t_fund_stock` VALUES ('1050', '603001', '奥康国际', '11.48', '-0.35');
@@ -523,10 +512,8 @@ INSERT INTO `t_fund_stock` VALUES ('1053', '600143', '金发科技', '4.57', '-2
 INSERT INTO `t_fund_stock` VALUES ('1054', '600267', '海正药业', '11.98', '0.00');
 INSERT INTO `t_fund_stock` VALUES ('1059', '300253', '卫宁健康', '15.03', '-2.97');
 INSERT INTO `t_fund_stock` VALUES ('1066', '300413', '芒果超媒', '36.75', '-5.14');
-INSERT INTO `t_fund_stock` VALUES ('1067', '300059', '东方财富', '12.51', '-2.42');
 INSERT INTO `t_fund_stock` VALUES ('1068', '002036', '联创电子', '10.51', '-2.23');
 INSERT INTO `t_fund_stock` VALUES ('1069', '300188', '美亚柏科', '19.98', '-2.96');
-INSERT INTO `t_fund_stock` VALUES ('1070', '600588', '用友网络', '29.50', '-2.74');
 INSERT INTO `t_fund_stock` VALUES ('1071', '000739', '普洛药业', '6.91', '-3.36');
 INSERT INTO `t_fund_stock` VALUES ('1072', '600332', '白云山', '35.70', '-3.77');
 INSERT INTO `t_fund_stock` VALUES ('1074', '002456', '欧菲科技', '15.86', '-2.46');
@@ -553,29 +540,15 @@ INSERT INTO `t_fund_stock` VALUES ('1141', '00027', '银河娱乐', '56.750', '-
 INSERT INTO `t_fund_stock` VALUES ('1142', '00817', '中国金茂', '3.470', '-2.25');
 INSERT INTO `t_fund_stock` VALUES ('1143', '02382', '舜宇光学科技', '93.800', '-6.39');
 INSERT INTO `t_fund_stock` VALUES ('1144', '00868', '信义玻璃', '9.410', '-4.66');
-INSERT INTO `t_fund_stock` VALUES ('1155', '603686', '龙马环卫', '16.47', '-0.60');
-INSERT INTO `t_fund_stock` VALUES ('1156', '002480', '新筑股份', '6.38', '0.00');
-INSERT INTO `t_fund_stock` VALUES ('1157', '300257', '开山股份', '11.79', '-3.52');
-INSERT INTO `t_fund_stock` VALUES ('1158', '002768', '国恩股份', '25.14', '-0.91');
-INSERT INTO `t_fund_stock` VALUES ('1159', '002640', '跨境通', '13.53', '-2.80');
-INSERT INTO `t_fund_stock` VALUES ('1160', '300575', '中旗股份', '35.60', '0.74');
-INSERT INTO `t_fund_stock` VALUES ('1161', '603737', '三棵树', '42.10', '-4.54');
-INSERT INTO `t_fund_stock` VALUES ('1162', '603338', '浙江鼎力', '52.15', '-0.84');
-INSERT INTO `t_fund_stock` VALUES ('1163', '603766', '隆鑫通用', '4.94', '-0.60');
-INSERT INTO `t_fund_stock` VALUES ('1164', '002321', '华英农业', '6.48', '10.02');
 INSERT INTO `t_fund_stock` VALUES ('1166', '601601', '中国太保', '32.50', '-3.50');
 INSERT INTO `t_fund_stock` VALUES ('1167', '601888', '中国国旅', '59.85', '-3.42');
 INSERT INTO `t_fund_stock` VALUES ('1172', '601628', '中国人寿', '21.71', '-2.47');
 INSERT INTO `t_fund_stock` VALUES ('1173', '600690', '青岛海尔', '15.03', '-0.86');
 INSERT INTO `t_fund_stock` VALUES ('1174', '600741', '华域汽车', '20.37', '-2.77');
-INSERT INTO `t_fund_stock` VALUES ('1176', '002415', '海康威视', '32.28', '1.10');
 INSERT INTO `t_fund_stock` VALUES ('1180', '000333', '美的集团', '41.00', '-3.03');
 INSERT INTO `t_fund_stock` VALUES ('1181', '000651', '格力电器', '37.61', '-3.22');
 INSERT INTO `t_fund_stock` VALUES ('1183', '600104', '上汽集团', '28.08', '-3.34');
-INSERT INTO `t_fund_stock` VALUES ('1184', '002230', '科大讯飞', '31.23', '-1.92');
 INSERT INTO `t_fund_stock` VALUES ('1189', '600779', '水井坊', '38.11', '-4.46');
-INSERT INTO `t_fund_stock` VALUES ('1190', '603589', '口子窖', '46.87', '-3.06');
-INSERT INTO `t_fund_stock` VALUES ('1191', '600809', '山西汾酒', '46.19', '-3.04');
 INSERT INTO `t_fund_stock` VALUES ('1192', '600600', '青岛啤酒', '34.07', '-0.99');
 INSERT INTO `t_fund_stock` VALUES ('1193', '000860', '顺鑫农业', '41.23', '-4.05');
 INSERT INTO `t_fund_stock` VALUES ('1194', '603369', '今世缘', '17.33', '-2.86');
@@ -589,8 +562,6 @@ INSERT INTO `t_fund_stock` VALUES ('1204', '600298', '安琪酵母', '26.61', '-
 INSERT INTO `t_fund_stock` VALUES ('1205', '603986', '兆易创新', '90.50', '3.78');
 INSERT INTO `t_fund_stock` VALUES ('1206', '002183', '怡亚通', '6.39', '0.63');
 INSERT INTO `t_fund_stock` VALUES ('1207', '300661', '圣邦股份', '95.40', '8.41');
-INSERT INTO `t_fund_stock` VALUES ('1208', '603019', '中科曙光', '47.44', '0.85');
-INSERT INTO `t_fund_stock` VALUES ('1209', '000977', '浪潮信息', '24.13', '1.26');
 INSERT INTO `t_fund_stock` VALUES ('1211', '002624', '完美世界', '24.60', '0.90');
 INSERT INTO `t_fund_stock` VALUES ('1212', '300408', '三环集团', '21.29', '2.60');
 INSERT INTO `t_fund_stock` VALUES ('1213', '300457', '赢合科技', '24.84', '-0.48');
@@ -670,6 +641,35 @@ INSERT INTO `t_fund_stock` VALUES ('1300', '600060', '海信电器', '10.14', '0
 INSERT INTO `t_fund_stock` VALUES ('1301', '601100', '恒立液压', '22.13', '2.31');
 INSERT INTO `t_fund_stock` VALUES ('1302', '002223', '鱼跃医疗', '18.59', '0.65');
 INSERT INTO `t_fund_stock` VALUES ('1303', '600584', '长电科技', '12.95', '3.11');
+INSERT INTO `t_fund_stock` VALUES ('1304', '603686', '龙马环卫', '12.16', '-2.17');
+INSERT INTO `t_fund_stock` VALUES ('1305', '002480', '新筑股份', '5.16', '-2.64');
+INSERT INTO `t_fund_stock` VALUES ('1306', '300257', '开山股份', '9.33', '-6.51');
+INSERT INTO `t_fund_stock` VALUES ('1307', '002768', '国恩股份', '25.33', '0.40');
+INSERT INTO `t_fund_stock` VALUES ('1308', '002640', '跨境通', '10.91', '-0.82');
+INSERT INTO `t_fund_stock` VALUES ('1309', '300575', '中旗股份', '32.90', '5.89');
+INSERT INTO `t_fund_stock` VALUES ('1310', '603737', '三棵树', '37.91', '-1.07');
+INSERT INTO `t_fund_stock` VALUES ('1311', '603338', '浙江鼎力', '48.95', '-0.33');
+INSERT INTO `t_fund_stock` VALUES ('1312', '603766', '隆鑫通用', '4.15', '-3.26');
+INSERT INTO `t_fund_stock` VALUES ('1313', '002321', '华英农业', '5.41', '-1.64');
+INSERT INTO `t_fund_stock` VALUES ('1314', '002415', '海康威视', '24.78', '4.07');
+INSERT INTO `t_fund_stock` VALUES ('1315', '002230', '科大讯飞', '23.23', '-4.05');
+INSERT INTO `t_fund_stock` VALUES ('1316', '600570', '恒生电子', '47.23', '0.49');
+INSERT INTO `t_fund_stock` VALUES ('1317', '600588', '用友网络', '22.83', '1.56');
+INSERT INTO `t_fund_stock` VALUES ('1318', '603019', '中科曙光', '41.69', '2.21');
+INSERT INTO `t_fund_stock` VALUES ('1319', '002405', '四维图新', '15.22', '-3.97');
+INSERT INTO `t_fund_stock` VALUES ('1321', '000977', '浪潮信息', '20.54', '1.48');
+INSERT INTO `t_fund_stock` VALUES ('1322', '002065', '东华软件', '7.18', '-6.39');
+INSERT INTO `t_fund_stock` VALUES ('1323', '600100', '同方股份', '8.51', '-2.63');
+INSERT INTO `t_fund_stock` VALUES ('1324', '300059', '东方财富', '10.63', '4.63');
+INSERT INTO `t_fund_stock` VALUES ('1325', '603589', '口子窖', '44.98', '1.08');
+INSERT INTO `t_fund_stock` VALUES ('1326', '300523', '辰安科技', '62.98', '8.81');
+INSERT INTO `t_fund_stock` VALUES ('1327', '600419', '天润乳业', '14.25', '0.56');
+INSERT INTO `t_fund_stock` VALUES ('1328', '600559', '老白干酒', '16.56', '0.98');
+INSERT INTO `t_fund_stock` VALUES ('1329', '002410', '广联达', '23.53', '4.16');
+INSERT INTO `t_fund_stock` VALUES ('1330', '600809', '山西汾酒', '38.18', '2.50');
+INSERT INTO `t_fund_stock` VALUES ('1331', '300595', '欧普康视', '33.50', '10.02');
+INSERT INTO `t_fund_stock` VALUES ('1332', '000596', '古井贡酒', '73.87', '1.83');
+INSERT INTO `t_fund_stock` VALUES ('1333', '600702', '舍得酒业', '22.99', '3.51');
 
 -- ----------------------------
 -- Table structure for `t_fund_stock_relation`
@@ -681,7 +681,7 @@ CREATE TABLE `t_fund_stock_relation` (
   `fund_code` varchar(10) NOT NULL COMMENT '基金code',
   `hold_scale` double DEFAULT '0' COMMENT '持仓比例',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1303 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1333 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of t_fund_stock_relation
@@ -1263,16 +1263,6 @@ INSERT INTO `t_fund_stock_relation` VALUES ('961', '002456', '001986', '7.27');
 INSERT INTO `t_fund_stock_relation` VALUES ('962', '300054', '001986', '6.39');
 INSERT INTO `t_fund_stock_relation` VALUES ('963', '002236', '001986', '4.96');
 INSERT INTO `t_fund_stock_relation` VALUES ('964', '002008', '001986', '3.49');
-INSERT INTO `t_fund_stock_relation` VALUES ('965', '300059', '420005', '8.17');
-INSERT INTO `t_fund_stock_relation` VALUES ('966', '603589', '420005', '7.61');
-INSERT INTO `t_fund_stock_relation` VALUES ('967', '300523', '420005', '6.82');
-INSERT INTO `t_fund_stock_relation` VALUES ('968', '600419', '420005', '5.99');
-INSERT INTO `t_fund_stock_relation` VALUES ('969', '600559', '420005', '5.89');
-INSERT INTO `t_fund_stock_relation` VALUES ('970', '002410', '420005', '5.56');
-INSERT INTO `t_fund_stock_relation` VALUES ('971', '600809', '420005', '5.43');
-INSERT INTO `t_fund_stock_relation` VALUES ('972', '300595', '420005', '4.98');
-INSERT INTO `t_fund_stock_relation` VALUES ('973', '000596', '420005', '4.79');
-INSERT INTO `t_fund_stock_relation` VALUES ('974', '600702', '420005', '4.17');
 INSERT INTO `t_fund_stock_relation` VALUES ('975', '600036', '000251', '9.3');
 INSERT INTO `t_fund_stock_relation` VALUES ('976', '601601', '000251', '9.28');
 INSERT INTO `t_fund_stock_relation` VALUES ('977', '002142', '000251', '8.92');
@@ -1433,16 +1423,6 @@ INSERT INTO `t_fund_stock_relation` VALUES ('1141', '00027', '002121', '3.64');
 INSERT INTO `t_fund_stock_relation` VALUES ('1142', '00817', '002121', '3.6');
 INSERT INTO `t_fund_stock_relation` VALUES ('1143', '02382', '002121', '3.55');
 INSERT INTO `t_fund_stock_relation` VALUES ('1144', '00868', '002121', '3.44');
-INSERT INTO `t_fund_stock_relation` VALUES ('1155', '603686', '420003', '9.18');
-INSERT INTO `t_fund_stock_relation` VALUES ('1156', '002480', '420003', '8.76');
-INSERT INTO `t_fund_stock_relation` VALUES ('1157', '300257', '420003', '7.94');
-INSERT INTO `t_fund_stock_relation` VALUES ('1158', '002768', '420003', '6.68');
-INSERT INTO `t_fund_stock_relation` VALUES ('1159', '002640', '420003', '6.65');
-INSERT INTO `t_fund_stock_relation` VALUES ('1160', '300575', '420003', '6.33');
-INSERT INTO `t_fund_stock_relation` VALUES ('1161', '603737', '420003', '5.4');
-INSERT INTO `t_fund_stock_relation` VALUES ('1162', '603338', '420003', '4.66');
-INSERT INTO `t_fund_stock_relation` VALUES ('1163', '603766', '420003', '4.09');
-INSERT INTO `t_fund_stock_relation` VALUES ('1164', '002321', '420003', '4.05');
 INSERT INTO `t_fund_stock_relation` VALUES ('1165', '601318', '163407', '6.84');
 INSERT INTO `t_fund_stock_relation` VALUES ('1166', '601601', '163407', '5.18');
 INSERT INTO `t_fund_stock_relation` VALUES ('1167', '601888', '163407', '2.84');
@@ -1581,6 +1561,57 @@ INSERT INTO `t_fund_stock_relation` VALUES ('1299', '600060', '163402', '3.22');
 INSERT INTO `t_fund_stock_relation` VALUES ('1300', '601100', '163402', '3.02');
 INSERT INTO `t_fund_stock_relation` VALUES ('1301', '002223', '163402', '2.99');
 INSERT INTO `t_fund_stock_relation` VALUES ('1302', '600584', '163402', '2.92');
+INSERT INTO `t_fund_stock_relation` VALUES ('1303', '603686', '420003', '9.18');
+INSERT INTO `t_fund_stock_relation` VALUES ('1304', '002480', '420003', '8.76');
+INSERT INTO `t_fund_stock_relation` VALUES ('1305', '300257', '420003', '7.94');
+INSERT INTO `t_fund_stock_relation` VALUES ('1306', '002768', '420003', '6.68');
+INSERT INTO `t_fund_stock_relation` VALUES ('1307', '002640', '420003', '6.65');
+INSERT INTO `t_fund_stock_relation` VALUES ('1308', '300575', '420003', '6.33');
+INSERT INTO `t_fund_stock_relation` VALUES ('1309', '603737', '420003', '5.4');
+INSERT INTO `t_fund_stock_relation` VALUES ('1310', '603338', '420003', '4.66');
+INSERT INTO `t_fund_stock_relation` VALUES ('1311', '603766', '420003', '4.09');
+INSERT INTO `t_fund_stock_relation` VALUES ('1312', '002321', '420003', '4.05');
+INSERT INTO `t_fund_stock_relation` VALUES ('1313', '002415', '001629', '10.04');
+INSERT INTO `t_fund_stock_relation` VALUES ('1314', '002230', '001629', '5.88');
+INSERT INTO `t_fund_stock_relation` VALUES ('1315', '600570', '001629', '3.54');
+INSERT INTO `t_fund_stock_relation` VALUES ('1316', '600588', '001629', '2.93');
+INSERT INTO `t_fund_stock_relation` VALUES ('1317', '603019', '001629', '2.81');
+INSERT INTO `t_fund_stock_relation` VALUES ('1318', '002405', '001629', '2.61');
+INSERT INTO `t_fund_stock_relation` VALUES ('1319', '002410', '001629', '2.6');
+INSERT INTO `t_fund_stock_relation` VALUES ('1320', '000977', '001629', '2.53');
+INSERT INTO `t_fund_stock_relation` VALUES ('1321', '002065', '001629', '2.03');
+INSERT INTO `t_fund_stock_relation` VALUES ('1322', '600100', '001629', '1.96');
+INSERT INTO `t_fund_stock_relation` VALUES ('1323', '300059', '420005', '8.17');
+INSERT INTO `t_fund_stock_relation` VALUES ('1324', '603589', '420005', '7.61');
+INSERT INTO `t_fund_stock_relation` VALUES ('1325', '300523', '420005', '6.82');
+INSERT INTO `t_fund_stock_relation` VALUES ('1326', '600419', '420005', '5.99');
+INSERT INTO `t_fund_stock_relation` VALUES ('1327', '600559', '420005', '5.89');
+INSERT INTO `t_fund_stock_relation` VALUES ('1328', '002410', '420005', '5.56');
+INSERT INTO `t_fund_stock_relation` VALUES ('1329', '600809', '420005', '5.43');
+INSERT INTO `t_fund_stock_relation` VALUES ('1330', '300595', '420005', '4.98');
+INSERT INTO `t_fund_stock_relation` VALUES ('1331', '000596', '420005', '4.79');
+INSERT INTO `t_fund_stock_relation` VALUES ('1332', '600702', '420005', '4.17');
+
+-- ----------------------------
+-- Table structure for `t_mark`
+-- ----------------------------
+DROP TABLE IF EXISTS `t_mark`;
+CREATE TABLE `t_mark` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `time` datetime DEFAULT NULL,
+  `remark` varchar(300) DEFAULT '',
+  `type` int(11) NOT NULL COMMENT '1:是基金待处理问题',
+  `level` int(11) DEFAULT NULL COMMENT '需求等级，1最高级',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of t_mark
+-- ----------------------------
+INSERT INTO `t_mark` VALUES ('1', '2018-11-30 16:16:52', '1', '1', '1');
+INSERT INTO `t_mark` VALUES ('2', '2015-08-01 15:20:12', '2', '1', '2');
+INSERT INTO `t_mark` VALUES ('3', '2018-08-01 15:20:13', '3', '1', '3');
+INSERT INTO `t_mark` VALUES ('5', '2018-10-12 18:04:10', '代表有', '1', '4');
 
 -- ----------------------------
 -- Table structure for `t_plat`
@@ -1972,7 +2003,7 @@ INSERT INTO `t_plat` VALUES ('371', '汇盈金服', null, '6', '0', '0', 'https:
 INSERT INTO `t_plat` VALUES ('372', '花虾金融', null, '6', '0', '0', 'http://www.huaxiaoxia.com/', 'https://openplat.wdzj.com/upload/plats/5310/20161025141720s_.jpg', '0', null, 'hxjr6', '0', 'http://huaxiaoxia.p2peye.com', '', '36', 't.cn/RYK8r71/p2p/huaxiajinrong', '0', '-', '', '0', null, null, '0', null);
 INSERT INTO `t_plat` VALUES ('373', '福利金融', null, '5', '0', '0', 'http://www.fulijr.com/', 'https://openplat.wdzj.com/upload/plats/5117/20170817183934s_.png', '0', null, 'fljf4', '0', 'http://fulijr.p2peye.com', '', '0', null, '0', '-', '', '1', null, null, '0', null);
 INSERT INTO `t_plat` VALUES ('375', '工场微金', null, '4', '0', '0', 'https://www.gongchangp2p.com/', 'https://openplat.wdzj.com/upload/plats/629/20180122163603s_.jpg', '0', null, 'jrgc', '0', 'http://11119888.p2peye.com', '', '30', 'www.gongchangp2p.com/p2p/gongchangweijin', '0', '-', '', '0', null, null, '0', null);
-INSERT INTO `t_plat` VALUES ('376', '链链金融', null, '5', '0', '0', 'https://www.lljr.com/', 'https://openplat.wdzj.com/upload/plats/6398/20170330104723s_.png', '49', null, 'lljr', '0', 'http://lljr.p2peye.com', '', '144', 'www.lljr.com/p2p/lianlianjinrong', '25', 'B ', '', '0', null, null, '0', null);
+INSERT INTO `t_plat` VALUES ('376', '链链金融', null, '6', '0', '0', 'https://www.lljr.com/', 'https://openplat.wdzj.com/upload/plats/6398/20170330104723s_.png', '49', null, 'lljr', '0', 'http://lljr.p2peye.com', '', '144', 'www.lljr.com/p2p/lianlianjinrong', '25', 'B ', '', '0', null, null, '0', null);
 INSERT INTO `t_plat` VALUES ('377', '荷包金融', null, '2', '0', '0', 'http://www.hebaodai.com', 'https://www.wdzj.com/wdzj/images/example/2018/07/30/20180730171322s_.png', '0', null, 'hbjr11', '0', 'http://hebaodai.p2peye.com', '', '0', null, '0', '-', '', '0', null, null, '0', null);
 INSERT INTO `t_plat` VALUES ('378', '才米公社', null, '-6', '0', '0', 'https://www.caimigs.com/', 'https://www.wdzj.com/wdzj/images/example/2018/01/09/20180109143211s_.png', '0', null, 'cmgs', '0', 'http://caimigs.p2peye.com', '', '0', null, '0', '-', '', '0', null, null, '0', null);
 INSERT INTO `t_plat` VALUES ('379', '美美理财', null, '6', '0', '0', 'https://www.meme2c.com/', null, '0', null, null, '0', 'http://meme2c.p2peye.com', '', '0', null, '0', '-', '', '3', null, null, '0', null);
