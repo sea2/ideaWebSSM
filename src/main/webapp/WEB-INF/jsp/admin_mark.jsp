@@ -286,9 +286,9 @@
     }
 
     //删除基金
-    function del(code) {
-        $.get("<%=basePath%>fund/del?code=" + code, function (data, status) {
-            refreshTable("<%=basePath%>fund/getListInfo");
+    function del(id) {
+        $.get("<%=basePath%>mark/del?id=" + id, function (data, status) {
+            refreshTable("<%=basePath%>mark/getListInfo");
         });
     }
 
@@ -400,7 +400,7 @@
                         valign: 'middle',
                         width: 160, // 定义列的宽度，单位为像素px
                         formatter: function (value, row, index) {
-                            var code = row.fcode + "";
+                            var code = row.id + "";
                             var shortname = row.shortname + "";
                             return "<a class=\"edit ml10\" style=\"color:black;\" href=\"javascript:edit('" + code + "','" + shortname + "')\" title=\"编辑\">" +
                                 "<span class=\"glyphicon glyphicon-edit\"></span>" +
