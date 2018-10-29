@@ -19,6 +19,7 @@ public class DateTest {
             Date b = new Date();
 
             System.out.println("两个时间相差" + DateUtils.getBetweenSecond(a, b) + "秒");//会打印出相差3秒
+            System.out.println("两个时间相差" + a.getTime());//会打印出相差3秒
 
         } catch (InterruptedException e) {
 
@@ -36,7 +37,7 @@ public class DateTest {
 
         String str = "123456abcdef";
         System.out.println(MD5Util.MD5(str));
-        System.out.println(Double.parseDouble(Double.MAX_VALUE+""));
+        System.out.println(Double.parseDouble(Double.MAX_VALUE + ""));
 
 
     }

@@ -6,6 +6,7 @@ import com.tgb.model.AllProject;
 import com.tgb.model.DataTest;
 import com.tgb.model.ProjectResult;
 import com.tgb.model.ProjectResult.ProjectInfo;
+import com.tgb.service.CommonService;
 import com.tgb.service.DataService;
 import com.tgb.util.MD5Util;
 import com.tgb.util.StringUtils;
@@ -26,10 +27,17 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+/***
+ *   @ResponseBody 是表示返回json格式
+ *   @RequestBody 表示参数是对象格式
+ *   request和session的区别是request是一个请求的周期   session是一个页面的周期常用作登陆后用户信息
+ * */
 @Controller
 public class DataController {
     @Autowired
     private DataService dataService;
+    @Autowired
+    private CommonService commonService;
 
     @ResponseBody
     @RequestMapping(value = "app/account/adddata", method = RequestMethod.POST)
@@ -74,31 +82,14 @@ public class DataController {
     @RequestMapping(value = "app/account/adddatatest", method = RequestMethod.POST)
     public void addDataTest(@RequestBody JSONObject jsonObj, HttpServletRequest request, HttpServletResponse response) {
         String jsonStr = "{\"code\":\"200\",\"result\":\"{}\"}";
-        try {
-            response.setContentType("application/json;charset=UTF-8");
-            response.setCharacterEncoding("UTF-8");
-            response.getWriter().write(jsonStr);
-            response.getWriter().flush();
-            response.getWriter().close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        commonService.returnJson(response, jsonStr);
     }
 
     @ResponseBody
     @RequestMapping(value = "app/account/adddatatestget", method = RequestMethod.GET)
     public void addDataTest2(HttpServletRequest request, HttpServletResponse response) {
         String jsonStr = "{\"code\":200,\"msg\":null,\"result\":{\"listproject\":[{\"projectname\":\"呵呵1\",\"projectmoney\":\"50\",\"projectid\":\"1\",\"projecttype\":\"1\"},{\"projectname\":\"hehe\",\"projectmoney\":\"100\",\"projectid\":\"2\",\"projecttype\":\"1\"},{\"projectname\":\"lhy\",\"projectmoney\":\"200\",\"projectid\":\"3\",\"projecttype\":\"1\"}]}}";
-
-        try {
-            response.setContentType("application/json;charset=UTF-8");
-            response.setCharacterEncoding("UTF-8");
-            response.getWriter().write(jsonStr);
-            response.getWriter().flush();
-            response.getWriter().close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        commonService.returnJson(response, jsonStr);
     }
 
     @ResponseBody
@@ -227,15 +218,7 @@ public class DataController {
             jsonStr = "{\"code\":\"100\",\"message\":\"请使用POST请求方式\",\"sign\":\"xxxxxxxxx\"}";
         }
 
-        try {
-            response.setContentType("application/json;charset=UTF-8");
-            response.setCharacterEncoding("UTF-8");
-            response.getWriter().write(jsonStr);
-            response.getWriter().flush();
-            response.getWriter().close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        commonService.returnJson(response, jsonStr);
     }
 
     @ResponseBody
@@ -280,15 +263,7 @@ public class DataController {
             jsonStr = "{\"code\":\"100\",\"message\":\"请使用POST请求方式\",\"sign\":\"xxxxxxxxx\"}";
         }
 
-        try {
-            response.setContentType("application/json;charset=UTF-8");
-            response.setCharacterEncoding("UTF-8");
-            response.getWriter().write(jsonStr);
-            response.getWriter().flush();
-            response.getWriter().close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        commonService.returnJson(response, jsonStr);
     }
 
     @ResponseBody
@@ -333,15 +308,7 @@ public class DataController {
             jsonStr = "{\"code\":\"100\",\"message\":\"请使用POST请求方式\",\"sign\":\"xxxxxxxxx\"}";
         }
 
-        try {
-            response.setContentType("application/json;charset=UTF-8");
-            response.setCharacterEncoding("UTF-8");
-            response.getWriter().write(jsonStr);
-            response.getWriter().flush();
-            response.getWriter().close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        commonService.returnJson(response, jsonStr);
     }
 
     @ResponseBody
@@ -369,15 +336,7 @@ public class DataController {
 
         String str = strjson.replace("\"result\":{", "\"result\":{\"remark\":\"这个铲平不错哦哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈\",");
 
-        response.setContentType("application/json;charset=UTF-8");
-        response.setCharacterEncoding("UTF-8");
-        try {
-            response.getWriter().write(str);
-            response.getWriter().flush();
-            response.getWriter().close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        commonService.returnJson(response, str);
     }
 
     @ResponseBody

@@ -607,7 +607,8 @@
                     {
                         sortable: true,
                         field: 'fund_type',
-                        title: '类型',
+                        title: '类型及讲解',
+                        width:400,
                         align: 'center',
                         valign: 'middle'
                     },

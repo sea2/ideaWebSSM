@@ -17,24 +17,32 @@ public class CollectTest {
 
         HashSet<Integer> hashSet = new HashSet<Integer>();
         hashSet.add(1);
+        hashSet.add(1);
+        hashSet.remove(2);
+
+        for (Integer integer : hashSet) {
+            System.out.println("HashSet" + integer);
+        }
+
+
 
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        printTimeInfo(t1,"main");
+        printTimeInfo(t1, "main");
 
     }
 
-    public static void printTimeInfo(long t1, String keyInfo) {
+    private static void printTimeInfo(long t1, String keyInfo) {
         long t2 = System.currentTimeMillis(); // 排序后取得当前时间
         Calendar c = Calendar.getInstance();
         c.setTimeInMillis(t2 - t1);
         System.out.println(keyInfo + "--" + getLineInfo() + " 耗时: " + c.get(Calendar.MINUTE) + "分 " + c.get(Calendar.SECOND) + "秒 " + c.get(Calendar.MILLISECOND) + " 毫秒");
     }
 
-    public static String getLineInfo() {
+    private static String getLineInfo() {
         StackTraceElement ste = new Throwable().getStackTrace()[1];
         return ste.getFileName() + ": Line " + ste.getLineNumber();
     }
