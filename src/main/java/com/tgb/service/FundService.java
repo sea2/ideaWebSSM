@@ -21,6 +21,7 @@ public interface FundService {
     void deleteSql(String deleteSql);
 
     void insertSql(String insertSql);
+    void updateSql(String updateSql);
 
     List<TFundStockRelation>  findStockByCode(String code);
 

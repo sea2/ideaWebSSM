@@ -19,7 +19,6 @@ public class CollectTest {
         hashSet.add(1);
         hashSet.add(1);
         hashSet.remove(2);
-
         for (Integer integer : hashSet) {
             System.out.println("HashSet" + integer);
         }

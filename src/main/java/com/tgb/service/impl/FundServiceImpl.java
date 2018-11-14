@@ -57,6 +57,11 @@ public class FundServiceImpl implements FundService {
     }
 
     @Override
+    public void updateSql(String updateSql) {
+        mapper.updateSql(updateSql);
+    }
+
+    @Override
     public List<TFundStockRelation> findStockByCode(String code) {
         return mapper.findStockByCode(code);
     }

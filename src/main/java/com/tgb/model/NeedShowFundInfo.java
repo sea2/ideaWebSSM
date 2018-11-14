@@ -14,6 +14,24 @@ public class NeedShowFundInfo {
     private String rate;
     private String fund_buy_price;
     private String fund_type;
+    private String fund_remark;
+    private int fund_level;
+
+    public String getFund_remark() {
+        return fund_remark;
+    }
+
+    public void setFund_remark(String fund_remark) {
+        this.fund_remark = fund_remark;
+    }
+
+    public int getFund_level() {
+        return fund_level;
+    }
+
+    public void setFund_level(int fund_level) {
+        this.fund_level = fund_level;
+    }
 
     public String getFund_type() {
         return fund_type;

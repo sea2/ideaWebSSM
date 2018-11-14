@@ -22,13 +22,12 @@ public class DateTest {
             System.out.println("两个时间相差" + a.getTime());//会打印出相差3秒
 
         } catch (InterruptedException e) {
-
             e.printStackTrace();
         }
 
 
-        long millisecond = 1483959625851l;
-        long millisecond2 = 1483159625851l;
+        long millisecond = 1483959625851L;
+        long millisecond2 = 1483159625851L;
         SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
         System.out.println("毫秒[1483159625851]对应日期时间字符串：" + format.format(millisecond));
 

@@ -131,6 +131,27 @@
     </div>
 </div>
 
+
+<!-- 弹窗自评， -->
+<div id="background4" class="background">
+    <div class="dialog_content">
+        <div class="close_top_class">
+            <button id="close-button4" class="close-button">×</button>
+            <h3>备注</h3>
+        </div>
+        <div id="div2_dialog">
+            <label>
+<textarea style="width:400px;height:200px;margin: 10px" id="textarea_text">
+</textarea>
+            </label>
+            <input type="hidden" id="record_id2"/>
+            <button id="dialog_button_save"
+                    onclick="remarkUpdate()">确定
+            </button>
+        </div>
+    </div>
+</div>
+
 <!-- 相同持仓， -->
 <div id="background2" class="background">
     <div class="dialog_content">
@@ -198,6 +219,9 @@
     });
     $("#close-button3").click(function () {
         $("#background3").css('display', 'none');
+    });
+    $("#close-button4").click(function () {
+        $("#background4").css('display', 'none');
     });
 
     //新增
@@ -311,6 +335,7 @@
     $(document).ready(function () {
         $("button[name='toggle']").height(20);
         $("button[name='refresh']").height(20);
+
         $("#save_user_info").click(function () {
             var type = $("#dialog_type").val();
             if (type === '2') {//编辑
@@ -414,6 +439,12 @@
 
     //重复执行某个方法
     var t1 = window.setInterval(refreshInfo, 5000);
+    var t1 = window.setInterval(refreshTable, 1000000);
+
+    //刷新table
+    function refreshTable() {
+        refreshTable("<%=basePath%>fund/getListInfo");
+    }
 
     //去掉定时器的方法     window.clearInterval(t1);
 
@@ -430,6 +461,27 @@
         $.get("<%=basePath%>fund/del?code=" + code, function (data, status) {
             refreshTable("<%=basePath%>fund/getListInfo");
         });
+    }
+
+    //备注
+    function remark(id, remark) {
+        $("#textarea_text").val("");
+        $("#textarea_text").val(remark);
+        $("#record_id2").val(id);
+        $("#background4").css('display', 'block');
+    }
+
+    function remarkUpdate() {
+        var remark_new = $("#textarea_text").val();
+        var id = $("#record_id2").val();
+
+        if (remark_new !== "" && remark_new !== null && remark_new !== undefined)//如果返回的有内容
+        {
+            $.get("<%=basePath%>app/updateFundRemark?id=" + id + '&remark=' + remark_new, function (data) {
+                refreshTable("<%=basePath%>fund/getListInfo");
+            });
+        }
+        $("#background4").css('display', 'none');
     }
 
 
@@ -605,10 +657,24 @@
                         valign: 'middle'
                     },
                     {
+
+                        field: 'fund_remark',
+                        title: '标记',
+                        width: 300,
+                        align: 'center',
+                        valign: 'middle',
+                        formatter: function (value, row, index) {
+                            var code = row.fcode + "";
+                            if (value != null)
+                                return "<a href=\"javascript:remark('" + code + "','" + value + "');\">" + value + "</a>";
+                            else return "<a href=\"javascript:remark('" + code + "','" + value + "');\">-</a>";
+                        }
+                    },
+                    {
                         sortable: true,
                         field: 'fund_type',
                         title: '类型及讲解',
-                        width:400,
+                        width: 150,
                         align: 'center',
                         valign: 'middle'
                     },

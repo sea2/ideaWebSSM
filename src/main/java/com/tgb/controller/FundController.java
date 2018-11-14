@@ -40,6 +40,7 @@ public class FundController {
 
     /**
      * 获取所有列表
+     *
      * @param request 166009,166002,163402,340007,340008,519068,519066,470028,420005,001632,001631,001986,070032,001616,070023,160222,160225,020026,161725,110022,519700,000251,100032,530018,002851,217016,001878,000988,110023
      * @return
      */
@@ -70,7 +71,7 @@ public class FundController {
             map.put("pageIndex", "1");
             map.put("ReqNo", "1524621947948");
             map.put("CompanyId", "10000");
-            map.put("pageSize", findAll.size()+"");
+            map.put("pageSize", findAll.size() + "");
             map.put("plat", "Android");
             map.put("appType", "ttjj");
             map.put("BUY", "true");
@@ -129,6 +130,10 @@ public class FundController {
                         mNeedShowFundInfo.setFund_buy_price(StringUtils.keepFour(mMyHasFundInfo.getFund_buy_price()));
                         //基金类型
                         mNeedShowFundInfo.setFund_type(mMyHasFundInfo.getFund_type());
+                        //基金重要等级
+                        mNeedShowFundInfo.setFund_level(mMyHasFundInfo.getFund_level());
+                        //基金备注
+                        mNeedShowFundInfo.setFund_remark(mMyHasFundInfo.getFund_remark());
                         break;
                     }
                 }
@@ -284,7 +289,7 @@ public class FundController {
             for (int i = 0; i < originalList.size(); i++) {
                 originalInfoStringBuilder.append("&emsp;");
                 originalInfoStringBuilder.append(originalList.get(i).getStockName());
-                if (i!=0&&i%4== 0) originalInfoStringBuilder.append("<br/>");
+                if (i != 0 && i % 4 == 0) originalInfoStringBuilder.append("<br/>");
             }
             mFundCompareInfo1.setHold_stocks(originalInfoStringBuilder.toString());
             for (int i = 0; i < 2; i++) {
@@ -306,7 +311,7 @@ public class FundController {
             for (int i = 0; i < newList.size(); i++) {
                 originalInfoStringBuilder2.append("&emsp;");
                 originalInfoStringBuilder2.append(newList.get(i).getStockName());
-                if (i!=0&&i%4== 0) originalInfoStringBuilder2.append("<br/>");
+                if (i != 0 && i % 4 == 0) originalInfoStringBuilder2.append("<br/>");
             }
             mFundCompareInfo2.setHold_stocks(originalInfoStringBuilder2.toString());
             for (int i = 0; i < 2; i++) {
@@ -462,6 +467,15 @@ public class FundController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+
+    @RequestMapping("app/updateFundRemark")
+    public void updateRemark(HttpServletRequest request, HttpServletResponse response) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        String remark = request.getParameter("remark");
+        String sqlStr = " t_fund set fund_remark='"+remark+"' where fund_code='"+id+"'";
+        fundService.updateSql(sqlStr);
     }
 
 
