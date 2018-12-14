@@ -80,7 +80,6 @@ public class UphotoController {
                     //上传
                     file.transferTo(new File(path));
                 }
-
             }
 
         }

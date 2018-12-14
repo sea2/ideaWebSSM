@@ -12,7 +12,6 @@ public class DateTest {
 
     public static void main(String[] arg) {
 
-
         try {
             Date a = new Date();
             Thread.sleep(3000);
@@ -39,6 +38,14 @@ public class DateTest {
         System.out.println(Double.parseDouble(Double.MAX_VALUE + ""));
 
 
+        int[] arrayInt = new int[]{2, 1, 3, 9, 6, 2, 7, 4, 8, 5};
+        String[] arrayStr;
+        selectionSort(arrayInt);
+        for (int i = 0; i < arrayInt.length; i++) {
+            System.out.println(arrayInt[i] + "--");
+        }
+
+
     }
 
 
@@ -63,6 +70,49 @@ public class DateTest {
             isSame = time1.equals(time2);
         }
         return isSame;
+    }
+
+    /**
+     * 冒泡排序
+     * 将数组排序分成 arr.length - 1比对，
+     * 从下到上即从arr.length - 1开始到顶部小标即是i进行交换
+     */
+    public static void bubbleSort(int[] arr) {
+        int temp;//临时存放
+        for (int i = 0; i < arr.length - 1; i++) {//比对次数
+            for (int j = arr.length - 1; j > i; j--) {
+                if (arr[j] < arr[j - 1]) {
+                    temp = arr[j];
+                    arr[j] = arr[j - 1];
+                    arr[j - 1] = temp;
+                }
+            }
+        }
+    }
+
+
+    /**
+     * 选择排序  ,
+     * 将数组排序分成 arr.length - 1比对，
+     * 然后遍历每一列从上到下选出最小的下标，
+     * 然后将最小的和遍历本列的最顶即i小标，交换位置
+     */
+    public static void selectionSort(int[] arr) {
+        int temp;//临时存放
+        for (int i = 0; i < arr.length - 1; i++) {//比对次数
+            int minIndex = i;
+            for (int j = i + 1; j < arr.length; j++) {
+                if (arr[j] < arr[minIndex]) {
+                    minIndex = j;
+                }
+            }
+
+            if (minIndex != i) {
+                temp = arr[i];
+                arr[i] = arr[minIndex];
+                arr[minIndex] = temp;
+            }
+        }
     }
 
 

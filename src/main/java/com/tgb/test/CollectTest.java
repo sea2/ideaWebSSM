@@ -1,18 +1,32 @@
 package com.tgb.test;
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.HashSet;
+import java.util.*;
 
 public class CollectTest {
 
     public static void main(String[] args) {
         long t1 = new Date().getTime();
-        HashMap<String, Object> map = new HashMap<>();
-        map.put("1", null);
 
-        System.out.println(map.get("1"));
+        //无序的
+        HashMap<String, Object> map = new HashMap<>();
+        for (int t = 0; t < 100; t++) {
+            map.put("" + t, t);
+        }
+
+        for (Map.Entry entry : map.entrySet()) {
+//            System.out.println("key= " + entry.getKey() + " and value= " + entry.getValue());
+        }
+
+        //有序的,默认key的字母升序
+       TreeMap<String, Object> treeMap = new TreeMap<>();
+        for (int t = 0; t < 10; t++) {
+            treeMap.put("" + t, t);
+        }
+
+        for (Map.Entry entry : treeMap.entrySet()) {
+            System.out.println("key= " + entry.getKey() + " and value= " + entry.getValue());
+        }
+
 
 
         HashSet<Integer> hashSet = new HashSet<Integer>();
@@ -24,13 +38,13 @@ public class CollectTest {
         }
 
 
-
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
         printTimeInfo(t1, "main");
+
 
     }
 
