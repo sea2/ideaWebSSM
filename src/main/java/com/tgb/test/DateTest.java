@@ -43,9 +43,11 @@ public class DateTest {
         selectionSort(arrayInt);
         for (int i = 0; i < arrayInt.length; i++) {
             System.out.println(arrayInt[i] + "--");
+            System.out.println(" http://m.91xcm.com/mevent/heguiqianxing/index.html?source=Android&spm=2018.1.4.0.0.0".replace("http://m.91xcm.com", "https://m.91xcm.com") + "--");
         }
-
-
+        String str32 = "14.80亿元（2018-12-31";
+        String size_show = str32.substring(0, str32.length() - 13);
+        System.out.println(size_show+ "--");
     }
 
 

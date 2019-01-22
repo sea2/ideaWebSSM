@@ -701,7 +701,22 @@
                                 return "<span class='main_font'>" + row.nav + "</span><br/><span class='red_font'>+" + value + "%</span>";
                             else return "<span class='main_font'>" + row.nav + "</span><br/><span class='green_font'>" + value + "%</span>";
                         }
-                    }, {
+                    },
+                    {
+                        field: 'best_height',
+                        title: '历史净值',
+                        align: 'center',
+                        valign: 'middle',
+                        sortable: true,
+                        formatter: function (value, row, index) { // 单元格格式化函数
+                            if (row.gsz > value)
+                                return "<span class='red_font'>" + value + "</span><br/><span class='main_font'>" + row.best_low + "</span>";
+                            else if (row.gsz < value && row.gsz >= row.best_low||row.gsz === 0) return "<span class='main_font'>" + value + "</span ><br/><span class='main_font'>" + row.best_low + "</span>";
+                            else
+                                return "<span class='main_font'>" + value + "</span><br/><span class='red_font'>" + row.best_low + "</span>";
+                        }
+                    },
+                    {
                         field: 'money_old',
                         title: '买入状况',
                         align: 'center',
@@ -732,6 +747,16 @@
                             if (value > 0)
                                 return "<span class='red_font'>" + value + "%</span><br/><span class='red_font'>" + row.income + "元</span>";
                             else return "<span class='green_font'>" + value + "%</span><br/><span class='green_font'>" + row.income + "元</span>";
+                        }
+                    },
+                    {
+                        field: 'fund_size',
+                        title: '基金规模',
+                        align: 'center',
+                        valign: 'middle',
+                        sortable: true,
+                        formatter: function (value, row, index) { // 单元格格式化函数
+                             return "<span class='main_font'>" + value + "亿元</span>";
                         }
                     },
                     {

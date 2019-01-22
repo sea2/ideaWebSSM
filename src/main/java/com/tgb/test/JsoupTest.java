@@ -3,16 +3,18 @@ package com.tgb.test;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 
 import java.io.IOException;
 
+/**
+ * 参考：https://www.cnblogs.com/ry123/p/3682749.html
+ **/
 public class JsoupTest {
 
 
     public static void main(String[] arg) {
         //   String url = "http://www.mzitu.com/tag/ugirls/";
-        String url = "http://www.mzitu.com/";
+        String url = "http://fund.eastmoney.com/160225.html";
         Document doc = null;
         try {
             doc = Jsoup.connect(url)
@@ -33,20 +35,27 @@ public class JsoupTest {
             Elements h2 = doc.select("h2.csdn-tracking-statistics");
             Elements a = h2.select("a");
             Elements imgs = doc.select("img[src$=.png]");
-
+            //获取父元素，进而得到父属性
+               Element parentElement = element.parent();
+                String hrefStr = parentElement.attr("href");
               //定位具体元素
             Element titleElement = doc.getElementsByTag("a").get(0);
             titleElement.text();
             titleElement.attr("");
               */
 
-            Elements a = doc.select(".lazy");
-            for (Element element : a) {
-                Element parentElement = element.parent();
-                String hrefStr = parentElement.attr("href");
-                String imgStr = element.attr("data-original");
-                System.out.println(hrefStr + " " + imgStr);
-            }
+            Element child2 = doc.select("table td").get(12);
+            Element child3 = doc.select("table td").get(13);
+            Element child4 = doc.select("table td").get(14);
+            Element child5 = doc.select("table td").get(15);
+            Element child6 = doc.select("table td").get(16);
+            Element child7 = doc.select("table td").get(17);
+                System.out.println(" " + child2.text());
+                System.out.println(" " + child3.text());
+                System.out.println(" " + child4.text());
+                System.out.println(" " + child5.text());
+                System.out.println(" " + child6.text());
+                System.out.println(" " + child7.text());
 
         } catch (IOException e) {
             e.printStackTrace();

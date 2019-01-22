@@ -10,6 +10,9 @@ import com.tgb.util.NumberUtils;
 import com.tgb.util.StringUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -134,6 +138,28 @@ public class FundController {
                         mNeedShowFundInfo.setFund_level(mMyHasFundInfo.getFund_level());
                         //基金备注
                         mNeedShowFundInfo.setFund_remark(mMyHasFundInfo.getFund_remark());
+                        //基金规模
+                        if (!StringUtils.isEmpty(mMyHasFundInfo.getFund_size())) {
+                            int size_length = mMyHasFundInfo.getFund_size().length();
+                            String size_show = mMyHasFundInfo.getFund_size().substring(0,size_length-14);
+                            mNeedShowFundInfo.setFund_size(StringUtils.toFloat(size_show));
+                        }
+
+                        //历史最高净值小于昨日净值
+                        if (mMyHasFundInfo.getFund_history_height() == 0 || mMyHasFundInfo.getFund_history_height() < StringUtils.toFloat(mTianTianMyDatasBean.getNAV())) {
+                            String sqlStr = " t_fund set fund_history_height='" + mTianTianMyDatasBean.getNAV() + "' where fund_code='" + mMyHasFundInfo.getFund_has_code() + "'";
+                            fundService.updateSql(sqlStr);
+                            mNeedShowFundInfo.setBest_height(StringUtils.keepFour(StringUtils.toFloat(mTianTianMyDatasBean.getNAV())));
+                        } else
+                            mNeedShowFundInfo.setBest_height(StringUtils.keepFour(mMyHasFundInfo.getFund_history_height()));
+                        //历史最低净值大于昨日净值
+                        if (mMyHasFundInfo.getFund_history_low() == 0 || (StringUtils.toFloat(mTianTianMyDatasBean.getNAV()) != 0 && mMyHasFundInfo.getFund_history_low() > StringUtils.toFloat(mTianTianMyDatasBean.getNAV()))) {
+                            String sqlStr = " t_fund set fund_history_low='" + mTianTianMyDatasBean.getNAV() + "' where fund_code='" + mMyHasFundInfo.getFund_has_code() + "'";
+                            fundService.updateSql(sqlStr);
+                            mNeedShowFundInfo.setBest_low(StringUtils.keepFour(StringUtils.toFloat(mTianTianMyDatasBean.getNAV())));
+                        } else
+                            mNeedShowFundInfo.setBest_low(StringUtils.keepFour(mMyHasFundInfo.getFund_history_low()));
+
                         break;
                     }
                 }
@@ -474,8 +500,33 @@ public class FundController {
     public void updateRemark(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
         String remark = request.getParameter("remark");
-        String sqlStr = " t_fund set fund_remark='"+remark+"' where fund_code='"+id+"'";
+        String sqlStr = " t_fund set fund_remark='" + remark + "' where fund_code='" + id + "'";
         fundService.updateSql(sqlStr);
+    }
+
+    //基金信息爬虫，基金规模，基金创建时间，基金经理
+    @RequestMapping("app/updateFundInfo")
+    public void updateFundInfo(HttpServletRequest request, HttpServletResponse response) {
+        List<MyHasFundInfo> findAll = fundService.findAll();
+        for (MyHasFundInfo mMyHasFundInfo : findAll) {
+            String code = mMyHasFundInfo.getFund_has_code();
+            String url = "http://fund.eastmoney.com/" + code + ".html";
+            try {
+                Document doc = Jsoup.connect(url).get();
+                Element child3 = doc.select("table td").get(13);
+                Element child4 = doc.select("table td").get(14);
+                Element child5 = doc.select("table td").get(15);
+                String fund_size = child3.text().replace("基金规模：", "");
+                String fund_mg = child4.text().replace("基金经理：", "");
+                String fund_ct = child5.text().replace("成 立 日：", "");
+                String sqlStr = " t_fund set fund_size='" + fund_size + "',fund_creat_time='" + fund_ct + "',fund_manager='" + fund_mg + "'  where fund_code='" + mMyHasFundInfo.getFund_has_code() + "'";
+                fundService.updateSql(sqlStr);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        //  fundService.updateSql(sqlStr);
     }
 
 

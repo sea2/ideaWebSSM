@@ -22,9 +22,11 @@ public class TianTianMyDatasBean {
         private String FCODE;
         private String SHORTNAME;
         private String PDATE;
+    // 昨日净值
         private String NAV;
         private String ACCNAV;
         private String NAVCHGRT;
+        //最新净值
         private String GSZ;
         private String GSZZL;
         private String GZTIME;

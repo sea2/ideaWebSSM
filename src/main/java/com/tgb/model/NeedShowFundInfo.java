@@ -16,6 +16,34 @@ public class NeedShowFundInfo {
     private String fund_type;
     private String fund_remark;
     private int fund_level;
+    private String best_low;
+    private String best_height;
+    private double fund_size;
+
+    public double getFund_size() {
+        return fund_size;
+    }
+
+    public void setFund_size(double fund_size) {
+        this.fund_size = fund_size;
+    }
+
+    public String getBest_low() {
+        return best_low;
+    }
+
+    public void setBest_low(String best_low) {
+        this.best_low = best_low;
+    }
+
+    public String getBest_height() {
+        return best_height;
+    }
+
+    public void setBest_height(String best_height) {
+        this.best_height = best_height;
+    }
+
 
     public String getFund_remark() {
         return fund_remark;

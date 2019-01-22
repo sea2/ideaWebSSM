@@ -10,6 +10,13 @@ public class StringUtils {
         }
         return defValue;
     }
+    public static double toFloat(String str) {
+        try {
+            return Double.parseDouble(str);
+        } catch (Exception e) {
+            return 0;
+        }
+    }
 
     public static boolean isEmpty(String input) {
         if (input == null || "".equals(input) || "null".equals(input) || "[]".equals(input) || "{}".equals(input) || "NULL".equals(input))

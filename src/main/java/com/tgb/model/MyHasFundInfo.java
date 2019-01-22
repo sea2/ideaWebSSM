@@ -9,9 +9,36 @@ public class MyHasFundInfo {
     private String fund_has_code;
     private String fund_type;
     private String fund_remark;
+    private String fund_size;
     private int fund_level;
     private String fund_name;
     private int is_hold;
+    private double fund_history_low;
+    private double fund_history_height;
+
+    public String getFund_size() {
+        return fund_size;
+    }
+
+    public void setFund_size(String fund_size) {
+        this.fund_size = fund_size;
+    }
+
+    public double getFund_history_low() {
+        return fund_history_low;
+    }
+
+    public void setFund_history_low(double fund_history_low) {
+        this.fund_history_low = fund_history_low;
+    }
+
+    public double getFund_history_height() {
+        return fund_history_height;
+    }
+
+    public void setFund_history_height(double fund_history_height) {
+        this.fund_history_height = fund_history_height;
+    }
 
     public String getFund_remark() {
         return fund_remark;
