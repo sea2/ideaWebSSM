@@ -2,6 +2,7 @@ package com.tgb.test;
 
 import com.tgb.util.DateUtils;
 import com.tgb.util.MD5Util;
+import com.tgb.util.TimeUtils;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -48,6 +49,13 @@ public class DateTest {
         String str32 = "14.80亿元（2018-12-31";
         String size_show = str32.substring(0, str32.length() - 13);
         System.out.println(size_show+ "--");
+
+
+        int betweenTime = TimeUtils.dateBetween(TimeUtils.date2String(new Date(), TimeUtils.DEFAULT_PATTERN2), "20190512");
+
+
+        System.out.println(TimeUtils.date2String(new Date(), TimeUtils.DEFAULT_PATTERN2)+ "--"+betweenTime);
+
     }
 
 

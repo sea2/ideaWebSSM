@@ -5,6 +5,9 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 /**
  * 拦截器
@@ -33,41 +36,43 @@ public class AllInterceptor extends HandlerInterceptorAdapter {
                 System.out.println("请求参数：" + requestParams);
         }
 
-
-		/*if (new CustomUri().getListStr().contains(requestUri)) {
-			return true;
-		} else {// 小财迷测试服务
-			BufferedReader in = new BufferedReader(new InputStreamReader(request.getInputStream()));
-			StringBuilder sb = new StringBuilder();
-			String line = null;
-			while ((line = in.readLine()) != null) {
-				sb.append(line);
-			}
-			String urlStr = "http://test.91xcm.com:8020" + requestUri;
-			System.out.println("请求参数：" + sb.toString());
-			String jsonStr = HttpUtil.interceptorHttp(requestUri, urlStr, sb.toString(), request.getMethod(),
-					request.getQueryString());
-			try {
-				// 正常接口返回
-				response.setContentType("application/json;charset=UTF-8");
-				response.setCharacterEncoding("UTF-8");
-				response.getWriter().write(jsonStr);
-				response.getWriter().flush();
-				response.getWriter().close();
-
-				// jsonp格式返回
-				String renderStr = "jsonpCallback" + "(" + jsonStr + ")";
-				response.setContentType("text/plain;charset=UTF-8");
-				response.getWriter().write(renderStr);
-				response.getWriter().flush();
-				response.getWriter().close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			return false;
-		}*/
-
         return true;
+
+//		if (new CustomUri().getListStr().contains(requestUri)) {
+//			return true;
+//		} else {// 小财迷测试服务
+//			BufferedReader in = new BufferedReader(new InputStreamReader(request.getInputStream()));
+//			StringBuilder sb = new StringBuilder();
+//			String line = null;
+//			while ((line = in.readLine()) != null) {
+//				sb.append(line);
+//			}
+//			String urlStr = "http://123.206.114.224" + requestUri;
+////			String urlStr = "http://192.168.69.250" + requestUri;
+//			System.out.println("请求参数：" + sb.toString());
+//			String jsonStr = HttpUtil.interceptorHttp(requestUri, urlStr, sb.toString(), request.getMethod(),
+//					request.getQueryString());
+//			try {
+//				// 正常接口返回
+//				response.setContentType("application/json;charset=UTF-8");
+//				response.setCharacterEncoding("UTF-8");
+//				response.getWriter().write(jsonStr);
+//				response.getWriter().flush();
+//				response.getWriter().close();
+//
+//				// jsonp格式返回
+//				String renderStr = "jsonpCallback" + "(" + jsonStr + ")";
+//				response.setContentType("text/plain;charset=UTF-8");
+//				response.getWriter().write(renderStr);
+//				response.getWriter().flush();
+//				response.getWriter().close();
+//			} catch (IOException e) {
+//				e.printStackTrace();
+//			}
+//			return false;
+//		}
+
+
 
     }
 

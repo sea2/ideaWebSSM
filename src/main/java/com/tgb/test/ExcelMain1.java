@@ -12,6 +12,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import com.tgb.util.HttpUtil;
+import com.tgb.util.StringUtils;
 import jxl.Cell;
 import jxl.CellType;
 import jxl.Sheet;
@@ -35,13 +37,13 @@ public class ExcelMain1 {
 
 			// 直接从本地文件创建Workbook
 
-			InputStream instream = new FileInputStream("C:\\Users\\Administrator\\Desktop\\springmvc-mybatis-learning-master\\springmvc-mybatis-learning-master\\sourcecode\\webSpringMvc\\跟投.xls");
+			InputStream instream = new FileInputStream("C:\\Users\\GM88\\Desktop\\games.xls");
 
 			readwb = Workbook.getWorkbook(instream);
 
 			// Sheet的下标是从0开始
 
-		/*	------------------获取第一张Sheet表------------------------------------------------*/
+		/*	------------------获取第 几张Sheet表  0是第一张，以此类推------------------------------------------------*/
 			Sheet readsheet = readwb.getSheet(0);
 
 			// 获取Sheet表中所包含的总列数
@@ -61,7 +63,7 @@ public class ExcelMain1 {
 				System.out.println( cell.getContents().trim()+"-"+ cell2.getContents().trim());
 			}
 		/*	------------------获取第2张Sheet表------------------------------------------------*/
-			Sheet readsheet2 = readwb.getSheet(1);
+			Sheet readsheet2 = readwb.getSheet(0);
 
 			// 获取Sheet表中所包含的总列数
 
@@ -77,9 +79,12 @@ public class ExcelMain1 {
 				Cell cellNew = readsheet2.getCell(0, i);
 				//第二列
 				Cell cell2New = readsheet2.getCell(1, i);
-				if(cell2New.getContents()!=null&&cell2New.getContents().length()>3)
-				System.out.println( cellNew.getContents().trim()+"-"+ cell2New.getContents().trim().substring(3));
-				else System.out.println( cellNew.getContents().trim()+"-"+ cell2New.getContents().trim());
+				//第二列
+				Cell cell3New = readsheet2.getCell(2, i);
+
+				 System.out.println( cellNew.getContents().trim()+"-"+ cell2New.getContents().trim()+"-"+cell3New.getContents().trim());
+				if(!StringUtils.isEmpty( cell3New.getContents().trim())&&!cell3New.getContents().trim().contains("地址"))
+				HttpUtil.downloadFile(cell3New.getContents().trim(),"C:\\Users\\GM88\\Desktop\\game_apk\\input-"+cell2New.getContents().trim()+"_"+cellNew.getContents().trim(),cell2New.getContents().trim()+"_"+cellNew.getContents().trim()+".apk");
 			}
 
 

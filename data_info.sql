@@ -2161,6 +2161,6 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of user
+-- Records of user info to
 -- ----------------------------
 INSERT INTO `user` VALUES ('1', '1', '1', '1', '01', '1', '1');
