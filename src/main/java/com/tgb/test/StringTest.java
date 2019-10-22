@@ -22,8 +22,20 @@ public class StringTest {
         Map map = UrlUtils.URLRequest(url);
         System.out.println(map.get("tdsourcetag"));
 
+            Map map2 = UrlUtils.URLRequest(url);
+            if (map2 != null && map2.size() > 0) {
+                String accessToken = (String) map2.get("accessToken");
+                System.out.println(accessToken);
+            }
+        }
 
-    }
+
+
+
+
+
+
+
 
 
     //截取数字

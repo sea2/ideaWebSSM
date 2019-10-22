@@ -1,0 +1,34 @@
+
+.van-dialog__confirm, .van-dialog__confirm:active{
+  color: #2D5CBBFF!important;
+  font-size: .3rem!important;
+}
+.van-dialog__header{
+  color: #292C32FF;
+  font-size: .34rem;
+}
+.van-dialog__message{
+  color: #292C32FF!important;
+  font-size: .3rem!important;
+}
+.van-button--large{
+  height: 46px!important;
+  line-height: 46px!important;
+}
+[class*=van-hairline]::after{
+  border-color: #C9CEDDFF!important;
+}
+.van-button--default{
+  font-size: .3rem!important;
+}
+.van-picker__cancel{
+  color:#85A9FE!important;
+}
+
+.van-picker__confirm{
+  color:rgba(45,92,187,1)!important;
+}
+
+.van-picker-column__item--selected {
+  color: #2d5cbb !important ;font-weight:500;
+}

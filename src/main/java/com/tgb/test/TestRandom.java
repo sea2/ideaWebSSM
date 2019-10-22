@@ -1,5 +1,8 @@
 package com.tgb.test;
 
+import com.tgb.util.HttpUtil;
+
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -40,6 +43,10 @@ public class TestRandom {
 			for(int i=0;i<3;i++){
 				System.out.println("-----"+arr.remove(new Random().nextInt(arr.size())));
 			}
+
+
+
+
 
 	}
 
