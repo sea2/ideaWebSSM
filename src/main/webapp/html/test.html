@@ -7,15 +7,21 @@
     <script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
 
     <script>
-        function show(obj,id) {
-            var objDiv = $("#"+id+"");
-            $(objDiv).css("display","block");
+        function show(obj, id) {
+            var objDiv = $("#" + id + "");
+            $(objDiv).css("display", "block");
             $(objDiv).css("left", event.clientX);
             $(objDiv).css("top", event.clientY + 10);
         }
-        function hide(obj,id) {
-            var objDiv = $("#"+id+"");
+
+        function hide(obj, id) {
+            var objDiv = $("#" + id + "");
             $(objDiv).css("display", "none");
+        }
+
+        function showTip(type) {
+            var json = "{\"amount\":\"9.99\",\"resultType\":\"1\",\"status\":true}";
+            window.GmGameInfo.paySuccCard(json);
         }
     </script>
 </head>
@@ -30,6 +36,19 @@
 <div id="mydiv2" style="position:absolute;display:none;border:1px solid silver;background:silver;">
     提示2效果
 </div>
+
+<a href="javascript:android('1');" style="font-size: 20px">
+    金额过多
+</a>
+<br/>
+<a href="javascript:android('2');" style="font-size: 20px">
+
+    金额不足过多
+</a> <br/>
+<a href="javascript:android('3');" style="font-size: 20px">
+
+    金额刚好
+</a>
 
 <a id="t1" onMouseOver="javascript:show(this,'mydiv1');" onMouseOut="hide(this,'mydiv1')">鼠标放上去1</a>
 <br><br><br><br><br>
