@@ -2186,7 +2186,7 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of user
+-- Records of user info to
 -- ----------------------------
 INSERT INTO `user` VALUES ('1', '1', '1', '12', '13636415907', '上海市浦东新区，浦东南路', '0', '1');
 INSERT INTO `user` VALUES ('2', '2', '2', '29', '0', null, null, '2');

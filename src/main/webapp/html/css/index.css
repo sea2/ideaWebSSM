@@ -201,3 +201,8 @@ body {
   padding: 0.3333333333rem; }
 
 /*# sourceMappingURL=index.css.map */
+@media only screen and (max-width: 500px) {
+  body {
+    background-color: lightblue;
+  }
+}

@@ -6,9 +6,7 @@ import org.json.JSONObject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLConnection;
+import java.net.*;
 import java.util.*;
 
 public class HttpUtil {
@@ -77,7 +75,25 @@ public class HttpUtil {
             case "/v1.0/app":
                 strt = "{\"code\":\"100\",\"list\":[{\"id\":\"1\",\"id1\":\"1\"},{\"id\":\"2\",\"id1\":\"2\"}],\"message\":\"请求无效，请检查请求拼接完整性\",\"sign\":\"xxxxxxxxx\"}";
                 break;
-
+            case "/api/appIndex":
+                strt = "{\"code\":200,\"data\":{\"lists\":[{\"id\":2,\"tab_child_id\":2,\"tag_name\":\"新游推荐\",\"type\":1,\"sort\":11,\"created_at\":null,\"updated_at\":null,\"deleted_at\":null,\"games\":[{\"id\":3,\"tag_id\":2,\"game_id\":2486,\"recommend\":1,\"sort\":14,\"deleted_at\":null,\"created_at\":null,\"updated_at\":null,\"game\":{\"id\":2486,\"game_name\":\"测试游戏\",\"type\":\"1\",\"game_tags\":null,\"game_link\":null,\"game_icon\":\"http://p16.qhimg.com/t014a4899d0a9a6b545.png\",\"game_small_desc\":\"金麟岂是池中物 一遇风云变化龙\",\"game_desc\":\"金麟岂是池中物 一遇风云变化龙\\\",\\\"appdesc\\\":\\\"首款电影级武侠MMO手游《风云》,由港漫教父马荣成正版授权,是畅游天龙八部3D团队打造最新力作。多种PK方式全景战斗模式,带来电影级武侠体验\",\"game_ver\":null,\"game_last_update\":null,\"game_allow_system\":null,\"download_url\":\"http://d4.gamersky.com/2018/01/gjqt_0.9.0.apk\",\"game_file_size\":\"28.49MB\",\"game_play_url\":null,\"down_count\":9650,\"game_pay_callback\":\"http://123.206.114.224/api/testGameCallBack\",\"md5_key\":\"GwlmON1Ex8CYYs4v0#Hx\",\"game_banner\":null,\"pinyin\":null,\"game_divide\":50,\"cp_divide\":50,\"promote_ratio\":50,\"discount\":58,\"real_count\":2,\"real_name\":1,\"bind_phone\":0,\"bind_count\":3,\"created_at\":\"2019-04-10 14:22:28\",\"updated_at\":\"2019-04-25 15:24:52\",\"deleted_at\":null,\"status\":0,\"game_img\":[\"games/images/1556177072934_th.jpeg.png\",\"games/images/1556177079855_2018100618181600-F1C11A22FAEE3B82F21B330E1B786A39.jpg\"],\"box_name\":\"cn.geekgame.dota.kaopu1\",\"cp_game\":null,\"index_img\":null}}]},{\"id\":1,\"tab_child_id\":1,\"tag_name\":\"热门推荐\",\"type\":2,\"sort\":10,\"created_at\":null,\"updated_at\":null,\"deleted_at\":null,\"games\":[{\"id\":18,\"tag_id\":1,\"game_id\":2484,\"recommend\":1,\"sort\":12,\"deleted_at\":null,\"created_at\":\"2019-04-25 11:41:19\",\"updated_at\":\"2019-04-25 11:41:19\",\"game\":{\"id\":2484,\"game_name\":\"1\",\"type\":\"2\",\"game_tags\":null,\"game_link\":null,\"game_icon\":\"http://p16.qhimg.com/t014a4899d0a9a6b545.png\",\"game_small_desc\":\"金麟岂是池中物 一遇风云变化龙\",\"game_desc\":\"金麟岂是池中物 一遇风云变化龙\\\",\\\"appdesc\\\":\\\"首款电影级武侠MMO手游《风云》,由港漫教父马荣成正版授权,是畅游天龙八部3D团队打造最新力作。多种PK方式全景战斗模式,带来电影级武侠体验\",\"game_ver\":null,\"game_last_update\":null,\"game_allow_system\":null,\"download_url\":\"http://ucdl.25pp.com/fs01/union_pack/Wandoujia_687401_leiz12.apk\",\"game_file_size\":\"28.49MB\",\"game_play_url\":null,\"down_count\":100,\"game_pay_callback\":null,\"md5_key\":null,\"game_banner\":null,\"pinyin\":null,\"game_divide\":0,\"cp_divide\":0,\"promote_ratio\":0,\"discount\":0,\"real_count\":0,\"real_name\":0,\"bind_phone\":0,\"bind_count\":0,\"created_at\":\"2019-04-22 17:59:24\",\"updated_at\":\"2019-04-22 17:59:24\",\"deleted_at\":null,\"status\":1,\"game_img\":[],\"box_name\":\"cn.geekgame.dota.kaopu1\",\"cp_game\":null,\"index_img\":null}},{\"id\":19,\"tag_id\":1,\"game_id\":2485,\"recommend\":1,\"sort\":10,\"deleted_at\":null,\"created_at\":\"2019-04-25 11:41:19\",\"updated_at\":\"2019-04-25 11:41:19\",\"game\":{\"id\":2485,\"game_name\":\"测试游戏\",\"type\":\"1\",\"game_tags\":null,\"game_link\":null,\"game_icon\":\"http://p16.qhimg.com/t014a4899d0a9a6b545.png\",\"game_small_desc\":\"金麟岂是池中物 一遇风云变化龙\",\"game_desc\":\"金麟岂是池中物 一遇风云变化龙\\\",\\\"appdesc\\\":\\\"首款电影级武侠MMO手游《风云》,由港漫教父马荣成正版授权,是畅游天龙八部3D团队打造最新力作。多种PK方式全景战斗模式,带来电影级武侠体验\",\"game_ver\":null,\"game_last_update\":null,\"game_allow_system\":null,\"download_url\":\"http://downali.game.uc.cn/s/1/9/201712011738562186f8_se-signed_uc_3002_V7.3.4.2_3.00.004_2010071006.apk\",\"game_file_size\":\"28.49MB\",\"game_play_url\":null,\"down_count\":100,\"game_pay_callback\":\"http://123.206.114.224/api/testGameCallBack\",\"md5_key\":\"GwlmON1Ex8CYYs4v0#Hx\",\"game_banner\":null,\"pinyin\":null,\"game_divide\":50,\"cp_divide\":50,\"promote_ratio\":50,\"discount\":58,\"real_count\":2,\"real_name\":1,\"bind_phone\":0,\"bind_count\":3,\"created_at\":\"2019-04-10 14:22:28\",\"updated_at\":\"2019-04-25 15:24:52\",\"deleted_at\":null,\"status\":0,\"game_img\":[\"games/images/1556177072934_th.jpeg.png\",\"games/images/1556177079855_2018100618181600-F1C11A22FAEE3B82F21B330E1B786A39.jpg\"],\"box_name\":\"cn.geekgame.dota.kaopu\",\"cp_game\":null,\"index_img\":null}}]},{\"id\":13,\"tab_child_id\":5,\"tag_name\":\"123\",\"type\":2,\"sort\":1,\"created_at\":\"2019-04-25 11:33:48\",\"updated_at\":\"2019-04-25 11:33:48\",\"deleted_at\":null,\"games\":[{\"id\":13,\"tag_id\":13,\"game_id\":2489,\"recommend\":1,\"sort\":1,\"deleted_at\":null,\"created_at\":\"2019-04-25 11:33:48\",\"updated_at\":\"2019-04-25 11:33:48\",\"game\":{\"id\":2489,\"game_name\":\"测试游戏\",\"type\":\"1\",\"game_tags\":null,\"game_link\":null,\"game_icon\":\"http://p16.qhimg.com/t014a4899d0a9a6b545.png\",\"game_small_desc\":\"金麟岂是池中物 一遇风云变化龙\",\"game_desc\":\"金麟岂是池中物 一遇风云变化龙\\\",\\\"appdesc\\\":\\\"首款电影级武侠MMO手游《风云》,由港漫教父马荣成正版授权,是畅游天龙八部3D团队打造最新力作。多种PK方式全景战斗模式,带来电影级武侠体验\",\"game_ver\":null,\"game_last_update\":null,\"game_allow_system\":null,\"download_url\":\"http://downali.game.uc.cn/s/1/9/201712011738562186f8_se-signed_uc_3002_V7.3.4.2_3.00.004_2010071006.apk\",\"game_file_size\":\"28.49MB\",\"game_play_url\":null,\"down_count\":600,\"game_pay_callback\":\"http://123.206.114.224/api/testGameCallBack\",\"md5_key\":\"GwlmON1Ex8CYYs4v0#Hx\",\"game_banner\":null,\"pinyin\":null,\"game_divide\":50,\"cp_divide\":50,\"promote_ratio\":50,\"discount\":58,\"real_count\":2,\"real_name\":1,\"bind_phone\":0,\"bind_count\":3,\"created_at\":\"2019-04-10 14:22:28\",\"updated_at\":\"2019-04-25 15:24:52\",\"deleted_at\":null,\"status\":0,\"game_img\":[\"games/images/1556177072934_th.jpeg.png\",\"games/images/1556177079855_2018100618181600-F1C11A22FAEE3B82F21B330E1B786A39.jpg\"],\"box_name\":\"com.cyou.mrd.fengyun2.aligames\",\"cp_game\":null,\"index_img\":null}}]}]," +
+                        "\"banners\":[{\"id\":1,\"banner_name\":\"测试banner\",\"tab_child_id\":1,\"type\":1,\"img_url\":\"games/images/1555926595166_th.jpeg.png\",\"h5_url\":\"http://www.baidu.com\",\"game_id\":2485,\"describeInfo\":\"测试\",\"start_time\":\"2019-04-23 11:57:30\",\"end_time\":\"2019-04-30 11:57:35\",\"status\":1,\"deleted_at\":null,\"created_at\":null,\"updated_at\":null,\"sort\":10,\"img_url_txt\":\"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1557916622840&di=844932d1d2e6e02956db7e97b176bdb0&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2Fcf9725a71e4fad49f5a738558205bbb004fe02cdc8ece-Y53wKG_fw658\"},{\"id\":1,\"banner_name\":\"测试banner\",\"tab_child_id\":1,\"type\":1,\"img_url\":\"games/images/1555926595166_th.jpeg.png\",\"h5_url\":\"http://www.baidu.com\",\"game_id\":2485,\"describeInfo\":\"测试\",\"start_time\":\"2019-04-23 11:57:30\",\"end_time\":\"2019-04-30 11:57:35\",\"status\":1,\"deleted_at\":null,\"created_at\":null,\"updated_at\":null,\"sort\":10,\"img_url_txt\":\"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1557916622840&di=844932d1d2e6e02956db7e97b176bdb0&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2Fcf9725a71e4fad49f5a738558205bbb004fe02cdc8ece-Y53wKG_fw658\"},{\"id\":2,\"banner_name\":\"测试banner\",\"tab_child_id\":1,\"type\":2,\"img_url\":\"games/images/1555926595166_th.jpeg.png\",\"h5_url\":\"\",\"game_id\":2483,\"describeInfo\":\"测试\",\"start_time\":\"2019-04-23 11:57:30\",\"end_time\":\"2019-04-30 11:57:35\",\"status\":1,\"deleted_at\":null,\"created_at\":null,\"updated_at\":null,\"sort\":9,\"img_url_txt\":\"http://pic51.nipic.com/file/20141031/8098773_204507657000_2.jpg\"}]}}";
+                break;
+            case "/api/getRankLists":
+                strt = "{\"code\":200,\"data\":{\"id\":10,\"tab_child_id\":3,\"tag_name\":\"排行\",\"type\":2,\"sort\":0,\"created_at\":\"\",\"updated_at\":\"\",\"deleted_at\":\"\",\"games\":[{\"id\":4,\"tag_id\":10,\"game_id\":2483,\"recommend\":1,\"sort\":10,\"deleted_at\":\"\",\"created_at\":\"\",\"updated_at\":\"\",\"game\":{\"id\":2483,\"game_name\":\"测试游戏\",\"type\":\"1\",\"game_tags\":\"\",\"game_link\":\"\",\"game_icon\":\"https://vrtest-10070225.image.myqcloud.com/games/images/1555926595166_th.jpeg.png\",\"game_small_desc\":\"\",\"game_desc\":\"\",\"game_ver\":\"\",\"game_last_update\":\"\",\"game_allow_system\":\"\",\"download_url\":\"http://dl02.ttfm.game900.com/0/bao/dandanguaji.apk\",\"game_file_size\":\"28.49MB\",\"game_play_url\":\"\",\"down_count\":0,\"game_pay_callback\":\"http://123.206.114.224/api/testGameCallBack\",\"md5_key\":\"GwlmON1Ex8CYYs4v0#Hx\",\"game_banner\":\"\",\"pinyin\":\"\",\"game_divide\":50,\"cp_divide\":50,\"promote_ratio\":50,\"discount\":58,\"real_count\":2,\"real_name\":1,\"bind_phone\":0,\"bind_count\":3,\"created_at\":\"2019-04-10 14:22:28\",\"updated_at\":\"2019-04-22 17:59:20\",\"deleted_at\":\"\",\"status\":0,\"game_img\":[],\"box_name\":\"\",\"cp_game\":\"\",\"index_img\":\"\"}},{\"id\":5,\"tag_id\":10,\"game_id\":2483,\"recommend\":0,\"sort\":0,\"deleted_at\":\"\",\"created_at\":\"\",\"updated_at\":\"\",\"game\":{\"id\":2483,\"game_name\":\"测试游戏\",\"type\":\"1\",\"game_tags\":\"\",\"game_link\":\"\",\"game_icon\":\"https://vrtest-10070225.image.myqcloud.com/games/images/1555926595166_th.jpeg.png\",\"game_small_desc\":\"\",\"game_desc\":\"\",\"game_ver\":\"\",\"game_last_update\":\"\",\"game_allow_system\":\"\",\"download_url\":\"http://dl02.ttfm.game900.com/0/bao/dandanguaji.apk\",\"game_file_size\":\"28.49MB\",\"game_play_url\":\"\",\"down_count\":0,\"game_pay_callback\":\"http://123.206.114.224/api/testGameCallBack\",\"md5_key\":\"GwlmON1Ex8CYYs4v0#Hx\",\"game_banner\":\"\",\"pinyin\":\"\",\"game_divide\":50,\"cp_divide\":50,\"promote_ratio\":50,\"discount\":58,\"real_count\":2,\"real_name\":1,\"bind_phone\":0,\"bind_count\":3,\"created_at\":\"2019-04-10 14:22:28\",\"updated_at\":\"2019-04-22 17:59:20\",\"deleted_at\":\"\",\"status\":0,\"game_img\":[],\"box_name\":\"\",\"cp_game\":\"\",\"index_img\":\"\"}}]}}";
+                break;
+            case "/api/getDownLists":
+                strt = "{\"code\":200,\"data\":{\"id\":10,\"tab_child_id\":3,\"tag_name\":\"排行\",\"type\":2,\"sort\":0,\"created_at\":\"\",\"updated_at\":\"\",\"deleted_at\":\"\",\"games\":[{\"id\":3,\"tag_id\":2,\"game_id\":2486,\"recommend\":1,\"sort\":14,\"deleted_at\":null,\"created_at\":null,\"updated_at\":null,\"game\":{\"id\":2486,\"game_name\":\"测试游戏\",\"type\":\"1\",\"game_tags\":null,\"game_link\":null,\"game_icon\":\"http://p16.qhimg.com/t014a4899d0a9a6b545.png\",\"game_small_desc\":\"金麟岂是池中物 一遇风云变化龙\",\"game_desc\":\"金麟岂是池中物 一遇风云变化龙\",\"appdesc\":\"首款电影级武侠MMO手游《风云》,由港漫教父马荣成正版授权,是畅游天龙八部3D团队打造最新力作。多种PK方式全景战斗模式,带来电影级武侠体验\",\"game_ver\":null,\"game_last_update\":null,\"game_allow_system\":null,\"download_url\":\"http://d4.gamersky.com/2018/01/gjqt_0.9.0.apk\",\"game_file_size\":\"28.49MB\",\"game_play_url\":null,\"down_count\":9650,\"game_pay_callback\":\"http://123.206.114.224/api/testGameCallBack\",\"md5_key\":\"GwlmON1Ex8CYYs4v0#Hx\",\"game_banner\":null,\"pinyin\":null,\"game_divide\":50,\"cp_divide\":50,\"promote_ratio\":50,\"discount\":58,\"real_count\":2,\"real_name\":1,\"bind_phone\":0,\"bind_count\":3,\"created_at\":\"2019-04-10 14:22:28\",\"updated_at\":\"2019-04-25 15:24:52\",\"deleted_at\":null,\"status\":0,\"game_img\":[\"games/images/1556177072934_th.jpeg.png\",\"games/images/1556177079855_2018100618181600-F1C11A22FAEE3B82F21B330E1B786A39.jpg\"],\"box_name\":\"cn.geekgame.dota.kaopu1\",\"cp_game\":null,\"index_img\":null}},{\"id\":4,\"tag_id\":10,\"game_id\":2483,\"recommend\":1,\"sort\":10,\"deleted_at\":\"\",\"created_at\":\"\",\"updated_at\":\"\",\"game\":{\"id\":2483,\"game_name\":\"测试游戏\",\"type\":\"1\",\"game_tags\":\"\",\"game_link\":\"\",\"game_icon\":\"https://vrtest-10070225.image.myqcloud.com/games/images/1555926595166_th.jpeg.png\",\"game_small_desc\":\"\",\"game_desc\":\"\",\"game_ver\":\"\",\"game_last_update\":\"\",\"game_allow_system\":\"\",\"download_url\":\"http://dl02.ttfm.game900.com/0/bao/dandanguaji.apk\",\"game_file_size\":\"28.49MB\",\"game_play_url\":\"\",\"down_count\":0,\"game_pay_callback\":\"http://123.206.114.224/api/testGameCallBack\",\"md5_key\":\"GwlmON1Ex8CYYs4v0#Hx\",\"game_banner\":\"\",\"pinyin\":\"\",\"game_divide\":50,\"cp_divide\":50,\"promote_ratio\":50,\"discount\":58,\"real_count\":2,\"real_name\":1,\"bind_phone\":0,\"bind_count\":3,\"created_at\":\"2019-04-10 14:22:28\",\"updated_at\":\"2019-04-22 17:59:20\",\"deleted_at\":\"\",\"status\":0,\"game_img\":[],\"box_name\":\"\",\"cp_game\":\"\",\"index_img\":\"\"}},{\"id\":5,\"tag_id\":10,\"game_id\":2483,\"recommend\":0,\"sort\":0,\"deleted_at\":\"\",\"created_at\":\"\",\"updated_at\":\"\",\"game\":{\"id\":2483,\"game_name\":\"测试游戏\",\"type\":\"1\",\"game_tags\":\"\",\"game_link\":\"\",\"game_icon\":\"https://vrtest-10070225.image.myqcloud.com/games/images/1555926595166_th.jpeg.png\",\"game_small_desc\":\"\",\"game_desc\":\"\",\"game_ver\":\"\",\"game_last_update\":\"\",\"game_allow_system\":\"\",\"download_url\":\"http://dl02.ttfm.game900.com/0/bao/dandanguaji.apk\",\"game_file_size\":\"28.49MB\",\"game_play_url\":\"\",\"down_count\":0,\"game_pay_callback\":\"http://123.206.114.224/api/testGameCallBack\",\"md5_key\":\"GwlmON1Ex8CYYs4v0#Hx\",\"game_banner\":\"\",\"pinyin\":\"\",\"game_divide\":50,\"cp_divide\":50,\"promote_ratio\":50,\"discount\":58,\"real_count\":2,\"real_name\":1,\"bind_phone\":0,\"bind_count\":3,\"created_at\":\"2019-04-10 14:22:28\",\"updated_at\":\"2019-04-22 17:59:20\",\"deleted_at\":\"\",\"status\":0,\"game_img\":[],\"box_name\":\"\",\"cp_game\":\"\",\"index_img\":\"\"}},{\"id\":3,\"tag_id\":2,\"game_id\":2486,\"recommend\":1,\"sort\":14,\"deleted_at\":null,\"created_at\":null,\"updated_at\":null,\"game\":{\"id\":2486,\"game_name\":\"测试游戏\",\"type\":\"1\",\"game_tags\":null,\"game_link\":null,\"game_icon\":\"http://p16.qhimg.com/t014a4899d0a9a6b545.png\",\"game_small_desc\":\"金麟岂是池中物 一遇风云变化龙\",\"game_desc\":\"金麟岂是池中物 一遇风云变化龙\",\"appdesc\":\"首款电影级武侠MMO手游《风云》,由港漫教父马荣成正版授权,是畅游天龙八部3D团队打造最新力作。多种PK方式全景战斗模式,带来电影级武侠体验\",\"game_ver\":null,\"game_last_update\":null,\"game_allow_system\":null,\"download_url\":\"http://d4.gamersky.com/2018/01/gjqt_0.9.0.apk\",\"game_file_size\":\"28.49MB\",\"game_play_url\":null,\"down_count\":9650,\"game_pay_callback\":\"http://123.206.114.224/api/testGameCallBack\",\"md5_key\":\"GwlmON1Ex8CYYs4v0#Hx\",\"game_banner\":null,\"pinyin\":null,\"game_divide\":50,\"cp_divide\":50,\"promote_ratio\":50,\"discount\":58,\"real_count\":2,\"real_name\":1,\"bind_phone\":0,\"bind_count\":3,\"created_at\":\"2019-04-10 14:22:28\",\"updated_at\":\"2019-04-25 15:24:52\",\"deleted_at\":null,\"status\":0,\"game_img\":[\"games/images/1556177072934_th.jpeg.png\",\"games/images/1556177079855_2018100618181600-F1C11A22FAEE3B82F21B330E1B786A39.jpg\"],\"box_name\":\"cn.geekgame.dota.kaopu1\",\"cp_game\":null,\"index_img\":null}},{\"id\":4,\"tag_id\":10,\"game_id\":2483,\"recommend\":1,\"sort\":10,\"deleted_at\":\"\",\"created_at\":\"\",\"updated_at\":\"\",\"game\":{\"id\":2483,\"game_name\":\"测试游戏\",\"type\":\"1\",\"game_tags\":\"\",\"game_link\":\"\",\"game_icon\":\"https://vrtest-10070225.image.myqcloud.com/games/images/1555926595166_th.jpeg.png\",\"game_small_desc\":\"\",\"game_desc\":\"\",\"game_ver\":\"\",\"game_last_update\":\"\",\"game_allow_system\":\"\",\"download_url\":\"http://dl02.ttfm.game900.com/0/bao/dandanguaji.apk\",\"game_file_size\":\"28.49MB\",\"game_play_url\":\"\",\"down_count\":0,\"game_pay_callback\":\"http://123.206.114.224/api/testGameCallBack\",\"md5_key\":\"GwlmON1Ex8CYYs4v0#Hx\",\"game_banner\":\"\",\"pinyin\":\"\",\"game_divide\":50,\"cp_divide\":50,\"promote_ratio\":50,\"discount\":58,\"real_count\":2,\"real_name\":1,\"bind_phone\":0,\"bind_count\":3,\"created_at\":\"2019-04-10 14:22:28\",\"updated_at\":\"2019-04-22 17:59:20\",\"deleted_at\":\"\",\"status\":0,\"game_img\":[],\"box_name\":\"\",\"cp_game\":\"\",\"index_img\":\"\"}},{\"id\":5,\"tag_id\":10,\"game_id\":2483,\"recommend\":0,\"sort\":0,\"deleted_at\":\"\",\"created_at\":\"\",\"updated_at\":\"\",\"game\":{\"id\":2483,\"game_name\":\"测试游戏\",\"type\":\"1\",\"game_tags\":\"\",\"game_link\":\"\",\"game_icon\":\"https://vrtest-10070225.image.myqcloud.com/games/images/1555926595166_th.jpeg.png\",\"game_small_desc\":\"\",\"game_desc\":\"\",\"game_ver\":\"\",\"game_last_update\":\"\",\"game_allow_system\":\"\",\"download_url\":\"http://dl02.ttfm.game900.com/0/bao/dandanguaji.apk\",\"game_file_size\":\"28.49MB\",\"game_play_url\":\"\",\"down_count\":0,\"game_pay_callback\":\"http://123.206.114.224/api/testGameCallBack\",\"md5_key\":\"GwlmON1Ex8CYYs4v0#Hx\",\"game_banner\":\"\",\"pinyin\":\"\",\"game_divide\":50,\"cp_divide\":50,\"promote_ratio\":50,\"discount\":58,\"real_count\":2,\"real_name\":1,\"bind_phone\":0,\"bind_count\":3,\"created_at\":\"2019-04-10 14:22:28\",\"updated_at\":\"2019-04-22 17:59:20\",\"deleted_at\":\"\",\"status\":0,\"game_img\":[],\"box_name\":\"\",\"cp_game\":\"\",\"index_img\":\"\"}}]}}";
+                break;
+            case "/api/showGameInfo":
+                strt = "{\"code\":200,\"data\":{\"id\":2486,\"game_name\":\"3\",\"type\":\"1\",\"game_tags\":\"\",\"game_link\":\"\",\"game_icon\":\"\",\"game_small_desc\":\"\",\"game_desc\":\"\",\"game_ver\":\"\",\"game_last_update\":\"\",\"game_allow_system\":\"\",\"download_url\":\"\",\"game_file_size\":\"\",\"game_play_url\":\"\",\"down_count\":1,\"game_pay_callback\":\"\",\"md5_key\":\"\",\"game_banner\":\"\",\"pinyin\":\"\",\"game_divide\":0,\"cp_divide\":0,\"promote_ratio\":0,\"discount\":59,\"real_count\":0,\"real_name\":0,\"bind_phone\":0,\"bind_count\":0,\"created_at\":\"2019-04-22 18:04:54\",\"updated_at\":\"2019-04-29 11:10:28\",\"deleted_at\":\"\",\"status\":0,\"game_img\":[\"http://pic2.cxtuku.com/00/15/12/b02302d3fb2e.jpg\",\"http://pic2.cxtuku.com/00/15/12/b27518df3644.jpg\",\"http://a.hiphotos.baidu.com/zhidao/pic/item/6159252dd42a283444e7e0155bb5c9ea15cebf6f.jpg\",\"http://www.99danji.com/upload/20127/2012071232959689.jpg\"],\"box_name\":\"\",\"cp_game\":\"\",\"index_img\":\"\",\"false_down_count\":0}}";
+                break;
+            case "/api/getStartAd":
+                strt = "{\"code\":200,\"data\":{\"id\":1,\"name\":\"\\u5f00\\u5c4f\\u9875\",\"jump_type\":2,\"game_id\":2843,\"url\":\"https://www.baidu.com\",\"start_time\":\"2019-05-19 16:53:09\",\"end_time\":\"2019-05-22 16:53:13\",\"nol_img_url\":\"ads\\/games\\/landingpages\\/1557805707776_%E6%A8%A1%E6%9D%BF_03.jpg\",\"full_img_url\":\"ads\\/games\\/landingpages\\/1557805707776_%E6%A8%A1%E6%9D%BF_03.jpg\",\"deleted_at\":\"\",\"created_at\":\"\",\"updated_at\":\"\",\"nol_img_url_text\":\"https:\\/\\/vrtest-10070225.image.myqcloud.com\\/ads\\/games\\/landingpages\\/1557805707776_%E6%A8%A1%E6%9D%BF_03.jpg\",\"full_img_url_text\":\"https:\\/\\/vrtest-10070225.image.myqcloud.com\\/ads\\/games\\/landingpages\\/1557805707776_%E6%A8%A1%E6%9D%BF_03.jpg\"}}";
+                break;
+            case "/api/getActivity":
+                strt = "{\"code\":200,\"data\":[{\"id\":4,\"name\":\"领取优惠券\",\"sort\":101,\"page_type\":1,\"type\":2,\"coupon_id\":2,\"url\":null,\"game_id\":null,\"show_type\":1,\"target_type\":1,\"amount\":\"0.00\",\"day\":3,\"user_phone\":null,\"start_time\":\"2019-05-28 00:00:00\",\"end_time\":\"2019-05-31 00:00:00\",\"img_url\":\"apk\\/activities\\/1559120307692_12.jpg\",\"deleted_at\":null,\"created_at\":\"2019-05-29 16:58:31\",\"updated_at\":\"2019-05-29 16:58:31\",\"status\":\"生效\",\"img_url_txt\":\"https:\\/\\/vrtest-10070225.cos.ap-shanghai.myqcloud.com\\/apk\\/activities\\/1559120307692_12.jpg\",\"activity_user\":null},{\"id\":2,\"name\":\"营销活动\",\"sort\":100,\"page_type\":1,\"type\":4,\"coupon_id\":null,\"url\":null,\"game_id\":2483,\"show_type\":2,\"target_type\":1,\"amount\":\"0.00\",\"day\":3,\"user_phone\":null,\"start_time\":\"2019-05-28 00:00:00\",\"end_time\":\"2019-05-31 00:00:00\",\"img_url\":\"apk\\/activities\\/1559115178414_61.png\",\"deleted_at\":null,\"created_at\":\"2019-05-29 15:33:01\",\"updated_at\":\"2019-05-29 15:33:01\",\"status\":\"生效\",\"img_url_txt\":\"https:\\/\\/vrtest-10070225.cos.ap-shanghai.myqcloud.com\\/apk\\/activities\\/1559115178414_61.png\",\"activity_user\":{\"id\":2,\"activity_id\":2,\"user_id\":9,\"type\":2,\"status\":0,\"date\":\"2019-05-26\",\"created_at\":null,\"updated_at\":null}},{\"id\":1,\"name\":\"活动名称:\",\"sort\":1,\"page_type\":1,\"type\":2,\"coupon_id\":2,\"url\":null,\"game_id\":null,\"show_type\":1,\"target_type\":5,\"amount\":\"0.00\",\"day\":3,\"user_phone\":\"13636415907\",\"start_time\":\"2019-05-08 00:00:00\",\"end_time\":\"2019-06-21 00:00:00\",\"img_url\":\"apk\\/activities\\/1558511437193_%E6%A8%A1%E6%9D%BF_04.jpg\",\"deleted_at\":null,\"created_at\":\"2019-05-22 15:37:19\",\"updated_at\":\"2019-05-27 10:53:06\",\"status\":\"生效\",\"img_url_txt\":\"https:\\/\\/vrtest-10070225.cos.ap-shanghai.myqcloud.com\\/apk\\/activities\\/1558511437193_%E6%A8%A1%E6%9D%BF_04.jpg\",\"activity_user\":null}]}";
+                break;
             default:
                 if (httpModth.equals("POST")) {
                     strt = doHttpPost(url, dataJson);
@@ -85,7 +101,7 @@ public class HttpUtil {
                     url = url + "?" + httpGetQueryString;
                     strt = doHttpGet(url);
                 }
-                break;
+
         }
         return strt;
     }
@@ -394,5 +410,86 @@ public class HttpUtil {
         return sb.toString();
     }
 
+    public static File downloadFile(String urlPath, String downloadDir, String fileFullName) {
+        File file = null;
+        try {
+
+            URL url = new URL(urlPath);
+            // 连接类的父类，抽象类
+            URLConnection urlConnection = url.openConnection();
+            // http的连接类
+            HttpURLConnection httpURLConnection = (HttpURLConnection) urlConnection;
+            httpURLConnection.setRequestMethod("GET");
+            int responseCode = httpURLConnection.getResponseCode();
+            if (responseCode == 302) {//从定向下载
+                String redirectUrl = new String(httpURLConnection.getHeaderField("Location").getBytes("ISO-8859-1"), "UTF-8");
+                url = new URL(redirectUrl);
+                httpURLConnection = (HttpURLConnection) url.openConnection();
+                httpURLConnection.setRequestMethod("GET");
+            }
+            //设置超时
+            httpURLConnection.setConnectTimeout(10000 * 5);
+            httpURLConnection.setReadTimeout(10000 * 5);
+            // 设置字符编码
+            httpURLConnection.setRequestProperty("Charset", "UTF-8");
+            httpURLConnection.setRequestProperty("Accept-Charset", "UTF-8");
+            httpURLConnection.setRequestProperty("accept", "*/*");
+            httpURLConnection.setRequestProperty("contentType", "UTF-8");
+
+            // 打开到此 URL引用的资源的通信链接（如果尚未建立这样的连接）。
+            httpURLConnection.connect();
+
+
+            InputStream is;
+            int code = httpURLConnection.getResponseCode();
+
+            is = httpURLConnection.getInputStream(); // 得到网络返回的输入流
+
+            BufferedInputStream bin = new BufferedInputStream(is);
+
+            // 文件大小
+            long fileLength = httpURLConnection.getContentLength();
+
+            // 控制台打印文件大小
+            System.out.println(code + "  您要下载的文件" + fileFullName + " 大小为:" + fileLength / (1024 * 1024) + "MB");
+
+            // 指定文件名称(有需求可以自定义)
+            // 指定存放位置(有需求可以自定义)
+            String path = downloadDir + File.separatorChar + fileFullName;
+            file = new File(path);
+            // 校验文件夹目录是否存在，不存在就创建一个目录
+            if (!file.getParentFile().exists()) {
+                file.getParentFile().mkdirs();
+            }
+
+            OutputStream out = new FileOutputStream(file);
+            int size = 0;
+            long len = 0;
+            long jinDuOut = 0;
+            byte[] buf = new byte[2048];
+            while ((size = bin.read(buf)) != -1) {
+                len += size;
+                // 控制台打印文件下载的百分比情况
+                long jinDu = len * 100 / fileLength;
+                if (jinDuOut < jinDu) {
+                    jinDuOut = jinDu;
+                    System.out.println("下载了-------> " + jinDu + "%");
+                }
+                out.write(buf, 0, size);
+            }
+            // 关闭资源
+            bin.close();
+            out.close();
+            System.out.println("文件下载成功！");
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("文件下载失败！");
+        } finally {
+            return file;
+        }
+
+    }
 
 }
