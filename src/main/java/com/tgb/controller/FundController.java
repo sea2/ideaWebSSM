@@ -10,6 +10,7 @@ import com.tgb.util.NumberUtils;
 import com.tgb.util.StringUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -496,11 +497,12 @@ public class FundController {
     }
 
 
-    @RequestMapping("app/updateFundRemark")
+    @RequestMapping("fund/updateFundRemark")
     public void updateRemark(HttpServletRequest request, HttpServletResponse response) {
         String id = request.getParameter("id");
         String remark = request.getParameter("remark");
         String sqlStr = " t_fund set fund_remark='" + remark + "' where fund_code='" + id + "'";
+        System.out.println(sqlStr);
         fundService.updateSql(sqlStr);
     }
 
@@ -512,7 +514,17 @@ public class FundController {
             String code = mMyHasFundInfo.getFund_has_code();
             String url = "http://fund.eastmoney.com/" + code + ".html";
             try {
-                Document doc = Jsoup.connect(url).get();
+                Document doc =null;
+                Connection con = Jsoup.connect(url).userAgent(
+                        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.90 Safari/537.36")
+                        .timeout(30000); // 设置连接超时时间
+                Connection.Response responseJsoup = con.execute();
+                if (responseJsoup.statusCode() == 200) {
+                    doc = con.get();
+                } else {
+                    System.out.println("爬虫链接"+url+"错误 "+responseJsoup.statusCode());
+                }
+
                 Element child3 = doc.select("table td").get(13);
                 Element child4 = doc.select("table td").get(14);
                 Element child5 = doc.select("table td").get(15);
