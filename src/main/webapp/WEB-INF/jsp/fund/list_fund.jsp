@@ -59,6 +59,9 @@
             <button id="btn_mark" type="button" class="btn btn-default">
                 <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>待办事务
             </button>
+            <button id="btn_update" type="button" class="btn btn-default">
+                <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>更新数据
+            </button>
             <button id="btn_delete" type="button" class="btn btn-default">
                 <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
             </button>
@@ -240,8 +243,18 @@
         });
     });
 
+    //备忘
     $("#btn_mark").click(function () {
         window.location.href = "<%=basePath%>mark/getList?type=" + 1;
+    });
+
+    //更新基金数据
+    $("#btn_update").click(function () {
+        $.post('app/updateFundInfo', {
+            "code": $("#user_id").val(),
+        }, function () {
+            refreshTable("<%=basePath%>fund/getListInfo");
+        });
     });
     //对比
     $("#btn_compare").click(function () {
@@ -477,7 +490,7 @@
 
         if (remark_new !== "" && remark_new !== null && remark_new !== undefined)//如果返回的有内容
         {
-            $.get("<%=basePath%>app/updateFundRemark?id=" + id + '&remark=' + remark_new, function (data) {
+            $.get("<%=basePath%>fund/updateFundRemark?id=" + id + '&remark=' + remark_new, function (data) {
                 refreshTable("<%=basePath%>fund/getListInfo");
             });
         }
@@ -650,7 +663,7 @@
                         formatter: function (value, row, index) { // 单元格格式化函数
                             var array = value.split("**");
                             if (array != null && array.length === 2)
-                                return "<span class='main_font'>" + array[0] + "</span><br/><span class='two_font'>" + array[1] + "</span>";
+                                return "<a href='http://fund.eastmoney.com/"+array[1]+".html'  target=\"_blank\" ><span class='main_font'>" + array[0] + "</span><br/><span class='two_font'>" + array[1] + "</span></a>";
                             else return "";
                         },
                         align: 'center',
@@ -711,7 +724,7 @@
                         formatter: function (value, row, index) { // 单元格格式化函数
                             if (row.gsz > value)
                                 return "<span class='red_font'>" + value + "</span><br/><span class='main_font'>" + row.best_low + "</span>";
-                            else if (row.gsz < value && row.gsz >= row.best_low||row.gsz === 0) return "<span class='main_font'>" + value + "</span ><br/><span class='main_font'>" + row.best_low + "</span>";
+                            else if (row.gsz < value && row.gsz >= row.best_low || row.gsz === 0) return "<span class='main_font'>" + value + "</span ><br/><span class='main_font'>" + row.best_low + "</span>";
                             else
                                 return "<span class='main_font'>" + value + "</span><br/><span class='red_font'>" + row.best_low + "</span>";
                         }
@@ -756,7 +769,7 @@
                         valign: 'middle',
                         sortable: true,
                         formatter: function (value, row, index) { // 单元格格式化函数
-                             return "<span class='main_font'>" + value + "亿元</span>";
+                            return "<span class='main_font'>" + value + "亿元</span>";
                         }
                     },
                     {

@@ -34,15 +34,6 @@ public class demo
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
-		// 签名
-		String sign = SignHelper.sign(token, priKey);
-		try {
-			System.out.println("https://siapcn1.ipengtai.com/api/oauth/get_token_info?appid=5003166782&token="+token+"&sign="+sign1);;
-
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		}
-
 
 
 	}
