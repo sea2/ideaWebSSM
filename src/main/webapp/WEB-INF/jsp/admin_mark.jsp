@@ -150,27 +150,27 @@
             <h3 id="title_dialog3">对比</h3>
         </div>
         <div id="div3_dialog3" class="div3_dialog_compare">
-            <div style="float:left;width: 450px;text-align:center;margin-top: 20px">
+            <div style="float:left;width: 400px;text-align:center;margin-top: 20px">
                 <div id="compare_info_1" style="text-align: left"></div>
                 <br/>
                 <span style="font-size: 1.5rem;margin-top: 40px">近三个月</span>
                 <div id="placeholder_compare1"
-                     style="width:350px;    height:150px;  text-align:center;line-height:40px;margin-left: 60px">
+                     style="width:300px;    height:150px;  text-align:center;line-height:40px;margin-left: 60px">
                 </div>
                 <span style="font-size: 1.5rem">近一年</span>
                 <div id="placeholder2_compare1"
-                     style="width:350px;  height:150px; text-align:center;line-height:40px;margin-left: 60px"></div>
+                     style="width:300px;  height:150px; text-align:center;line-height:40px;margin-left: 60px"></div>
             </div>
-            <div style="float:left;width: 450px;text-align:center;;margin-top: 20px">
+            <div style="float:left;width: 400px;text-align:center;;margin-top: 20px">
                 <div id="compare_info_2" style="text-align: left"></div>
                 <br/>
                 <span style="font-size: 1.5rem;margin-top: 40px">近三个月</span>
                 <div id="placeholder_compare2"
-                     style="width:350px;    height:150px;  text-align:center;line-height:40px;margin-left: 60px">
+                     style="width:300px;    height:150px;  text-align:center;line-height:40px;margin-left: 60px">
                 </div>
                 <span style="font-size: 1.5rem">近一年</span>
                 <div id="placeholder2_compare2"
-                     style="width:350px;  height:150px; text-align:center;line-height:40px;margin-left: 60px"></div>
+                     style="width:300px;  height:150px; text-align:center;line-height:40px;margin-left: 60px"></div>
             </div>
         </div>
     </div>

@@ -114,16 +114,16 @@
             <h3 id="title_dialog">自评</h3>
         </div>
         <div id="div3_dialog">
-            <div style="float:left;width: 450px;text-align:center;margin-top: 20px">
+            <div style="float:left;width: 400px;text-align:center;margin-top: 20px">
                 <span style="font-size: 2rem">近三个月</span></div>
             <div style="float:left;width: 400px;text-align:center;;margin-top: 20px">
                 <span style="font-size: 2rem">近一年</span></div>
             <div style="clear: both"></div>
             <div id="placeholder"
-                 style="width:350px;    height:150px; float: left; text-align:center;line-height:40px;margin-left: 60px">
+                 style="width:300px;    height:150px; float: left; text-align:center;line-height:40px;margin-left: 60px">
             </div>
             <div id="placeholder2"
-                 style="width:350px;  float: left;  height:150px; text-align:center;line-height:40px;margin-left: 100px"></div>
+                 style="width:300px;  float: left;  height:150px; text-align:center;line-height:40px;margin-left: 100px"></div>
 
             <input type="hidden" id="record_id"/>
 
@@ -660,7 +660,7 @@
 
                         field: 'fund_remark',
                         title: '标记',
-                        width: 300,
+                        width: 200,
                         align: 'center',
                         valign: 'middle',
                         formatter: function (value, row, index) {
@@ -724,8 +724,8 @@
                         sortable: true,
                         formatter: function (value, row, index) { // 单元格格式化函数
                             if (value > 0)
-                                return "<span class='main_font'>买入成本：" + row.fund_buy_price + "</span><br/><span class='main_font'>买入金额：" + row.money_old + "元</span>";
-                            else return "<span class='main_font'>买入成本：" + row.fund_buy_price + "</span><br/><span class='main_font'>买入金额：" + row.money_old + "元</span>";
+                                return "<span class='main_font2'>成本：" + row.fund_buy_price + "</span><br/><span class='main_font2'>金额：" + row.money_old + "元</span>";
+                            else return "<span class='main_font2'>成本：" + row.fund_buy_price + "</span><br/><span class='main_font2'>金额：" + row.money_old + "元</span>";
                         }
                     }, {
                         field: 'money',

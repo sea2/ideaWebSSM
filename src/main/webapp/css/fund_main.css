@@ -1,23 +1,28 @@
 .main_font {
     margin-top: 0.5rem;
-    font-size: 2rem;
+    font-size: 1.8rem;
     color: #333333;
+}
+.main_font2 {
+    margin-top: 0.5rem;
+    font-size: 1.7rem;
+    color: #4d4d4d;
 }
 
 .two_font {
     margin-top: 1rem;
-    font-size:2rem;
+    font-size:1.5rem;
     color: #666666;
 }
 
 .red_font {
     margin-top: 1rem;
-    font-size: 2rem;
+    font-size: 1.8rem;
     color: #ff1f3f;
 }
 
 .green_font {
     margin-top: 1rem;
-    font-size: 2rem;
+    font-size: 1.8rem;
     color: #00ad22;
 }

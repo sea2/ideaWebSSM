@@ -23,7 +23,7 @@
 
 #div1_dialog {
     background: #eeeeee;
-    width: 50%;
+    width: 60%;
     z-index: 1;
     margin: 12% auto;
     overflow: auto;
@@ -32,7 +32,7 @@
 
 .dialog_content {
     background: #eeeeee;
-    width: 50%;
+    width: 70%;
     z-index: 1;
     margin: 2% auto;
     overflow: auto;

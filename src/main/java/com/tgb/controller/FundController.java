@@ -498,7 +498,7 @@ public class FundController {
 
     @RequestMapping("app/updateFundRemark")
     public void updateRemark(HttpServletRequest request, HttpServletResponse response) {
-        int id = Integer.parseInt(request.getParameter("id"));
+        String id = request.getParameter("id");
         String remark = request.getParameter("remark");
         String sqlStr = " t_fund set fund_remark='" + remark + "' where fund_code='" + id + "'";
         fundService.updateSql(sqlStr);
