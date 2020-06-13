@@ -1,0 +1,119 @@
+{
+	"groups": [
+		{
+			"keys": "lianji_png,wddx_ball_01_png,wddx_ball_02_png,wddx_ball_03_png,wddx_ball_04_png,wddx_ball_05_png,wddx_ball_06_png,wddx_ball_07_png,comb_click_fnt,comb_click_png,flyNumber_fnt,flyNumber_png,ui_sheet_json,bloodConfig_json,dpsConfig_json,icon_sheet1_json,ui_sheet2_json,icon_stone_json,wddx_ball_08_png,wddx_ball_09_png,wddx_ball_10_png",
+			"name": "outResource"
+		}
+	],
+	"resources": [
+		{
+			"url": "assets/bigImage/lianji.png",
+			"type": "image",
+			"name": "lianji_png"
+		},
+		{
+			"url": "assets/bigImage/wddx_ball_01.png",
+			"type": "image",
+			"name": "wddx_ball_01_png"
+		},
+		{
+			"url": "assets/bigImage/wddx_ball_02.png",
+			"type": "image",
+			"name": "wddx_ball_02_png"
+		},
+		{
+			"url": "assets/bigImage/wddx_ball_03.png",
+			"type": "image",
+			"name": "wddx_ball_03_png"
+		},
+		{
+			"url": "assets/bigImage/wddx_ball_04.png",
+			"type": "image",
+			"name": "wddx_ball_04_png"
+		},
+		{
+			"url": "assets/bigImage/wddx_ball_05.png",
+			"type": "image",
+			"name": "wddx_ball_05_png"
+		},
+		{
+			"url": "assets/bigImage/wddx_ball_06.png",
+			"type": "image",
+			"name": "wddx_ball_06_png"
+		},
+		{
+			"url": "assets/bigImage/wddx_ball_07.png",
+			"type": "image",
+			"name": "wddx_ball_07_png"
+		},
+		{
+			"url": "assets/font/comb_click.fnt",
+			"type": "font",
+			"name": "comb_click_fnt"
+		},
+		{
+			"url": "assets/font/comb_click.png",
+			"type": "image",
+			"name": "comb_click_png"
+		},
+		{
+			"url": "assets/font/flyNumber.fnt",
+			"type": "font",
+			"name": "flyNumber_fnt"
+		},
+		{
+			"url": "assets/font/flyNumber.png",
+			"type": "image",
+			"name": "flyNumber_png"
+		},
+		{
+			"url": "assets/sheet/ui_sheet.json",
+			"type": "sheet",
+			"name": "ui_sheet_json",
+			"subkeys": "chou_chu,chou_jin,shouhuojinbi,touxiang-1,touxiang-2,touxiang-3,touxiang-4,touxiang-5,touxiang-cheng,touxiang-hong,touxiang-lan,touxiang-lv,touxiang-zi,wa_jues,wa_mofa,wa_shouc,wa_yajiu,wddx_bao_001,wddx_bao_001_baoshi,wddx_bao_001_jinbi,wddx_bao_001_kai,wddx_bao_002,wddx_bao_002_kai,wddx_bg_001,wddx_bg_0010,wddx_bg_0011,wddx_bg_0012,wddx_bg_0013,wddx_bg_0014,wddx_bg_0015,wddx_bg_0016,wddx_bg_0017,wddx_bg_0018,wddx_bg_002,wddx_bg_003,wddx_bg_004,wddx_bg_005,wddx_bg_006,wddx_bg_007,wddx_bg_008,wddx_bg_018,wddx_bg_019,wddx_bg_020,wddx_bg_021,wddx_bg_022,wddx_bg_028,wddx_bg_031,wddx_bg_033,wddx_bg_035,wddx_bg_036,wddx_bg_037,wddx_bt_001,wddx_bt_002,wddx_bt_003,wddx_bt_004,wddx_bt_005,wddx_bt_006,wddx_bt_007,wddx_bt_008,wddx_bt_009,wddx_bt_010,wddx_bt_011,wddx_bt_012,wddx_bt_013,wddx_bt_014,wddx_bt_015,wddx_bt_016,wddx_bt_017,wddx_bt_018,wddx_bt_019,wddx_bt_020,wddx_bt_021,wddx_bt_022,wddx_bt_023,wddx_bt_025,wddx_bt_026,wddx_ft_001,wddx_ft_002,wddx_ft_003,wddx_ft_004,wddx_ft_005,wddx_huangguan_1,wddx_huangguan_2,wddx_huangguan_3,wddx_ic_001,wddx_ic_002,wddx_ic_003,wddx_ic_004,wddx_ic_005,wddx_ic_006,wddx_ic_007,wddx_ic_008,wddx_ic_009,wddx_ic_010,wddx_ic_011,wddx_ic_012,wddx_ic_013,wddx_ic_014,wddx_ic_015,wddx_ic_016,wddx_ic_017,wddx_ic_029,wddx_ic_030,wddx_ic_128,wddx_line_001,wddx_line_002,wddx_line_003,wddx_red_point,yindaotishi"
+		},
+		{
+			"url": "config/dpsConfig.json",
+			"type": "json",
+			"name": "dpsConfig_json"
+		},
+		{
+			"url": "config/bloodConfig.json",
+			"type": "json",
+			"name": "bloodConfig_json"
+		},
+		{
+			"url": "assets/sheet/icon_sheet1.json",
+			"type": "sheet",
+			"name": "icon_sheet1_json",
+			"subkeys": "icon_10_4001,icon_10_4002,icon_10_4003,icon_10_4004,icon_10_4005,icon_9_4001,icon_9_4002,icon_9_4003,icon_9_4004,icon_9_4005"
+		},
+		{
+			"url": "assets/sheet/ui_sheet2.json",
+			"type": "sheet",
+			"name": "ui_sheet2_json",
+			"subkeys": "backg_neirdi,backg_shoucang,backg_tcbj,buttom_linqu,buttom_linquh,guanzuyouli_tb,icon_cloes,icon_close,icon_ddhezi,icon_sandian,img_banner,img_gghao,img_gzleft,img_liuc,img_tcbtdi,img_tjtish,jiangli_zuans,tcbt_gzhu,wddx_bt_033,wddx_ft_010,wddx_ft_011,wddx_ft_012,wddx_ft_013,wddx_ft_014,wddx_ft_015,wddx_ic_031,wddx_ic_032,wenzi_gzgzh"
+		},
+		{
+			"url": "assets/sheet/icon_stone.json",
+			"type": "sheet",
+			"name": "icon_stone_json",
+			"subkeys": "1,10,11,12,13,14,15,16,17,18,19,2,20,21,22,23,24,25,26,27,28,29,3,30,31,32,33,34,35,36,37,38,39,4,40,5,6,7,8,9"
+		},
+		{
+			"url": "assets/bigImage/wddx_ball_08.png",
+			"type": "image",
+			"name": "wddx_ball_08_png"
+		},
+		{
+			"url": "assets/bigImage/wddx_ball_09.png",
+			"type": "image",
+			"name": "wddx_ball_09_png"
+		},
+		{
+			"url": "assets/bigImage/wddx_ball_10.png",
+			"type": "image",
+			"name": "wddx_ball_10_png"
+		}
+	]
+}

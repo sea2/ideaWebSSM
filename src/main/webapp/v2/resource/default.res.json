@@ -1,0 +1,61 @@
+{
+	"groups": [
+		{
+			"keys": "logo_png,loading_sheet_json,2_ske_json,2_tex_json,2_tex_png,area_map_json,ad_icon_png,config_json,appConfig1_json,language_json",
+			"name": "wdx"
+		}
+	],
+	"resources": [
+		{
+			"url": "assets/sheet/loading_sheet.json",
+			"type": "sheet",
+			"name": "loading_sheet_json",
+			"subkeys": "jindutiao,jindutiao1,wddx_bg_024,wddx_bg_025,wddx_line_002,wddx_role_genren"
+		},
+		{
+			"url": "assets/bigImage/logo.png",
+			"type": "image",
+			"name": "logo_png"
+		},
+		{
+			"url": "assets/mc/2_tex.png",
+			"type": "image",
+			"name": "2_tex_png"
+		},
+		{
+			"url": "assets/mc/2_ske.json",
+			"type": "json",
+			"name": "2_ske_json"
+		},
+		{
+			"url": "assets/mc/2_tex.json",
+			"type": "json",
+			"name": "2_tex_json"
+		},
+		{
+			"url": "assets/config/area_map.json",
+			"type": "json",
+			"name": "area_map_json"
+		},
+		{
+			"url": "assets/bigImage/ad_icon.png",
+			"type": "image",
+			"name": "ad_icon_png"
+		},
+		{
+			"url": "assets/config/config.json",
+			"type": "json",
+			"name": "config_json"
+		},
+		{
+			"url": "assets/config/appConfig1.json",
+			"type": "json",
+			"name": "appConfig1_json"
+		},
+		{
+			"url": "assets/config/language.json",
+			"type": "json",
+			"name": "language_json"
+		}
+	]
+}

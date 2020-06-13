@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh-cmn-Hans">
+    <meta charset="UTF-8">
+    <title>LKBridge Test</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=0.5,user-scalable=no"/>
+    <!--require lkbridge init js-->
+    <script src="lkbridge.js"></script>
+    <script>
+
+
+
+
+    </script>
+</head>
+<style>
+    .btn {
+        text-align: center;
+        background: #d8d8d8;
+        color: #222;
+        padding: 20px;
+        margin: 30px;
+        font-size: 24px;
+        border-radius: 4px;
+        box-shadow: 4px 2px 10px #999;
+    }
+
+    .btn:active {
+        opacity: .7;
+        box-shadow: 4px 2px 10px #555;
+    }
+
+
+</style>
+<body>
+
+
+<div class="btn" onclick="login()">登录</div>
+<div class="btn" onclick="loginByGame()">游戏直接登录</div>
+<div class="btn" onclick="logout()">登出</div>
+<div class="btn" onclick="pay()">支付</div>
+<div class="btn" onclick="share()">分享</div>
+<div class="btn" onclick="doAdShow()">播放广告</div>
+<div class="btn" onclick="loadRewardAd()">预加载广告</div>
+<div class="btn" onclick="playRewardAd()">播放广告</div>
+<div class="btn" onclick="loadFullScreenAd()">预加载全屏广告</div>
+<div class="btn" onclick="playFullScreenAd()">播放全屏广告</div>
+<div class="btn" onclick="bannerStyle()">设置banner样式</div>
+<div class="btn" onclick="loadBannerAd()">显示banner</div>
+<div class="btn" onclick="hideBanner()">隐藏banner</div>
+<div class="btn" onclick="deviceInfo()">获取设备信息</div>
+<div class="btn" onclick="loadGame()">加载游戏</div>
+<div class="btn" onclick="closeGame()">关闭游戏</div>
+<div class="btn" onclick="killProcess()">杀掉进程</div>
+<div class="btn" onclick="log()">打印log</div>
+<div class="btn" onclick="showLoading()">显示loading</div>
+<div class="btn" onclick="hideLoading()">关闭loading</div>
+<div class="btn" onclick="setCacheMode()">设置缓存方式</div>
+<div class="btn" onclick="clearWebViewCache()">清理缓存</div>
+<div class="btn" onclick="showSplash()">开屏广告</div>
+<div class="btn" onclick="clipBoard()">复制到剪切板</div>
+<div class="btn" onclick="wxLogin()">微信登录</div>
+<div class="btn" onclick="wxShareText()">微信分享</div>
+
+
+<script>
+
+
+
+    function login() {
+
+        window.bridge.login( function (result) {
+            var json = JSON.parse(result);
+            if (json.code === 1) {
+                alert("登录成功"+json.userId);
+            }
+        })
+    }
+
+    //原生发起
+    function logoutFromNative() {
+        alert("收到登出");
+    }
+    function logout() {
+        window.bridge.logout( function (code) {
+            if (code === 1) {
+                alert("登出成功");
+            }
+        })
+    }
+
+
+    function loginByGame() {
+        var params = {
+            account: '12345678'//account
+        };
+        window.bridge.loginByGame(params, function (result) {
+            var json = JSON.parse(result);
+            if (json.code === 1) {
+                alert("登录成功"+json.userId);
+            }
+        })
+
+    }
+    function pay() {
+        var params = {
+            productId: '12345678',
+            roleId: '12345678',
+            serverId: '12345678',
+            notifyUrl: 'xxxxxxxxxx'
+        };
+        window.bridge.pay(params, function (code) {
+            if (code === 1) {
+                //支付成功
+                alert("支付成功");
+            }
+        })
+
+    }
+    function share() {
+        var params = {
+            shareTitle: '分享标题',
+            shareUrl: 'https://www.facebook.com/'
+        };
+        window.bridge.share(params, function (code) {
+            if (code === 1) {
+                alert("分享成功");
+            }
+        })
+
+    }
+    function doAdShow() {
+        var params = {
+            type: 2//0：奖励视频 1：插屏广告 2:offerwall
+        };
+        window.bridge.doAdShow(params, function (code) {
+            if (code === 1) {
+                alert("播放成功");
+            }
+        })
+
+    }
+    function logEvent() {
+        var params = {
+            event: '事件',
+            jsonParams: '自定义json参数'
+        };
+        window.bridge.logEvent(params)
+
+    }
+
+
+    function loadRewardAd() {
+        var params = {
+            codeId: '937884185',//codeId
+            orientation: 1,// 1：竖屏    2：横屏
+            rewardName: "gold",  //奖励名称
+            amount: 3, //奖励数量
+            uid: "user123",  //用户id
+            extra: "extra"   //附加参数
+        };
+        window.bridge.loadRewardAd(params, function (code) {
+            if (code === 1) {
+                //缓存完成
+                alert("缓存完成");
+            }
+        })
+
+    }
+
+    function playRewardAd() {
+
+        window.bridge.playRewardAd(function (code) {
+            if (code === 1) {
+                //播放完成
+                alert("播放完成");
+            }
+        })
+    }
+
+    function loadFullScreenAd() {
+
+        var params = {
+            codeId: '937884919',//codeId
+            orientation: 1// 1：竖屏    2：横屏
+        };
+        window.bridge.loadFullScreenAd(params, function (code) {
+            if (code === 1) {
+                //缓存完成
+                alert("缓存完成");
+            }
+        })
+    }
+
+    function playFullScreenAd() {
+
+        window.bridge.playFullScreenAd(function (code) {
+            if (code === 1) {
+                //播放完成
+                alert("播放完成");
+            }
+        })
+
+    }
+
+    function deviceInfo() {
+
+        window.bridge.deviceInfo(function (result) {
+            alert(result);
+        })
+    }
+
+    function wxLogin() {
+        window.bridge.wxLogin(function (result) {
+            alert(result);
+        })
+
+
+    }
+
+    function wxShareText() {
+        var params = {
+            txt: '7u87durujjfisj'
+        };
+        window.bridge.wxShareText(params, function (result) {
+            alert(result);
+        })
+
+    }
+
+
+    function loadGame() {
+        var params = {
+            gameUrl: 'https://commcdn.chiji-h5.com/nhdh/test/cs/web/index.html',
+            gameId: '30007',
+            gameName: "天天迎财神",
+            landScape: 0
+        };
+        // bridge.call("loadGame", params)
+
+        window.bridge.loadGame(params)
+    }
+
+    function bannerStyle() {
+        var params = {
+            style: 1   // 1:垂直居中    2：横向居中    3：顶部    4：底部
+        };
+        // bridge.call("bannerStyle", params)
+        window.bridge.bannerStyle(params)
+    }
+
+    function loadBannerAd() {
+        var params = {
+            codeId: '937884039',//codeId
+            bannerWidth: 600,
+            bannerHeight: 300,
+            showCloseBtn: 1
+        };
+        // bridge.call("loadBannerAd", params)
+        window.bridge.loadBannerAd(params)
+    }
+
+    function hideBanner() {
+        // bridge.call("hideLoading")
+        window.bridge.hideBanner()
+    }
+
+    function closeGame() {
+        window.bridge.closeGame()
+    }
+
+    function killProcess() {
+        // bridge.call("killProcess")
+        window.bridge.killProcess()
+    }
+
+    function showLoading() {
+        // bridge.call("showLoading")
+        window.bridge.showLoading()
+    }
+
+    function hideLoading() {
+        // bridge.call("hideLoading")
+        window.bridge.hideLoading()
+    }
+
+    function clearWebViewCache() {
+        // bridge.call("clearWebViewCache")
+        window.bridge.clearWebViewCache()
+    }
+
+    function log() {
+        var params = {
+            type: 'd',// d e i v w
+            msg: '打印消息'
+        };
+        // bridge.call("log", params)
+        window.bridge.log(params)
+    }
+
+    function setCacheMode() {
+        var params = {
+            type: -1// -1：默认    0：不使用缓存   1：不论如何都会从缓存中加载，除非缓存中的网页过期   2：只是会使用缓存中的数据，不会使用网络
+        };
+        // bridge.call("setCacheMode", params)
+        window.bridge.setCacheMode(params)
+    }
+
+    function setDebugMode() {
+        var params = {
+            debug: 0 //0 不是    1：是
+        };
+        // bridge.call("setDebugMode", params)
+        window.bridge.setDebugMode(params)
+    }
+
+    function showSplash() {
+        var params = {
+            codeId: '937884919'//codeId
+        };
+        // bridge.call("showSplash", params)
+        window.bridge.showSplash(params)
+    }
+
+    function clipBoard() {
+        var params = {
+            copyStr: '7u87durujjfisj'//复制文本
+        };
+        // bridge.call("clipBoard", params)
+        window.bridge.clipBoard(params)
+    }
+
+    function onShow() {
+        window.bridge.onShow(function () {
+            alert("onShow");
+        })
+
+    }
+
+    function onHide() {
+        window.bridge.onHide(function () {
+            alert("onHide");
+        })
+    }
+
+
+    function onBackPressed() {
+
+        window.bridge.onBackPressed(function () {
+            alert("onBackPressed");
+        })
+    }
+
+
+
+</script>
+</body>
+</html>

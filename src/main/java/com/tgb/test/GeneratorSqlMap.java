@@ -15,7 +15,7 @@ public class GeneratorSqlMap {
         boolean overwrite = true;
         //加载配置文件
         // 公司环境
-        String path = "C:\\Users\\Administrator\\Desktop\\ssm-demo\\ideaWebSSM\\src\\main\\resources\\generatorConfig.xml";
+        String path = "D:\\wokeSpace\\ideaWebSSM\\src\\main\\resources\\generatorConfig.xml";
         //私人
         //  String path="D:\\workplace\\ssm-demo\\ideaWebSSM\\src\\main\\resources\\generatorConfig.xml";
         File configFile = new File(path);

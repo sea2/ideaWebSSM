@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <script src='bridge.js'></script>
+    <script>
+        function back(str) {
+            alert(str);
+        }
+    </script>
+</head>
+
+<body>
+<dir>
+    <button id="loginButton" onclick="webBridge.login()"
+            style="height: 100px; width:150px; border:2px; border-radius:4px 4px 4px 4px; background-color: #36B2FA; color: white"
+            value='login'>login
+    </button>
+    <button onclick="login('js传过来的参数',back)"
+            style="height: 100px; width:150px; border:2px; border-radius:4px 4px 4px 4px; background-color: #36B2FA; color: white">Test!
+    </button>
+</dir>
+</body>
+
+</html>

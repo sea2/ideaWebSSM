@@ -3,6 +3,7 @@ package com.tgb.test;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.Collections;
 
 public class demo
 {
@@ -38,7 +39,7 @@ public class demo
 		String sign = SignHelper.sign(token, priKey);
 
 
-
+		
 	}
 	
 }

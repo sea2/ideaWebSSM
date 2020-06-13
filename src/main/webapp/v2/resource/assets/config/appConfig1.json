@@ -1,0 +1,60 @@
+{
+  "res_version": "v6",
+  "app_version": "v1.0.0",
+  "bannerAdUnitId": [
+    "adunit-178d688a1ffb1b30"
+  ],
+  "rewardedVideoAdUnitId": [
+    "adunit-383bc2536e53593b"
+  ],
+  "zhuanpai_lixian": "ad",
+  "zhuanpai_lixian1": "ad",
+  "luckzhuanpai_result": "ad",
+  "baoxiang_changpin": "share",
+  "baoxiang_jinbi": "ad",
+  "player_buy": "share",
+  "invite_bianshen": "ad",
+  "jinbi_buzu": -1,
+  "jinbi_buzu_checkgroup": true,
+  "invite_youli": true,
+  "vip_luck": false,
+  "hitMostShare": true,
+  "luckzhuanpai_juan": "ad",
+  "breakthrough_zuanshi": "ad",
+  "sevenSign_lingqu": "ad",
+  "magic1": "ad",
+  "magic2": "share",
+  "magic3": "ad",
+  "magic4": "share",
+  "magic5": "ad",
+  "shareCount": 9999,
+  "shareWaittime": 2500,
+  "shareRandomValue": 0.5,
+  "adCount": 1,
+  "model": 2,
+  "luckyZhuanpan_count": 20,
+  "ZPQ_mostCount": 20,
+  "jewel_limitCount": 50,
+  "jinbi_limitCount": 50,
+  "refreshJewel_limitcount": 60,
+  "ore_refreshJewel_limitcount": 30,
+  "ios_favlist": true,
+  "ios_gamelist": true,
+  "ios_suspension": true,
+  "android_favlist": true,
+  "android_gamelist": true,
+  "android_suspension": true,
+  "sdk_favlist": true,
+  "sdk_gamelist": true,
+  "sdk_suspension": true,
+  "channelList_luck": [],
+  "areaList_luck": [
+    "徐州"
+  ],
+  "mp_path": {
+    "appid": "wxd84c4af1e5b98fbe",
+    "path": "pages/game/index?channel=mp&appid=wx239afabf1a2b28e3"
+  },
+  "is_dadian": true,
+  "sdk_dadian": false
+}

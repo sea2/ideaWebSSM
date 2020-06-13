@@ -10,8 +10,8 @@
         </commentGenerator>
         <!--数据库连接的信息：驱动类、连接地址、用户名、密码 -->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://localhost:3306/data_info" userId="root"
-                        password="root">
+                        connectionURL="jdbc:mysql://120.27.2.108:3306/magicshow" userId="root"
+                        password="linking@1234">
         </jdbcConnection>
         <!-- <jdbcConnection driverClass="oracle.jdbc.OracleDriver"
         connectionURL="jdbc:oracle:thin:@127.0.0.1:1521:yycg"
@@ -45,7 +45,7 @@
             <property name="enableSubPackages" value="false" />
         </javaClientGenerator>
         <!-- 指定数据库表 -->
-        <table tableName="t_mark"/>
+        <table tableName="tb_notificaition_setting"/>
 
         <!-- <table schema="" tableName="sys_user"></table>
         <table schema="" tableName="sys_role"></table>

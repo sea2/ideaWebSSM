@@ -1,7 +1,10 @@
 package com.tgb.test;
 
+import com.google.gson.Gson;
+import com.tgb.entity.PayInfo;
 import com.tgb.util.DateUtils;
 import com.tgb.util.MD5Util;
+import com.tgb.util.SignUtils;
 import com.tgb.util.TimeUtils;
 
 import java.text.SimpleDateFormat;
@@ -55,6 +58,15 @@ public class DateTest {
 
 
         System.out.println(TimeUtils.date2String(new Date(), TimeUtils.DEFAULT_PATTERN2)+ "--"+betweenTime);
+
+
+        PayInfo mPayInfo=  new Gson().fromJson("{\"type\":\"google\",\"product_id\":\"1001\",\"cp_order_no\":\"1587200113331\",\"amount\":\"30\",\"server_id\":\"1\",\"role_id\":\"78713\",\"notify_url\":\"123456\",\"extra\":\"1\",\"nonce_str\":\"f2nd\",\"sign_type\":\"MD5\",\"param_str\":\"{\\\"language\\\":\\\"zh-CN\\\",\\\"channel\\\":\\\"1000\\\"}\",\"sign\":\"484A31DF5BF1C3CF6987094B400BED15\"}",PayInfo.class);
+
+
+        SignUtils.sign(mPayInfo,"mRwjFMFkuEnfU3Zl");
+
+
+
 
     }
 

@@ -1,0 +1,2520 @@
+{
+  "baseBlood": 52,
+  "sence": {
+    "1": {
+      "name": "كوكب الأرض",
+      "times": 1,
+      "resName": "wddx_ic_019",
+      "maxFloor": 1000,
+      "waResName": "wddx_ball_01_png"
+    },
+    "2": {
+      "name": "كوكب عطارد",
+      "times": 3,
+      "resName": "wddx_ic_020",
+      "maxFloor": 1000,
+      "waResName": "wddx_ball_02_png"
+    },
+    "3": {
+      "name": "كوكب المريخ",
+      "times": 7,
+      "resName": "wddx_ic_021",
+      "maxFloor": 1000,
+      "waResName": "wddx_ball_03_png"
+    },
+    "4": {
+      "name": "كوكب الزهرة",
+      "times": 15,
+      "resName": "wddx_ic_022",
+      "maxFloor": 1000,
+      "waResName": "wddx_ball_04_png"
+    },
+    "5": {
+      "name": "كوكب المشتري",
+      "times": 15,
+      "resName": "wddx_ic_023",
+      "maxFloor": 1000,
+      "waResName": "wddx_ball_05_png"
+    },
+    "6": {
+      "name": "كوكب زحل",
+      "times": 15,
+      "resName": "wddx_ic_024",
+      "maxFloor": 1000,
+      "waResName": "wddx_ball_06_png"
+    },
+    "7": {
+      "name": "كوكب بلوتو",
+      "times": 15,
+      "resName": "wddx_ic_025",
+      "maxFloor": 1000,
+      "waResName": "wddx_ball_07_png"
+    },
+    "8": {
+      "name": "كوكب أورانس",
+      "times": 15,
+      "resName": "wddx_ic_026",
+      "maxFloor": 1000,
+      "waResName": "wddx_ball_08_png"
+    },
+    "9": {
+      "name": "كوكب نبتون",
+      "times": 15,
+      "resName": "wddx_ic_027",
+      "maxFloor": 1000,
+      "waResName": "wddx_ball_09_png"
+    },
+    "10": {
+      "name": "الكوكب الخارق",
+      "times": 15,
+      "resName": "wddx_ic_028",
+      "maxFloor": 1000,
+      "waResName": "wddx_ball_10_png"
+    }
+  },
+  "geology": {
+    "1": {
+      "name": "طبقة أرض",
+      "times": 0.8,
+      "resName": "",
+      "floorNeed": [
+        1,
+        300
+      ]
+    },
+    "2": {
+      "name": "طبقة أرض صلبة",
+      "times": 1,
+      "resName": "",
+      "floorNeed": [
+        1,
+        600
+      ]
+    },
+    "3": {
+      "name": "طبقة صخور متناثرة",
+      "times": 1.5,
+      "resName": "",
+      "floorNeed": [
+        1,
+        1000
+      ]
+    },
+    "4": {
+      "name": "طبقة حجرية",
+      "times": 2,
+      "resName": "",
+      "floorNeed": [
+        301,
+        1000
+      ]
+    },
+    "5": {
+      "name": "طبقات أوبسديان ",
+      "times": 4,
+      "resName": "",
+      "floorNeed": [
+        601,
+        1000
+      ]
+    }
+  },
+  "playerMaxLevel": 1000,
+  "player": [
+    {
+      "id": 0,
+      "name": "الصبي (انقر)",
+      "position": 8,
+      "direction": 1,
+      "animateScale": 1,
+      "animateName": "2",
+      "resName": "icon_08",
+      "tips": "حرك يدك وانقر على الأرض لتكسب ذهبا",
+      "skill": {
+        "1": {
+          "openLevel": 30,
+          "skillId": 9001
+        },
+        "2": {
+          "openLevel": 50,
+          "skillId": 9002
+        },
+        "3": {
+          "openLevel": 60,
+          "skillId": 9003
+        },
+        "4": {
+          "openLevel": 70,
+          "skillId": 9004
+        },
+        "5": {
+          "openLevel": 80,
+          "skillId": 9005
+        },
+        "6": {
+          "openLevel": 90,
+          "skillId": 9006
+        }
+      }
+    },
+    {
+      "id": 1,
+      "name": "LuckyDog",
+      "position": 9,
+      "direction": 0,
+      "animateScale": 1,
+      "animateName": "3",
+      "resName": "icon_09",
+      "tips": "جرو يحمل حقيبة عامل، جاء مع الصبي من مكان مجهول",
+      "skill": {
+        "1": {
+          "openLevel": 30,
+          "skillId": 1001
+        },
+        "2": {
+          "openLevel": 50,
+          "skillId": 1003
+        },
+        "3": {
+          "openLevel": 60,
+          "skillId": 1004
+        },
+        "4": {
+          "openLevel": 70,
+          "skillId": 1002
+        },
+        "5": {
+          "openLevel": 80,
+          "skillId": 1007
+        },
+        "6": {
+          "openLevel": 90,
+          "skillId": 1009
+        }
+      }
+    },
+    {
+      "id": 2,
+      "name": "العفريت",
+      "position": 3,
+      "direction": 1,
+      "animateScale": 1,
+      "animateName": "dijing",
+      "resName": "icon_01",
+      "tips": "لطالما قام عفريت الغابة، بمحاولات عديدة للعثور علي الخنفساء الأسطورية",
+      "skill": {
+        "1": {
+          "openLevel": 30,
+          "skillId": 1001
+        },
+        "2": {
+          "openLevel": 50,
+          "skillId": 1003
+        },
+        "3": {
+          "openLevel": 60,
+          "skillId": 1004
+        },
+        "4": {
+          "openLevel": 70,
+          "skillId": 1002
+        },
+        "5": {
+          "openLevel": 80,
+          "skillId": 1009
+        },
+        "6": {
+          "openLevel": 90,
+          "skillId": 1010
+        }
+      }
+    },
+    {
+      "id": 3,
+      "name": "خبراء التنقيب",
+      "position": 4,
+      "direction": 0,
+      "animateScale": 1,
+      "animateName": "1",
+      "resName": "icon_07",
+      "tips": "لم يسمع أحد عن المعلم الكبير للصبي المنقب",
+      "skill": {
+        "1": {
+          "openLevel": 30,
+          "skillId": 1001
+        },
+        "2": {
+          "openLevel": 50,
+          "skillId": 1003
+        },
+        "3": {
+          "openLevel": 60,
+          "skillId": 1004
+        },
+        "4": {
+          "openLevel": 70,
+          "skillId": 1002
+        },
+        "5": {
+          "openLevel": 80,
+          "skillId": 1010
+        },
+        "6": {
+          "openLevel": 90,
+          "skillId": 1008
+        }
+      }
+    },
+    {
+      "id": 4,
+      "name": "حفار الأرض",
+      "position": 7,
+      "direction": 1,
+      "animateScale": 1,
+      "animateName": "dianzuannan",
+      "resName": "icon_12",
+      "tips": "شعار حفار الارض: طالما المطرقة بيدي، فأنا أملك كل ما علي الأرض",
+      "skill": {
+        "1": {
+          "openLevel": 30,
+          "skillId": 1001
+        },
+        "2": {
+          "openLevel": 50,
+          "skillId": 1003
+        },
+        "3": {
+          "openLevel": 60,
+          "skillId": 1004
+        },
+        "4": {
+          "openLevel": 70,
+          "skillId": 1002
+        },
+        "5": {
+          "openLevel": 80,
+          "skillId": 1008
+        },
+        "6": {
+          "openLevel": 90,
+          "skillId": 1007
+        }
+      }
+    },
+    {
+      "id": 5,
+      "name": "لص القبور",
+      "position": 6,
+      "direction": 1,
+      "animateScale": 1,
+      "animateName": "daomuzei",
+      "resName": "icon_11",
+      "tips": "إنضمام لص القبور للفريق علي أمل العثور علي الكنوز الضائعة",
+      "skill": {
+        "1": {
+          "openLevel": 30,
+          "skillId": 1001
+        },
+        "2": {
+          "openLevel": 50,
+          "skillId": 1003
+        },
+        "3": {
+          "openLevel": 60,
+          "skillId": 1004
+        },
+        "4": {
+          "openLevel": 70,
+          "skillId": 1002
+        },
+        "5": {
+          "openLevel": 80,
+          "skillId": 1007
+        },
+        "6": {
+          "openLevel": 90,
+          "skillId": 1009
+        }
+      }
+    },
+    {
+      "id": 6,
+      "name": "والي",
+      "position": 1,
+      "direction": 0,
+      "animateScale": 0.85,
+      "animateName": "wali",
+      "resName": "icon_06",
+      "tips": "نتيجة فشل في المعمل، يساعد في الحفر منذ أصلحه الصبي",
+      "skill": {
+        "1": {
+          "openLevel": 30,
+          "skillId": 1001
+        },
+        "2": {
+          "openLevel": 50,
+          "skillId": 1003
+        },
+        "3": {
+          "openLevel": 60,
+          "skillId": 1004
+        },
+        "4": {
+          "openLevel": 70,
+          "skillId": 1002
+        },
+        "5": {
+          "openLevel": 80,
+          "skillId": 1009
+        },
+        "6": {
+          "openLevel": 90,
+          "skillId": 1010
+        }
+      }
+    },
+    {
+      "id": 7,
+      "name": "لورا",
+      "position": 5,
+      "direction": 0,
+      "animateScale": 1,
+      "animateName": "jirounv",
+      "resName": "icon_13",
+      "tips": "ذات قدرات بقاء عالية، وجسم ممشوق",
+      "skill": {
+        "1": {
+          "openLevel": 30,
+          "skillId": 1001
+        },
+        "2": {
+          "openLevel": 50,
+          "skillId": 1003
+        },
+        "3": {
+          "openLevel": 60,
+          "skillId": 1004
+        },
+        "4": {
+          "openLevel": 70,
+          "skillId": 1002
+        },
+        "5": {
+          "openLevel": 80,
+          "skillId": 1010
+        },
+        "6": {
+          "openLevel": 90,
+          "skillId": 1008
+        }
+      }
+    },
+    {
+      "id": 8,
+      "name": "الوجيه",
+      "position": 2,
+      "direction": 1,
+      "animateScale": 1.2,
+      "animateName": "tuhao",
+      "resName": "icon_14",
+      "tips": "محدث غنى، اشترى حفارا جديدا ليواصل الحفر",
+      "skill": {
+        "1": {
+          "openLevel": 30,
+          "skillId": 1001
+        },
+        "2": {
+          "openLevel": 50,
+          "skillId": 1003
+        },
+        "3": {
+          "openLevel": 60,
+          "skillId": 1004
+        },
+        "4": {
+          "openLevel": 70,
+          "skillId": 1002
+        },
+        "5": {
+          "openLevel": 80,
+          "skillId": 1008
+        },
+        "6": {
+          "openLevel": 90,
+          "skillId": 1007
+        }
+      }
+    },
+    {
+      "id": 9,
+      "name": "الحفار",
+      "position": 0,
+      "direction": 0,
+      "animateScale": 1.2,
+      "animateName": "wurenzuandiji",
+      "resName": "icon_15",
+      "tips": "يقوده مجموعة من الطلبة ويقومون بالنقل والتسليم",
+      "skill": {
+        "1": {
+          "openLevel": 30,
+          "skillId": 1001
+        },
+        "2": {
+          "openLevel": 50,
+          "skillId": 1003
+        },
+        "3": {
+          "openLevel": 60,
+          "skillId": 1004
+        },
+        "4": {
+          "openLevel": 70,
+          "skillId": 1002
+        },
+        "5": {
+          "openLevel": 80,
+          "skillId": 1007
+        },
+        "6": {
+          "openLevel": 90,
+          "skillId": 1009
+        }
+      }
+    },
+    {
+      "id": 10,
+      "name": "إله الرعد",
+      "position": 10,
+      "direction": 1,
+      "animateScale": 1,
+      "animateName": "dianlibaobao",
+      "resName": "icon_02",
+      "tips": "إله الرعد في الحياة السابقة، يبحث عن أسطورة الحب للحصول علي جسم جديد له",
+      "skill": {
+        "1": {
+          "openLevel": 30,
+          "skillId": 1001
+        },
+        "2": {
+          "openLevel": 50,
+          "skillId": 1003
+        },
+        "3": {
+          "openLevel": 60,
+          "skillId": 1004
+        },
+        "4": {
+          "openLevel": 70,
+          "skillId": 1002
+        },
+        "5": {
+          "openLevel": 80,
+          "skillId": 1009
+        },
+        "6": {
+          "openLevel": 90,
+          "skillId": 1010
+        }
+      }
+    }
+  ],
+  "playerSkills": {
+    "1001": {
+      "id": 1001,
+      "name": "الصاعقة",
+      "tips": "تزيد الضرر الأساسي",
+      "times": 0.1,
+      "target": "kg",
+      "type": 1,
+      "resName": "icon_2005"
+    },
+    "1002": {
+      "id": 1002,
+      "name": "贪婪",
+      "tips": "矿工金币获取增加10%",
+      "times": 0.1,
+      "target": "kg",
+      "type": 4,
+      "resName": "icon_2004"
+    },
+    "1003": {
+      "id": 1003,
+      "name": "暴击",
+      "tips": "自动暴击率增加10%",
+      "times": 0.1,
+      "target": "kg",
+      "type": 2,
+      "resName": "icon_2001"
+    },
+    "1004": {
+      "id": 1004,
+      "name": "爆伤",
+      "tips": "自动暴击伤害增加20%",
+      "times": 0.2,
+      "target": "kg",
+      "type": 3,
+      "resName": "icon_2003"
+    },
+    "1005": {
+      "id": 1005,
+      "name": "转伤",
+      "tips": "增加自身伤害5%的点击伤害",
+      "times": 0,
+      "target": "kg",
+      "type": 1,
+      "resName": "icon_2007"
+    },
+    "1006": {
+      "id": 1006,
+      "name": "突破",
+      "tips": "技能重新上锁，伤害增加",
+      "times": 0,
+      "target": "kg",
+      "type": 0,
+      "resName": "icon_2006"
+    },
+    "1007": {
+      "id": 1007,
+      "name": "强攻2",
+      "tips": "矿工基础伤害增加20%",
+      "times": 0.1,
+      "target": "kg",
+      "type": 1,
+      "resName": "icon_2005"
+    },
+    "1008": {
+      "id": 1008,
+      "name": "贪婪",
+      "tips": "矿工金币获取增加20%",
+      "times": 0.1,
+      "target": "kg",
+      "type": 4,
+      "resName": "icon_2004"
+    },
+    "1009": {
+      "id": 1009,
+      "name": "暴击",
+      "tips": "自动暴击率增加20%",
+      "times": 0.1,
+      "target": "kg",
+      "type": 2,
+      "resName": "icon_2001"
+    },
+    "1010": {
+      "id": 1010,
+      "name": "爆伤",
+      "tips": "自动暴击伤害增加40%",
+      "times": 0.2,
+      "target": "kg",
+      "type": 3,
+      "resName": "icon_2003"
+    },
+    "9001": {
+      "id": 9001,
+      "name": "点击伤害",
+      "tips": "点击伤害增加10%",
+      "times": 0.1,
+      "target": "dj",
+      "type": 1,
+      "resName": "icon_2005"
+    },
+    "9002": {
+      "id": 9002,
+      "name": "点击暴击",
+      "tips": "点击暴击率增加10%",
+      "times": 0.1,
+      "target": "dj",
+      "type": 2,
+      "resName": "icon_2001"
+    },
+    "9003": {
+      "id": 9003,
+      "name": "点击暴伤",
+      "tips": "点击暴击伤害增加20%",
+      "times": 0.2,
+      "target": "dj",
+      "type": 3,
+      "resName": "icon_2003"
+    },
+    "9004": {
+      "id": 9004,
+      "name": "点击财宝",
+      "tips": "点击金币增加10%",
+      "times": 0.1,
+      "target": "dj",
+      "type": 4,
+      "resName": "icon_2004"
+    },
+    "9005": {
+      "id": 9002,
+      "name": "点击暴击",
+      "tips": "点击暴击率增加20%",
+      "times": 0.1,
+      "target": "dj",
+      "type": 2,
+      "resName": "icon_2001"
+    },
+    "9006": {
+      "id": 9006,
+      "name": "点击财宝",
+      "tips": "点击金币增加20%",
+      "times": 0.1,
+      "target": "dj",
+      "type": 4,
+      "resName": "icon_2004"
+    }
+  },
+  "skill": {
+    "1": {
+      "id": 1,
+      "name": "增加点击暴击概率",
+      "buffTimes": 0.02,
+      "growCost": 40,
+      "target": "dj",
+      "type": 2,
+      "maxLevel": 40,
+      "iconName": "icon_3001"
+    },
+    "2": {
+      "id": 2,
+      "name": "增加点击伤害",
+      "buffTimes": 0.01,
+      "growCost": 60,
+      "target": "dj",
+      "type": 1,
+      "maxLevel": 40,
+      "iconName": "icon_3002"
+    },
+    "3": {
+      "id": 3,
+      "name": "增加点击获取金币",
+      "buffTimes": 0.01,
+      "growCost": 80,
+      "target": "dj",
+      "type": 4,
+      "maxLevel": 40,
+      "iconName": "icon_3003"
+    },
+    "4": {
+      "id": 4,
+      "name": "增加矿工暴击概率",
+      "buffTimes": 0.02,
+      "growCost": 60,
+      "target": "kg",
+      "type": 2,
+      "maxLevel": 40,
+      "iconName": "icon_3004"
+    },
+    "5": {
+      "id": 5,
+      "name": "增加矿工伤害",
+      "buffTimes": 0.01,
+      "growCost": 80,
+      "target": "kg",
+      "type": 1,
+      "maxLevel": 40,
+      "iconName": "icon_3005"
+    },
+    "6": {
+      "id": 6,
+      "name": "增加矿工获取金币",
+      "buffTimes": 0.01,
+      "growCost": 100,
+      "target": "kg",
+      "type": 4,
+      "maxLevel": 40,
+      "iconName": "icon_3006"
+    },
+    "7": {
+      "id": 7,
+      "name": "降低升级矿工金币消耗",
+      "buffTimes": 0.01,
+      "growCost": 120,
+      "target": "all",
+      "type": 7,
+      "maxLevel": 40,
+      "iconName": "icon_3007"
+    }
+  },
+  "magic": {
+    "1": {
+      "id": 1,
+      "name": "赠送钻石*40",
+      "limitCount": 5,
+      "rewardValue": 40,
+      "keepTime": 0,
+      "resName": "icon_1004",
+      "openType": "share"
+    },
+    "2": {
+      "id": 2,
+      "name": "ضاعف تأثير النقر 10",
+      "limitCount": 5,
+      "rewardValue": 0,
+      "keepTime": 180,
+      "resName": "icon_1001",
+      "openType": "share"
+    },
+    "3": {
+      "id": 3,
+      "name": "نقر آلي",
+      "limitCount": 5,
+      "rewardValue": 0,
+      "keepTime": 180,
+      "resName": "icon_1005",
+      "openType": "share"
+    },
+    "4": {
+      "id": 4,
+      "name": "双倍效率",
+      "limitCount": 5,
+      "rewardValue": 0,
+      "keepTime": 300,
+      "resName": "icon_1003",
+      "openType": "share"
+    },
+    "5": {
+      "id": 5,
+      "name": "حصيلة مزدوجة",
+      "limitCount": 5,
+      "rewardValue": 0,
+      "keepTime": 300,
+      "resName": "icon_1002",
+      "openType": "share"
+    }
+  },
+  "collectgroup": {
+    "1": {
+      "id": 1,
+      "name": "حيوانات",
+      "resName": "icon_09",
+      "sc": [
+        "14001",
+        "14002",
+        "14003",
+        "14004",
+        "14005"
+      ],
+      "buffTarget": "1",
+      "buffType": 0,
+      "buffValue": 0.1,
+      "buffTips": ""
+    },
+    "2": {
+      "id": 2,
+      "name": "بدلة",
+      "resName": "icon_01",
+      "sc": [
+        "24001",
+        "24002",
+        "24003",
+        "24004",
+        "24005"
+      ],
+      "buffTarget": "2",
+      "buffType": 0,
+      "buffValue": 0.1,
+      "buffTips": ""
+    },
+    "3": {
+      "id": 3,
+      "name": "بقايا",
+      "resName": "icon_07",
+      "sc": [
+        "34001",
+        "34002",
+        "34003",
+        "34004",
+        "34005"
+      ],
+      "buffTarget": "3",
+      "buffType": 0,
+      "buffValue": 0.1,
+      "buffTips": ""
+    },
+    "4": {
+      "id": 4,
+      "name": "سلاح",
+      "resName": "icon_12",
+      "sc": [
+        "44001",
+        "44002",
+        "44003",
+        "44004",
+        "44005"
+      ],
+      "buffTarget": "4",
+      "buffType": 0,
+      "buffValue": 0.1,
+      "buffTips": ""
+    },
+    "5": {
+      "id": 5,
+      "name": "الألعاب",
+      "resName": "icon_11",
+      "sc": [
+        "54001",
+        "54002",
+        "54003",
+        "54004",
+        "54005"
+      ],
+      "buffTarget": "5",
+      "buffType": 0,
+      "buffValue": 0.1,
+      "buffTips": ""
+    },
+    "6": {
+      "id": 6,
+      "name": "دمية",
+      "resName": "icon_06",
+      "sc": [
+        "64001",
+        "64002",
+        "64003",
+        "64004",
+        "64005"
+      ],
+      "buffTarget": "6",
+      "buffType": 0,
+      "buffValue": 0.1,
+      "buffTips": ""
+    },
+    "7": {
+      "id": 7,
+      "name": "مسدس",
+      "resName": "icon_13",
+      "sc": [
+        "74001",
+        "74002",
+        "74003",
+        "74004",
+        "74005"
+      ],
+      "buffTarget": "7",
+      "buffType": 0,
+      "buffValue": 0.1,
+      "buffTips": ""
+    },
+    "8": {
+      "id": 8,
+      "name": "العملات المعدنية",
+      "resName": "icon_14",
+      "sc": [
+        "84001",
+        "84002",
+        "84003",
+        "84004",
+        "84005"
+      ],
+      "buffTarget": "8",
+      "buffType": 0,
+      "buffValue": 0.1,
+      "buffTips": ""
+    },
+    "9": {
+      "id": 9,
+      "name": "أطعمة",
+      "resName": "icon_15",
+      "sc": [
+        "94001",
+        "94002",
+        "94003",
+        "94004",
+        "94005"
+      ],
+      "buffTarget": "9",
+      "buffType": 0,
+      "buffValue": 0.1,
+      "buffTips": ""
+    },
+    "10": {
+      "id": 10,
+      "name": "إكسسوارات",
+      "resName": "icon_02",
+      "sc": [
+        "104001",
+        "104002",
+        "104003",
+        "104004",
+        "104005"
+      ],
+      "buffTarget": "10",
+      "buffType": 0,
+      "buffValue": 0.1,
+      "buffTips": ""
+    }
+  },
+  "collect": {
+    "14001": {
+      "scid": 14001,
+      "groupid": 1,
+      "name": "ضفدع",
+      "resName": "icon_1_4001",
+      "buffType": 1,
+      "buffValue": 0.01,
+      "buffTips": ""
+    },
+    "14002": {
+      "scid": 14002,
+      "groupid": 1,
+      "name": "القرد",
+      "resName": "icon_1_4002",
+      "buffType": 2,
+      "buffValue": 0.005,
+      "buffTips": ""
+    },
+    "14003": {
+      "scid": 14003,
+      "groupid": 1,
+      "name": "جرو صغير",
+      "resName": "icon_1_4003",
+      "buffType": 3,
+      "buffValue": 0.005,
+      "buffTips": ""
+    },
+    "14004": {
+      "scid": 14004,
+      "groupid": 1,
+      "name": "العنزة",
+      "resName": "icon_1_4004",
+      "buffType": 4,
+      "buffValue": 0.002,
+      "buffTips": ""
+    },
+    "14005": {
+      "scid": 14005,
+      "groupid": 1,
+      "name": "كتكوت",
+      "resName": "icon_1_4005",
+      "buffType": 5,
+      "buffValue": 0.001,
+      "buffTips": ""
+    },
+    "24001": {
+      "scid": 24001,
+      "groupid": 2,
+      "name": "ملابس",
+      "resName": "icon_2_4001",
+      "buffType": 1,
+      "buffValue": 0.01,
+      "buffTips": ""
+    },
+    "24002": {
+      "scid": 24002,
+      "groupid": 2,
+      "name": "سراويل",
+      "resName": "icon_2_4002",
+      "buffType": 2,
+      "buffValue": 0.005,
+      "buffTips": ""
+    },
+    "24003": {
+      "scid": 24003,
+      "groupid": 2,
+      "name": "قبعة",
+      "resName": "icon_2_4003",
+      "buffType": 3,
+      "buffValue": 0.005,
+      "buffTips": ""
+    },
+    "24004": {
+      "scid": 24004,
+      "groupid": 2,
+      "name": "حذاء",
+      "resName": "icon_2_4004",
+      "buffType": 4,
+      "buffValue": 0.002,
+      "buffTips": ""
+    },
+    "24005": {
+      "scid": 24005,
+      "groupid": 2,
+      "name": " اليد",
+      "resName": "icon_2_4005",
+      "buffType": 5,
+      "buffValue": 0.001,
+      "buffTips": ""
+    },
+    "34001": {
+      "scid": 34001,
+      "groupid": 3,
+      "name": "عظام المخلب",
+      "resName": "icon_3_4001",
+      "buffType": 1,
+      "buffValue": 0.01,
+      "buffTips": ""
+    },
+    "34002": {
+      "scid": 34002,
+      "groupid": 3,
+      "name": "عظام القدم",
+      "resName": "icon_3_4002",
+      "buffType": 2,
+      "buffValue": 0.005,
+      "buffTips": ""
+    },
+    "34003": {
+      "scid": 34003,
+      "groupid": 3,
+      "name": "عظم السمك",
+      "resName": "icon_3_4003",
+      "buffType": 3,
+      "buffValue": 0.005,
+      "buffTips": ""
+    },
+    "34004": {
+      "scid": 34004,
+      "groupid": 3,
+      "name": "صدف",
+      "resName": "icon_3_4004",
+      "buffType": 4,
+      "buffValue": 0.002,
+      "buffTips": ""
+    },
+    "34005": {
+      "scid": 34005,
+      "groupid": 3,
+      "name": "حفريات",
+      "resName": "icon_3_4005",
+      "buffType": 5,
+      "buffValue": 0.001,
+      "buffTips": ""
+    },
+    "44001": {
+      "scid": 44001,
+      "groupid": 4,
+      "name": "سكين",
+      "resName": "icon_4_4001",
+      "buffType": 1,
+      "buffValue": 0.01,
+      "buffTips": ""
+    },
+    "44002": {
+      "scid": 44002,
+      "groupid": 4,
+      "name": "سيف",
+      "resName": "icon_4_4002",
+      "buffType": 2,
+      "buffValue": 0.005,
+      "buffTips": ""
+    },
+    "44003": {
+      "scid": 44003,
+      "groupid": 4,
+      "name": "منجل",
+      "resName": "icon_4_4003",
+      "buffType": 3,
+      "buffValue": 0.005,
+      "buffTips": ""
+    },
+    "44004": {
+      "scid": 44004,
+      "groupid": 4,
+      "name": "فأس",
+      "resName": "icon_4_4004",
+      "buffType": 4,
+      "buffValue": 0.002,
+      "buffTips": ""
+    },
+    "44005": {
+      "scid": 44005,
+      "groupid": 4,
+      "name": "سيف مبارزة",
+      "resName": "icon_4_4005",
+      "buffType": 5,
+      "buffValue": 0.001,
+      "buffTips": ""
+    },
+    "54001": {
+      "scid": 54001,
+      "groupid": 5,
+      "name": "بطة صفراء",
+      "resName": "icon_5_4001",
+      "buffType": 1,
+      "buffValue": 0.01,
+      "buffTips": ""
+    },
+    "54002": {
+      "scid": 54002,
+      "groupid": 5,
+      "name": "لعبة اليويو",
+      "resName": "icon_5_4002",
+      "buffType": 2,
+      "buffValue": 0.005,
+      "buffTips": ""
+    },
+    "54003": {
+      "scid": 54003,
+      "groupid": 5,
+      "name": "الزلاجات",
+      "resName": "icon_5_4003",
+      "buffType": 3,
+      "buffValue": 0.005,
+      "buffTips": ""
+    },
+    "54004": {
+      "scid": 54004,
+      "groupid": 5,
+      "name": "الحصان الهزاز",
+      "resName": "icon_5_4004",
+      "buffType": 4,
+      "buffValue": 0.002,
+      "buffTips": ""
+    },
+    "54005": {
+      "scid": 54005,
+      "groupid": 5,
+      "name": "ألعاب",
+      "resName": "icon_5_4005",
+      "buffType": 5,
+      "buffValue": 0.001,
+      "buffTips": ""
+    },
+    "64001": {
+      "scid": 64001,
+      "groupid": 6,
+      "name": "الدببة",
+      "resName": "icon_6_4001",
+      "buffType": 1,
+      "buffValue": 0.01,
+      "buffTips": ""
+    },
+    "64002": {
+      "scid": 64002,
+      "groupid": 6,
+      "name": "فزاعة",
+      "resName": "icon_6_4002",
+      "buffType": 2,
+      "buffValue": 0.005,
+      "buffTips": ""
+    },
+    "64003": {
+      "scid": 64003,
+      "groupid": 6,
+      "name": "رجل الفطر",
+      "resName": "icon_6_4003",
+      "buffType": 3,
+      "buffValue": 0.005,
+      "buffTips": ""
+    },
+    "64004": {
+      "scid": 64004,
+      "groupid": 6,
+      "name": "رجل الثلج",
+      "resName": "icon_6_4004",
+      "buffType": 4,
+      "buffValue": 0.002,
+      "buffTips": ""
+    },
+    "64005": {
+      "scid": 64005,
+      "groupid": 6,
+      "name": "تمساح",
+      "resName": "icon_6_4005",
+      "buffType": 5,
+      "buffValue": 0.001,
+      "buffTips": ""
+    },
+    "74001": {
+      "scid": 74001,
+      "groupid": 7,
+      "name": "بندقية",
+      "resName": "icon_7_4001",
+      "buffType": 1,
+      "buffValue": 0.01,
+      "buffTips": ""
+    },
+    "74002": {
+      "scid": 74002,
+      "groupid": 7,
+      "name": "ماسورة مسدس",
+      "resName": "icon_7_4002",
+      "buffType": 2,
+      "buffValue": 0.005,
+      "buffTips": ""
+    },
+    "74003": {
+      "scid": 74003,
+      "groupid": 7,
+      "name": "Vector",
+      "resName": "icon_7_4003",
+      "buffType": 3,
+      "buffValue": 0.005,
+      "buffTips": ""
+    },
+    "74004": {
+      "scid": 74004,
+      "groupid": 7,
+      "name": "M416",
+      "resName": "icon_7_4004",
+      "buffType": 4,
+      "buffValue": 0.002,
+      "buffTips": ""
+    },
+    "74005": {
+      "scid": 74005,
+      "groupid": 7,
+      "name": "Groza",
+      "resName": "icon_7_4005",
+      "buffType": 5,
+      "buffValue": 0.001,
+      "buffTips": ""
+    },
+    "84001": {
+      "scid": 84001,
+      "groupid": 8,
+      "name": "أحجار",
+      "resName": "icon_8_4001",
+      "buffType": 1,
+      "buffValue": 0.01,
+      "buffTips": ""
+    },
+    "84002": {
+      "scid": 84002,
+      "groupid": 8,
+      "name": "عملات نحاسية",
+      "resName": "icon_8_4002",
+      "buffType": 2,
+      "buffValue": 0.005,
+      "buffTips": ""
+    },
+    "84003": {
+      "scid": 84003,
+      "groupid": 8,
+      "name": "عملات القطط",
+      "resName": "icon_8_4003",
+      "buffType": 3,
+      "buffValue": 0.005,
+      "buffTips": ""
+    },
+    "84004": {
+      "scid": 84004,
+      "groupid": 8,
+      "name": "عملات المخلب",
+      "resName": "icon_8_4004",
+      "buffType": 4,
+      "buffValue": 0.002,
+      "buffTips": ""
+    },
+    "84005": {
+      "scid": 84005,
+      "groupid": 8,
+      "name": "عملات فضية",
+      "resName": "icon_8_4005",
+      "buffType": 5,
+      "buffValue": 0.001,
+      "buffTips": ""
+    },
+    "94001": {
+      "scid": 94001,
+      "groupid": 9,
+      "name": "سندوتشات",
+      "resName": "icon_9_4001",
+      "buffType": 1,
+      "buffValue": 0.01,
+      "buffTips": ""
+    },
+    "94002": {
+      "scid": 94002,
+      "groupid": 9,
+      "name": "سجق",
+      "resName": "icon_9_4002",
+      "buffType": 2,
+      "buffValue": 0.005,
+      "buffTips": ""
+    },
+    "94003": {
+      "scid": 94003,
+      "groupid": 9,
+      "name": "أرجل الدجاج المقلية",
+      "resName": "icon_9_4003",
+      "buffType": 3,
+      "buffValue": 0.005,
+      "buffTips": ""
+    },
+    "94004": {
+      "scid": 94004,
+      "groupid": 9,
+      "name": "الدجاج المشوي",
+      "resName": "icon_9_4004",
+      "buffType": 4,
+      "buffValue": 0.002,
+      "buffTips": ""
+    },
+    "94005": {
+      "scid": 94005,
+      "groupid": 9,
+      "name": "كيك",
+      "resName": "icon_9_4005",
+      "buffType": 5,
+      "buffValue": 0.001,
+      "buffTips": ""
+    },
+    "104001": {
+      "scid": 104001,
+      "groupid": 10,
+      "name": "الأقراط",
+      "resName": "icon_10_4001",
+      "buffType": 1,
+      "buffValue": 0.01,
+      "buffTips": ""
+    },
+    "104002": {
+      "scid": 104002,
+      "groupid": 10,
+      "name": "حزام",
+      "resName": "icon_10_4002",
+      "buffType": 2,
+      "buffValue": 0.005,
+      "buffTips": ""
+    },
+    "104003": {
+      "scid": 104003,
+      "groupid": 10,
+      "name": "قلادة",
+      "resName": "icon_10_4003",
+      "buffType": 3,
+      "buffValue": 0.005,
+      "buffTips": ""
+    },
+    "104004": {
+      "scid": 104004,
+      "groupid": 10,
+      "name": "سوار اليد",
+      "resName": "icon_10_4004",
+      "buffType": 4,
+      "buffValue": 0.002,
+      "buffTips": ""
+    },
+    "104005": {
+      "scid": 104005,
+      "groupid": 10,
+      "name": "خاتم",
+      "resName": "icon_10_4005",
+      "buffType": 5,
+      "buffValue": 0.001,
+      "buffTips": ""
+    }
+  },
+  "scjewel": [
+    {
+      "count": 3,
+      "gl": [
+        0,
+        6
+      ]
+    },
+    {
+      "count": 3,
+      "gl": [
+        6,
+        8.5
+      ]
+    },
+    {
+      "count": 4,
+      "gl": [
+        8.5,
+        9.5
+      ]
+    },
+    {
+      "count": 5,
+      "gl": [
+        9.5,
+        10
+      ]
+    }
+  ],
+  "scjinbi": [
+    {
+      "time": 1,
+      "gl": [
+        0,
+        4
+      ],
+      "beishu": 1
+    },
+    {
+      "time": 1,
+      "gl": [
+        4,
+        7
+      ],
+      "beishu": 2
+    },
+    {
+      "time": 1,
+      "gl": [
+        7,
+        9
+      ],
+      "beishu": 3
+    },
+    {
+      "time": 1,
+      "gl": [
+        9,
+        9.5
+      ],
+      "beishu": 4
+    },
+    {
+      "time": 1,
+      "gl": [
+        9.5,
+        10
+      ],
+      "beishu": 5
+    }
+  ],
+  "baoxiangconfig": {
+    "gl": {
+      "1": [
+        6,
+        10
+      ],
+      "2": [
+        0.5,
+        1.5
+      ]
+    },
+    "baoxiang1": {
+      "1": [
+        0,
+        3
+      ],
+      "2": [
+        3,
+        10
+      ]
+    },
+    "baoxiang2": {
+      "3": [
+        0,
+        10
+      ]
+    },
+    "baoxiangclickCount": {
+      "1": 10,
+      "2": 8,
+      "3": 1
+    }
+  },
+  "LuckyZhuanpan": [
+    {
+      "id": 1,
+      "gl": [
+        1,
+        3
+      ],
+      "tips": "مكافأة عدم اتصال لمدة 1 دقيقة"
+    },
+    {
+      "id": 2,
+      "gl": [
+        3,
+        4.5
+      ],
+      "tips": "مكافأة عدم اتصال لمدة 2 دقيقة"
+    },
+    {
+      "id": 3,
+      "gl": [
+        0,
+        1
+      ],
+      "tips": "30min离线金币奖励"
+    },
+    {
+      "id": 4,
+      "gl": [
+        4.5,
+        5.5
+      ],
+      "tips": "钻石*20"
+    },
+    {
+      "id": 5,
+      "gl": [
+        5.5,
+        7.5
+      ],
+      "tips": "صندوق المجوهرات"
+    },
+    {
+      "id": 6,
+      "gl": [
+        7.5,
+        8
+      ],
+      "tips": "钻石*40"
+    },
+    {
+      "id": 7,
+      "gl": [
+        8,
+        9.5
+      ],
+      "tips": "مكافأة عدم اتصال لمدة 4 دقيقة"
+    },
+    {
+      "id": 8,
+      "gl": [
+        9.5,
+        10
+      ],
+      "tips": "钻石*60"
+    }
+  ],
+  "inviteList": [
+    {
+      "id": 0,
+      "tips": "#الساعة#حصيلة الذهب",
+      "type": 3,
+      "rewardValue": 1,
+      "needValue": 1
+    },
+    {
+      "id": 1,
+      "tips": "الاحجار#200",
+      "type": 2,
+      "rewardValue": 200,
+      "needValue": 2
+    },
+    {
+      "id": 2,
+      "tips": "#1小时#金币收益",
+      "type": 3,
+      "rewardValue": 1,
+      "needValue": 3
+    },
+    {
+      "id": 3,
+      "tips": "钻石#200#个",
+      "type": 2,
+      "rewardValue": 200,
+      "needValue": 4
+    },
+    {
+      "id": 4,
+      "tips": "#1小时#金币收益",
+      "type": 3,
+      "rewardValue": 1,
+      "needValue": 5
+    },
+    {
+      "id": 5,
+      "tips": "钻石#200#个",
+      "type": 2,
+      "rewardValue": 200,
+      "needValue": 6
+    },
+    {
+      "id": 6,
+      "tips": "#1小时#金币收益",
+      "type": 3,
+      "rewardValue": 1,
+      "needValue": 7
+    },
+    {
+      "id": 7,
+      "tips": "钻石#200#个",
+      "type": 2,
+      "rewardValue": 200,
+      "needValue": 8
+    },
+    {
+      "id": 8,
+      "tips": "#1小时#金币收益",
+      "type": 3,
+      "rewardValue": 1,
+      "needValue": 9
+    },
+    {
+      "id": 9,
+      "tips": "钻石#200#个",
+      "type": 2,
+      "rewardValue": 200,
+      "needValue": 10
+    },
+    {
+      "id": 10,
+      "tips": "#1小时#金币收益",
+      "type": 3,
+      "rewardValue": 1,
+      "needValue": 11
+    },
+    {
+      "id": 11,
+      "tips": "钻石#200#个",
+      "type": 2,
+      "rewardValue": 200,
+      "needValue": 12
+    }
+  ],
+  "businessman": [
+    {
+      "id": 1,
+      "scpCount": 2,
+      "gl": [
+        0,
+        5
+      ],
+      "jiangli": {
+        "1": {
+          "jlId": "1",
+          "name": "مكافأة عدم اتصال لمدة 2 دقيقة",
+          "jlCount": 900,
+          "jlResName": "wddx_ic_004",
+          "jlGl": [
+            0,
+            3.5
+          ]
+        },
+        "2": {
+          "jlId": "2",
+          "name": "50الاحجار",
+          "jlCount": 50,
+          "jlResName": "wddx_ic_016",
+          "jlGl": [
+            3.5,
+            7
+          ]
+        },
+        "3": {
+          "jlId": "3",
+          "name": "转盘券x2",
+          "jlCount": 2,
+          "jlResName": "wddx_ic_028",
+          "jlGl": [
+            7,
+            10
+          ]
+        }
+      }
+    },
+    {
+      "id": 2,
+      "scpCount": 3,
+      "gl": [
+        5,
+        8.5
+      ],
+      "jiangli": {
+        "1": {
+          "jlId": "1",
+          "name": "مكافأة عدم اتصال لمدة 4 دقيقة",
+          "jlCount": 1800,
+          "jlResName": "wddx_ic_004",
+          "jlGl": [
+            0,
+            3.5
+          ]
+        },
+        "2": {
+          "jlId": "2",
+          "name": "80钻",
+          "jlCount": 80,
+          "jlResName": "wddx_ic_016",
+          "jlGl": [
+            3.5,
+            7
+          ]
+        },
+        "3": {
+          "jlId": "3",
+          "name": "转盘券x4",
+          "jlCount": 4,
+          "jlResName": "wddx_ic_028",
+          "jlGl": [
+            7,
+            10
+          ]
+        }
+      }
+    },
+    {
+      "id": 3,
+      "scpCount": 4,
+      "gl": [
+        8.5,
+        10
+      ],
+      "jiangli": {
+        "1": {
+          "jlId": "1",
+          "name": "8小时离线金币",
+          "jlCount": 3600,
+          "jlResName": "wddx_ic_004",
+          "jlGl": [
+            0,
+            3.5
+          ]
+        },
+        "2": {
+          "jlId": "2",
+          "name": "150钻",
+          "jlCount": 150,
+          "jlResName": "wddx_ic_016",
+          "jlGl": [
+            3.5,
+            7
+          ]
+        },
+        "3": {
+          "jlId": "3",
+          "name": "转盘券x6",
+          "jlCount": 6,
+          "jlResName": "wddx_ic_028",
+          "jlGl": [
+            7,
+            10
+          ]
+        }
+      }
+    }
+  ],
+  "businessmanvisibleTime": {
+    "1": [
+      8,
+      10
+    ],
+    "2": [
+      12,
+      14
+    ],
+    "3": [
+      18,
+      20
+    ],
+    "4": [
+      22,
+      24
+    ]
+  },
+  "sevenDaySign": [
+    {
+      "id": 0,
+      "rewardType": 1,
+      "tips": "الاحجار",
+      "rewardValue": 400,
+      "resName": "wddx_ic_016",
+      "resScale": 0.8
+    },
+    {
+      "id": 1,
+      "rewardType": 0,
+      "tips": "ذهب",
+      "rewardValue": 8,
+      "resName": "wddx_ic_017",
+      "resScale": 0.8
+    },
+    {
+      "id": 2,
+      "rewardType": 1,
+      "tips": "الاحجار",
+      "rewardValue": 600,
+      "resName": "wddx_ic_016",
+      "resScale": 0.8
+    },
+    {
+      "id": 3,
+      "rewardType": 2,
+      "tips": "كوبون عجلة الحظ",
+      "rewardValue": 20,
+      "resName": "wddx_ic_028",
+      "resScale": 0.6
+    },
+    {
+      "id": 4,
+      "rewardType": 1,
+      "tips": "الاحجار",
+      "rewardValue": 800,
+      "resName": "wddx_ic_016",
+      "resScale": 0.8
+    },
+    {
+      "id": 5,
+      "rewardType": 0,
+      "tips": "ذهب",
+      "rewardValue": 12,
+      "resName": "wddx_ic_017",
+      "resScale": 0.8
+    },
+    {
+      "id": 6,
+      "rewardType": 1,
+      "tips": "الاحجار",
+      "rewardValue": 1500,
+      "resName": "wddx_ic_016",
+      "resScale": 0.8
+    }
+  ],
+  "vipConfig": [
+    {
+      "vipid": 1,
+      "needValue": 2,
+      "currentNeedValue": 2,
+      "viplevel": 1,
+      "vipReward": "1001"
+    },
+    {
+      "vipid": 2,
+      "needValue": 4,
+      "currentNeedValue": 2,
+      "viplevel": 2,
+      "vipReward": "1002"
+    },
+    {
+      "vipid": 3,
+      "needValue": 6,
+      "currentNeedValue": 2,
+      "viplevel": 3,
+      "vipReward": "1003"
+    },
+    {
+      "vipid": 4,
+      "needValue": 8,
+      "currentNeedValue": 2,
+      "viplevel": 4,
+      "vipReward": "1004"
+    },
+    {
+      "vipid": 5,
+      "needValue": 10,
+      "currentNeedValue": 2,
+      "viplevel": 5,
+      "vipReward": "1005"
+    }
+  ],
+  "vipRewardConfig": {
+    "1001": {
+      "rewardid": 1001,
+      "onceRewardType": "1,2,3,4,5",
+      "onceRewardValue": "5,5,10,10,10",
+      "everyDayRwardType": "1",
+      "everyDayRwardValue": "200"
+    },
+    "1002": {
+      "rewardid": 1002,
+      "onceRewardType": "1,2,3,4,5",
+      "onceRewardValue": "10,10,20,20,20",
+      "everyDayRwardType": "1",
+      "everyDayRwardValue": "400"
+    },
+    "1003": {
+      "rewardid": 1003,
+      "onceRewardType": "1,2,3,4,5",
+      "onceRewardValue": "15,20,30,30,30",
+      "everyDayRwardType": "1",
+      "everyDayRwardValue": "600"
+    },
+    "1004": {
+      "rewardid": 1004,
+      "onceRewardType": "1,2,3,4,5",
+      "onceRewardValue": "20,30,50,50,50",
+      "everyDayRwardType": "1",
+      "everyDayRwardValue": "800"
+    },
+    "1005": {
+      "rewardid": 1005,
+      "onceRewardType": "1,2,3,4,5",
+      "onceRewardValue": "30,50,70,70,70",
+      "everyDayRwardType": "1",
+      "everyDayRwardValue": "1600"
+    }
+  },
+  "oregroup": {
+    "1": {
+      "id": 1,
+      "name": "كوكب الأرض",
+      "resName": "",
+      "ores": [
+        "15001",
+        "15002",
+        "15003",
+        "15004",
+        "15005",
+        "15006",
+        "15007"
+      ]
+    },
+    "2": {
+      "id": 2,
+      "name": "كوكب عطارد",
+      "resName": "",
+      "ores": [
+        "25001",
+        "25002",
+        "25003",
+        "25004",
+        "25005"
+      ]
+    },
+    "3": {
+      "id": 3,
+      "name": "كوكب المريخ",
+      "resName": "",
+      "ores": [
+        "35001",
+        "35002",
+        "35003",
+        "35004",
+        "35005"
+      ]
+    },
+    "4": {
+      "id": 4,
+      "name": "كوكب الزهرة",
+      "resName": "",
+      "ores": [
+        "45001",
+        "45002",
+        "45003",
+        "45004",
+        "45005"
+      ]
+    },
+    "5": {
+      "id": 5,
+      "name": "كوكب المشتري",
+      "resName": "",
+      "ores": [
+        "55001",
+        "55002",
+        "55003",
+        "55004",
+        "55005"
+      ]
+    },
+    "6": {
+      "id": 6,
+      "name": "كوكب زحل",
+      "resName": "",
+      "ores": [
+        "65001",
+        "65002",
+        "65003",
+        "65004",
+        "65005"
+      ]
+    },
+    "7": {
+      "id": 7,
+      "name": "كوكب بلوتو",
+      "resName": "",
+      "ores": [
+        "75001",
+        "75002",
+        "75003",
+        "75004",
+        "75005"
+      ]
+    },
+    "8": {
+      "id": 8,
+      "name": "كوكب أورانس",
+      "resName": "",
+      "ores": [
+        "75001",
+        "75002",
+        "75003",
+        "75004",
+        "75005"
+      ]
+    },
+    "9": {
+      "id": 9,
+      "name": "كوكب نبتون",
+      "resName": "",
+      "ores": [
+        "75001",
+        "75002",
+        "75003",
+        "75004",
+        "75005"
+      ]
+    },
+    "10": {
+      "id": 10,
+      "name": "الكوكب الخارق",
+      "resName": "",
+      "ores": [
+        "75001",
+        "75002",
+        "75003",
+        "75004",
+        "75005"
+      ]
+    }
+  },
+  "ore": {
+    "15001": {
+      "oreid": 15001,
+      "groupid": 1,
+      "unlockFloor": 40,
+      "name": " الفلوريت",
+      "resName": "1"
+    },
+    "15002": {
+      "oreid": 15002,
+      "groupid": 1,
+      "unlockFloor": 80,
+      "name": "كاسيرايت",
+      "resName": "2"
+    },
+    "15003": {
+      "oreid": 15003,
+      "groupid": 1,
+      "unlockFloor": 150,
+      "name": " الكبريت",
+      "resName": "3"
+    },
+    "15004": {
+      "oreid": 15004,
+      "groupid": 1,
+      "unlockFloor": 250,
+      "name": "سينابار",
+      "resName": "4"
+    },
+    "15005": {
+      "oreid": 15005,
+      "groupid": 1,
+      "unlockFloor": 400,
+      "name": "أزوريت",
+      "resName": "5"
+    },
+    "15006": {
+      "oreid": 15006,
+      "groupid": 1,
+      "unlockFloor": 600,
+      "name": "الهيماتيت",
+      "resName": "6"
+    },
+    "15007": {
+      "oreid": 15007,
+      "groupid": 1,
+      "unlockFloor": 800,
+      "name": "جالينا",
+      "resName": "7"
+    },
+    "25001": {
+      "oreid": 25001,
+      "groupid": 2,
+      "unlockFloor": 1,
+      "name": "البيريت",
+      "resName": "8"
+    },
+    "25002": {
+      "oreid": 25002,
+      "groupid": 2,
+      "unlockFloor": 200,
+      "name": "كالسيت",
+      "resName": "9"
+    },
+    "25003": {
+      "oreid": 25003,
+      "groupid": 2,
+      "unlockFloor": 400,
+      "name": "كريستوباليت",
+      "resName": "10"
+    },
+    "25004": {
+      "oreid": 25004,
+      "groupid": 2,
+      "unlockFloor": 600,
+      "name": "حجر صليبي",
+      "resName": "11"
+    },
+    "25005": {
+      "oreid": 25005,
+      "groupid": 2,
+      "unlockFloor": 800,
+      "name": "ميكايت",
+      "resName": "12"
+    },
+    "35001": {
+      "oreid": 35001,
+      "groupid": 3,
+      "unlockFloor": 1,
+      "name": "الروتيل",
+      "resName": "13"
+    },
+    "35002": {
+      "oreid": 35002,
+      "groupid": 3,
+      "unlockFloor": 200,
+      "name": "البزموت",
+      "resName": "14"
+    },
+    "35003": {
+      "oreid": 35003,
+      "groupid": 3,
+      "unlockFloor": 400,
+      "name": "الذهب الخالص",
+      "resName": "15"
+    },
+    "35004": {
+      "oreid": 35004,
+      "groupid": 3,
+      "unlockFloor": 600,
+      "name": "الماس",
+      "resName": "16"
+    },
+    "35005": {
+      "oreid": 35005,
+      "groupid": 3,
+      "unlockFloor": 800,
+      "name": "أحجار روبي",
+      "resName": "17"
+    },
+    "45001": {
+      "oreid": 45001,
+      "groupid": 4,
+      "unlockFloor": 1,
+      "name": "البريليت",
+      "resName": "18"
+    },
+    "45002": {
+      "oreid": 45002,
+      "groupid": 4,
+      "unlockFloor": 200,
+      "name": "الياقوت",
+      "resName": "19"
+    },
+    "45003": {
+      "oreid": 45003,
+      "groupid": 4,
+      "unlockFloor": 400,
+      "name": "الزمرد",
+      "resName": "20"
+    },
+    "45004": {
+      "oreid": 45004,
+      "groupid": 4,
+      "unlockFloor": 600,
+      "name": "النجم الفضي",
+      "resName": "21"
+    },
+    "45005": {
+      "oreid": 45005,
+      "groupid": 4,
+      "unlockFloor": 800,
+      "name": "زبرجد",
+      "resName": "22"
+    },
+    "55001": {
+      "oreid": 55001,
+      "groupid": 5,
+      "unlockFloor": 1,
+      "name": "التورمالين",
+      "resName": "23"
+    },
+    "55002": {
+      "oreid": 55002,
+      "groupid": 5,
+      "unlockFloor": 200,
+      "name": "الكوارتز",
+      "resName": "24"
+    },
+    "55003": {
+      "oreid": 55003,
+      "groupid": 5,
+      "unlockFloor": 400,
+      "name": "أبوفيلات",
+      "resName": "25"
+    },
+    "55004": {
+      "oreid": 55004,
+      "groupid": 5,
+      "unlockFloor": 600,
+      "name": "الزركون",
+      "resName": "26"
+    },
+    "55005": {
+      "oreid": 55005,
+      "groupid": 5,
+      "unlockFloor": 800,
+      "name": "الروتيل",
+      "resName": "27"
+    },
+    "65001": {
+      "oreid": 65001,
+      "groupid": 6,
+      "unlockFloor": 1,
+      "name": "سبودومين",
+      "resName": "28"
+    },
+    "65002": {
+      "oreid": 65002,
+      "groupid": 6,
+      "unlockFloor": 200,
+      "name": "أباتيت",
+      "resName": "29"
+    },
+    "65003": {
+      "oreid": 65003,
+      "groupid": 6,
+      "unlockFloor": 400,
+      "name": "الكلورينيت",
+      "resName": "30"
+    },
+    "65004": {
+      "oreid": 65004,
+      "groupid": 6,
+      "unlockFloor": 600,
+      "name": "رودودروسيت",
+      "resName": "31"
+    },
+    "65005": {
+      "oreid": 65005,
+      "groupid": 6,
+      "unlockFloor": 800,
+      "name": "حجر المنظور",
+      "resName": "32"
+    },
+    "75001": {
+      "oreid": 75001,
+      "groupid": 7,
+      "unlockFloor": 1,
+      "name": "عين النمر",
+      "resName": "33"
+    },
+    "75002": {
+      "oreid": 75002,
+      "groupid": 7,
+      "unlockFloor": 200,
+      "name": "رودودروسيت",
+      "resName": "34"
+    },
+    "75003": {
+      "oreid": 75003,
+      "groupid": 7,
+      "unlockFloor": 400,
+      "name": "الموليبدينوم",
+      "resName": "35"
+    },
+    "75004": {
+      "oreid": 75004,
+      "groupid": 7,
+      "unlockFloor": 600,
+      "name": "سفاليرايت",
+      "resName": "36"
+    },
+    "75005": {
+      "oreid": 75005,
+      "groupid": 7,
+      "unlockFloor": 800,
+      "name": "توباز",
+      "resName": "37"
+    }
+  },
+  "orebusinessman": [
+    {
+      "id": 1,
+      "oreCount": 2,
+      "gl": [
+        0,
+        5
+      ],
+      "jiangli": {
+        "1": {
+          "jlId": "1",
+          "name": "2小时离线金币",
+          "jlCount": 7200,
+          "jlResName": "wddx_ic_004",
+          "jlGl": [
+            0,
+            3.5
+          ]
+        },
+        "2": {
+          "jlId": "2",
+          "name": "100钻",
+          "jlCount": 100,
+          "jlResName": "wddx_ic_016",
+          "jlGl": [
+            3.5,
+            7
+          ]
+        },
+        "3": {
+          "jlId": "3",
+          "name": "转盘券x4",
+          "jlCount": 4,
+          "jlResName": "wddx_ic_028",
+          "jlGl": [
+            7,
+            10
+          ]
+        }
+      }
+    },
+    {
+      "id": 2,
+      "oreCount": 3,
+      "gl": [
+        5,
+        8.5
+      ],
+      "jiangli": {
+        "1": {
+          "jlId": "1",
+          "name": "4小时离线金币",
+          "jlCount": 14400,
+          "jlResName": "wddx_ic_004",
+          "jlGl": [
+            0,
+            3.5
+          ]
+        },
+        "2": {
+          "jlId": "2",
+          "name": "150钻",
+          "jlCount": 150,
+          "jlResName": "wddx_ic_016",
+          "jlGl": [
+            3.5,
+            7
+          ]
+        },
+        "3": {
+          "jlId": "3",
+          "name": "转盘券x8",
+          "jlCount": 8,
+          "jlResName": "wddx_ic_028",
+          "jlGl": [
+            7,
+            10
+          ]
+        }
+      }
+    },
+    {
+      "id": 3,
+      "oreCount": 4,
+      "gl": [
+        8.5,
+        10
+      ],
+      "jiangli": {
+        "1": {
+          "jlId": "1",
+          "name": "8小时离线金币",
+          "jlCount": 28800,
+          "jlResName": "wddx_ic_004",
+          "jlGl": [
+            0,
+            3.5
+          ]
+        },
+        "2": {
+          "jlId": "2",
+          "name": "250钻",
+          "jlCount": 250,
+          "jlResName": "wddx_ic_016",
+          "jlGl": [
+            3.5,
+            7
+          ]
+        },
+        "3": {
+          "jlId": "3",
+          "name": "转盘券x14",
+          "jlCount": 14,
+          "jlResName": "wddx_ic_028",
+          "jlGl": [
+            7,
+            10
+          ]
+        }
+      }
+    }
+  ],
+  "oreEveryFloorOver": [
+    {
+      "id": 1,
+      "oreCount": 1,
+      "gl": [
+        0,
+        5
+      ]
+    },
+    {
+      "id": 2,
+      "oreCount": 2,
+      "gl": [
+        5,
+        8
+      ]
+    },
+    {
+      "id": 3,
+      "oreCount": 3,
+      "gl": [
+        8,
+        10
+      ]
+    }
+  ],
+  "oreHsCountGlArr": [
+    {
+      "hscount": 1,
+      "gl": [
+        0,
+        0.5
+      ]
+    },
+    {
+      "hscount": 2,
+      "gl": [
+        0.5,
+        1.5
+      ]
+    },
+    {
+      "hscount": 3,
+      "gl": [
+        1.5,
+        3
+      ]
+    },
+    {
+      "hscount": 4,
+      "gl": [
+        3,
+        5
+      ]
+    },
+    {
+      "hscount": 5,
+      "gl": [
+        5,
+        7
+      ]
+    },
+    {
+      "hscount": 6,
+      "gl": [
+        7,
+        8.5
+      ]
+    },
+    {
+      "hscount": 7,
+      "gl": [
+        8.5,
+        9.5
+      ]
+    },
+    {
+      "hscount": 8,
+      "gl": [
+        9.5,
+        10
+      ]
+    }
+  ]
+}
