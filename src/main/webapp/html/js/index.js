@@ -5,3 +5,23 @@ var swipeBanners = new Swipe($('.swipe_banners ')[0], {
 	},
     auto : 0
 });
+
+
+
+
+
+
+var arr = new Array(3);
+
+
+function login(str,callback) {
+    arr[0]=callback;
+}
+
+
+
+function loginBack() {
+    arr[0]({"key":1,"key2":2});
+}
+
+

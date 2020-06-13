@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+
+        // window.alert("弹窗");
+
+
+    </script>
+
+</head>
+<body>
+
+<div id="elementById"></div>
+<p class="elementByClass"></p>
+<script>
+    document.getElementById("elementById").innerHTML = "<a href='index.html'>byId显示</a>";
+    // document.getElementsByClassName("elementByClass").item(0).innerHTML = "byClass显示";
+
+    document.write(Date());
+
+    console.log("------------log-------------------");
+
+    var obj = {key: 123, key2: "12345", key3: [1, 2, 3]};
+    var arry = obj.key3;
+    for (var i = 0; i < arry.length; i++) {
+        console.log(arry[i]);
+    }
+
+    var text = '{ "sites" : [' +
+        '{ "name":"Runoob" , "url":"www.runoob.com" },' +
+        '{ "name":"Google" , "url":"www.google.com" },' +
+        '{ "name":"Taobao" , "url":"www.taobao.com" } ]}';
+
+   var objJson = JSON.parse(text);
+    document.write("<br>"+objJson.sites[0].name);
+
+
+ var str=   JSON.stringify(obj);
+    document.write("<br>"+str);
+
+
+
+</script>
+
+</body>
+</html>

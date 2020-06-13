@@ -77,6 +77,9 @@
 	</span>
 
 </div>
+	<a onclick="login('123',loginBack2)">login</a>
+	<a onclick="loginBack('呵呵','笑')">login</a>
+
 </body>
 <script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
 <script type="text/javascript" src="js/tool.js"></script>
@@ -87,5 +90,10 @@
 			$(".fade").fadeToggle();
 		})
 	})
+
+    function loginBack2(str){
+        alert(str);
+	}
+
 </script>
 </html>
