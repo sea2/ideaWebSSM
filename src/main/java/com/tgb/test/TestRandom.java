@@ -2,6 +2,7 @@ package com.tgb.test;
 
 import com.tgb.manager.ResourcesMsgManager;
 import com.tgb.util.HttpUtil;
+import sun.plugin2.message.Message;
 
 import java.net.URLEncoder;
 import java.util.ArrayList;
@@ -33,6 +34,8 @@ public class TestRandom {
             int intChose = new Random().nextInt(10);
             System.out.println(intChose);
         }
+
+
 
         List<Integer> arr = new ArrayList<Integer>();
         for (int i = 0; i < 5; i++) {

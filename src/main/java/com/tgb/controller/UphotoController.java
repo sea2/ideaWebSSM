@@ -19,7 +19,10 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 @Controller
-public class UphotoController {
+public class
+
+
+UphotoController {
 
     @RequestMapping("/upload")
     public String addUser(@RequestParam("file") CommonsMultipartFile[] files, HttpServletRequest request) {
@@ -85,6 +88,7 @@ public class UphotoController {
         }
         Map<String, String> map = new HashMap<>();
         map.put("code", "200");
+
         return map;
     }
 }

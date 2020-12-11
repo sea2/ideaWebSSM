@@ -32,7 +32,7 @@ import java.util.Map;
  * 但若是使用了重定向,那么request中保存的数据就得不到了
  * */
 @Controller
-public class P2pControler {
+public class P2pController {
 
     @Autowired
     private P2pService p2pService;
@@ -297,6 +297,9 @@ public class P2pControler {
 
     @RequestMapping("app/updateScore")
     public void updateScore(HttpServletRequest request, HttpServletResponse response) {
+
+
+
         int id = Integer.parseInt(request.getParameter("id"));
         int score = Integer.parseInt(request.getParameter("score"));
         P2pInfo mP2pInfo = new P2pInfo();
@@ -304,6 +307,9 @@ public class P2pControler {
         mP2pInfo.setScore(score);
         if (score <= 10) {
             p2pService.updateScore(mP2pInfo);
+
+
+
 
 
             if (score < 0) {

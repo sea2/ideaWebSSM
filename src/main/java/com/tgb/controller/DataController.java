@@ -33,7 +33,7 @@ import java.util.List;
  *   request和session的区别是request是一个请求的周期   session是一个页面的周期常用作登陆后用户信息
  * */
 @Controller
-public class DataController {
+public class DataController extends BaseController{
     @Autowired
     private DataService dataService;
     @Autowired
@@ -363,15 +363,8 @@ public class DataController {
 
         String str = strjson.replace("\"result\":{", "\"result\":{\"remark\":\"这个铲平不错哦\",");
 
-        response.setContentType("application/json;charset=UTF-8");
-        response.setCharacterEncoding("UTF-8");
-        try {
-            response.getWriter().write(str);
-            response.getWriter().flush();
-            response.getWriter().close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
+        write(response,str);
     }
 
     @ResponseBody
@@ -394,15 +387,7 @@ public class DataController {
 
         String xmlInfo = jsonObj.toString();
         String strjson = doHttpPost(URL, xmlInfo);
-        response.setContentType("application/json;charset=UTF-8");
-        response.setCharacterEncoding("UTF-8");
-        try {
-            response.getWriter().write(strjson);
-            response.getWriter().flush();
-            response.getWriter().close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        write(response,strjson);
     }
 
     /**

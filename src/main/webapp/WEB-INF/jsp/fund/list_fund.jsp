@@ -572,6 +572,7 @@
 
 
     function refreshTable(url) {
+
         var opt = {
             url: url,
             silent: true,
@@ -663,7 +664,7 @@
                         formatter: function (value, row, index) { // 单元格格式化函数
                             var array = value.split("**");
                             if (array != null && array.length === 2)
-                                return "<a href='http://fund.eastmoney.com/"+array[1]+".html'  target=\"_blank\" ><span class='main_font'>" + array[0] + "</span><br/><span class='two_font'>" + array[1] + "</span></a>";
+                                return "<a href='http://fund.eastmoney.com/" + array[1] + ".html'  target=\"_blank\" ><span class='main_font'>" + array[0] + "</span><br/><span class='two_font'>" + array[1] + "</span></a>";
                             else return "";
                         },
                         align: 'center',
