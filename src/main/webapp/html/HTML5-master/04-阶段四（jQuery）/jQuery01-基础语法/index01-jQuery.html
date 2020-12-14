@@ -8,13 +8,16 @@
 		<script>
 			console.log(document.body);
 			$(function(){
-				console.log(document.body);
+				console.log("---------ready---------------");
 			});
 			window.onload = function(){
-				console.log('页面onload完成')
+				console.log('-----------window.onload------------')
 			};
 			
 			//ready -> window.onload:区别：ready是在html,css加载之后，图片加载之前调用
+			// $(document).ready和window.onload都是在都是在页面加载完执行的函数，大多数情况下差别不大，但也是有区别的。
+            // $(document).ready:是DOM结构绘制完毕后就执行，不必等到加载完毕。 意思就是DOM树加载完毕，就执行，不必等到页面中图片或其他外部文件都加载完毕。并且可以写多个.ready。
+            // window.onload:是页面所有元素都加载完毕，包括图片等所有元素。只能执行一次。
 		</script>
 	</head>
 	<body>
