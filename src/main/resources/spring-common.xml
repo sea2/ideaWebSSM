@@ -30,6 +30,9 @@
 		<property name="configLocation" value="classpath:mybatis-config.xml" />
 	</bean>
 
+
+
+
 	<!--
 		3. mybatis自动扫描加载Sql映射文件/接口 : MapperScannerConfigurer sqlSessionFactory
 

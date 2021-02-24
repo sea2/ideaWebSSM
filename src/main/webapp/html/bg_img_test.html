@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0">
+
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script ype="text/javascript" src="../js/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            // 图片地址
+            var img_url = "../images/img_qiu.jpg";
+            // 创建对象
+            var img = new Image();
+            // 改变图片的src
+            img.src = img_url;
+            // 判断是否有缓存
+            if (img.complete) {
+                // 打印
+                // alert('from:complete : width:' + img.width + ',height:' + img.height)
+                setDiv(img.width,img.height);
+            } else {
+                // 加载完成执行
+                img.onload = function () {
+                    // 打印
+                    // alert('width:' + img.width + ',height:' + img.height)
+                    setDiv(img.width,img.height);
+                }
+            }
+        });
+
+
+        function setDiv(w,h) {
+            var screenWidth= $(window).width();
+            var divH=h/w*screenWidth;
+            console.log(screenWidth + "--" + w+ "--" +h);
+            $(".div_img").width(screenWidth);
+            $(".div_img").height(divH);
+        }
+    </script>
+
+    <style type="text/css">
+
+
+
+
+
+
+
+        .div_img{
+
+            background:  url(../images/img_qiu.jpg) no-repeat;
+            background-size: cover;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+<div class="div_img">呵呵笑</div>
+</body>
+</html>
+

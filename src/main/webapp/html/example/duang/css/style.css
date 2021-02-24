@@ -1,11 +1,12 @@
 body {
   width: 16rem;
   margin: 0 auto;
-  background: #f3ecd1 url(../img/body-bg11.jpg) repeat;
+
   background-size: cover;
 }
 
 .container {
+  background: #f3ecd1 url(../img/body-bg11.jpg) repeat;
   width: 100%;
 }
 
