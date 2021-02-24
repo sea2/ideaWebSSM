@@ -30,6 +30,9 @@ body {
   max-height: 100%;
   font-size: 12px; }
   [data-dpr="2"] #container2 {
+
+
+
     font-size: 24px; }
   [data-dpr="3"] #container2 {
     font-size: 36px; }

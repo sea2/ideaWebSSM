@@ -182,7 +182,8 @@ public class HttpUtil {
             connection.setRequestMethod("POST");
             connection.setRequestProperty("Connection", "Keep-Alive");
             connection.setRequestProperty("Charset", "UTF-8");
-            ;
+
+
             connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
             //设置请求数据内容
             String requestContent = "";
@@ -230,9 +231,15 @@ public class HttpUtil {
         ByteArrayOutputStream swapStream = null;
         try {
             URL url = new URL(URL);
+            String host = url.getHost();
             HttpURLConnection urlCon = (HttpURLConnection) url.openConnection();
             urlCon.setConnectTimeout(5 * 1000);
             urlCon.setRequestMethod("GET");
+
+            urlCon.setRequestProperty("Authorization", "APPCODE 138881cf8fef4dafaf5d1ff45da251e7");
+
+
+
             InputStream inStream = urlCon.getInputStream();
             byte[] data = StreamTool.readInputStream(inStream);
             String result = new String(data, "UTF-8");
@@ -488,6 +495,8 @@ public class HttpUtil {
             System.out.println("文件下载失败！");
         } finally {
             return file;
+
+
         }
 
     }

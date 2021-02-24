@@ -7,6 +7,8 @@ public class Log4jTest {
 
     //1.获取日志记录器，该日志记录器将负责控制日志信息
     private static Logger logger = Logger.getLogger(Log4jTest.class);
+
+
     /**
      * @param args
      */
@@ -19,6 +21,13 @@ public class Log4jTest {
         // 记录error级别的信息
         logger.error("This is error message.");
     }
+
+
+
+
+
+
+
 
 
 

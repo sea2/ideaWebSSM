@@ -246,6 +246,8 @@ function drawRouletteWheel() {
     }*/
 
 
+    document.getElementById(id).style.display="-webkit-box";
+
 }
 
 function showDialog(id) {
@@ -257,6 +259,9 @@ function showID(id) {
 }
 function hideID(id) {
     document.getElementById(id).style.display = "none";
+
+
+
 }
 
 //缓存函数

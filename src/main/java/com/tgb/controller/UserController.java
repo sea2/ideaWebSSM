@@ -60,6 +60,8 @@ public class UserController {
         System.out.println("++-----" + jsonObj.toString());
         String result = "{\"code\":\"200\",\"result\":{\"total_money\":\"18080\",\"yesterday_income\":\"80\",\"unread_messages\":\"2\",\"head_portrait\":\"\",\"menu_list\":[{\"name\":\"\",\"menu\":[{\"param_name\":\"账户余额(元)\",\"param_value\":\"2392.00\",\"icon_url\":\"\",\"linked_url\":\"xiaocaimi://accountBalance?money=2392.00\"},{\"param_name\":\"优惠券(3)\",\"param_value\":\"\",\"icon_url\":\"\",\"linked_url\":\"xiaocaimi://coupon\"},{\"param_name\":\"交易记录\",\"param_value\":\"\",\"icon_url\":\"\",\"linked_url\":\"xiaocaimi://transactionFlowList\"},{\"param_name\":\"回款日历\",\"param_value\":\"\",\"icon_url\":\"\",\"linked_url\":\"xiaocaimi://plan\"}]}]}}";
         try {
+
+
             response.setContentType("application/json;charset=UTF-8");
             response.setCharacterEncoding("UTF-8");
             response.getWriter().write(result);
@@ -256,6 +258,9 @@ public class UserController {
                 Cell cell2 = readsheet.getCell(2, i);
                 User user = new User(i + 5, cell.getContents(), cell2.getContents(), cell2.getContents());
                 userService.save(user);
+
+
+
             }
 
         } catch (Exception e) {
@@ -311,6 +316,8 @@ public class UserController {
                 // 关闭资源，释放内存
                 wwb.close();
             } catch (IOException e) {
+
+
                 e.printStackTrace();
             } catch (WriteException e) {
                 e.printStackTrace();

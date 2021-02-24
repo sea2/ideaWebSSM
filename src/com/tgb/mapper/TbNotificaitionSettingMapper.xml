@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tgb.mapper.TbNotificaitionSettingMapper" >
+  <resultMap id="BaseResultMap" type="com.tgb.model.TbNotificaitionSetting" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="sound" property="sound" jdbcType="BIT" />
+    <result column="vibrate" property="vibrate" jdbcType="BIT" />
+    <result column="likes" property="likes" jdbcType="BIT" />
+    <result column="comments" property="comments" jdbcType="BIT" />
+    <result column="follow" property="follow" jdbcType="BIT" />
+    <result column="system_notificaition" property="systemNotificaition" jdbcType="BIT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, user_id, sound, vibrate, likes, comments, follow, system_notificaition, create_time, 
+    update_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.tgb.model.TbNotificaitionSettingExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_notificaition_setting
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_notificaition_setting
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from tb_notificaition_setting
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.tgb.model.TbNotificaitionSettingExample" >
+    delete from tb_notificaition_setting
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.tgb.model.TbNotificaitionSetting" >
+    insert into tb_notificaition_setting (id, user_id, sound, 
+      vibrate, likes, comments, follow, 
+      system_notificaition, create_time, update_time
+      )
+    values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=VARCHAR}, #{sound,jdbcType=BIT}, 
+      #{vibrate,jdbcType=BIT}, #{likes,jdbcType=BIT}, #{comments,jdbcType=BIT}, #{follow,jdbcType=BIT}, 
+      #{systemNotificaition,jdbcType=BIT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.tgb.model.TbNotificaitionSetting" >
+    insert into tb_notificaition_setting
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="sound != null" >
+        sound,
+      </if>
+      <if test="vibrate != null" >
+        vibrate,
+      </if>
+      <if test="likes != null" >
+        likes,
+      </if>
+      <if test="comments != null" >
+        comments,
+      </if>
+      <if test="follow != null" >
+        follow,
+      </if>
+      <if test="systemNotificaition != null" >
+        system_notificaition,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="sound != null" >
+        #{sound,jdbcType=BIT},
+      </if>
+      <if test="vibrate != null" >
+        #{vibrate,jdbcType=BIT},
+      </if>
+      <if test="likes != null" >
+        #{likes,jdbcType=BIT},
+      </if>
+      <if test="comments != null" >
+        #{comments,jdbcType=BIT},
+      </if>
+      <if test="follow != null" >
+        #{follow,jdbcType=BIT},
+      </if>
+      <if test="systemNotificaition != null" >
+        #{systemNotificaition,jdbcType=BIT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.tgb.model.TbNotificaitionSettingExample" resultType="java.lang.Integer" >
+    select count(*) from tb_notificaition_setting
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tb_notificaition_setting
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.userId != null" >
+        user_id = #{record.userId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sound != null" >
+        sound = #{record.sound,jdbcType=BIT},
+      </if>
+      <if test="record.vibrate != null" >
+        vibrate = #{record.vibrate,jdbcType=BIT},
+      </if>
+      <if test="record.likes != null" >
+        likes = #{record.likes,jdbcType=BIT},
+      </if>
+      <if test="record.comments != null" >
+        comments = #{record.comments,jdbcType=BIT},
+      </if>
+      <if test="record.follow != null" >
+        follow = #{record.follow,jdbcType=BIT},
+      </if>
+      <if test="record.systemNotificaition != null" >
+        system_notificaition = #{record.systemNotificaition,jdbcType=BIT},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tb_notificaition_setting
+    set id = #{record.id,jdbcType=BIGINT},
+      user_id = #{record.userId,jdbcType=VARCHAR},
+      sound = #{record.sound,jdbcType=BIT},
+      vibrate = #{record.vibrate,jdbcType=BIT},
+      likes = #{record.likes,jdbcType=BIT},
+      comments = #{record.comments,jdbcType=BIT},
+      follow = #{record.follow,jdbcType=BIT},
+      system_notificaition = #{record.systemNotificaition,jdbcType=BIT},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tgb.model.TbNotificaitionSetting" >
+    update tb_notificaition_setting
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="sound != null" >
+        sound = #{sound,jdbcType=BIT},
+      </if>
+      <if test="vibrate != null" >
+        vibrate = #{vibrate,jdbcType=BIT},
+      </if>
+      <if test="likes != null" >
+        likes = #{likes,jdbcType=BIT},
+      </if>
+      <if test="comments != null" >
+        comments = #{comments,jdbcType=BIT},
+      </if>
+      <if test="follow != null" >
+        follow = #{follow,jdbcType=BIT},
+      </if>
+      <if test="systemNotificaition != null" >
+        system_notificaition = #{systemNotificaition,jdbcType=BIT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tgb.model.TbNotificaitionSetting" >
+    update tb_notificaition_setting
+    set user_id = #{userId,jdbcType=VARCHAR},
+      sound = #{sound,jdbcType=BIT},
+      vibrate = #{vibrate,jdbcType=BIT},
+      likes = #{likes,jdbcType=BIT},
+      comments = #{comments,jdbcType=BIT},
+      follow = #{follow,jdbcType=BIT},
+      system_notificaition = #{systemNotificaition,jdbcType=BIT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

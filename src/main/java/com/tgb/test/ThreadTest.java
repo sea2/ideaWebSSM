@@ -1,12 +1,14 @@
 package com.tgb.test;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URL;
+import java.net.URLEncoder;
 import java.util.concurrent.*;
 
 public class ThreadTest {
 
     //同步关键字特殊域
     static volatile int num = 0;
-
 
     public static void main(String[] args) {
      /*    for (int i = 0; i < 10; i++) {
@@ -74,6 +76,10 @@ public class ThreadTest {
         });
         // 提交futureTask
         mExecutor.submit(futureTask);
+
+
+
+
     }
 
 

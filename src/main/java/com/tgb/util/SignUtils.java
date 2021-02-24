@@ -2,9 +2,11 @@ package com.tgb.util;
 
 
 
+import com.google.common.collect.Maps;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -17,6 +19,83 @@ import java.util.TreeMap;
  * @author xiaocaimi@xcm.com
  */
 public class SignUtils {
+
+
+
+
+
+    /**
+     * 将对象的参数进行签名
+     *
+     * @param t       对象
+     * @param signKey 签名KEY
+     * @return 签名字符串
+     */
+    public static <T> String[] sign(T t, String signKey) {
+        Map<String, Object> map = object2Map(t);
+        map = sortMapByKey(map);
+        StringBuilder str = new StringBuilder();
+        if (map != null) {
+            for (String key : map.keySet()) {
+                if ("sign".equals(key)) {
+                    continue;
+                }
+                Object value = map.get(key);
+                if (value == null) {
+                    continue;
+                }
+                String temp = String.valueOf(value);
+                str.append(temp);
+            }
+        }
+            System.out.println("SignUtils==========待加密串:{}"+str.toString());
+        System.out.println("SignUtils==========秘钥:{}"+signKey);
+        System.out.println("SignUtils==========sign:{}"+ MD5Util.MD5(str.toString() + signKey));
+        return new String[]{str.toString(),  MD5Util.MD5(str.toString() + signKey)};
+    }
+
+
+    /**
+     * 使用 Map按key进行排序
+     *
+     * @param map 待排序的数据
+     * @return 排序后的数据
+     */
+    public static Map<String, Object> sortMapByKey(Map<String, Object> map) {
+        if (map == null || map.isEmpty()) {
+            return null;
+        }
+        Map<String, Object> sortMap = new TreeMap<>();
+        sortMap.putAll(map);
+        return sortMap;
+    }
+
+    /**
+     * 对象属性数据转为MAP
+     *
+     * @param object 对象
+     * @return 包含对象所有属性的MAP
+     */
+    public static Map<String, Object> object2Map(Object object) {
+        Map<String, Object> result = Maps.newHashMap();
+        Class tempClass = object.getClass();
+        while (tempClass != null) {
+            // 获得类的的属性名 数组
+            Field[] fields = tempClass.getDeclaredFields();
+            try {
+                for (Field field : fields) {
+                    field.setAccessible(true);
+                    result.put(field.getName(), field.get(object));
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            tempClass = tempClass.getSuperclass();
+        }
+        return result;
+    }
+
+
     /**
      * 将Map格式的字符串转成TreeMap
      *

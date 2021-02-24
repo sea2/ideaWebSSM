@@ -5,7 +5,6 @@ $designWidth:720;
 
 
 body {
-
   text-align: center;
   margin: 0 auto;
   padding: 0;
@@ -205,6 +204,7 @@ body {
 #activity .actTop{
   width: 100%;
   overflow-x: hidden;
+
 }
 #activity .actMore div{
   box-shadow: 0px px2rem(1) px2rem(1) #999;
@@ -239,8 +239,10 @@ body {
   border: 1px #eee solid;
   bottom: px2rem(10);
   padding: px2rem(10);
-  border-radius: px2rem(10)
+  border-radius: px2rem(10);
 }
+
+
 #product .proMsg .pro_word{
   position: absolute;
   top: px2rem(10);
@@ -249,6 +251,8 @@ body {
   left: px2rem(108);
   text-align: left;
 }
+
+
 #product .proMsg .pro_word .pro_wordTitle{
   font-size: px2rem(14);
   text-align: center;

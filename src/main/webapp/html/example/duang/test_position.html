@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!--默认的position属性static，按照文档流-->
+<div style="background: #0D0D0D;position: static">
+    <span style="color: white">static</span>
+</div>
+
+
+<!--使用top bottom right left位置会变化但是文档流所占位置不会变化，显示位置是变动的     margin padding 位置和文档流所占位置都会变化-->
+<div style="background: #00a1fd;position: relative;">
+    <span style="color: white">relative</span>
+</div><div style="background: #00a1fd;position: relative;">
+    <span style="color: white">relative</span>
+</div>
+
+
+<!--一般和 属性relative的父布局联合使用，比如做列表内容的定位-->
+<div style="background: #00ad22;position: absolute;">
+    <span style="color: white">absolute</span>
+</div>
+
+
+<div style="background: #5d5d5d;position: fixed;top: 0;z-index: 9999">
+    <span style="color: white">fixed</span>
+</div>
+
+
+
+</body>
+</html>
+
+
+

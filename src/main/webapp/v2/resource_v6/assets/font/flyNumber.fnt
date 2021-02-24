@@ -1,0 +1,12 @@
+{"file":"flyNumber.png","frames":{
+"+":{"x":63,"y":78,"w":20,"h":23,"offX":2,"offY":3,"sourceW":25,"sourceH":29},
+"0":{"x":0,"y":0,"w":25,"h":29,"offX":0,"offY":0,"sourceW":25,"sourceH":29},
+"1":{"x":102,"y":0,"w":13,"h":29,"offX":6,"offY":0,"sourceW":25,"sourceH":29},
+"2":{"x":35,"y":0,"w":24,"h":29,"offX":0,"offY":0,"sourceW":25,"sourceH":29},
+"3":{"x":32,"y":78,"w":21,"h":29,"offX":2,"offY":0,"sourceW":25,"sourceH":29},
+"4":{"x":0,"y":39,"w":23,"h":29,"offX":1,"offY":0,"sourceW":25,"sourceH":29},
+"5":{"x":97,"y":39,"w":21,"h":29,"offX":2,"offY":0,"sourceW":25,"sourceH":29},
+"6":{"x":33,"y":39,"w":22,"h":29,"offX":1,"offY":0,"sourceW":25,"sourceH":29},
+"8":{"x":65,"y":39,"w":22,"h":29,"offX":1,"offY":0,"sourceW":25,"sourceH":29},
+"9":{"x":0,"y":78,"w":22,"h":29,"offX":1,"offY":0,"sourceW":25,"sourceH":29},
+"7":{"x":69,"y":0,"w":23,"h":29,"offX":1,"offY":0,"sourceW":25,"sourceH":29}}}
