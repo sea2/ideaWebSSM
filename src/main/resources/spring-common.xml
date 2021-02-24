@@ -14,10 +14,10 @@
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://106.13.43.211:3306/data_info?characterEncoding=utf8&amp;useSSL=false&amp;createDatabaseIfNotExist=true&amp;serverTimezone=GMT&amp;nullNamePatternMatchesAll=true" />
+		<property name="url" value="jdbc:mysql://rm-j6c0wsx8hfof1k00iwo.mysql.rds.aliyuncs.com:3306/data_info?characterEncoding=utf8&amp;useSSL=false&amp;createDatabaseIfNotExist=true&amp;serverTimezone=GMT&amp;nullNamePatternMatchesAll=true" />
 
-		<property name="username" value="root" />
-		<property name="password" value="lhy12369874" />
+		<property name="username" value="mgroot" />
+		<property name="password" value="magic0427@tech" />
 	</bean>
 
 	<!--
